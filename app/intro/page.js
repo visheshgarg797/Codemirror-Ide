@@ -7,12 +7,13 @@ import Navbar from "../../components/navbar";
 import MainIntro from "../../components/mainIntro";
 import Footer from "@/components/footer";
 export default function Home() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, getThemeStyles } = useContext(ThemeContext);
+  const themeStyles = getThemeStyles();
 
   return (
     <div
       style={{
-        backgroundColor: theme === "light" ? "#ffffff" : "#23272f",
+        backgroundColor: themeStyles.col02.backgroundColor,
         minHeight: "100vh",
         position: "relative",
       }}
