@@ -16,8 +16,14 @@ export default function ButtonLeft(props) {
       <button
         className="text-gray-300 hover:text-white py-4 px-4 mb-1 text-center flex-1 rounded-r-full "
         style={{
-          backgroundColor: themeStyles.col01.backgroundColor,
-          color: themeStyles.col01.color,
+          backgroundColor:
+            window.location.pathname === props.path
+              ? themeStyles.col03.backgroundColor
+              : themeStyles.col01.backgroundColor,
+          color:
+            window.location.pathname === props.path
+              ? themeStyles.col03.color
+              : themeStyles.col01.color,
           width: "20rem",
           fontFamily:
             "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
@@ -25,11 +31,16 @@ export default function ButtonLeft(props) {
         }}
         onMouseEnter={(e) => {
           e.target.style.backgroundColor = themeStyles.col03.backgroundColor;
-          e.target.style.color = themeStyles.col03.color;
         }}
         onMouseLeave={(e) => {
-          e.target.style.backgroundColor = themeStyles.col01.backgroundColor;
-          e.target.style.color = themeStyles.col01.color;
+          e.target.style.backgroundColor =
+            window.location.pathname === props.path
+              ? themeStyles.col03.backgroundColor
+              : themeStyles.col01.backgroundColor;
+          e.target.style.color =
+            window.location.pathname === props.path
+              ? themeStyles.col03.color
+              : themeStyles.col01.color;
         }}
       >
         {props.index}
