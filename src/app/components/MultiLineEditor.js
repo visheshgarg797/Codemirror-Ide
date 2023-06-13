@@ -25,12 +25,13 @@ export default function Editor() {
 
   const customCompletionKeymap = [
     {
-      key: "Enter",
-      run: (state, dispatch) => {
-        console.log("enter key pressed");
-      },
+      Enter: "autocomplete",
     },
   ];
+
+  const handleDocChange = (e) => {
+    console.log(e);
+  };
 
   useEffect(() => {
     if (viewRef && viewRef.current) {
@@ -64,6 +65,7 @@ export default function Editor() {
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
+      docChanged: { handleDocChange },
     });
 
     viewRef.current = View;

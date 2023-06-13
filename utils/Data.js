@@ -597,7 +597,7 @@ const words = {
       label: "city",
       info: "list name",
       type: "list head",
-      apply: "city: ",
+      apply: "city:",
     },
     {
       label: "country",
