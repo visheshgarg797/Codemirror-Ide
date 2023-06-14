@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useCustomTheme } from "@/components/useThemeHook";
+import { useCustomTheme } from "./useThemeHook";
 import Sidebar from "./Sidebar";
 import Navbar from "./navbar";
 import Footer from "./footer";
