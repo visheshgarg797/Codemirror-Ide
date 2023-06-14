@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
-import themeStyles from "./globalThemeNames";
+import GlobalThemeStyles from "./globalThemeNames";
 // Create the theme context
 export const ThemeContext = createContext();
 
@@ -31,13 +31,14 @@ export function ThemeProvider({ children }) {
 
   // Getting the theme colors for dark or light mode
   const getThemeStyles = () => {
-    return themeStyles.find((item) => item.theme === theme);
+    return GlobalThemeStyles.find((item) => item.theme === theme);
   };
   // Define the context value
+
+  const themeStyles = getThemeStyles();
   const themeContextValue = {
-    theme,
     toggleTheme,
-    getThemeStyles,
+    themeStyles,
   };
 
   return (

@@ -1,11 +1,10 @@
 "use client";
-import ButtonLeft from "./buttonleft";
-import React, { useState, useContext } from "react";
-import { ThemeContext, ThemeProvider } from "./themeProvider";
+import ButtonLeft from "./leftNavButton";
+import React, { useState } from "react";
+import { useCustomTheme } from "./useThemeHook";
 
 export default function MainConclusion() {
-  const { theme, getThemeStyles } = useContext(ThemeContext);
-  const themeStyles = getThemeStyles();
+  const { themeStyles } = useCustomTheme();
 
   return (
     <div
@@ -14,7 +13,6 @@ export default function MainConclusion() {
         backgroundColor: themeStyles.col02.backgroundColor,
         marginLeft: "390px",
         marginRight: "130px",
-        paddingLeft: "0px",
         paddingRight: "20px",
         paddingBottom: "60px",
       }}

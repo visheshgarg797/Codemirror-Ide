@@ -1,27 +1,11 @@
-"use client";
-import React, { useState, useContext } from "react";
-import { ThemeContext, ThemeProvider } from "../../components/themeProvider";
-import Button from "../../components/button";
-import Left from "../../components/left";
-import Navbar from "../../components/navbar";
-import MainIntro from "../../components/mainIntro";
-import Footer from "@/components/footer";
+import BasicLayout from "@/components/basicLayout";
+import MainIntro from "@/components/mainIntro";
 export default function Home() {
-  const { theme, getThemeStyles } = useContext(ThemeContext);
-  const themeStyles = getThemeStyles();
-
   return (
-    <div
-      style={{
-        backgroundColor: themeStyles.col02.backgroundColor,
-        minHeight: "100vh",
-        position: "relative",
-      }}
-    >
-      <Navbar />
-      <Left />
-      <MainIntro />
-      <Footer />
-    </div>
+    <>
+      <BasicLayout>
+        <MainIntro />
+      </BasicLayout>
+    </>
   );
 }

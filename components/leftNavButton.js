@@ -1,10 +1,9 @@
 "use client";
-import React, { useState, useContext } from "react";
-import { ThemeContext, ThemeProvider } from "./themeProvider";
+import React, { useState } from "react";
+import { useCustomTheme } from "./useThemeHook";
 
-export default function ButtonLeft(props) {
-  const { theme, getThemeStyles } = useContext(ThemeContext);
-  const themeStyles = getThemeStyles();
+export default function LeftNavButton(props) {
+  const { themeStyles } = useCustomTheme();
   return (
     <a
       href={props.href}

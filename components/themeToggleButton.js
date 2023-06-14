@@ -1,11 +1,9 @@
 "use client";
-import React, { useContext } from "react";
-import { ThemeContext, ThemeProvider } from "./themeProvider";
+import React from "react";
+import { useCustomTheme } from "./useThemeHook";
 
-export default function ButtonDark() {
-  const { theme, toggleTheme, getThemeStyles } = useContext(ThemeContext);
-  const themeStyles = getThemeStyles();
-  console.log(theme);
+export default function ThemeToggleButton() {
+  const { themeStyles, toggleTheme } = useCustomTheme();
   return (
     <button
       onClick={toggleTheme}

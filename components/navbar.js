@@ -1,12 +1,12 @@
 "use client";
 import Button from "./button";
-import ButtonDark from "./buttonDark";
-import React, { useContext } from "react";
-import { ThemeContext, ThemeProvider } from "./themeProvider";
+import ButtonDark from "./themeToggleButton";
+import React from "react";
+import { useCustomTheme } from "./useThemeHook";
+import ThemeToggleButton from "./themeToggleButton";
 
 export default function Navbar() {
-  const { theme, getThemeStyles } = useContext(ThemeContext);
-  const themeStyles = getThemeStyles();
+  const { themeStyles } = useCustomTheme();
 
   return (
     <nav
@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="flex justify-end">
           <Button index="Button" />
           <Button index="Github" />
-          <ButtonDark index="Mode" />
+          <ThemeToggleButton index="Mode" />
         </div>
       </div>
     </nav>

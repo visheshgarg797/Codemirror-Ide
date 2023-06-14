@@ -1,6 +1,6 @@
 // Theme colors for dark and light mode , there are three type of combination colorset for element namely col01 , col02 , col03
 
-const themeStyles = [
+const GlobalThemeStyles = [
   {
     theme: "dark",
     col01: {
@@ -34,4 +34,4 @@ const themeStyles = [
   },
 ];
 
-export default themeStyles;
+export default GlobalThemeStyles;
