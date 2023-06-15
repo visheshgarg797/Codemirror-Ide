@@ -1,20 +1,23 @@
-"use cilent";
+"use client";
 import React, { useRef, useEffect, useContext } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView } from "@codemirror/view";
+import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { autocompletion } from "@codemirror/autocomplete";
-import { SampleThemeListForSingleLineEditor } from "../../../utils/SingleSampleThemeList";
-import ThemeModeContext from "../../../context/ThemeModeContext";
-import ThemeChangeButton from "./ThemeChangeButton";
-import DirectionModeContext from "../../../context/DirectionModeContext";
+import { syntaxHighlighting } from "@codemirror/language";
+import { useCustomTheme } from "./useThemeHook";
 import DirectionChangeButton from "./DirectionChangeButton";
+import DirectionModeContext from "../context/DirectionModeContext";
+import words from "../utils/Data";
+import keywordFilter from "../utils/GetSuggestions";
+import { SampleThemeListForSingleLineEditor } from "../utils/SingleSampleThemeList";
+import { completionKeymap } from "@codemirror/autocomplete";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
-  const EditorTheme = useContext(ThemeModeContext);
+  const { themeStyles } = useCustomTheme();
   const EditorDirection = useContext(DirectionModeContext);
   let code = "";
 
@@ -68,10 +71,10 @@ const SingleLineEditor = () => {
         ),
         SampleThemeListForSingleLineEditor[
           EditorDirection.directionMode.LeftToRight
-            ? EditorTheme.ThemeMode.DarkMode
+            ? themeStyles.theme === "dark"
               ? 0
               : 1
-            : EditorTheme.ThemeMode.DarkMode
+            : themeStyles.theme === "dark"
             ? 2
             : 3
         ],
@@ -97,14 +100,10 @@ const SingleLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [EditorTheme.ThemeMode, EditorDirection.directionMode]);
+  }, [themeStyles.theme, EditorDirection.directionMode]);
 
   return (
     <>
-      <div className="flex justify-between">
-        <ThemeChangeButton />
-        <DirectionChangeButton />
-      </div>
       <div ref={editorRef} className="EditorContainer" />
     </>
   );

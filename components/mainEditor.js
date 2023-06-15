@@ -2,7 +2,8 @@
 import ButtonLeft from "./leftNavButton";
 import React, { useState } from "react";
 import { useCustomTheme } from "./useThemeHook";
-
+import EditorModeToggleButton from "./EditorModeToggleButton";
+import IDE from "./ide";
 export default function MainEditor() {
   const { themeStyles } = useCustomTheme();
   return (
@@ -28,12 +29,8 @@ export default function MainEditor() {
       >
         Editor
       </h1>
-      <p>
-        <iframe
-          src="https://www.programiz.com/javascript/online-compiler/"
-          style={{ width: "100%", height: "500px" }}
-        ></iframe>
-      </p>
+      <EditorModeToggleButton />
+      <IDE />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import ButtonDark from "./themeToggleButton";
 import React from "react";
 import { useCustomTheme } from "./useThemeHook";
 import ThemeToggleButton from "./themeToggleButton";
+import DirectionChangeButton from "./DirectionChangeButton";
 
 export default function Navbar() {
   const { themeStyles } = useCustomTheme();
@@ -33,7 +34,7 @@ export default function Navbar() {
           CODEMIRROR IDE{" "}
         </h1>
         <div className="flex justify-end">
-          <Button index="Button" />
+          <DirectionChangeButton />
           <Button index="Github" />
           <ThemeToggleButton index="Mode" />
         </div>
