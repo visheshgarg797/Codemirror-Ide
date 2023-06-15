@@ -22,13 +22,11 @@ export default function MainEditor() {
           color: themeStyles.col02.color,
           paddingTop: "40px",
           fontSize: "40px",
-          fontFamily:
-            "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+          fontFamily: themeStyles.font,
           fontWeight: "700",
         }}
       >
-        {" "}
-        Editor{" "}
+        Editor
       </h1>
       <p>
         <iframe

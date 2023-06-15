@@ -10,11 +10,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className="bg-gray-800 py-0 px-8 sticky top-0 z-10"
+      className="py-0 px-8 sticky top-0 z-10"
       style={{
         backgroundColor: themeStyles.col01.backgroundColor,
-        borderRadius: "100px",
-        height: "68px",
+        borderBottomLeftRadius: "50px",
+        borderBottomRightRadius: "50px",
+        height: "60px",
       }}
     >
       <div className="flex justify-between items-center">
@@ -24,8 +25,7 @@ export default function Navbar() {
             color: themeStyles.col03.color,
             fontWeight: "bold",
             fontSize: "40px",
-            fontFamily:
-              "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+            fontFamily: themeStyles.font,
             fontWeight: "700",
           }}
         >

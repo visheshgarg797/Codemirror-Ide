@@ -5,45 +5,23 @@ import { useCustomTheme } from "./useThemeHook";
 export default function LeftNavButton(props) {
   const { themeStyles } = useCustomTheme();
   return (
-    <a
-      href={props.href}
-      className="your-link-styles text-white text-xl font-bold pt-0.5 pb-0.5"
-      style={{
-        marginLeft: "0px",
-      }}
-    >
-      <button
-        className="text-gray-300 hover:text-white py-4 px-4 mb-1 text-center flex-1 rounded-r-full "
+    <a href={props.href}>
+      <div
+        className={themeStyles.classLnb}
         style={{
-          backgroundColor:
-            window.location.pathname === props.path
-              ? themeStyles.col03.backgroundColor
-              : themeStyles.col01.backgroundColor,
           color:
             window.location.pathname === props.path
               ? themeStyles.col03.color
               : themeStyles.col01.color,
           width: "20rem",
-          fontFamily:
-            "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+          fontFamily: themeStyles.font,
           fontWeight: "700",
-        }}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = themeStyles.col03.backgroundColor;
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor =
-            window.location.pathname === props.path
-              ? themeStyles.col03.backgroundColor
-              : themeStyles.col01.backgroundColor;
-          e.target.style.color =
-            window.location.pathname === props.path
-              ? themeStyles.col03.color
-              : themeStyles.col01.color;
+          borderTopRightRadius: "50px",
+          borderBottomRightRadius: "50px",
         }}
       >
         {props.index}
-      </button>
+      </div>
     </a>
   );
 }

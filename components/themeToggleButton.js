@@ -7,20 +7,9 @@ export default function ThemeToggleButton() {
   return (
     <button
       onClick={toggleTheme}
-      className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 ml-2 rounded-full "
+      className={themeStyles.classButton}
       style={{
-        backgroundColor: themeStyles.col01.backgroundColor,
-        color: themeStyles.col01.color,
-        fontFamily:
-          "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
-      }}
-      onMouseEnter={(e) => {
-        e.target.style.backgroundColor = themeStyles.col03.backgroundColor;
-        e.target.style.color = themeStyles.col03.color;
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.backgroundColor = themeStyles.col01.backgroundColor;
-        e.target.style.color = themeStyles.col01.color;
+        fontFamily: themeStyles.font,
       }}
     >
       <img
