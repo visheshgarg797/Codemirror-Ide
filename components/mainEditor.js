@@ -12,8 +12,8 @@ export default function MainEditor() {
       style={{
         backgroundColor: themeStyles.col02.backgroundColor,
         paddingTop: "100px",
-        marginLeft: "390px",
-        marginRight: "130px",
+        marginInlineStart: "390px",
+        marginInlineEnd: "130px",
         paddingRight: "20px",
         paddingBottom: "60px",
       }}

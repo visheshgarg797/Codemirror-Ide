@@ -9,7 +9,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className="bg-gray-800 w-128 fixed left-0 top-32"
+      className="bg-gray-800 w-128 fixed top-32"
       style={{
         width: "23rem",
         backgroundColor: themeStyles.col02.backgroundColor,

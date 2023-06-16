@@ -10,9 +10,9 @@ export default function MainAnalysis() {
       className="main-division p-5 pb-70 mt-2 mb-5"
       style={{
         backgroundColor: themeStyles.col02.backgroundColor,
-        marginLeft: "390px",
-        marginRight: "130px",
-        paddingRight: "20px",
+        marginInlineStart: "390px",
+        marginInlineEnd: "130px",
+        paddingEnd: "20px",
         paddingBottom: "60px",
       }}
     >

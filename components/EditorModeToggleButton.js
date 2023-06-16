@@ -43,7 +43,7 @@ const EditorModeToggleButton = () => {
           fontWeight: 800,
         }}
       >
-        Select mode:
+        Select mode
       </div>
       <div className="flex flex-col font-serif antialiased">
         <lable
