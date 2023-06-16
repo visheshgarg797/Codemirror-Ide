@@ -74,7 +74,7 @@ const SingleLineEditor = () => {
             ? themeStyles.theme === "dark"
               ? 0
               : 1
-            : themeStyles.theme === "dark"
+            : themeStyles.theme === "light"
             ? 2
             : 3
         ],

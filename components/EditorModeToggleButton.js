@@ -36,14 +36,23 @@ const EditorModeToggleButton = () => {
     <div className="flex flex-col items-start">
       <div
         className={`text-xl font-serif mb-2 `}
-        style={{ color: themeStyles.col02.color }}
+        style={{
+          color: themeStyles.col02.color,
+          font: themeStyles.font,
+          fontSize: "24px",
+          fontWeight: 800,
+        }}
       >
         Select mode:
       </div>
       <div className="flex flex-col font-serif antialiased">
         <lable
           for="Multi Line Editing Mode"
-          style={{ color: themeStyles.col02.color }}
+          style={{
+            color: themeStyles.col02.color,
+            font: themeStyles.font,
+            fontSize: "20px",
+          }}
         >
           <input
             type="radio"
@@ -57,7 +66,11 @@ const EditorModeToggleButton = () => {
         </lable>
         <lable
           for="Single Line Editing Mode"
-          style={{ color: themeStyles.col02.color }}
+          style={{
+            color: themeStyles.col02.color,
+            font: themeStyles.font,
+            fontSize: "20px",
+          }}
         >
           <input
             type="radio"
