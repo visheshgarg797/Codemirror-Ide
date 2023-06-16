@@ -71,7 +71,7 @@ const SingleLineEditor = () => {
         ),
         SampleThemeListForSingleLineEditor[
           EditorDirection.directionMode.LeftToRight
-            ? themeStyles.theme === "dark"
+            ? themeStyles.theme === "light"
               ? 0
               : 1
             : themeStyles.theme === "light"
@@ -90,10 +90,48 @@ const SingleLineEditor = () => {
       ],
     });
 
+    //seeing selected text  and calling callback if any text is selected
+
+    let isTextSelected = false;
+
+    const handleTextSelection = () => {
+      if (isTextSelected) {
+        const { ranges } = View.state.selection;
+
+        if (ranges.some((range) => !range.empty)) {
+          const selectedText = ranges
+            .map((range) => View.state.doc.sliceString(range.from, range.to))
+            .join("");
+          // Call your callback function with the selected text
+          console.log("Selected text:", selectedText);
+        }
+
+        isTextSelected = false;
+      }
+    };
+
+    const handleMouseDown = () => {
+      isTextSelected = false;
+    };
+
+    const handleMouseUp = () => {
+      isTextSelected = true;
+      setTimeout(handleTextSelection, 0);
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        isTextSelected = true;
+        setTimeout(handleTextSelection, 0);
+      }
+    };
+
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
     });
+    View.dom.addEventListener("mousedown", handleMouseDown);
+    View.dom.addEventListener("mouseup", handleMouseUp);
 
     viewRef.current = View;
 
