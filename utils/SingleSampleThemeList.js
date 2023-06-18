@@ -20,12 +20,11 @@ const SampleThemeListForSingleLineEditor = [
       "&.cm-focused .cm-selectionBackground, ::selection": {
         backgroundColor: "#074",
       },
+      ".cm-lineNumbers": {
+        width: "0px",
+      },
       ".cm-gutters": {
-        // backgroundColor: "#353535",
-        // color: "#ccc",
-        border: "none",
-        // padding: "5px",
-        // paddingTop: "6px",
+        backgroundColor: "white",
       },
     },
     { dark: false }
@@ -51,12 +50,11 @@ const SampleThemeListForSingleLineEditor = [
       "&.cm-focused .cm-selectionBackground, ::selection": {
         backgroundColor: "#074",
       },
+      ".cm-lineNumbers": {
+        width: "0px",
+      },
       ".cm-gutters": {
-        // backgroundColor: "#353535",
-        // color: "#ccc",
-        border: "none",
-        // padding: "5px",
-        // paddingTop: "6px",
+        backgroundColor: "#16181d",
       },
     },
     { dark: true }
@@ -82,12 +80,11 @@ const SampleThemeListForSingleLineEditor = [
       "&.cm-focused .cm-selectionBackground, ::selection": {
         backgroundColor: "#074",
       },
+      ".cm-lineNumbers": {
+        width: "0px",
+      },
       ".cm-gutters": {
-        // backgroundColor: "#353535",
-        // color: "#ccc",
-        border: "none",
-        // padding: "5px",
-        // paddingTop: "6px",
+        backgroundColor: "white",
       },
     },
     { dark: false }
@@ -114,12 +111,11 @@ const SampleThemeListForSingleLineEditor = [
       "&.cm-focused .cm-selectionBackground, ::selection": {
         backgroundColor: "#074",
       },
+      ".cm-lineNumbers": {
+        width: "0px",
+      },
       ".cm-gutters": {
-        // backgroundColor: "#353535",
-        // color: "#ccc",
-        border: "none",
-        // padding: "5px",
-        // paddingTop: "6px",
+        backgroundColor: "#16181d",
       },
     },
     { dark: true }

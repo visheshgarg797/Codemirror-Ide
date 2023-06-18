@@ -1,34 +1,25 @@
 "use client";
 import React, { useState, useContext } from "react";
-import EditorModeContext from "../context/EditorModeContext";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomEditorMode } from "@/context/useEditorModeHook";
+import constants from "@/utils/constants";
 
 const EditorModeToggleButton = () => {
-  const EditorMode = useContext(EditorModeContext);
   const { themeStyles } = useCustomTheme();
+  const { editorMode, updateEditorMode } = useCustomEditorMode();
 
-  const [currentEditorMode, setCurrentEditorMode] = useState(
-    EditorMode.editorMode.MultiLineEditorMode
-      ? "Multi Line Editing Mode"
-      : "Single Line Editing Mode"
-  );
+  const [currentEditorMode, setCurrentEditorMode] = useState(editorMode);
+  console.log("current mode", currentEditorMode);
   const handleModeChange = (e) => {
     const selectedMode = e.target.value;
-    console.log(selectedMode, EditorMode.editorMode);
 
     if (
-      selectedMode === "Single Line Editing Mode" &&
-      EditorMode.editorMode.MultiLineEditorMode
+      (selectedMode === constants.SINGLELINE_EDITOR_MODE &&
+        editorMode === constants.MULTILINE_EDITOR_MODE) ||
+      (selectedMode === constants.MULTILINE_EDITOR_MODE &&
+        editorMode === constants.SINGLELINE_EDITOR_MODE)
     ) {
-      console.log("working");
-      EditorMode.updateEditorMode();
-    }
-    if (
-      selectedMode === "Multi Line Editing Mode" &&
-      EditorMode.editorMode.SingleLineEditorMode
-    ) {
-      console.log("working");
-      EditorMode.updateEditorMode();
+      updateEditorMode();
     }
     setCurrentEditorMode(selectedMode);
   };
@@ -56,16 +47,16 @@ const EditorModeToggleButton = () => {
         >
           <input
             type="radio"
-            value="Multi Line Editing Mode"
-            checked={currentEditorMode === "Multi Line Editing Mode"}
+            value={constants.MULTILINE_EDITOR_MODE}
+            checked={currentEditorMode === constants.MULTILINE_EDITOR_MODE}
             onChange={handleModeChange}
             className="form-radio pl-2"
-            id="Multi Line Editing Mode"
+            id={constants.MULTILINE_EDITOR_MODE}
           />
           Multi Line Editing Mode
         </lable>
         <lable
-          for="Single Line Editing Mode"
+          for={constants.SINGLELINE_EDITOR_MODE}
           style={{
             color: themeStyles.col02.color,
             font: themeStyles.font,
@@ -74,12 +65,12 @@ const EditorModeToggleButton = () => {
         >
           <input
             type="radio"
-            value="Single Line Editing Mode"
-            checked={currentEditorMode === "Single Line Editing Mode"}
+            value={constants.SINGLELINE_EDITOR_MODE}
+            checked={currentEditorMode === constants.SINGLELINE_EDITOR_MODE}
             onChange={handleModeChange}
             className="form-radio pl-2"
             style={{ color: themeStyles.col02.color }}
-            id="Single Line Editing Mode"
+            id={constants.SINGLELINE_EDITOR_MODE}
           />
           Single Line Editing Mode
         </lable>

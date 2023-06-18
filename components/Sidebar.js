@@ -1,7 +1,7 @@
 "use client";
 import ButtonLeft from "./leftNavButton";
 import React, { useState } from "react";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
 import LeftNavButton from "./leftNavButton";
 
 export default function Sidebar() {

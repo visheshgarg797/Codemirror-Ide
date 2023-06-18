@@ -1,31 +1,26 @@
 "use client";
 import React, { useState, useContext } from "react";
-import DirectionModeContext from "@/context/DirectionModeContext";
+import { useCustomDirection } from "@/context/useDirectionHook";
 import BasicLayout from "../../components/basicLayout";
 import MainAnalysis from "../../components/mainAnalysis";
 
 export default function Home() {
-  const Direction = useContext(DirectionModeContext);
-  console.log(Direction);
-  if (Direction.directionMode.LeftToRight) {
+  const { direction } = useCustomDirection();
+  if (direction === "LeftToRight") {
     return (
-      <>
-        <div dir="ltr">
-          <BasicLayout>
-            <MainAnalysis />
-          </BasicLayout>
-        </div>
-      </>
+      <div dir="ltr">
+        <BasicLayout>
+          <MainAnalysis />
+        </BasicLayout>
+      </div>
     );
   } else {
     return (
-      <>
-        <div dir="rtl">
-          <BasicLayout>
-            <MainAnalysis />
-          </BasicLayout>
-        </div>
-      </>
+      <div dir="rtl">
+        <BasicLayout>
+          <MainAnalysis />
+        </BasicLayout>
+      </div>
     );
   }
 }

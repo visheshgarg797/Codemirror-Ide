@@ -1,24 +1,22 @@
-"use client";
+"use cilent";
 import React, { useRef, useEffect, useContext } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView, keymap } from "@codemirror/view";
+import { EditorView, lineNumbers } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { autocompletion } from "@codemirror/autocomplete";
-import { syntaxHighlighting } from "@codemirror/language";
-import { useCustomTheme } from "./useThemeHook";
-import DirectionChangeButton from "./DirectionChangeButton";
-import DirectionModeContext from "../context/DirectionModeContext";
-import words from "../utils/Data";
-import keywordFilter from "../utils/GetSuggestions";
-import { SampleThemeListForSingleLineEditor } from "../utils/SingleSampleThemeList";
-import { completionKeymap } from "@codemirror/autocomplete";
+import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
+import keywordFilter from "@/utils/GetSuggestions";
+import { startCompletion } from "@codemirror/autocomplete";
+import { useCustomTheme } from "@/context/useThemeHook";
+import { useCustomDirection } from "@/context/useDirectionHook";
+import constants from "@/utils/constants";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
+  const { direction } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
-  const EditorDirection = useContext(DirectionModeContext);
   let code = "";
 
   const handlePaste = (pastedText) => {
@@ -29,7 +27,6 @@ const SingleLineEditor = () => {
     });
 
     const { anchor, head } = viewRef.current.state.selection.main;
-    console.log(anchor, head);
     let newCursorPosition = anchor + concatenatedText.length;
     newCursorPosition =
       newCursorPosition -
@@ -65,19 +62,22 @@ const SingleLineEditor = () => {
       extensions: [
         basicSetup,
         javascript(),
-        autocompletion(),
+        autocompletion({
+          override: [keywordFilter],
+        }),
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
         ),
         SampleThemeListForSingleLineEditor[
-          EditorDirection.directionMode.LeftToRight
-            ? themeStyles.theme === "light"
+          direction === constants.LEFT_TO_RIGHT
+            ? themeStyles.theme === constants.LIGHT_MODE
               ? 0
               : 1
-            : themeStyles.theme === "light"
+            : themeStyles.theme === constants.LIGHT_MODE
             ? 2
             : 3
         ],
+        lineNumbers({ visible: false }),
         EditorView.domEventHandlers({
           paste(event, view) {
             console.log("paste event");
@@ -130,21 +130,25 @@ const SingleLineEditor = () => {
       state: startState,
       parent: editorRef.current,
     });
-    View.dom.addEventListener("mousedown", handleMouseDown);
-    View.dom.addEventListener("mouseup", handleMouseUp);
+
+    // this retriggers autocomplete after any particular selection from autocomplete
+
+    View.dom.addEventListener("keyup", (e) => {
+      // use this in getSuggestions.js to find total text
+      window.totalEditorText = viewRef.current.state.doc.toString();
+      if (e.key === "Enter") {
+        return startCompletion(View, { trigger: "input" });
+      }
+    });
 
     viewRef.current = View;
 
     return () => {
       View.destroy();
     };
-  }, [themeStyles.theme, EditorDirection.directionMode]);
+  }, [themeStyles, direction, code]);
 
-  return (
-    <>
-      <div ref={editorRef} className="EditorContainer" />
-    </>
-  );
+  return <div ref={editorRef} className="EditorContainer" />;
 };
 
 export default SingleLineEditor;

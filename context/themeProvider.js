@@ -1,6 +1,7 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
-import GlobalThemeStyles from "./globalThemeNames";
+import { createContext, useState } from "react";
+import GlobalThemeStyles from "../components/globalThemeNames";
+import constants from "@/utils/constants";
 // Create the theme context
 export const ThemeContext = createContext();
 
@@ -11,8 +12,8 @@ const initTheme = () => {
     return storedTheme;
   } else {
     // If no stored theme, set the initial theme
-    localStorage.setItem("theme", "light");
-    return "light";
+    localStorage.setItem("theme", constants.LIGHT_MODE);
+    return constants.LIGHT_MODE;
   }
 };
 
@@ -22,7 +23,10 @@ export function ThemeProvider({ children }) {
 
   // Toggle between light and dark themes
   const toggleTheme = () => {
-    const updatedTheme = theme === "light" ? "dark" : "light";
+    const updatedTheme =
+      theme === constants.LIGHT_MODE
+        ? constants.DARK_MODE
+        : constants.LIGHT_MODE;
     setTheme(updatedTheme);
 
     // Store the theme in cookies or local storage

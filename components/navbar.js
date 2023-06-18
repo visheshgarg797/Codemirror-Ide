@@ -2,7 +2,7 @@
 import Button from "./button";
 import ButtonDark from "./themeToggleButton";
 import React from "react";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
 import ThemeToggleButton from "./themeToggleButton";
 import DirectionChangeButton from "./DirectionChangeButton";
 
