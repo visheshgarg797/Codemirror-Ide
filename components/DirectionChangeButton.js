@@ -1,35 +1,24 @@
 "use client";
-import React, { useState, useContext } from "react";
-import DirectionModeContext from "@/context/DirectionModeContext";
-import { useCustomTheme } from "./useThemeHook";
+import React from "react";
+import { useCustomDirection } from "@/context/useDirectionHook";
+import { useCustomTheme } from "../context/useThemeHook";
 
 const DirectionChangeButton = () => {
-  const Direction = useContext(DirectionModeContext);
+  const { direction, toggleDirection } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
-  const [currentDirection, setCurrentDiretion] = useState(
-    Direction.directionMode.LeftToRight ? "RightToLeft" : "LeftToRight"
-  );
-  const handleChangeDirecion = (e) => {
-    setCurrentDiretion(
-      currentDirection === "LeftToRight" ? "RightToLeft" : "LeftToRight"
-    );
-    Direction.updateDirectionrMode();
-  };
 
   return (
-    <>
-      <button
-        onClick={handleChangeDirecion}
-        className={themeStyles.classButton}
-        style={{
-          cursor: "pointer",
-          color: themeStyles.col02.color,
-          fontFamily: themeStyles.font,
-        }}
-      >
-        {currentDirection}
-      </button>
-    </>
+    <button
+      onClick={toggleDirection}
+      className={themeStyles.classButton}
+      style={{
+        cursor: "pointer",
+        color: themeStyles.col02.color,
+        fontFamily: themeStyles.font,
+      }}
+    >
+      {direction}
+    </button>
   );
 };
 

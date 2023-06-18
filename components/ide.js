@@ -1,31 +1,27 @@
 "use client";
-import { useContext } from "react";
-import EditorModeToggleButton from "./EditorModeToggleButton"; // Radio button component used to toggle between multiline and singleline mode
-import EditorModeContext from "@/context/EditorModeContext"; // Used to get the current context to conditionally render single and multiline editors
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import MultiLineEditor from "./MultilineEditor";
 import SingleLineEditor from "./SinglelineEditor";
+import constants from "@/utils/constants";
 
 export default function IDE() {
-  const EditorMode = useContext(EditorModeContext);
+  const { editorMode } = useCustomEditorMode();
   const { themeStyles } = useCustomTheme();
-  console.log(EditorMode);
 
   return (
-    <>
-      <div
-        style={{
-          height: "480px",
-          marginTop: "10px",
-          backgroundColor: themeStyles.col02.backgroundColor,
-        }}
-      >
-        {EditorMode.editorMode.MultiLineEditorMode ? (
-          <MultiLineEditor />
-        ) : (
-          <SingleLineEditor />
-        )}
-      </div>
-    </>
+    <div
+      style={{
+        height: "480px",
+        marginTop: "10px",
+        backgroundColor: themeStyles.col02.backgroundColor,
+      }}
+    >
+      {editorMode === constants.MULTILINE_EDITOR_MODE ? (
+        <MultiLineEditor />
+      ) : (
+        <SingleLineEditor />
+      )}
+    </div>
   );
 }

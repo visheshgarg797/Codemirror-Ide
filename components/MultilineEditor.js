@@ -1,36 +1,28 @@
 "use client";
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect } from "react";
 import { EditorState } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { autocompletion } from "@codemirror/autocomplete";
+import { SampleThemeList } from "@/utils/SampleThemeList";
 import { syntaxHighlighting } from "@codemirror/language";
-import { useCustomTheme } from "./useThemeHook";
-import DirectionModeContext from "../context/DirectionModeContext";
-import DirectionChangeButton from "./DirectionChangeButton";
-import myHighlightStyle from "../utils/Highlights";
-import keywordFilter from "../utils/GetSuggestions";
-import words from "../utils/Data";
-import { SampleThemeList } from "../utils/SampleThemeList";
-import { completionKeymap } from "@codemirror/autocomplete";
+import { useCustomTheme } from "@/context/useThemeHook";
+import { useCustomDirection } from "@/context/useDirectionHook";
+import myHighlightStyle from "@/utils/Highlights";
+import keywordFilter from "@/utils/GetSuggestions";
+import { startCompletion } from "@codemirror/autocomplete";
+import constants from "@/utils/constants";
 
 export default function Editor() {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
+
   const { themeStyles } = useCustomTheme();
-  const EditorDirection = useContext(DirectionModeContext);
+  const { direction } = useCustomDirection();
   let code = "";
 
-  const customCompletionKeymap = [
-    {
-      Enter: "autocomplete",
-    },
-  ];
-
-  const handleDocChange = (e) => {
-    console.log(e);
-  };
+  // idea: record the chnages in the document using editor.updateListener then on keypress of enter, dispatch a space to the editor. Maybe that will trigger an autocompete since applying a space using autocomplete does not
 
   useEffect(() => {
     if (viewRef && viewRef.current) {
@@ -43,28 +35,33 @@ export default function Editor() {
         javascript(),
         autocompletion({
           override: [keywordFilter],
-          // completionKeymap: [customCompletionKeymap],
         }),
-
         syntaxHighlighting(myHighlightStyle),
         SampleThemeList[
-          EditorDirection.directionMode.LeftToRight
-            ? themeStyles.theme === "dark"
+          direction === constants.LEFT_TO_RIGHT
+            ? themeStyles.theme === constants.LIGHT_MODE
               ? 0
               : 1
-            : themeStyles.theme === "dark"
+            : themeStyles.theme === constants.LIGHT_MODE
             ? 2
             : 3
         ],
         EditorView.lineWrapping,
-        // keymap.of(customCompletionKeymap),
       ],
     });
 
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
-      docChanged: { handleDocChange },
+    });
+
+    // this retriggers autocomplete after any particular selection from autocomplete
+    View.dom.addEventListener("keyup", (e) => {
+      // use this in getSuggestions.js to find total text
+      window.totalEditorText = viewRef.current.state.doc.toString();
+      if (e.key === "Enter") {
+        return startCompletion(View, { trigger: "input" });
+      }
     });
 
     viewRef.current = View;
@@ -72,11 +69,7 @@ export default function Editor() {
     return () => {
       View.destroy();
     };
-  }, [themeStyles.theme, EditorDirection.directionMode]);
+  }, [themeStyles, direction, code]);
 
-  return (
-    <>
-      <div ref={editorRef} className="EditorContainer" />
-    </>
-  );
+  return <div ref={editorRef} className="EditorContainer" />;
 }

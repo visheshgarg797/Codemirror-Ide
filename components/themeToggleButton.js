@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
 
 export default function ThemeToggleButton() {
   const { themeStyles, toggleTheme } = useCustomTheme();
