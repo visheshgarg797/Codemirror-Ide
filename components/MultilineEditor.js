@@ -10,11 +10,15 @@ import { basicSetup } from "codemirror";
 
 import { javascript } from "@codemirror/lang-javascript";
 
+import { java } from "@codemirror/lang-java";
+
+import { highlightTree } from "@lezer/highlight";
+
 import { autocompletion } from "@codemirror/autocomplete";
 
 import { SampleThemeList } from "@/utils/SampleThemeList";
 
-import { syntaxHighlighting } from "@codemirror/language";
+import { language, syntaxHighlighting } from "@codemirror/language";
 
 import { useCustomTheme } from "@/context/useThemeHook";
 
@@ -37,6 +41,12 @@ export default function Editor() {
 
   const viewRef = useRef(null);
 
+  // const customLanguage = language({
+  //   token: {
+  //     keyword: /\b(if|else|while)\b/,
+  //   },
+  // });
+
   const { themeStyles } = useCustomTheme();
 
   const { direction } = useCustomDirection();
@@ -57,7 +67,7 @@ export default function Editor() {
       extensions: [
         basicSetup,
 
-        javascript(),
+        antrl4Lang,
 
         autocompletion({
           override: [keywordFilter],

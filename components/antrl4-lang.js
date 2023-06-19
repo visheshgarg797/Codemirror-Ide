@@ -54,7 +54,9 @@ export function getTokensForText(text) {
 export const antrl4Lang = StreamLanguage.define({
   token: (stream, state) => {
     const tokens = getTokensForText(stream.string);
+    console.log(tokens);
     const nextToken = tokens.filter((t) => t.startIndex >= stream.pos)[0];
+    console.log(nextToken);
     // we iterate over the stream and match the token text to advance the stream
     // returning the token type that is used for the styling
     if (
@@ -64,11 +66,26 @@ export const antrl4Lang = StreamLanguage.define({
       let valueClass = getStyleNameByTag(tags.keyword);
 
       switch (nextToken.type) {
-        case ResearchAdvanceQLLexer.TERM_NORMAL:
-          valueClass = getStyleNameByTag(tags.string);
+        case ResearchAdvanceQLLexer.TERM_NORMAL && ResearchAdvanceQLLexer.COLON:
+          valueClass = getStyleNameByTag(tags.className);
+          break;
+        case ResearchAdvanceQLLexer.COLON:
+          valueClass = getStyleNameByTag(tags.className);
+          break;
+        case ResearchAdvanceQLLexer.PHRASE:
+          valueClass = getStyleNameByTag(tags.content);
           break;
         case ResearchAdvanceQLLexer.NUMBER:
           valueClass = getStyleNameByTag(tags.number);
+          break;
+        case ResearchAdvanceQLLexer.OR:
+          valueClass = getStyleNameByTag(tags.logicOperator);
+          break;
+        case ResearchAdvanceQLLexer.AND:
+          valueClass = getStyleNameByTag(tags.arithmeticOperator);
+          break;
+        case ResearchAdvanceQLLexer.NOT:
+          valueClass = getStyleNameByTag(tags.bitwiseOperator);
           break;
         default:
           valueClass = "keyword";

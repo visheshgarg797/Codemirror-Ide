@@ -668,19 +668,19 @@ const Data = {
       label: "and",
       type: "operatorAnd",
       info: "and",
-      apply: "and ",
+      apply: "AND ",
     },
     {
       label: "or",
       type: "operatorOr",
       info: "or",
-      apply: "or ",
+      apply: "OR ",
     },
     {
       label: "not",
       type: "operatorNot",
       info: "not",
-      apply: "not ",
+      apply: "NOT ",
     },
   ],
   keywords: [

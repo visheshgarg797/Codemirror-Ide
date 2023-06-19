@@ -15,6 +15,10 @@ import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeLis
 
 import keywordFilter from "@/utils/GetSuggestions";
 
+import myHighlightStyle from "@/utils/Highlights";
+
+import { language, syntaxHighlighting } from "@codemirror/language";
+
 import { startCompletion } from "@codemirror/autocomplete";
 
 import { useCustomTheme } from "@/context/useThemeHook";
@@ -77,13 +81,15 @@ const SingleLineEditor = () => {
       doc: code,
       extensions: [
         basicSetup,
-        javascript(),
+        antrl4Lang,
         autocompletion({
           override: [keywordFilter],
         }),
+        syntaxHighlighting(myHighlightStyle),
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
         ),
+
         SampleThemeListForSingleLineEditor[
           direction === constants.LEFT_TO_RIGHT
             ? themeStyles.theme === constants.LIGHT_MODE
