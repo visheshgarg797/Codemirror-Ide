@@ -1,16 +1,31 @@
 "use cilent";
 import React, { useRef, useEffect, useContext } from "react";
+
 import { EditorState } from "@codemirror/state";
+
 import { EditorView, lineNumbers } from "@codemirror/view";
+
 import { basicSetup } from "codemirror";
+
 import { javascript } from "@codemirror/lang-javascript";
+
 import { autocompletion } from "@codemirror/autocomplete";
+
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
+
 import keywordFilter from "@/utils/GetSuggestions";
+
 import { startCompletion } from "@codemirror/autocomplete";
+
 import { useCustomTheme } from "@/context/useThemeHook";
+
 import { useCustomDirection } from "@/context/useDirectionHook";
+
 import constants from "@/utils/constants";
+
+import { wordHover } from "./hover-tooltip";
+
+import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -53,6 +68,7 @@ const SingleLineEditor = () => {
   };
 
   useEffect(() => {
+    let firstUpdate = true;
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
@@ -86,6 +102,23 @@ const SingleLineEditor = () => {
           cut(event, view) {
             handleCut();
           },
+        }),
+        EditorView.updateListener.of((update) => {
+          if (update.docChanged || firstUpdate) {
+            firstUpdate = false;
+            console.log("document has changed");
+            const text = update.view.state.doc.toString();
+            const tokens = getTokensForText(text);
+            console.log("====tokens", tokens);
+          }
+        }),
+
+        EditorView.updateListener.of((update) => {
+          window.totalEditorText = viewRef.current.state.doc.toString();
+
+          if (update.docChanged) {
+            return startCompletion(View, { trigger: "input" });
+          }
         }),
       ],
     });
