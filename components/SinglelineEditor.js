@@ -65,9 +65,6 @@ const SingleLineEditor = () => {
         autocompletion({
           override: [keywordFilter],
         }),
-        autocompletion({
-          override: [keywordFilter],
-        }),
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
         ),
@@ -80,7 +77,6 @@ const SingleLineEditor = () => {
             ? 2
             : 3
         ],
-        lineNumbers({ visible: false }),
         lineNumbers({ visible: false }),
         EditorView.domEventHandlers({
           paste(event, view) {
