@@ -31,6 +31,7 @@ const reverseString = (str) => {
 };
 
 const traverseBackCursor = (TextInEditor, pos) => {
+  // returns last and second last word before cursor
   if (!TextInEditor) {
     return { lastStr: undefined, secLastStr: undefined };
   }
