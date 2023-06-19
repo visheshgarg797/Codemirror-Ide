@@ -30,12 +30,15 @@ export default function Navbar() {
             fontWeight: "700",
           }}
         >
-          {" "}
-          CODEMIRROR IDE{" "}
+          CODEMIRROR IDE
         </h1>
         <div className="flex justify-end">
           <DirectionChangeButton />
-          <Button index="Github" />
+          <Button index="About" href="https://codemirror.net/" />
+          <Button
+            index="Github"
+            href="https://github.com/visheshgarg797/Codemirror-Ide"
+          />
           <ThemeToggleButton index="Mode" />
         </div>
       </div>

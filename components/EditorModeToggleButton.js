@@ -9,7 +9,6 @@ const EditorModeToggleButton = () => {
   const { editorMode, updateEditorMode } = useCustomEditorMode();
 
   const [currentEditorMode, setCurrentEditorMode] = useState(editorMode);
-  console.log("current mode", currentEditorMode);
   const handleModeChange = (e) => {
     const selectedMode = e.target.value;
 
@@ -34,7 +33,11 @@ const EditorModeToggleButton = () => {
       <div className="flex flex-col font-serif antialiased">
         <lable
           for="Multi Line Editing Mode"
-          style={{ color: themeStyles.col02.color }}
+          style={{
+            color: themeStyles.col02.color,
+            font: themeStyles.font,
+            fontSize: "20px",
+          }}
         >
           <input
             type="radio"

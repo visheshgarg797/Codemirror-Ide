@@ -34,7 +34,7 @@ const traverseBackCursor = (TextInEditor, pos) => {
   if (!TextInEditor) {
     return { lastStr: undefined, secLastStr: undefined };
   }
-  console.log(pos);
+  console.log("POS", pos);
   let secLastStr = "",
     lastStr = "",
     index = pos - 1;
@@ -75,14 +75,16 @@ const keywordFilter = (context) => {
   // I am maintaining a global variable because when text enters a new line, it losses access to the previous text making the new context null which breaks the program.
   // We can try using different methods to maintain global variables if windows.prevText has any drawbacks.
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
-  console.log(TextInEditor);
+  console.log("TEXT IN EDITOR", TextInEditor);
   //   || window.prevText;
   // window.prevText = TextInEditor;
 
-  const pos =
+  const pos = Math.max(
     context.pos - window.totalEditorText
       ? window.totalEditorText.length
-      : 0 + TextInEditor.length;
+      : 0 + TextInEditor.length,
+    TextInEditor.length
+  );
 
   const wordBeforeCursor = traverseBackCursor(TextInEditor, pos).lastStr || "";
 
