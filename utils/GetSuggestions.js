@@ -79,10 +79,12 @@ const keywordFilter = (context) => {
   //   || window.prevText;
   // window.prevText = TextInEditor;
 
-  const pos =
+  const pos = Math.max(
     context.pos - window.totalEditorText
       ? window.totalEditorText.length
-      : 0 + TextInEditor.length;
+      : 0 + TextInEditor.length,
+    TextInEditor.length
+  );
 
   const wordBeforeCursor = traverseBackCursor(TextInEditor, pos).lastStr || "";
 
