@@ -1,0 +1,20 @@
+.arrow-div {
+  position: relative;
+  width: 120px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+}
+.arrow-div::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 40%;
+  transform: translateX(-50%);
+  transform: translateY(50%);
+  rotate: 180deg;
+  border-width: 10px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

@@ -29,12 +29,16 @@ import { Theme_Name } from "@/constants/ThemeName";
 import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import Popup from "./Popup";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
   const { direction } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
+  const [selection, setSelection] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   let code = "";
 
   const handlePaste = (pastedText) => {
@@ -129,38 +133,43 @@ const SingleLineEditor = () => {
 
     //seeing selected text  and calling callback if any text is selected
 
-    let isTextSelected = false;
-
     const handleTextSelection = () => {
-      if (isTextSelected) {
-        const { ranges } = View.state.selection;
+      let selectedText = "";
+      if (window.getSelection != "undefined") {
+        selectedText = window.getSelection().toString();
+      } else if (
+        document.selection != "undefined" &&
+        document.selection.type == "Text"
+      ) {
+        selectedText = document.selection.createRange().text;
+      }
+      console.log(selectedText.split(" ").length - 1);
+      if (
+        selectedText &&
+        selectedText.length > 0 &&
+        selectedText.split(" ").length - 1 !== selectedText.length
+      ) {
+        console.log("Selected text", selectedText);
+        const selectionRange = window
+          .getSelection()
+          .getRangeAt(0)
+          .getBoundingClientRect();
 
-        if (ranges.some((range) => !range.empty)) {
-          const selectedText = ranges
-            .map((range) => View.state.doc.sliceString(range.from, range.to))
-            .join("");
-          // Call your callback function with the selected text
-          console.log("Selected text:", selectedText);
-        }
-
-        isTextSelected = false;
+        setSelection(selectedText);
+        setMenuPosition({
+          x: selectionRange.x + selectionRange.width / 2,
+          y: selectionRange.y + selectionRange.height,
+        });
+        setShowPopup(true);
+      } else {
+        setShowPopup(false);
       }
     };
 
     const handleMouseDown = () => {
-      isTextSelected = false;
-    };
-
-    const handleMouseUp = () => {
-      isTextSelected = true;
-      setTimeout(handleTextSelection, 0);
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-        isTextSelected = true;
-        setTimeout(handleTextSelection, 0);
-      }
+      setSelection(null);
+      setShowPopup(false);
+      return startCompletion(View, { trigger: "input" });
     };
 
     const View = new EditorView({
@@ -168,15 +177,9 @@ const SingleLineEditor = () => {
       parent: editorRef.current,
     });
 
-    // this retriggers autocomplete after any particular selection from autocomplete
-
-    View.dom.addEventListener("keyup", (e) => {
-      // use this in getSuggestions.js to find total text
-      window.totalEditorText = viewRef.current.state.doc.toString();
-      if (e.key === "Enter") {
-        return startCompletion(View, { trigger: "input" });
-      }
-    });
+    View.dom.addEventListener("mousedown", handleMouseDown);
+    View.dom.addEventListener("mouseup", handleTextSelection);
+    View.dom.addEventListener("keyup", handleTextSelection);
 
     viewRef.current = View;
 
@@ -185,7 +188,13 @@ const SingleLineEditor = () => {
     };
   }, [themeStyles, direction, code]);
 
-  return <div ref={editorRef} className="EditorContainer" />;
+  return (
+    <>
+      <div ref={editorRef} className="EditorContainer">
+        {showPopup && <Popup position={menuPosition} selection={selection} />}
+      </div>
+    </>
+  );
 };
 
 export default SingleLineEditor;
