@@ -300,7 +300,7 @@ const Data = {
       label: "rio de janeiro",
       type: "city",
       info: "major city in Brazil, known for its stunning beaches, vibrant Carnival celebrations, and iconic Christ the Redeemer statue.",
-      apply: "rio de janeiro ",
+      apply: `"rio de janeiro" `,
     },
     {
       label: "cape town",

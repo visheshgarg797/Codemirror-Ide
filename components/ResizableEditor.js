@@ -16,7 +16,7 @@ import { highlightTree } from "@lezer/highlight";
 
 import { autocompletion } from "@codemirror/autocomplete";
 
-import { SampleThemeList } from "@/utils/SampleThemeList";
+import { ResizableSampleThemeList } from "@/utils/ResizableSampleThemeList";
 
 import { language, syntaxHighlighting } from "@codemirror/language";
 
@@ -36,7 +36,7 @@ import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 
-export default function MultiLineEditor() {
+export default function ResizaleEditor() {
   const editorRef = useRef(null);
 
   const viewRef = useRef(null);
@@ -75,7 +75,7 @@ export default function MultiLineEditor() {
 
         syntaxHighlighting(myHighlightStyle),
 
-        SampleThemeList[
+        ResizableSampleThemeList[
           direction === constants.LEFT_TO_RIGHT
             ? themeStyles.theme === constants.LIGHT_MODE
               ? 0

@@ -7,6 +7,11 @@ const DirectionChangeButton = () => {
   const { direction, toggleDirection } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
 
+  if (direction == "LeftToRight") {
+    var name = "RTL";
+  } else {
+    var name = "LTR";
+  }
   return (
     <button
       onClick={toggleDirection}
@@ -15,9 +20,10 @@ const DirectionChangeButton = () => {
         cursor: "pointer",
         color: themeStyles.col02.color,
         fontFamily: themeStyles.font,
+        margin: "5px",
       }}
     >
-      {direction}
+      {name}
     </button>
   );
 };

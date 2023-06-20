@@ -17,11 +17,8 @@ const initEditorMode = () => {
 export function EditorModeProvider({ children }) {
   const [editorMode, setEditorMode] = useState(initEditorMode);
 
-  const updateEditorMode = () => {
-    const updatedMode =
-      editorMode === constants.MULTILINE_EDITOR_MODE
-        ? constants.SINGLELINE_EDITOR_MODE
-        : constants.MULTILINE_EDITOR_MODE;
+  const updateEditorMode = (props) => {
+    const updatedMode = props;
     setEditorMode(updatedMode);
     localStorage.setItem("editorMode", updatedMode);
   };

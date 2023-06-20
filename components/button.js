@@ -13,6 +13,7 @@ export default function Button(props) {
           cursor: "pointer",
           color: themeStyles.col02.color,
           fontFamily: themeStyles.font,
+          margin: "5px",
         }}
       >
         {props.index}

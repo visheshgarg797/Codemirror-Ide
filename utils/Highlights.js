@@ -6,6 +6,7 @@ const myHighlightStyle = HighlightStyle.define([
   { fontWeight: "bold", tag: tags.heading, textDecoration: "underline" },
   { fontStyle: "italic", tag: tags.emphasis },
   { fontWeight: "bold", tag: tags.strong },
+  { color: "#BF40BF", tag: [tags.number, tags.inserted] },
   { color: "green", tag: [tags.logicOperator, tags.inserted] },
   { color: "red", tag: [tags.bitwiseOperator, tags.inserted] },
   { color: "#F5D76E", tag: [tags.arithmeticOperator, tags.inserted] },

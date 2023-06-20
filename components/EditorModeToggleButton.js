@@ -7,21 +7,9 @@ import constants from "@/utils/constants";
 const EditorModeToggleButton = () => {
   const { themeStyles } = useCustomTheme();
   const { editorMode, updateEditorMode } = useCustomEditorMode();
-
-  const [currentEditorMode, setCurrentEditorMode] = useState(editorMode);
-  console.log("current mode", currentEditorMode);
   const handleModeChange = (e) => {
     const selectedMode = e.target.value;
-
-    if (
-      (selectedMode === constants.SINGLELINE_EDITOR_MODE &&
-        editorMode === constants.MULTILINE_EDITOR_MODE) ||
-      (selectedMode === constants.MULTILINE_EDITOR_MODE &&
-        editorMode === constants.SINGLELINE_EDITOR_MODE)
-    ) {
-      updateEditorMode();
-    }
-    setCurrentEditorMode(selectedMode);
+    updateEditorMode(selectedMode);
   };
   return (
     <div className="flex flex-col items-start">
@@ -48,7 +36,7 @@ const EditorModeToggleButton = () => {
           <input
             type="radio"
             value={constants.MULTILINE_EDITOR_MODE}
-            checked={currentEditorMode === constants.MULTILINE_EDITOR_MODE}
+            checked={editorMode === constants.MULTILINE_EDITOR_MODE}
             onChange={handleModeChange}
             className="form-radio pl-2"
             id={constants.MULTILINE_EDITOR_MODE}
@@ -66,13 +54,31 @@ const EditorModeToggleButton = () => {
           <input
             type="radio"
             value={constants.SINGLELINE_EDITOR_MODE}
-            checked={currentEditorMode === constants.SINGLELINE_EDITOR_MODE}
+            checked={editorMode === constants.SINGLELINE_EDITOR_MODE}
             onChange={handleModeChange}
             className="form-radio pl-2"
             style={{ color: themeStyles.col02.color }}
             id={constants.SINGLELINE_EDITOR_MODE}
           />
           Single Line Editing Mode
+        </lable>
+        <lable
+          for="Resizable Editor"
+          style={{
+            color: themeStyles.col02.color,
+            font: themeStyles.font,
+            fontSize: "20px",
+          }}
+        >
+          <input
+            type="radio"
+            value={constants.RESIZABLE_EDITOR_MODE}
+            checked={editorMode === constants.RESIZABLE_EDITOR_MODE}
+            onChange={handleModeChange}
+            className="form-radio pl-2"
+            id={constants.RESIZABLE_EDITOR_MODE}
+          />
+          Resizable Editor
         </lable>
       </div>
     </div>

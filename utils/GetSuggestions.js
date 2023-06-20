@@ -128,12 +128,12 @@ const keywordFilter = (context) => {
       from: context.pos,
       options: [
         ...Data.keywords.concat(Data.advancedOperators),
-        {
-          label: "not",
-          type: "operatorNot",
-          info: "not",
-          apply: "not ",
-        },
+        // {
+        //   label: "not",
+        //   type: "operatorNot",
+        //   info: "not",
+        //   apply: "NOT ",
+        // },
       ],
     };
   }
@@ -232,12 +232,12 @@ const keywordFilter = (context) => {
       from: context.pos,
       options: [
         ...Data.keywords.concat(Data.advancedOperators),
-        {
-          label: "not",
-          type: "operatorNot",
-          info: "not",
-          apply: "not ",
-        },
+        // {
+        //   label: "not",
+        //   type: "operatorNot",
+        //   info: "not",
+        //   apply: "not ",
+        // },
       ],
     };
   }
