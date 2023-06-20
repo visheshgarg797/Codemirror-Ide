@@ -19,6 +19,7 @@ export default function LeftNavButton(props) {
           width: "20rem",
           fontFamily: themeStyles.font,
           fontWeight: "700",
+          marginTop: "5px",
           borderTopRightRadius:
             direction === constants.LEFT_TO_RIGHT ? "50px" : "0px",
           borderBottomRightRadius:
@@ -27,6 +28,8 @@ export default function LeftNavButton(props) {
             direction === constants.LEFT_TO_RIGHT ? "0px" : "50px",
           borderBottomLeftRadius:
             direction === constants.LEFT_TO_RIGHT ? "0px" : "50px",
+          boxShadow:
+            "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
         }}
       >
         {props.index}

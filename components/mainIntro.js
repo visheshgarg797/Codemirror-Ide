@@ -27,6 +27,7 @@ export default function MainIntro() {
       >
         Introduction{" "}
       </h1>
+
       <p
         style={{
           color: themeStyles.col02.color,
@@ -36,183 +37,33 @@ export default function MainIntro() {
           lineHeight: "1.5",
         }}
       >
-        warn Fast Refresh had to perform a full reload. Read more:
-        https://nextjs.org/docs/messages/fast-refresh-reload - wait compiling...
-        - event compiled client and server successfully in 831 ms (634 modules)
-        - warn Fast Refresh had to perform a full reload due to a runtime error.
-        - wait compiling... - event compiled client and server successfully in
-        594 ms (634 modules) - wait compiling... - event compiled client and
-        server successfully in 310 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 67 ms (304 modules) - wait compiling... - event compiled client and
-        server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules) warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules) warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)warn Fast Refresh had to perform a full reload.
-        Read more: https://nextjs.org/docs/messages/fast-refresh-reload - wait
-        compiling... - event compiled client and server successfully in 831 ms
-        (634 modules) - warn Fast Refresh had to perform a full reload due to a
-        runtime error. - wait compiling... - event compiled client and server
-        successfully in 594 ms (634 modules) - wait compiling... - event
-        compiled client and server successfully in 310 ms (579 modules) - wait
-        compiling /favicon.ico/route (client and server)... - event compiled
-        successfully in 67 ms (304 modules) - wait compiling... - event compiled
-        client and server successfully in 297 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 80 ms (304 modules)
+        CodeMirror 6 is a versatile text editor implemented in JavaScript for
+        the browser. It is specialized for editing code and comes with a number
+        of language modes and addons used for more advanced editing
+        functionalities. In this article, we will discuss how to build a code
+        editor using CodeMirror 6's unique API. The library supports browsers up
+        from Internet Explorer 11 (with some polyfills). CodeMirror 6 is
+        published as a set of NPM packages under the @codemirror scope, and each
+        package exposes ECMAScript and CommonJS modules. To use them in the
+        browser, we need to use some kind of bundler or loader. In this
+        tutorial, we will use npm to install the CodeMirror6 packages and create
+        a new project. We will then create the main editor file, editor.js, and
+        add the necessary code to create a functional code editor. CodeMirror 6
+        supports CSS, C++, HTML, Java, JavaScript, JSON, Markdown, Python, Rust,
+        and XML. If your language is not listed above, you may still find a
+        solution there. To add custom language integration and custom
+        autocomplete to CodeMirror 6, you can follow these steps: Create a
+        language package for your custom language by implementing a parser,
+        which is used for highlighting but also provides the metadata for
+        autocompletion 1 . Use the @codemirror/autocomplete package to provide
+        functionality for displaying input suggestions in the editor 2 . Connect
+        your completion source to the editor using the override option 2 . Pass
+        your custom fields as an object mapping to serialize them 3 . If you
+        want to enrich your code editor experience in your browser application
+        by using LSP to try to autocomplete what the user would like to type,
+        you can use Typescript LSP 4 . You can also configure a basic mixed HTML
+        parser with autocomplete by importing the necessary packages and
+        configuring the parser
       </p>
     </div>
   );

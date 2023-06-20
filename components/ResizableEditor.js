@@ -85,7 +85,7 @@ export default function ResizaleEditor() {
             : 3
         ],
 
-        EditorView.lineWrapping,
+        // EditorView.lineWrapping,
 
         EditorView.updateListener.of((update) => {
           if (update.docChanged || firstUpdate) {
