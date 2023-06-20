@@ -90,6 +90,7 @@ const MultiLineEditor = () => {
         for (let i = 0; i < row; i++) {
           col = col - splitTotalText[i].length;
         }
+        console.log(row, col);
         setSelection(selectedText);
         setMenuPosition({
           x: constants.X + (constants.DEL_X + 0.8) * col,

@@ -35,10 +35,26 @@ const traverseBackCursor = (TextInEditor, pos) => {
   if (!TextInEditor) {
     return { lastStr: undefined, secLastStr: undefined };
   }
+
   let secLastStr = "",
     lastStr = "",
     index = pos - 1;
+  // console.log("test", TextInEditor[index]);
+  let flag = true;
+  if (index >= 1 && TextInEditor[index - 1] === "'") {
+    index -= 1;
+    lastStr += TextInEditor[index];
+    index -= 1;
+    flag = false;
+    while (index >= 0 && TextInEditor[index] !== "'") {
+      lastStr += TextInEditor[index];
+      index -= 1;
+    }
+    lastStr += TextInEditor[index];
+    index -= 1;
+  }
   while (
+    flag &&
     index >= 0 &&
     ((TextInEditor[index].charCodeAt(0) >= 65 &&
       TextInEditor[index].charCodeAt(0) <= 90) ||
@@ -75,7 +91,9 @@ const keywordFilter = (context) => {
   // I am maintaining a global variable because when text enters a new line, it losses access to the previous text making the new context null which breaks the program.
   // We can try using different methods to maintain global variables if windows.prevText has any drawbacks.
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
-  console.log(TextInEditor);
+  // console.log(TextInEditor);
+  //   || window.prevText;
+  // window.prevText = TextInEditor;
 
   const pos = Math.max(
     context.pos - window.totalEditorText
@@ -89,12 +107,12 @@ const keywordFilter = (context) => {
   const secLastWordBeforeCursor =
     traverseBackCursor(TextInEditor, pos).secLastStr || "";
 
-  console.log(
-    "wordBeforeCursor",
-    wordBeforeCursor,
-    "secLastWordBeforeCursor",
-    secLastWordBeforeCursor
-  );
+  // console.log(
+  //   "wordBeforeCursor",
+  //   wordBeforeCursor,
+  //   "secLastWordBeforeCursor",
+  //   secLastWordBeforeCursor
+  // );
 
   const Keywords = new Set();
   const Operators = new Set();
@@ -119,6 +137,7 @@ const keywordFilter = (context) => {
   Data.advancedOperators.forEach((item) => {
     advancedOperators.add(item.label);
   });
+  // console.log("operators", Operators);
 
   // handle new line
   if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
@@ -170,6 +189,29 @@ const keywordFilter = (context) => {
 
   // middle case
   if (wordBeforeCursor.length > 0 && secLastWordBeforeCursor.length > 0) {
+    if (
+      wordBeforeCursor[0] === "'" &&
+      wordBeforeCursor[wordBeforeCursor.length - 1] === "'"
+    ) {
+      return {
+        from: context.pos,
+        options: Data.operators,
+      };
+    }
+    if (
+      advancedOperatorsOptions.has(
+        secLastWordBeforeCursor.substring(1, secLastWordBeforeCursor.length - 1)
+      )
+    ) {
+      const possibleSuggestions = Data.operators;
+      const filteredSuggesions = possibleSuggestions.filter((item) => {
+        return item.label.startsWith(wordBeforeCursor);
+      });
+      return {
+        from: context.pos - wordBeforeCursor.length,
+        options: filteredSuggesions,
+      };
+    }
     if (Operators.has(secLastWordBeforeCursor)) {
       // give keywords and advanced operators
       const possibleSuggestions = Data.keywords.concat(Data.advancedOperators);
