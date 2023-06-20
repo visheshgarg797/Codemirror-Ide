@@ -34,6 +34,7 @@ import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import Popup from "./Popup";
+// import getInfo from "@/utils/GetInfo";
 
 const MultiLineEditor = () => {
   const editorRef = useRef(null);
@@ -55,7 +56,48 @@ const MultiLineEditor = () => {
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
-
+    const handleTextSelection = (e) => {
+      const { ranges } = View.state.selection;
+      console.log(ranges[0].from, ranges[0].to);
+      if (ranges.some((range) => !range.empty)) {
+        let selectedText = ranges
+          .map((range) => View.state.doc.sliceString(range.from, range.to))
+          .join("");
+        selectedText = selectedText.trim();
+        if (selectedText.length === 0) {
+          return;
+        }
+        console.log(View.state.selection);
+        const splitTotalText = viewRef.current.state.doc.toString().split("\n");
+        let col = (ranges[0].from + ranges[0].to) / 2;
+        let row = 0,
+          k = 0;
+        let flag = false;
+        for (let i = 0; i < splitTotalText.length; i++) {
+          for (let j = 0; j < splitTotalText[i].length; j++, k++) {
+            if (k === ranges[0].from) {
+              row = i;
+              flag = true;
+              break;
+            }
+          }
+          k++;
+          if (flag) {
+            break;
+          }
+        }
+        col = col - row;
+        for (let i = 0; i < row; i++) {
+          col = col - splitTotalText[i].length;
+        }
+        setSelection(selectedText);
+        setMenuPosition({
+          x: constants.X + (constants.DEL_X + 0.8) * col,
+          y: constants.Y + (constants.DEL_Y + 0.8) * row,
+        });
+        setShowPopup(true);
+      }
+    };
     const startState = EditorState.create({
       doc: code,
 
@@ -83,47 +125,19 @@ const MultiLineEditor = () => {
         EditorView.lineWrapping,
         // triggers autocomplete on any change in doc
         EditorView.updateListener.of((update) => {
+          if (update?.state?.selection?.ranges) {
+            // setTimeout(() => {
+            //   handleTextSelection();
+            // }, 500);
+            handleTextSelection();
+          }
           if (update.docChanged) {
+            window.totalEditorText = viewRef.current.state.doc.toString();
             return startCompletion(View, { trigger: "input" });
           }
         }),
       ],
     });
-
-    //seeing selected text  and calling callback if any text is selected
-
-    const handleTextSelection = () => {
-      let selectedText = "";
-      if (window.getSelection != "undefined") {
-        selectedText = window.getSelection().toString();
-      } else if (
-        document.selection != "undefined" &&
-        document.selection.type == "Text"
-      ) {
-        selectedText = document.selection.createRange().text;
-      }
-      console.log(selectedText.split(" ").length - 1);
-      if (
-        selectedText &&
-        selectedText.length > 0 &&
-        selectedText.split(" ").length - 1 !== selectedText.length
-      ) {
-        console.log("Selected text", selectedText);
-        const selectionRange = window
-          .getSelection()
-          .getRangeAt(0)
-          .getBoundingClientRect();
-
-        setSelection(selectedText);
-        setMenuPosition({
-          x: selectionRange.x + selectionRange.width / 2,
-          y: selectionRange.y + selectionRange.height,
-        });
-        setShowPopup(true);
-      } else {
-        setShowPopup(false);
-      }
-    };
 
     const handleMouseDown = () => {
       setSelection(null);
@@ -137,19 +151,10 @@ const MultiLineEditor = () => {
       parent: editorRef.current,
     });
 
-    // this retriggers autocomplete after any particular selection from autocomplete
-
-    View.dom.addEventListener("mousedown", (e) => {
-      // use this in getSuggestions.js to find total text
-
-      window.totalEditorText = viewRef.current.state.doc.toString();
-
-      return startCompletion(View, { trigger: "input" });
-    });
-
+    // View.domEventHandlers.set("mousedown", handleMouseDown);
+    // EditorView.domEventHandlers.set("mouseup", handleTextSelection);
     View.dom.addEventListener("mousedown", handleMouseDown);
-    View.dom.addEventListener("mouseup", handleTextSelection);
-    View.dom.addEventListener("keyup", handleTextSelection);
+    // View.dom.addEventListener("mouseup", handleTextSelection);
 
     viewRef.current = View;
 

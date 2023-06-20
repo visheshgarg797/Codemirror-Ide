@@ -113,18 +113,13 @@ const SingleLineEditor = () => {
           },
         }),
         EditorView.updateListener.of((update) => {
-          if (update.docChanged || firstUpdate) {
-            firstUpdate = false;
-            const text = update.view.state.doc.toString();
-            const tokens = getTokensForText(text);
-            console.log("====tokens", tokens);
+          if (update?.state?.selection?.ranges) {
+            setTimeout(() => {
+              handleTextSelection();
+            }, 500);
           }
-        }),
-
-        EditorView.updateListener.of((update) => {
-          window.totalEditorText = viewRef.current.state.doc.toString();
-
           if (update.docChanged) {
+            window.totalEditorText = viewRef.current.state.doc.toString();
             return startCompletion(View, { trigger: "input" });
           }
         }),
@@ -134,35 +129,44 @@ const SingleLineEditor = () => {
     //seeing selected text  and calling callback if any text is selected
 
     const handleTextSelection = () => {
-      let selectedText = "";
-      if (window.getSelection != "undefined") {
-        selectedText = window.getSelection().toString();
-      } else if (
-        document.selection != "undefined" &&
-        document.selection.type == "Text"
-      ) {
-        selectedText = document.selection.createRange().text;
-      }
-      console.log(selectedText.split(" ").length - 1);
-      if (
-        selectedText &&
-        selectedText.length > 0 &&
-        selectedText.split(" ").length - 1 !== selectedText.length
-      ) {
-        console.log("Selected text", selectedText);
-        const selectionRange = window
-          .getSelection()
-          .getRangeAt(0)
-          .getBoundingClientRect();
-
+      const { ranges } = View.state.selection;
+      console.log(ranges[0].from, ranges[0].to);
+      if (ranges.some((range) => !range.empty)) {
+        let selectedText = ranges
+          .map((range) => View.state.doc.sliceString(range.from, range.to))
+          .join("");
+        selectedText = selectedText.trim();
+        if (selectedText.length === 0) {
+          return;
+        }
+        const splitTotalText = viewRef.current.state.doc.toString().split("\n");
+        let col = (ranges[0].from + ranges[0].to) / 2;
+        let row = 0,
+          k = 0;
+        let flag = false;
+        for (let i = 0; i < splitTotalText.length; i++) {
+          for (let j = 0; j < splitTotalText[i].length; j++, k++) {
+            if (k === ranges[0].from) {
+              row = i;
+              flag = true;
+              break;
+            }
+          }
+          k++;
+          if (flag) {
+            break;
+          }
+        }
+        col = col - row;
+        for (let i = 0; i < row; i++) {
+          col = col - splitTotalText[i].length;
+        }
         setSelection(selectedText);
         setMenuPosition({
-          x: selectionRange.x + selectionRange.width / 2,
-          y: selectionRange.y + selectionRange.height,
+          x: constants.X - 15 + (constants.DEL_X + 0.8) * col,
+          y: constants.Y + 12 + constants.DEL_Y * row,
         });
         setShowPopup(true);
-      } else {
-        setShowPopup(false);
       }
     };
 
@@ -178,8 +182,7 @@ const SingleLineEditor = () => {
     });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
-    View.dom.addEventListener("mouseup", handleTextSelection);
-    View.dom.addEventListener("keyup", handleTextSelection);
+    // View.dom.addEventListener("mouseup", handleTextSelection);
 
     viewRef.current = View;
 
