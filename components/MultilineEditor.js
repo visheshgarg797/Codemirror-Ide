@@ -58,7 +58,7 @@ const MultiLineEditor = () => {
     }
     const handleTextSelection = (e) => {
       const { ranges } = View.state.selection;
-      console.log(ranges[0].from, ranges[0].to);
+      // console.log(ranges[0].from, ranges[0].to);
       if (ranges.some((range) => !range.empty)) {
         let selectedText = ranges
           .map((range) => View.state.doc.sliceString(range.from, range.to))

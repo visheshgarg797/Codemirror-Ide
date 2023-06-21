@@ -35,17 +35,17 @@ const traverseBackCursor = (TextInEditor, pos) => {
   if (!TextInEditor) {
     return { lastStr: undefined, secLastStr: undefined };
   }
-
+  // console.log("pos", pos);
   let secLastStr = "",
     lastStr = "",
     index = pos - 1;
   // console.log("test", TextInEditor[index]);
-  let flag = true;
+  let flag1 = true;
   if (index >= 1 && TextInEditor[index - 1] === '"') {
     index -= 1;
     lastStr += TextInEditor[index];
     index -= 1;
-    flag = false;
+    flag1 = false;
     while (index >= 0 && TextInEditor[index] !== '"') {
       lastStr += TextInEditor[index];
       index -= 1;
@@ -53,14 +53,19 @@ const traverseBackCursor = (TextInEditor, pos) => {
     lastStr += TextInEditor[index];
     index -= 1;
   }
+  // console.log(flag1);
   while (
-    flag &&
+    flag1 &&
     index >= 0 &&
     ((TextInEditor[index].charCodeAt(0) >= 65 &&
       TextInEditor[index].charCodeAt(0) <= 90) ||
       (TextInEditor[index].charCodeAt(0) >= 97 &&
         TextInEditor[index].charCodeAt(0) <= 122))
   ) {
+    if (TextInEditor[index] === " ") {
+      break;
+    }
+    // console.log("index", index, "str", lastStr, "char", TextInEditor[index]);
     lastStr += TextInEditor[index];
     index -= 1;
   }
@@ -71,7 +76,19 @@ const traverseBackCursor = (TextInEditor, pos) => {
   ) {
     index -= 1;
   }
-  while (index >= 0) {
+  let flag2 = true;
+  if (TextInEditor[index] === '"') {
+    secLastStr += TextInEditor[index];
+    index -= 1;
+    flag2 = false;
+    while (index >= 0 && TextInEditor[index] !== '"') {
+      secLastStr += TextInEditor[index];
+      index -= 1;
+    }
+    secLastStr += TextInEditor[index];
+    index -= 1;
+  }
+  while (flag2 && index >= 0) {
     if (check(TextInEditor[index])) {
       break;
     }
