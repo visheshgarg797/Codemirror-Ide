@@ -41,12 +41,12 @@ const traverseBackCursor = (TextInEditor, pos) => {
     index = pos - 1;
   // console.log("test", TextInEditor[index]);
   let flag = true;
-  if (index >= 1 && TextInEditor[index - 1] === "'") {
+  if (index >= 1 && TextInEditor[index - 1] === '"') {
     index -= 1;
     lastStr += TextInEditor[index];
     index -= 1;
     flag = false;
-    while (index >= 0 && TextInEditor[index] !== "'") {
+    while (index >= 0 && TextInEditor[index] !== '"') {
       lastStr += TextInEditor[index];
       index -= 1;
     }
@@ -107,12 +107,12 @@ const keywordFilter = (context) => {
   const secLastWordBeforeCursor =
     traverseBackCursor(TextInEditor, pos).secLastStr || "";
 
-  // console.log(
-  //   "wordBeforeCursor",
-  //   wordBeforeCursor,
-  //   "secLastWordBeforeCursor",
-  //   secLastWordBeforeCursor
-  // );
+  console.log(
+    "wordBeforeCursor",
+    wordBeforeCursor,
+    "secLastWordBeforeCursor",
+    secLastWordBeforeCursor
+  );
 
   const Keywords = new Set();
   const Operators = new Set();
@@ -137,7 +137,7 @@ const keywordFilter = (context) => {
   Data.advancedOperators.forEach((item) => {
     advancedOperators.add(item.label);
   });
-  // console.log("operators", Operators);
+  console.log("operators", Operators);
 
   // handle new line
   if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
@@ -190,8 +190,8 @@ const keywordFilter = (context) => {
   // middle case
   if (wordBeforeCursor.length > 0 && secLastWordBeforeCursor.length > 0) {
     if (
-      wordBeforeCursor[0] === "'" &&
-      wordBeforeCursor[wordBeforeCursor.length - 1] === "'"
+      wordBeforeCursor[0] === '"' &&
+      wordBeforeCursor[wordBeforeCursor.length - 1] === '"'
     ) {
       return {
         from: context.pos,
