@@ -38,7 +38,7 @@ const MultiLineEditor = () => {
     selectionPos: -1,
   });
 
-  let code = "";
+  const [code, setCode] = useState("");
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -60,55 +60,66 @@ const MultiLineEditor = () => {
         head: viewRef.current.state.doc.toString().length,
       },
     });
-    viewRef.current.dispatch;
-    setPopupState({ ...popupState, showPopup: false });
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
+  const handleMouseDown = () => {
+    setPopupState((popupState) => ({
+      ...popupState,
+      selection: null,
+      showPopup: false,
+    }));
+    return startCompletion(viewRef.current, { trigger: "input" });
+  };
+
+  // code to handle popup on selection
+  const handleTextSelection = (e) => {
+    const { ranges } = viewRef.current.state.selection;
+    if (ranges.some((range) => !range.empty)) {
+      const checkValidityOfSelection = IsValidSelection(
+        code,
+        ranges[0].from,
+        ranges[0].to
+      );
+      if (!checkValidityOfSelection.isValidSelection) {
+        return;
+      }
+      const st = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualStartPos
+      );
+      const ed = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualEndPos
+      );
+      setPopupState((popupState) => ({
+        ...popupState,
+        selection: checkValidityOfSelection.actualSelectedText,
+        popupPosition: {
+          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          y: (st.bottom + ed.bottom) / 2,
+        },
+        selectionPos: checkValidityOfSelection.actualStartPos,
+        showPopup: true,
+      }));
+    }
   };
 
   useEffect(() => {
+    let firstUpdate = true;
+
+    // Assignment for retaining code when useEffect gets triggered
     if (viewRef && viewRef.current) {
-      code = viewRef.current.state.doc.toString();
+      setCode(viewRef.current.state.doc.toString());
     }
 
-    // code to handle popup on selection
-    const handleTextSelection = (e) => {
-      const { ranges } = View.state.selection;
-      if (ranges.some((range) => !range.empty)) {
-        const checkValidityOfSelection = IsValidSelection(
-          window.totalEditorText,
-          ranges[0].from,
-          ranges[0].to
-        );
-        if (!checkValidityOfSelection.isValidSelection) {
-          return;
-        }
-        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
-        setPopupState({
-          ...popupState,
-          selection: checkValidityOfSelection.actualSelectedText,
-          popupPosition: {
-            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
-            y: (st.bottom + ed.bottom) / 2,
-          },
-          selectionPos: checkValidityOfSelection.actualStartPos,
-          showPopup: true,
-        });
-      }
-    };
     const startState = EditorState.create({
       doc: code,
-
       extensions: [
         basicSetup,
-
         antrl4Lang,
-
         autocompletion({
           override: [keywordFilter],
         }),
-
         syntaxHighlighting(myHighlightStyle),
-
         SampleThemeList[
           direction === "ltr"
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
@@ -118,7 +129,6 @@ const MultiLineEditor = () => {
             ? 2
             : 3
         ],
-
         EditorView.lineWrapping,
         // triggers autocomplete on any change in doc
         EditorView.updateListener.of((update) => {
@@ -138,11 +148,6 @@ const MultiLineEditor = () => {
       ],
     });
 
-    const handleMouseDown = () => {
-      setPopupState({ ...popupState, selection: null, showPopup: false });
-      return startCompletion(View, { trigger: "input" });
-    };
-
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
@@ -151,7 +156,7 @@ const MultiLineEditor = () => {
     // this retriggers autocomplete after any particular selection from autocomplete
     View.dom.addEventListener("mousedown", (e) => {
       // use this in getSuggestions.js to find total text
-      window.totalEditorText = viewRef.current.state.doc.toString();
+      setCode(viewRef.current.state.doc.toString());
       return startCompletion(View, { trigger: "input" });
     });
 

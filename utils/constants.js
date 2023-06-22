@@ -6,9 +6,5 @@ const EDITOR_MODES = {
   RIGHT_TO_LEFT: "RightToLeft",
   LIGHT_MODE: "light",
   DARK_MODE: "dark",
-  X: 443,
-  Y: 289,
-  DEL_X: 7,
-  DEL_Y: 20,
 };
 export default EDITOR_MODES;
