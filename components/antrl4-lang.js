@@ -1,9 +1,7 @@
 import antlr from "antlr4";
-// import { CharStreams, CommonTokenStream, CommonToken } from "antlr4ts";
 import { styleTags, tags, Tag } from "@lezer/highlight";
 import { StreamLanguage /* HighlightStyle,*/ } from "@codemirror/language";
-// import { tags } from "@lezer/highlight";
-// import { ResearchAdvanceQLLexer } from "./antrl4-lang-grammar/ResearchAdvanceQLLexer";
+
 import { ResearchAdvanceQLLexer } from "./antlrGenerated";
 function getStyleNameByTag(tag) {
   for (let t in tags) {
@@ -45,11 +43,6 @@ export function getTokensForText(text) {
   tokensStream.fill();
   return getTokens(tokensStream.tokens);
 }
-
-// const myHighlightStyle = HighlightStyle.define([
-//   { tag: tags.keyword, color: "#fc6" },
-//   { tag: tags.comment, color: "#f5d", fontStyle: "italic" }
-// ]);
 
 export const antrl4Lang = StreamLanguage.define({
   token: (stream, state) => {

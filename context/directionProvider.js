@@ -30,6 +30,8 @@ export function DirectionProvider({ children }) {
         : constants.LEFT_TO_RIGHT;
     setDirection(updatedDirection);
 
+    document.documentElement.dir = updatedDirection;
+
     // Store the direction in cookies or local storage
     localStorage.setItem("direction", updatedDirection);
   };
