@@ -31,11 +31,12 @@ const MultiLineEditor = () => {
 
   const { direction } = useCustomDirection();
 
-  // TODO: club all variables of popup into one useState
-  const [selection, setSelection] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const [tempPos, setTempPos] = useState(-1);
+  const [popupState, setPopupState] = useState({
+    selection: null,
+    showPopup: false,
+    popupPosition: { x: 0, y: 0 },
+    selectionPos: -1,
+  });
 
   let code = "";
 
@@ -46,8 +47,11 @@ const MultiLineEditor = () => {
     });
     textToInsert += ")";
     const changes = [
-      { from: tempPos, insert: "(" },
-      { from: tempPos + selection.length, insert: textToInsert },
+      { from: popupState.selectionPos, insert: "(" },
+      {
+        from: popupState.selectionPos + popupState.selection.length,
+        insert: textToInsert,
+      },
     ];
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
@@ -57,13 +61,15 @@ const MultiLineEditor = () => {
       },
     });
     viewRef.current.dispatch;
-    setShowPopup(false);
+    setPopupState({ ...popupState, showPopup: false });
   };
 
   useEffect(() => {
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
+
+    // code to handle popup on selection
     const handleTextSelection = (e) => {
       const { ranges } = View.state.selection;
       if (ranges.some((range) => !range.empty)) {
@@ -75,15 +81,18 @@ const MultiLineEditor = () => {
         if (!checkValidityOfSelection.isValidSelection) {
           return;
         }
-        setSelection(checkValidityOfSelection.actualSelectedText);
         const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
         const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
-        setMenuPosition({
-          x: (st.left + ed.left) / 2,
-          y: (st.bottom + ed.bottom) / 2,
+        setPopupState({
+          ...popupState,
+          selection: checkValidityOfSelection.actualSelectedText,
+          popupPosition: {
+            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+            y: (st.bottom + ed.bottom) / 2,
+          },
+          selectionPos: checkValidityOfSelection.actualStartPos,
+          showPopup: true,
         });
-        setTempPos(checkValidityOfSelection.actualStartPos);
-        setShowPopup(true);
       }
     };
     const startState = EditorState.create({
@@ -130,8 +139,7 @@ const MultiLineEditor = () => {
     });
 
     const handleMouseDown = () => {
-      setSelection(null);
-      setShowPopup(false);
+      setPopupState({ ...popupState, selection: null, showPopup: false });
       return startCompletion(View, { trigger: "input" });
     };
 
@@ -158,10 +166,10 @@ const MultiLineEditor = () => {
   return (
     <>
       <div ref={editorRef} className="EditorContainer">
-        {showPopup && (
+        {popupState.showPopup && (
           <Popup
-            position={menuPosition}
-            selection={selection}
+            position={popupState.popupPosition}
+            selection={popupState.selection}
             handleOnClick={pushSelectionChangesToEditor}
           />
         )}
