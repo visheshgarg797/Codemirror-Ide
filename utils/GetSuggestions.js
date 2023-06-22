@@ -103,6 +103,7 @@ const traverseBackCursor = (TextInEditor, pos) => {
 };
 
 const keywordFilter = (context) => {
+  console.log(context);
   const EntireTextRegex = /.*/;
 
   // I am maintaining a global variable because when text enters a new line, it losses access to the previous text making the new context null which breaks the program.

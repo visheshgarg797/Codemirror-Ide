@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Select from "react-select";
 
-const Popup = ({
-  position,
-  selection,
-  selectionText,
-  handleOnClick,
-  startPos,
-}) => {
+const Popup = ({ position, selection, handleOnClick }) => {
   const divStyle = {
+    fontSize: "10px",
     marginTop: "20px",
     position: "absolute",
     width: "150px",
@@ -37,10 +33,32 @@ const Popup = ({
     borderStyle: "solid",
     borderColor: "black transparent transparent transparent",
   };
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const optionList = [
+    { label: "Red", value: "red" },
+    { label: "Green", value: "green" },
+    { label: "Blue", value: "blue" },
+  ];
+
+  const handleSelect = (selected) => {
+    setSelectedOptions(selected);
+  };
+
   return (
     <div style={divStyle}>
       {selection}
-      <button onClick={handleOnClick} className="btn">
+      <Select
+        options={optionList}
+        isMulti
+        value={selectedOptions}
+        onChange={handleSelect}
+      />
+      <button
+        onClick={() => handleOnClick(selectedOptions)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
         Add text
       </button>
       <div style={arrowStyle}></div>
