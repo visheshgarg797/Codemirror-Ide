@@ -252,12 +252,6 @@ const Data = {
     { label: "mumbai", type: "city", info: "city", apply: '"mumbai" ' },
     { label: "sydney", type: "city", info: "city", apply: '"sydney" ' },
     {
-      label: "rio de janeiro",
-      type: "city",
-      info: "city",
-      apply: `\""rio de janeiro"\" `,
-    },
-    {
       label: "cape town",
       type: "city",
       info: "city",

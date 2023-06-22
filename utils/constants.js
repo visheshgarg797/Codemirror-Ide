@@ -9,6 +9,6 @@ const EDITOR_MODES = {
   X: 443,
   Y: 289,
   DEL_X: 7,
-  DEL_Y: 23,
+  DEL_Y: 20,
 };
 export default EDITOR_MODES;

@@ -1,6 +1,12 @@
 import React from "react";
 
-const Popup = ({ position, selection }) => {
+const Popup = ({
+  position,
+  selection,
+  selectionText,
+  handleOnClick,
+  startPos,
+}) => {
   const divStyle = {
     marginTop: "20px",
     position: "absolute",
@@ -34,6 +40,9 @@ const Popup = ({ position, selection }) => {
   return (
     <div style={divStyle}>
       {selection}
+      <button onClick={handleOnClick} className="btn">
+        Add text
+      </button>
       <div style={arrowStyle}></div>
     </div>
   );

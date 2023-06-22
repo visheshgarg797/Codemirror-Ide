@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { EditorState } from "@codemirror/state";
+
+import { EditorState, Transaction } from "@codemirror/state";
 
 import { EditorView, keymap } from "@codemirror/view";
 
@@ -33,6 +34,8 @@ import { Theme_Name } from "@/constants/ThemeName";
 import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import IsValidSelection from "@/utils/IsValidSelection";
+import { EditorSelection } from "@codemirror/state";
 import Popup from "./Popup";
 // import getInfo from "@/utils/GetInfo";
 
@@ -45,12 +48,60 @@ const MultiLineEditor = () => {
 
   const { direction } = useCustomDirection();
 
+  // TODO: club all variables of popup into one useState
   const [selection, setSelection] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [tempPos, setTempPos] = useState(-1);
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(0);
 
   let code = "";
-  let firstUpdate = true;
+
+  const pushSelectionChangesToEditor = (originalText, additionalText, pos) => {
+    const textToInsert = ` OR ${additionalText})`;
+    const changes = [
+      { from: pos, insert: "(" },
+      { from: pos + originalText.length, insert: textToInsert },
+    ];
+    viewRef.current.dispatch({ changes });
+    return EditorState.transactionFilter.of((tr) => {
+      let sel = tr.newSelection;
+      if (
+        !sel.ranges.some(({ from, to }) => from < allowedFrom || to > allowedTo)
+      )
+        return tr;
+      return [
+        tr,
+        {
+          selection: EditorSelection.create(
+            sel.ranges.map(() => EditorSelection.range(start, end)),
+            sel.mainIndex
+          ),
+        },
+      ];
+    });
+  };
+
+  const TransactionFilter = (transaction, startState) => {
+    if (transaction.selection) {
+      const { from, to } = transaction.selection.main;
+      console.log(from, to);
+      const newSelection = {
+        anchor: start,
+        head: end,
+      };
+      transaction = Transaction.from(transaction, {
+        selection: EditorSelection.single(newSelection),
+      });
+    }
+    return transaction;
+  };
+
+  const transactionFilterExtension =
+    EditorState.transactionFilter.of(TransactionFilter);
+
+  // idea: record the chnages in the document using editor.updateListener then on keypress of enter, dispatch a space to the editor. Maybe that will trigger an autocompete since applying a space using autocomplete does not
 
   useEffect(() => {
     if (viewRef && viewRef.current) {
@@ -58,44 +109,25 @@ const MultiLineEditor = () => {
     }
     const handleTextSelection = (e) => {
       const { ranges } = View.state.selection;
-      // console.log(ranges[0].from, ranges[0].to);
       if (ranges.some((range) => !range.empty)) {
-        let selectedText = ranges
-          .map((range) => View.state.doc.sliceString(range.from, range.to))
-          .join("");
-        selectedText = selectedText.trim();
-        if (selectedText.length === 0) {
+        const checkValidityOfSelection = IsValidSelection(
+          window.totalEditorText,
+          ranges[0].from,
+          ranges[0].to
+        );
+        if (!checkValidityOfSelection.isValidSelection) {
           return;
         }
-        console.log(View.state.selection);
-        const splitTotalText = viewRef.current.state.doc.toString().split("\n");
-        let col = (ranges[0].from + ranges[0].to) / 2;
-        let row = 0,
-          k = 0;
-        let flag = false;
-        for (let i = 0; i < splitTotalText.length; i++) {
-          for (let j = 0; j < splitTotalText[i].length; j++, k++) {
-            if (k === ranges[0].from) {
-              row = i;
-              flag = true;
-              break;
-            }
-          }
-          k++;
-          if (flag) {
-            break;
-          }
-        }
-        col = col - row;
-        for (let i = 0; i < row; i++) {
-          col = col - splitTotalText[i].length;
-        }
-        console.log(row, col);
-        setSelection(selectedText);
+        setStart(checkValidityOfSelection.actualStartPos);
+        setEnd(checkValidityOfSelection.actualEndPos);
+        setSelection(checkValidityOfSelection.actualSelectedText);
+        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
+        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
         setMenuPosition({
-          x: constants.X + (constants.DEL_X + 0.8) * col,
-          y: constants.Y + (constants.DEL_Y + 0.8) * row,
+          x: (st.left + ed.left) / 2,
+          y: (st.bottom + ed.bottom) / 2,
         });
+        setTempPos(checkValidityOfSelection.actualStartPos);
         setShowPopup(true);
       }
     };
@@ -133,10 +165,13 @@ const MultiLineEditor = () => {
             handleTextSelection();
           }
           if (update.docChanged) {
+            const text = update.view.state.doc.toString();
+            const tokens = getTokensForText(text);
             window.totalEditorText = viewRef.current.state.doc.toString();
             return startCompletion(View, { trigger: "input" });
           }
         }),
+        // transactionFilterExtension,
       ],
     });
 
@@ -152,11 +187,14 @@ const MultiLineEditor = () => {
       parent: editorRef.current,
     });
 
-    // View.domEventHandlers.set("mousedown", handleMouseDown);
-    // EditorView.domEventHandlers.set("mouseup", handleTextSelection);
-    View.dom.addEventListener("mousedown", handleMouseDown);
-    // View.dom.addEventListener("mouseup", handleTextSelection);
+    // this retriggers autocomplete after any particular selection from autocomplete
+    View.dom.addEventListener("mousedown", (e) => {
+      // use this in getSuggestions.js to find total text
+      window.totalEditorText = viewRef.current.state.doc.toString();
+      return startCompletion(View, { trigger: "input" });
+    });
 
+    View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
 
     return () => {
@@ -167,7 +205,20 @@ const MultiLineEditor = () => {
   return (
     <>
       <div ref={editorRef} className="EditorContainer">
-        {showPopup && <Popup position={menuPosition} selection={selection} />}
+        {showPopup && (
+          <Popup
+            position={menuPosition}
+            selection={selection}
+            handleOnClick={() =>
+              pushSelectionChangesToEditor(
+                selection,
+                "random words",
+                tempPos,
+                viewRef.current
+              )
+            }
+          />
+        )}
       </div>
     </>
   );
