@@ -1,33 +1,15 @@
 "use client";
-
-import React, { useRef, useEffect } from "react";
-
+import React, { useRef, useEffect, useState } from "react";
 import { EditorState } from "@codemirror/state";
-
 import { EditorView, keymap } from "@codemirror/view";
-
 import { basicSetup } from "codemirror";
-
-import { javascript } from "@codemirror/lang-javascript";
-
-import { java } from "@codemirror/lang-java";
-
-import { highlightTree } from "@lezer/highlight";
-
 import { autocompletion } from "@codemirror/autocomplete";
-
 import { ResizableSampleThemeList } from "@/utils/ResizableSampleThemeList";
-
-import { language, syntaxHighlighting } from "@codemirror/language";
-
+import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
-
 import { useCustomDirection } from "@/context/useDirectionHook";
-
 import myHighlightStyle from "@/utils/Highlights";
-
 import keywordFilter from "@/utils/GetSuggestions";
-
 import { startCompletion } from "@codemirror/autocomplete";
 
 import { Theme_Name } from "@/constants/ThemeName";
@@ -37,25 +19,79 @@ import { Direction } from "@/constants/Direction";
 import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import Popup from "./Popup";
+import IsValidSelection from "@/utils/IsValidSelection";
 
-const ResizaleEditor = () => {
+export default function ResizaleEditor() {
   const editorRef = useRef(null);
-
   const viewRef = useRef(null);
-
   const { themeStyles } = useCustomTheme();
 
   const { direction } = useCustomDirection();
+  const [popupState, setPopupState] = useState({
+    selection: null,
+    showPopup: false,
+    popupPosition: { x: 0, y: 0 },
+    selectionPos: -1,
+  });
 
   let code = "";
 
-  // idea: record the chnages in the document using editor.updateListener then on keypress of enter, dispatch a space to the editor. Maybe that will trigger an autocompete since applying a space using autocomplete does not
+  const pushSelectionChangesToEditor = (wordsToInsert) => {
+    let textToInsert = "";
+    wordsToInsert.forEach((word) => {
+      textToInsert += ` OR ${word.label}`;
+    });
+    textToInsert += ")";
+    const changes = [
+      { from: popupState.selectionPos, insert: "(" },
+      {
+        from: popupState.selectionPos + popupState.selection.length,
+        insert: textToInsert,
+      },
+    ];
+    viewRef.current.dispatch({ changes });
+    viewRef.current.dispatch({
+      selection: {
+        anchor: viewRef.current.state.doc.toString().length,
+        head: viewRef.current.state.doc.toString().length,
+      },
+    });
+    viewRef.current.dispatch;
+    setPopupState({ ...popupState, showPopup: false });
+  };
 
   useEffect(() => {
     let firstUpdate = true;
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
+
+    const handleTextSelection = (e) => {
+      const { ranges } = View.state.selection;
+      if (ranges.some((range) => !range.empty)) {
+        const checkValidityOfSelection = IsValidSelection(
+          window.totalEditorText,
+          ranges[0].from,
+          ranges[0].to
+        );
+        if (!checkValidityOfSelection.isValidSelection) {
+          return;
+        }
+        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
+        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+        setPopupState({
+          ...popupState,
+          selection: checkValidityOfSelection.actualSelectedText,
+          popupPosition: {
+            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+            y: (st.bottom + ed.bottom) / 2,
+          },
+          selectionPos: checkValidityOfSelection.actualStartPos,
+          showPopup: true,
+        });
+      }
+    };
 
     const startState = EditorState.create({
       doc: code,
@@ -125,21 +161,8 @@ const ResizaleEditor = () => {
     };
 
     const handleMouseDown = () => {
-      isTextSelected = false;
-    };
-
-    const handleMouseUp = () => {
-      isTextSelected = true;
-
-      setTimeout(handleTextSelection, 0);
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-        isTextSelected = true;
-
-        setTimeout(handleTextSelection, 0);
-      }
+      setPopupState({ ...popupState, selection: null, showPopup: false });
+      return startCompletion(View, { trigger: "input" });
     };
 
     const View = new EditorView({
@@ -167,7 +190,17 @@ const ResizaleEditor = () => {
     };
   }, [themeStyles, direction, code]);
 
-  return <div ref={editorRef} className="EditorContainer" />;
-};
-
-export default ResizaleEditor;
+  return (
+    <>
+      <div ref={editorRef} className="EditorContainer">
+        {popupState.showPopup && (
+          <Popup
+            position={popupState.popupPosition}
+            selection={popupState.selection}
+            handleOnClick={pushSelectionChangesToEditor}
+          />
+        )}
+      </div>
+    </>
+  );
+}

@@ -2,44 +2,63 @@
 import React, { useRef, useEffect, useContext } from "react";
 
 import { EditorState } from "@codemirror/state";
-
 import { EditorView, lineNumbers } from "@codemirror/view";
-
 import { basicSetup } from "codemirror";
-
 import { javascript } from "@codemirror/lang-javascript";
-
 import { autocompletion } from "@codemirror/autocomplete";
-
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
-
 import keywordFilter from "@/utils/GetSuggestions";
-
 import myHighlightStyle from "@/utils/Highlights";
-
 import { language, syntaxHighlighting } from "@codemirror/language";
-
 import { startCompletion } from "@codemirror/autocomplete";
-
 import { useCustomTheme } from "@/context/useThemeHook";
-
 import { useCustomDirection } from "@/context/useDirectionHook";
 
 import { Theme_Name } from "@/constants/ThemeName";
 import { wordHover } from "./hover-tooltip";
 
-import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import constants from "@/utils/constants";
 import Popup from "./Popup";
+import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import IsValidSelection from "@/utils/IsValidSelection";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
   const { direction } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
-  const [selection, setSelection] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [popupState, setPopupState] = useState({
+    selection: null,
+    showPopup: false,
+    popupPosition: { x: 0, y: 0 },
+    selectionPos: -1,
+  });
+
   let code = "";
+
+  const pushSelectionChangesToEditor = (wordsToInsert) => {
+    let textToInsert = "";
+    wordsToInsert.forEach((word) => {
+      textToInsert += ` OR ${word.label}`;
+    });
+    textToInsert += ")";
+    const changes = [
+      { from: popupState.selectionPos, insert: "(" },
+      {
+        from: popupState.selectionPos + popupState.selection.length,
+        insert: textToInsert,
+      },
+    ];
+    viewRef.current.dispatch({ changes });
+    viewRef.current.dispatch({
+      selection: {
+        anchor: viewRef.current.state.doc.toString().length,
+        head: viewRef.current.state.doc.toString().length,
+      },
+    });
+    viewRef.current.dispatch;
+    setPopupState({ ...popupState, showPopup: false });
+  };
 
   const handlePaste = (pastedText) => {
     let concatenatedText = "";
@@ -79,6 +98,7 @@ const SingleLineEditor = () => {
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
+    const handleTextSelection = (e) => {
 
     const startState = EditorState.create({
       doc: code,
@@ -130,49 +150,32 @@ const SingleLineEditor = () => {
 
     const handleTextSelection = () => {
       const { ranges } = View.state.selection;
-      console.log(ranges[0].from, ranges[0].to);
       if (ranges.some((range) => !range.empty)) {
-        let selectedText = ranges
-          .map((range) => View.state.doc.sliceString(range.from, range.to))
-          .join("");
-        selectedText = selectedText.trim();
-        if (selectedText.length === 0) {
+        const checkValidityOfSelection = IsValidSelection(
+          window.totalEditorText,
+          ranges[0].from,
+          ranges[0].to
+        );
+        if (!checkValidityOfSelection.isValidSelection) {
           return;
         }
-        const splitTotalText = viewRef.current.state.doc.toString().split("\n");
-        let col = (ranges[0].from + ranges[0].to) / 2;
-        let row = 0,
-          k = 0;
-        let flag = false;
-        for (let i = 0; i < splitTotalText.length; i++) {
-          for (let j = 0; j < splitTotalText[i].length; j++, k++) {
-            if (k === ranges[0].from) {
-              row = i;
-              flag = true;
-              break;
-            }
-          }
-          k++;
-          if (flag) {
-            break;
-          }
-        }
-        col = col - row;
-        for (let i = 0; i < row; i++) {
-          col = col - splitTotalText[i].length;
-        }
-        setSelection(selectedText);
-        setMenuPosition({
-          x: constants.X - 15 + (constants.DEL_X + 0.8) * col,
-          y: constants.Y + 12 + constants.DEL_Y * row,
+        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
+        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+        setPopupState({
+          ...popupState,
+          selection: checkValidityOfSelection.actualSelectedText,
+          popupPosition: {
+            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+            y: (st.bottom + ed.bottom) / 2,
+          },
+          selectionPos: checkValidityOfSelection.actualStartPos,
+          showPopup: true,
         });
-        setShowPopup(true);
       }
     };
 
     const handleMouseDown = () => {
-      setSelection(null);
-      setShowPopup(false);
+      setPopupState({ ...popupState, selection: null, showPopup: false });
       return startCompletion(View, { trigger: "input" });
     };
 
@@ -194,7 +197,13 @@ const SingleLineEditor = () => {
   return (
     <>
       <div ref={editorRef} className="EditorContainer">
-        {showPopup && <Popup position={menuPosition} selection={selection} />}
+        {popupState.showPopup && (
+          <Popup
+            position={popupState.popupPosition}
+            selection={popupState.selection}
+            handleOnClick={pushSelectionChangesToEditor}
+          />
+        )}
       </div>
     </>
   );
