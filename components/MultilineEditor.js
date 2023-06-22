@@ -49,7 +49,7 @@ const MultiLineEditor = () => {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length,
+        from: popupState.selectionPos + popupState.selection.length + 2,
         insert: textToInsert,
       },
     ];
@@ -76,8 +76,9 @@ const MultiLineEditor = () => {
   const handleTextSelection = (e) => {
     const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
+      const tokens = getTokensForText(code);
       const checkValidityOfSelection = IsValidSelection(
-        code,
+        tokens,
         ranges[0].from,
         ranges[0].to
       );
@@ -138,10 +139,12 @@ const MultiLineEditor = () => {
             // }, 500);
             handleTextSelection();
           }
+          if (firstUpdate) {
+            firstUpdate = false;
+          }
           if (update.docChanged) {
             const text = update.view.state.doc.toString();
-            const tokens = getTokensForText(text);
-            window.totalEditorText = viewRef.current.state.doc.toString();
+
             return startCompletion(View, { trigger: "input" });
           }
         }),
