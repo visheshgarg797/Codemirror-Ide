@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import EditorModeToggleButton from "./EditorModeToggleButton";
 import IDE from "./ide";
-export default function MainEditor() {
+const MainEditor = () => {
   const { themeStyles } = useCustomTheme();
   return (
     <div
@@ -21,4 +21,5 @@ export default function MainEditor() {
       <IDE />
     </div>
   );
-}
+};
+export default MainEditor;

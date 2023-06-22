@@ -34,7 +34,6 @@ const traverseBackCursor = (TextInEditor, pos) => {
   if (!TextInEditor) {
     return { lastStr: undefined, secLastStr: undefined };
   }
-  console.log(pos);
   let secLastStr = "",
     lastStr = "",
     index = pos - 1;
@@ -76,8 +75,6 @@ const keywordFilter = (context) => {
   // We can try using different methods to maintain global variables if windows.prevText has any drawbacks.
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
   console.log(TextInEditor);
-  //   || window.prevText;
-  // window.prevText = TextInEditor;
 
   const pos = Math.max(
     context.pos - window.totalEditorText
@@ -126,15 +123,7 @@ const keywordFilter = (context) => {
   if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
     return {
       from: context.pos,
-      options: [
-        ...Data.keywords.concat(Data.advancedOperators),
-        // {
-        //   label: "not",
-        //   type: "operatorNot",
-        //   info: "not",
-        //   apply: "NOT ",
-        // },
-      ],
+      options: [...Data.keywords.concat(Data.advancedOperators)],
     };
   }
 
@@ -230,15 +219,7 @@ const keywordFilter = (context) => {
   if (wordBeforeCursor === "") {
     return {
       from: context.pos,
-      options: [
-        ...Data.keywords.concat(Data.advancedOperators),
-        // {
-        //   label: "not",
-        //   type: "operatorNot",
-        //   info: "not",
-        //   apply: "not ",
-        // },
-      ],
+      options: [...Data.keywords.concat(Data.advancedOperators), ,],
     };
   }
 };

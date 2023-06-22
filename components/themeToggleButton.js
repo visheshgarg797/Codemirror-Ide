@@ -2,7 +2,7 @@
 import React from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 
-export default function ThemeToggleButton() {
+const ThemeToggleButton = () => {
   const { themeStyles, toggleTheme } = useCustomTheme();
   return (
     <button onClick={toggleTheme} className={themeStyles.classButton}>
@@ -13,4 +13,5 @@ export default function ThemeToggleButton() {
       ></img>
     </button>
   );
-}
+};
+export default ThemeToggleButton;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import LeftNavButton from "./leftNavButton";
 
-export default function Sidebar() {
+const Sidebar = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -41,4 +41,6 @@ export default function Sidebar() {
       </nav>
     </div>
   );
-}
+};
+
+export default Sidebar;

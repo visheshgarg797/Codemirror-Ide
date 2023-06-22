@@ -6,10 +6,9 @@ import SingleLineEditor from "./SinglelineEditor";
 import ResizaleEditor from "./ResizableEditor";
 import constants from "@/utils/constants";
 
-export default function IDE() {
+const IDE = () => {
   const { editorMode } = useCustomEditorMode();
   const { themeStyles } = useCustomTheme();
-  console.log(editorMode);
 
   return (
     <div
@@ -28,4 +27,5 @@ export default function IDE() {
       )}
     </div>
   );
-}
+};
+export default IDE;

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 
-export default function Button(props) {
+const Button = (props) => {
   const { themeStyles } = useCustomTheme();
   const classname = "hover : bg-cyan-900";
   return (
@@ -20,4 +20,5 @@ export default function Button(props) {
       </div>
     </a>
   );
-}
+};
+export default Button;

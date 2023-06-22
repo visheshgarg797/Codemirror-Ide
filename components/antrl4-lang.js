@@ -1,6 +1,6 @@
 import antlr from "antlr4";
 import { styleTags, tags, Tag } from "@lezer/highlight";
-import { StreamLanguage /* HighlightStyle,*/ } from "@codemirror/language";
+import { StreamLanguage } from "@codemirror/language";
 
 import { ResearchAdvanceQLLexer } from "./antlrGenerated";
 function getStyleNameByTag(tag) {
@@ -13,7 +13,6 @@ function getStyleNameByTag(tag) {
   return "";
 }
 function getTokenNameByTokenValue(tokenValue) {
-  // const lexer = ResearchAdvanceQLLexer;
   const lexer = ResearchAdvanceQLLexer;
   for (let tokenName in lexer) {
     if (lexer[tokenName] === tokenValue) {
@@ -86,11 +85,5 @@ export const antrl4Lang = StreamLanguage.define({
       stream.next();
       return null;
     }
-  },
-  tokenTable: {
-    // Identifier: tags.keyword,
-    // Boolean: tags.bool,
-    // String: tags.string,
-    // LineComment: tags.lineComment,
   },
 });

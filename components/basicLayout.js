@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-// import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 import { useCustomTheme } from "../context/useThemeHook";
 import Sidebar from "./Sidebar";
@@ -29,10 +28,9 @@ const MODULE_VS_BODY_COMPONENT = {
   [MODULES.CONCLUSION]: MainConclusion,
 };
 
-export default function BasicLayout({ children }) {
+const BasicLayout = ({ children }) => {
   const { themeStyles } = useCustomTheme();
   const { direction } = useCustomDirection();
-  console.log("router", useParams());
   const { module } = useParams();
   if (!ALL_MODULES.has(module)) {
     // render Error page
@@ -70,4 +68,5 @@ export default function BasicLayout({ children }) {
       </div>
     );
   }
-}
+};
+export default BasicLayout;

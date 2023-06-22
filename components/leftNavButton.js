@@ -6,7 +6,7 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import constants from "@/utils/constants";
 
-export default function LeftNavButton(props) {
+const LeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
   const { direction } = useCustomDirection();
   const { push } = useRouter();
@@ -40,4 +40,6 @@ export default function LeftNavButton(props) {
       {props.index}
     </button>
   );
-}
+};
+
+export default LeftNavButton;

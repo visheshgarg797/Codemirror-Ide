@@ -36,16 +36,10 @@ import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 
-export default function MultiLineEditor() {
+const MultiLineEditor = () => {
   const editorRef = useRef(null);
 
   const viewRef = useRef(null);
-
-  // const customLanguage = language({
-  //   token: {
-  //     keyword: /\b(if|else|while)\b/,
-  //   },
-  // });
 
   const { themeStyles } = useCustomTheme();
 
@@ -90,7 +84,6 @@ export default function MultiLineEditor() {
         EditorView.updateListener.of((update) => {
           if (update.docChanged || firstUpdate) {
             firstUpdate = false;
-            console.log("document has changed");
             const text = update.view.state.doc.toString();
             const tokens = getTokensForText(text);
             console.log("====tokens", tokens);
@@ -177,4 +170,6 @@ export default function MultiLineEditor() {
   }, [themeStyles, direction, code]);
 
   return <div ref={editorRef} className="EditorContainer" />;
-}
+};
+
+export default MultiLineEditor;

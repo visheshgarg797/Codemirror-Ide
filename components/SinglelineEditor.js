@@ -112,7 +112,6 @@ const SingleLineEditor = () => {
         EditorView.updateListener.of((update) => {
           if (update.docChanged || firstUpdate) {
             firstUpdate = false;
-            console.log("document has changed");
             const text = update.view.state.doc.toString();
             const tokens = getTokensForText(text);
             console.log("====tokens", tokens);

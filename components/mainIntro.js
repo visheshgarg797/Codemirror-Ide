@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 
-export default function MainIntro() {
+const MainIntro = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -67,4 +67,5 @@ export default function MainIntro() {
       </p>
     </div>
   );
-}
+};
+export default MainIntro;

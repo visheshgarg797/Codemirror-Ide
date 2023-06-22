@@ -3,7 +3,6 @@ const SampleThemeList = [
   EditorView.theme(
     {
       "&": {
-        // direction: "rtl",
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
@@ -26,28 +25,15 @@ const SampleThemeList = [
       },
       ".cm-gutters": {
         minHeight: "200px",
-        // backgroundColor: "#045",
-        // color: "#ddd",
         border: "none",
       },
       ".cm-line": {
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
       },
-      // ".cm-tooltip-autocomplete > ul > li  ": {
-      //   width: "100%",
-      //   fontSize: "14px",
-      //   minHeight: "28px",
-      //   display: "flex",
-      //   alignItems: "center",
-      //   padding: "0 !important",
-      //   color: "red",
-      //   fontStyle: "Italic",
-      // },
       ".cm-tooltip-autocomplete": {
         minWidth: "180px",
-        // width: "324px",
-        // height: "100%",
+
         maxHeight: "40vh !important",
         padding: "6px 0 !important",
         fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
@@ -68,7 +54,6 @@ const SampleThemeList = [
   EditorView.theme(
     {
       "&": {
-        // direction: "rtl",
         maxHeight: "355px",
         color: "white",
         backgroundColor: "#16181d",
@@ -91,8 +76,6 @@ const SampleThemeList = [
       },
       ".cm-gutters": {
         minHeight: "200px",
-        // backgroundColor: "#045",
-        // color: "#ddd",
         border: "none",
       },
     },
@@ -124,8 +107,7 @@ const SampleThemeList = [
       },
       ".cm-gutters": {
         minHeight: "200px",
-        // backgroundColor: "#045",
-        // color: "#ddd",
+
         border: "none",
       },
     },
@@ -157,8 +139,7 @@ const SampleThemeList = [
       },
       ".cm-gutters": {
         minHeight: "200px",
-        // backgroundColor: "#045",
-        // color: "#ddd",
+
         border: "none",
       },
     },

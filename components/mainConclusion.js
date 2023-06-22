@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 
-export default function MainConclusion() {
+const MainConclusion = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -65,4 +65,6 @@ export default function MainConclusion() {
       </p>
     </div>
   );
-}
+};
+
+export default MainConclusion;
