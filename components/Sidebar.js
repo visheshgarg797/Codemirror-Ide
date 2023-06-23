@@ -1,44 +1,29 @@
 "use client";
 import ButtonLeft from "./leftNavButton";
 import React, { useState } from "react";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
 import LeftNavButton from "./leftNavButton";
 
-export default function Sidebar() {
+const Sidebar = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
     <div
-      className="bg-gray-800 w-128 fixed left-0 top-32"
+      className="bg-gray-800 w-128 fixed top-32"
       style={{
         width: "23rem",
         backgroundColor: themeStyles.col02.backgroundColor,
-        height: "calc(100vh - 270px)",
       }}
     >
       <nav className="flex flex-col items-stretch" style={{ width: "20rem" }}>
         <div className="p-4 py-10 " />
-        <LeftNavButton
-          index="Introduction"
-          href="http://localhost:3000/intro"
-          path="/intro"
-        />
-        <LeftNavButton
-          index="Analysis"
-          href="http://localhost:3000/analysis"
-          path="/analysis"
-        />
-        <LeftNavButton
-          index="Editor"
-          href="http://localhost:3000/editor"
-          path="/editor"
-        />
-        <LeftNavButton
-          index="Conclusion"
-          href="http://localhost:3000/conclusion"
-          path="/conclusion"
-        />
+        <LeftNavButton index="Introduction" path="/intro" />
+        <LeftNavButton index="Analysis" path="/analysis" />
+        <LeftNavButton index="Editor" path="/editor" />
+        <LeftNavButton index="Conclusion" path="/conclusion" />
       </nav>
     </div>
   );
-}
+};
+
+export default Sidebar;

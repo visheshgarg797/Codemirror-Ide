@@ -2,10 +2,11 @@
 import Button from "./button";
 import ButtonDark from "./themeToggleButton";
 import React from "react";
-import { useCustomTheme } from "./useThemeHook";
+import { useCustomTheme } from "../context/useThemeHook";
 import ThemeToggleButton from "./themeToggleButton";
+import DirectionChangeButton from "./DirectionChangeButton";
 
-export default function Navbar() {
+const Navbar = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -16,6 +17,8 @@ export default function Navbar() {
         borderBottomLeftRadius: "50px",
         borderBottomRightRadius: "50px",
         height: "60px",
+        boxShadow:
+          "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
       }}
     >
       <div className="flex justify-between items-center">
@@ -29,15 +32,19 @@ export default function Navbar() {
             fontWeight: "700",
           }}
         >
-          {" "}
-          CODEMIRROR IDE{" "}
+          CODEMIRROR IDE
         </h1>
         <div className="flex justify-end">
-          <Button index="Button" />
-          <Button index="Github" />
+          <DirectionChangeButton />
+          <Button index="About" href="https://codemirror.net/" />
+          <Button
+            index="Github"
+            href="https://github.com/visheshgarg797/Codemirror-Ide"
+          />
           <ThemeToggleButton index="Mode" />
         </div>
       </div>
     </nav>
   );
-}
+};
+export default Navbar;

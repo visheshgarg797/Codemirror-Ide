@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "../components/themeProvider";
+import { ThemeProvider } from "../context/themeProvider";
+import { DirectionProvider } from "@/context/directionProvider";
+import { EditorModeProvider } from "@/context/editorModeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,14 +13,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ThemeProvider>
-        <body
-          className={inter.className}
-          style={{ backgroundColor: "#23272f" }}
-        >
-          {children}
-        </body>
-      </ThemeProvider>
+      <EditorModeProvider>
+        <ThemeProvider>
+          <DirectionProvider>
+            <body
+              className={inter.className}
+              style={{ backgroundColor: "#23272f" }}
+            >
+              {children}
+            </body>
+          </DirectionProvider>
+        </ThemeProvider>
+      </EditorModeProvider>
     </html>
   );
 }
