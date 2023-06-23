@@ -11,16 +11,10 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import myHighlightStyle from "@/utils/Highlights";
 import keywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
-
 import { Theme_Name } from "@/constants/ThemeName";
-
-import { wordHover } from "./hover-tooltip";
-
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
-import { EditorSelection } from "@codemirror/state";
 import Popup from "./Popup";
-// import getInfo from "@/utils/GetInfo";
 
 const MultiLineEditor = () => {
   const editorRef = useRef(null);
@@ -28,7 +22,6 @@ const MultiLineEditor = () => {
   const viewRef = useRef(null);
 
   const { themeStyles } = useCustomTheme();
-
   const { direction } = useCustomDirection();
 
   const [popupState, setPopupState] = useState({
@@ -135,9 +128,6 @@ const MultiLineEditor = () => {
         // triggers autocomplete on any change in doc
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
-            // setTimeout(() => {
-            //   handleTextSelection();
-            // }, 500);
             handleTextSelection();
           }
           if (firstUpdate) {
@@ -178,3 +168,4 @@ const MultiLineEditor = () => {
     </>
   );
 };
+export default MultiLineEditor;

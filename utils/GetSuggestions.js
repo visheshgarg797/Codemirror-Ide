@@ -86,7 +86,7 @@ const keywordFilter = (context) => {
   });
 
   Data.operators.forEach((item) => {
-    Operators.add(item.label);
+    Operators.add(item.apply.substr(0, item.apply.length - 1));
   });
 
   Data.city.forEach((items) => {
@@ -104,7 +104,15 @@ const keywordFilter = (context) => {
   if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
     return {
       from: context.pos,
-      options: [...Data.keywords.concat(Data.advancedOperators)],
+      options: [
+        ...Data.keywords.concat(Data.advancedOperators),
+        // {
+        //   label: "not",
+        //   type: "operatorNot",
+        //   info: "not",
+        //   apply: "NOT ",
+        // },
+      ],
     };
   }
 
@@ -227,7 +235,15 @@ const keywordFilter = (context) => {
   if (wordBeforeCursor === "") {
     return {
       from: context.pos,
-      options: [...Data.keywords.concat(Data.advancedOperators), ,],
+      options: [
+        ...Data.keywords.concat(Data.advancedOperators),
+        // {
+        //   label: "not",
+        //   type: "operatorNot",
+        //   info: "not",
+        //   apply: "not ",
+        // },
+      ],
     };
   }
 };

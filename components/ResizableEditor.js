@@ -11,13 +11,8 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import myHighlightStyle from "@/utils/Highlights";
 import keywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
-
 import { Theme_Name } from "@/constants/ThemeName";
-
 import { Direction } from "@/constants/Direction";
-
-import { wordHover } from "./hover-tooltip";
-
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import Popup from "./Popup";
 import IsValidSelection from "@/utils/IsValidSelection";
@@ -136,30 +131,6 @@ export default function ResizaleEditor() {
       ],
     });
 
-    //seeing selected text  and calling callback if any text is selected
-
-    let isTextSelected = false;
-
-    const handleTextSelection = () => {
-      if (isTextSelected) {
-        const { ranges } = View.state.selection;
-
-        if (ranges.some((range) => !range.empty)) {
-          const selectedText = ranges
-
-            .map((range) => View.state.doc.sliceString(range.from, range.to))
-
-            .join("");
-
-          // Call your callback function with the selected text
-
-          console.log("Selected text:", selectedText);
-        }
-
-        isTextSelected = false;
-      }
-    };
-
     const handleMouseDown = () => {
       setPopupState({ ...popupState, selection: null, showPopup: false });
       return startCompletion(View, { trigger: "input" });
@@ -180,8 +151,6 @@ export default function ResizaleEditor() {
     });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
-
-    View.dom.addEventListener("mouseup", handleMouseUp);
 
     viewRef.current = View;
 

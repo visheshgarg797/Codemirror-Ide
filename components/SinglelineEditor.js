@@ -1,10 +1,8 @@
 "use cilent";
-import React, { useRef, useEffect, useContext } from "react";
-
+import React, { useRef, useState, useEffect } from "react";
 import { EditorState } from "@codemirror/state";
 import { EditorView, lineNumbers } from "@codemirror/view";
 import { basicSetup } from "codemirror";
-import { javascript } from "@codemirror/lang-javascript";
 import { autocompletion } from "@codemirror/autocomplete";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
 import keywordFilter from "@/utils/GetSuggestions";
@@ -15,11 +13,8 @@ import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 
 import { Theme_Name } from "@/constants/ThemeName";
-import { wordHover } from "./hover-tooltip";
-
-import constants from "@/utils/constants";
 import Popup from "./Popup";
-import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import { antrl4Lang } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 
 const SingleLineEditor = () => {
@@ -34,7 +29,7 @@ const SingleLineEditor = () => {
     selectionPos: -1,
   });
 
-  let code = "";
+  const [code, setCode] = useState("");
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -52,7 +47,7 @@ const SingleLineEditor = () => {
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length,
+        anchor: viewRef.current.state.doc.toString().length + 2,
         head: viewRef.current.state.doc.toString().length,
       },
     });
@@ -89,16 +84,45 @@ const SingleLineEditor = () => {
     });
   };
 
+  const handleTextSelection = () => {
+    const { ranges } = View.state.selection;
+    if (ranges.some((range) => !range.empty)) {
+      const checkValidityOfSelection = IsValidSelection(
+        window.totalEditorText,
+        ranges[0].from,
+        ranges[0].to
+      );
+      if (!checkValidityOfSelection.isValidSelection) {
+        return;
+      }
+      const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
+      const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+      setPopupState({
+        ...popupState,
+        selection: checkValidityOfSelection.actualSelectedText,
+        popupPosition: {
+          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          y: (st.bottom + ed.bottom) / 2,
+        },
+        selectionPos: checkValidityOfSelection.actualStartPos,
+        showPopup: true,
+      });
+    }
+  };
+
+  const handleMouseDown = () => {
+    setPopupState({ ...popupState, selection: null, showPopup: false });
+    return startCompletion(View, { trigger: "input" });
+  };
+
   const handleCut = () => {
     return;
   };
 
   useEffect(() => {
-    let firstUpdate = true;
     if (viewRef && viewRef.current) {
-      code = viewRef.current.state.doc.toString();
+      setCode(viewRef.current.state.doc.toString());
     }
-    const handleTextSelection = (e) => {
 
     const startState = EditorState.create({
       doc: code,
@@ -134,50 +158,15 @@ const SingleLineEditor = () => {
         }),
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
-            setTimeout(() => {
-              handleTextSelection();
-            }, 500);
+            handleTextSelection();
           }
           if (update.docChanged) {
-            window.totalEditorText = viewRef.current.state.doc.toString();
+            setCode(viewRef.current.state.doc.toString());
             return startCompletion(View, { trigger: "input" });
           }
         }),
       ],
     });
-
-    //seeing selected text  and calling callback if any text is selected
-
-    const handleTextSelection = () => {
-      const { ranges } = View.state.selection;
-      if (ranges.some((range) => !range.empty)) {
-        const checkValidityOfSelection = IsValidSelection(
-          window.totalEditorText,
-          ranges[0].from,
-          ranges[0].to
-        );
-        if (!checkValidityOfSelection.isValidSelection) {
-          return;
-        }
-        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
-        setPopupState({
-          ...popupState,
-          selection: checkValidityOfSelection.actualSelectedText,
-          popupPosition: {
-            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
-            y: (st.bottom + ed.bottom) / 2,
-          },
-          selectionPos: checkValidityOfSelection.actualStartPos,
-          showPopup: true,
-        });
-      }
-    };
-
-    const handleMouseDown = () => {
-      setPopupState({ ...popupState, selection: null, showPopup: false });
-      return startCompletion(View, { trigger: "input" });
-    };
 
     const View = new EditorView({
       state: startState,
@@ -185,14 +174,13 @@ const SingleLineEditor = () => {
     });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
-    // View.dom.addEventListener("mouseup", handleTextSelection);
 
     viewRef.current = View;
 
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, code]);
+  }, [themeStyles, direction]);
 
   return (
     <>
