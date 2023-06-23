@@ -156,14 +156,6 @@ const MultiLineEditor = () => {
       parent: editorRef.current,
     });
 
-    // this retriggers autocomplete after any particular selection from autocomplete
-    // View.dom.addEventListener("mouseup", (e) => {
-    //   // use this in getSuggestions.js to find total text
-    //   setCode(viewRef.current.state.doc.toString());
-    //   console.log("mouseup detected");
-    //   return startCompletion(View, { trigger: "input" });
-    // });
-
     View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
 

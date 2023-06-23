@@ -1,70 +1,6 @@
 import Data from "./Data";
 import { getTokensForText } from "@/components/antrl4-lang";
 
-// use the pos to traverse back till it comes at either pos = 0 or a opening bracket or closing bracket or a space whichever comes first
-// this will return the string just before the cursor
-
-const isCharDelimiter = (char) => {
-  if (char === "(" || char === ")" || char === ":" || char === " ") {
-    return true;
-  }
-  return false;
-};
-
-// const getLastWordBeforeCursor = (Text, index, isLastWord) => {
-//   let isLastWordPhase = false;
-//   let wordBeforeCursor = "";
-//   if (index >= 1 && Text[index - 1] === '"') {
-//     isLastWordPhase = true;
-//     index -= isLastWord;
-//     wordBeforeCursor += Text[index--];
-//     while (index >= 0 && Text[index] !== '"') {
-//       wordBeforeCursor += Text[index--];
-//     }
-//     wordBeforeCursor += Text[index--];
-//   }
-//   while (!isLastWordPhase && index >= 0) {
-//     if (isCharDelimiter(Text[index])) {
-//       break;
-//     }
-//     wordBeforeCursor += Text[index--];
-//   }
-//   wordBeforeCursor = wordBeforeCursor.split("").reverse().join("");
-//   return {
-//     wordBeforeCursor,
-//     index,
-//   };
-// };
-
-// const traverseBackCursor = (TextInEditor, pos) => {
-//   // returns last and second last word before cursor
-//   if (!TextInEditor) {
-//     return { lastStr: undefined, secLastStr: undefined };
-//   }
-
-//   let { wordBeforeCursor, index } = getLastWordBeforeCursor(
-//     TextInEditor,
-//     pos - 1,
-//     true
-//   );
-//   const lastStr = wordBeforeCursor;
-//   if (
-//     index >= 0 &&
-//     (TextInEditor[index] === ":" || TextInEditor[index] === " ")
-//   ) {
-//     index -= 1;
-//   }
-//   let secLastStr = getLastWordBeforeCursor(
-//     TextInEditor,
-//     index,
-//     false
-//   ).wordBeforeCursor;
-//   return {
-//     lastStr,
-//     secLastStr,
-//   };
-// };
-
 const INVALID_TOKENS = new Set(["EOF", "LPAREN", "RPAREN"]);
 const USE_TOKENS = new Set(["PHRASE", "TERM_NORMAL", "AND", "OR", "NOT"]);
 
@@ -81,7 +17,6 @@ const traverseBackCursor = (TextInEditor) => {
     }
     return acc;
   }, []);
-  console.log(tokens);
 
   for (let i = tokens.length - 1; i >= 0; i--) {
     if (
@@ -112,15 +47,9 @@ const traverseBackCursor = (TextInEditor) => {
 };
 
 const keywordFilter = (context) => {
-  console.log(context);
   const EntireTextRegex = /.*/;
 
-  // I am maintaining a global variable because when text enters a new line, it losses access to the previous text making the new context null which breaks the program.
-  // We can try using different methods to maintain global variables if windows.prevText has any drawbacks.
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
-  // console.log(TextInEditor);
-  //   || window.prevText;
-  // window.prevText = TextInEditor;
 
   const pos = Math.max(
     context.pos - window.totalEditorText
@@ -135,20 +64,10 @@ const keywordFilter = (context) => {
   const secLastWordBeforeCursor =
     traverseBackCursor(TextInEditor, pos).secLastWordBeforeCursor || "";
 
-  console.log(
-    "wordBeforeCursor",
-    wordBeforeCursor,
-    wordBeforeCursor.length,
-    "secLastWordBeforeCursor",
-    secLastWordBeforeCursor,
-    secLastWordBeforeCursor.length
-  );
-
   const Keywords = new Set();
   const Operators = new Set();
   const advancedOperators = new Set();
   const advancedOperatorsOptions = new Set();
-  console.log(advancedOperatorsOptions);
 
   Data.keywords.forEach((item) => {
     Keywords.add(item.label);
@@ -168,7 +87,6 @@ const keywordFilter = (context) => {
   Data.advancedOperators.forEach((item) => {
     advancedOperators.add(item.label);
   });
-  console.log("operators", Operators);
 
   // handle new line
   if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
@@ -192,7 +110,6 @@ const keywordFilter = (context) => {
 
   // case after a word has been typed
   if (wordBeforeCursor.length === 0 && secLastWordBeforeCursor.length > 0) {
-    console.log("reached here", secLastWordBeforeCursor);
     if (Operators.has(secLastWordBeforeCursor)) {
       return {
         from: context.pos,

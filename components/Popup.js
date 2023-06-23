@@ -1,3 +1,4 @@
+import componentConstants from "./ComponentConstants";
 import React, { useState } from "react";
 import Select from "react-select";
 
@@ -33,14 +34,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
     borderStyle: "solid",
     borderColor: "black transparent transparent transparent",
   };
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const optionList = [
-    { label: "Red", value: "red" },
-    { label: "Green", value: "green" },
-    { label: "Blue", value: "blue" },
-  ];
+  const [selectedOptions, setSelectedOptions] = useState(null);
 
   const handleSelect = (selected) => {
     setSelectedOptions(selected);
@@ -50,7 +44,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
     <div style={divStyle}>
       {selection}
       <Select
-        options={optionList}
+        options={componentConstants.optionList}
         isMulti
         value={selectedOptions}
         onChange={handleSelect}
