@@ -5,6 +5,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     actualSelectedText = "";
 
   tokens.forEach((token) => {
+    console.log(token);
     if (
       token.tokenName === "PHRASE" &&
       token.startIndex <= startPos &&

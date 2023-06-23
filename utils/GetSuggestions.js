@@ -1,139 +1,154 @@
 import Data from "./Data";
+import { getTokensForText } from "@/components/antrl4-lang";
 
 // use the pos to traverse back till it comes at either pos = 0 or a opening bracket or closing bracket or a space whichever comes first
 // this will return the string just before the cursor
 
-const check = (char) => {
-  if (
-    char === "{" ||
-    char === "}" ||
-    char === "[" ||
-    char === "]" ||
-    char === "(" ||
-    char === ")" ||
-    char === ":" ||
-    char === " "
-  ) {
+const isCharDelimiter = (char) => {
+  if (char === "(" || char === ")" || char === ":" || char === " ") {
     return true;
   }
   return false;
 };
 
-const reverseString = (str) => {
-  const strArr = str.split("");
-  const len = strArr.length;
-  for (let i = 0; i < Math.floor(len / 2); i++) {
-    const temp = strArr[i];
-    strArr[i] = strArr[len - 1 - i];
-    strArr[len - 1 - i] = temp;
-  }
-  return strArr.join("");
-};
+// const getLastWordBeforeCursor = (Text, index, isLastWord) => {
+//   let isLastWordPhase = false;
+//   let wordBeforeCursor = "";
+//   if (index >= 1 && Text[index - 1] === '"') {
+//     isLastWordPhase = true;
+//     index -= isLastWord;
+//     wordBeforeCursor += Text[index--];
+//     while (index >= 0 && Text[index] !== '"') {
+//       wordBeforeCursor += Text[index--];
+//     }
+//     wordBeforeCursor += Text[index--];
+//   }
+//   while (!isLastWordPhase && index >= 0) {
+//     if (isCharDelimiter(Text[index])) {
+//       break;
+//     }
+//     wordBeforeCursor += Text[index--];
+//   }
+//   wordBeforeCursor = wordBeforeCursor.split("").reverse().join("");
+//   return {
+//     wordBeforeCursor,
+//     index,
+//   };
+// };
 
-const traverseBackCursor = (TextInEditor, pos) => {
-  // returns last and second last word before cursor
+// const traverseBackCursor = (TextInEditor, pos) => {
+//   // returns last and second last word before cursor
+//   if (!TextInEditor) {
+//     return { lastStr: undefined, secLastStr: undefined };
+//   }
+
+//   let { wordBeforeCursor, index } = getLastWordBeforeCursor(
+//     TextInEditor,
+//     pos - 1,
+//     true
+//   );
+//   const lastStr = wordBeforeCursor;
+//   if (
+//     index >= 0 &&
+//     (TextInEditor[index] === ":" || TextInEditor[index] === " ")
+//   ) {
+//     index -= 1;
+//   }
+//   let secLastStr = getLastWordBeforeCursor(
+//     TextInEditor,
+//     index,
+//     false
+//   ).wordBeforeCursor;
+//   return {
+//     lastStr,
+//     secLastStr,
+//   };
+// };
+
+const INVALID_TOKENS = new Set(["EOF", "LPAREN", "RPAREN"]);
+const USE_TOKENS = new Set(["PHRASE", "TERM_NORMAL", "AND", "OR", "NOT"]);
+
+const traverseBackCursor = (TextInEditor) => {
+  let recommendNewWord = false;
+  let lastStr = "",
+    secLastStr = "";
   if (!TextInEditor) {
-    return { lastStr: undefined, secLastStr: undefined };
+    return { lastStr: "", secLastStr: "" };
   }
-  // console.log("pos", pos);
-  let secLastStr = "",
-    lastStr = "",
-    index = pos - 1;
-  // console.log("test", TextInEditor[index]);
-  let flag1 = true;
-  if (index >= 1 && TextInEditor[index - 1] === '"') {
-    index -= 1;
-    lastStr += TextInEditor[index];
-    index -= 1;
-    flag1 = false;
-    while (index >= 0 && TextInEditor[index] !== '"') {
-      lastStr += TextInEditor[index];
-      index -= 1;
+  const tokens = getTokensForText(TextInEditor).reduce((acc, token) => {
+    if (!INVALID_TOKENS.has(token.tokenName)) {
+      return [...acc, token];
     }
-    lastStr += TextInEditor[index];
-    index -= 1;
-  }
-  // console.log(flag1);
-  while (
-    flag1 &&
-    index >= 0 &&
-    ((TextInEditor[index].charCodeAt(0) >= 65 &&
-      TextInEditor[index].charCodeAt(0) <= 90) ||
-      (TextInEditor[index].charCodeAt(0) >= 97 &&
-        TextInEditor[index].charCodeAt(0) <= 122))
-  ) {
-    if (TextInEditor[index] === " ") {
-      break;
+    return acc;
+  }, []);
+  console.log(tokens);
+
+  for (let i = tokens.length - 1; i >= 0; i--) {
+    if (
+      i === tokens.length - 1 &&
+      (tokens[i].tokenName === "WS" || tokens[i].tokenName === "COLON")
+    ) {
+      recommendNewWord = true;
     }
-    // console.log("index", index, "str", lastStr, "char", TextInEditor[index]);
-    lastStr += TextInEditor[index];
-    index -= 1;
-  }
-  lastStr = reverseString(lastStr);
-  if (
-    index >= 0 &&
-    (TextInEditor[index] === ":" || TextInEditor[index] === " ")
-  ) {
-    index -= 1;
-  }
-  let flag2 = true;
-  if (TextInEditor[index] === '"') {
-    secLastStr += TextInEditor[index];
-    index -= 1;
-    flag2 = false;
-    while (index >= 0 && TextInEditor[index] !== '"') {
-      secLastStr += TextInEditor[index];
-      index -= 1;
+    if (USE_TOKENS.has(tokens[i].tokenName)) {
+      if (lastStr === "") {
+        lastStr = tokens[i].text;
+      } else if (secLastStr === "") {
+        secLastStr = tokens[i].text;
+      }
     }
-    secLastStr += TextInEditor[index];
-    index -= 1;
   }
-  while (flag2 && index >= 0) {
-    if (check(TextInEditor[index])) {
-      break;
-    }
-    secLastStr += TextInEditor[index];
-    index -= 1;
+
+  if (recommendNewWord) {
+    return {
+      wordBeforeCursor: "",
+      secLastWordBeforeCursor: lastStr,
+    };
   }
-  secLastStr = reverseString(secLastStr);
   return {
-    lastStr,
-    secLastStr,
+    wordBeforeCursor: lastStr,
+    secLastWordBeforeCursor: secLastStr,
   };
 };
 
 const keywordFilter = (context) => {
-  // console.log(useCodeContext());
-  console.log(context.state.doc.length);
+  console.log(context);
   const EntireTextRegex = /.*/;
 
   // I am maintaining a global variable because when text enters a new line, it losses access to the previous text making the new context null which breaks the program.
   // We can try using different methods to maintain global variables if windows.prevText has any drawbacks.
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
+  // console.log(TextInEditor);
+  //   || window.prevText;
+  // window.prevText = TextInEditor;
 
   const pos = Math.max(
-    context.pos - context?.state?.doc
-      ? context.state.doc.length
+    context.pos - window.totalEditorText
+      ? window.totalEditorText.length
       : 0 + TextInEditor.length,
     TextInEditor.length
   );
 
-  const wordBeforeCursor = traverseBackCursor(TextInEditor, pos).lastStr || "";
+  const wordBeforeCursor =
+    traverseBackCursor(TextInEditor, pos).wordBeforeCursor || "";
 
   const secLastWordBeforeCursor =
-    traverseBackCursor(TextInEditor, pos).secLastStr || "";
+    traverseBackCursor(TextInEditor, pos).secLastWordBeforeCursor || "";
 
-  // console.log(
-  //   "wordBeforeCursor",
-  //   wordBeforeCursor,
-  //   "secLastWordBeforeCursor",
-  //   secLastWordBeforeCursor
-  // );
+  console.log(
+    "wordBeforeCursor",
+    wordBeforeCursor,
+    wordBeforeCursor.length,
+    "secLastWordBeforeCursor",
+    secLastWordBeforeCursor,
+    secLastWordBeforeCursor.length
+  );
 
   const Keywords = new Set();
   const Operators = new Set();
   const advancedOperators = new Set();
   const advancedOperatorsOptions = new Set();
+  console.log(advancedOperatorsOptions);
 
   Data.keywords.forEach((item) => {
     Keywords.add(item.label);
@@ -177,6 +192,7 @@ const keywordFilter = (context) => {
 
   // case after a word has been typed
   if (wordBeforeCursor.length === 0 && secLastWordBeforeCursor.length > 0) {
+    console.log("reached here", secLastWordBeforeCursor);
     if (Operators.has(secLastWordBeforeCursor)) {
       return {
         from: context.pos,
@@ -189,7 +205,11 @@ const keywordFilter = (context) => {
         options: Data[secLastWordBeforeCursor],
       };
     }
-    if (advancedOperatorsOptions.has(secLastWordBeforeCursor)) {
+    if (
+      advancedOperatorsOptions.has(
+        secLastWordBeforeCursor.substring(1, secLastWordBeforeCursor.length - 1)
+      )
+    ) {
       return {
         from: context.pos,
         options: Data.operators,

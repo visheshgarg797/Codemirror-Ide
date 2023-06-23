@@ -64,6 +64,7 @@ const MultiLineEditor = () => {
   };
 
   const handleMouseDown = () => {
+    setCode(viewRef.current.state.doc.toString());
     setPopupState((popupState) => ({
       ...popupState,
       selection: null,
@@ -76,7 +77,7 @@ const MultiLineEditor = () => {
   const handleTextSelection = (e) => {
     const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
-      const tokens = getTokensForText(code);
+      const tokens = getTokensForText(viewRef.current.state.doc.toString());
       const checkValidityOfSelection = IsValidSelection(
         tokens,
         ranges[0].from,
@@ -143,8 +144,7 @@ const MultiLineEditor = () => {
             firstUpdate = false;
           }
           if (update.docChanged) {
-            const text = update.view.state.doc.toString();
-
+            setCode(viewRef.current.state.doc.toString());
             return startCompletion(View, { trigger: "input" });
           }
         }),
@@ -157,11 +157,12 @@ const MultiLineEditor = () => {
     });
 
     // this retriggers autocomplete after any particular selection from autocomplete
-    View.dom.addEventListener("mousedown", (e) => {
-      // use this in getSuggestions.js to find total text
-      setCode(viewRef.current.state.doc.toString());
-      return startCompletion(View, { trigger: "input" });
-    });
+    // View.dom.addEventListener("mouseup", (e) => {
+    //   // use this in getSuggestions.js to find total text
+    //   setCode(viewRef.current.state.doc.toString());
+    //   console.log("mouseup detected");
+    //   return startCompletion(View, { trigger: "input" });
+    // });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
@@ -169,7 +170,7 @@ const MultiLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, code]);
+  }, [themeStyles, direction]);
 
   return (
     <>
