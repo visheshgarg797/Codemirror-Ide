@@ -46,6 +46,7 @@ const MultiLineEditor = () => {
   const { direction } = useCustomDirection();
 
   let code = "";
+  let firstUpdate = true;
 
   useEffect(() => {
     if (viewRef && viewRef.current) {
