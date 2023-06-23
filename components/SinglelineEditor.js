@@ -25,8 +25,7 @@ import { useCustomTheme } from "@/context/useThemeHook";
 
 import { useCustomDirection } from "@/context/useDirectionHook";
 
-import constants from "@/utils/constants";
-
+import { Theme_Name } from "@/constants/ThemeName";
 import { wordHover } from "./hover-tooltip";
 
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
@@ -91,11 +90,11 @@ const SingleLineEditor = () => {
         ),
 
         SampleThemeListForSingleLineEditor[
-          direction === constants.LEFT_TO_RIGHT
-            ? themeStyles.theme === constants.LIGHT_MODE
+          direction === "ltr"
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
-            : themeStyles.theme === constants.LIGHT_MODE
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
             ? 2
             : 3
         ],

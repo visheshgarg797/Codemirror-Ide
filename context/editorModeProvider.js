@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import constants from "@/utils/constants";
+import EDITOR_MODES from "@/utils/constants";
 
 export const EditorModeContext = createContext();
 
@@ -9,8 +9,8 @@ const initEditorMode = () => {
   if (storedMode) {
     return storedMode;
   } else {
-    localStorage.setItem("editorMode", constants.MULTILINE_EDITOR_MODE);
-    return constants.MULTILINE_EDITOR_MODE;
+    localStorage.setItem("editorMode", EDITOR_MODES.MULTILINE_EDITOR_MODE);
+    return EDITOR_MODES.MULTILINE_EDITOR_MODE;
   }
 };
 

@@ -37,36 +37,19 @@ const BasicLayout = ({ children }) => {
     return null;
   }
   const BodyComponent = MODULE_VS_BODY_COMPONENT[module];
-  if (direction === "LeftToRight") {
-    return (
-      <div
-        dir="ltr"
-        className="min-h-screen relative"
-        style={{
-          backgroundColor: themeStyles.col02.backgroundColor,
-        }}
-      >
-        <Navbar />
-        <Sidebar />
-        <BodyComponent />
-        <Footer />
-      </div>
-    );
-  } else {
-    return (
-      <div
-        dir="rtl"
-        className="min-h-screen relative"
-        style={{
-          backgroundColor: themeStyles.col02.backgroundColor,
-        }}
-      >
-        <Navbar />
-        <Sidebar />
-        <BodyComponent />
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <div
+      dir={direction}
+      className="min-h-screen relative"
+      style={{
+        backgroundColor: themeStyles.col02.backgroundColor,
+      }}
+    >
+      <Navbar />
+      <Sidebar />
+      <BodyComponent />
+      <Footer />
+    </div>
+  );
 };
 export default BasicLayout;

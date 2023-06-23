@@ -1,4 +1,4 @@
-const constants = {
+const EDITOR_MODES = {
   MULTILINE_EDITOR_MODE: "MultiLineEditorMode",
   SINGLELINE_EDITOR_MODE: "SingleLineEditorMode",
   RESIZABLE_EDITOR_MODE: "ResizableEditorMode",
@@ -7,4 +7,4 @@ const constants = {
   LIGHT_MODE: "light",
   DARK_MODE: "dark",
 };
-export default constants;
+export default EDITOR_MODES;

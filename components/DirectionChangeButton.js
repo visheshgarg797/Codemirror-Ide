@@ -7,10 +7,11 @@ const DirectionChangeButton = () => {
   const { direction, toggleDirection } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
 
-  if (direction == "LeftToRight") {
-    var name = "RTL";
+  let name = "";
+  if (direction == "ltr") {
+    name = "RTL";
   } else {
-    var name = "LTR";
+    name = "LTR";
   }
   return (
     <button

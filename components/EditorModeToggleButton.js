@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
-import constants from "@/utils/constants";
+import { EDITOR_MODES } from "@/constants/EditorModes";
 
 const EditorModeToggleButton = () => {
   const { themeStyles } = useCustomTheme();
@@ -12,9 +12,9 @@ const EditorModeToggleButton = () => {
     updateEditorMode(selectedMode);
   };
   return (
-    <div className="flex flex-col items-start">
-      <div
-        className={`text-xl font-serif mb-2 `}
+    <>
+      <h1
+        className={"text-xl font-serif mb-2"}
         style={{
           color: themeStyles.col02.color,
           font: themeStyles.font,
@@ -23,65 +23,66 @@ const EditorModeToggleButton = () => {
         }}
       >
         Select mode
-      </div>
-      <div className="flex flex-col font-serif antialiased">
-        <lable
-          for="Multi Line Editing Mode"
-          style={{
-            color: themeStyles.col02.color,
-            font: themeStyles.font,
-            fontSize: "20px",
-          }}
-        >
-          <input
-            type="radio"
-            value={constants.MULTILINE_EDITOR_MODE}
-            checked={editorMode === constants.MULTILINE_EDITOR_MODE}
-            onChange={handleModeChange}
-            className="form-radio pl-2"
-            id={constants.MULTILINE_EDITOR_MODE}
-          />
-          Multi Line Editing Mode
-        </lable>
-        <lable
-          for={constants.SINGLELINE_EDITOR_MODE}
-          style={{
-            color: themeStyles.col02.color,
-            font: themeStyles.font,
-            fontSize: "20px",
-          }}
-        >
-          <input
-            type="radio"
-            value={constants.SINGLELINE_EDITOR_MODE}
-            checked={editorMode === constants.SINGLELINE_EDITOR_MODE}
-            onChange={handleModeChange}
-            className="form-radio pl-2"
-            style={{ color: themeStyles.col02.color }}
-            id={constants.SINGLELINE_EDITOR_MODE}
-          />
-          Single Line Editing Mode
-        </lable>
-        <lable
-          for="Resizable Editor"
-          style={{
-            color: themeStyles.col02.color,
-            font: themeStyles.font,
-            fontSize: "20px",
-          }}
-        >
-          <input
-            type="radio"
-            value={constants.RESIZABLE_EDITOR_MODE}
-            checked={editorMode === constants.RESIZABLE_EDITOR_MODE}
-            onChange={handleModeChange}
-            className="form-radio pl-2"
-            id={constants.RESIZABLE_EDITOR_MODE}
-          />
-          Resizable Editor
-        </lable>
-      </div>
-    </div>
+      </h1>
+
+      <label
+        for="Multi Line Editing Mode"
+        style={{
+          color: themeStyles.col02.color,
+          font: themeStyles.font,
+          fontSize: "20px",
+        }}
+      >
+        <input
+          type="radio"
+          value={EDITOR_MODES.MULTILINE_EDITOR_MODE}
+          checked={editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE}
+          onChange={handleModeChange}
+          className="form-radio pl-2"
+          id={EDITOR_MODES.MULTILINE_EDITOR_MODE}
+        />
+        Multi Line Editing Mode
+      </label>
+      <br />
+      <label
+        for={EDITOR_MODES.SINGLELINE_EDITOR_MODE}
+        style={{
+          color: themeStyles.col02.color,
+          font: themeStyles.font,
+          fontSize: "20px",
+        }}
+      >
+        <input
+          type="radio"
+          value={EDITOR_MODES.SINGLELINE_EDITOR_MODE}
+          checked={editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE}
+          onChange={handleModeChange}
+          className="form-radio pl-2"
+          style={{ color: themeStyles.col02.color }}
+          id={EDITOR_MODES.SINGLELINE_EDITOR_MODE}
+        />
+        Single Line Editing Mode
+      </label>
+      <br />
+      <label
+        for="Resizable Editor"
+        style={{
+          color: themeStyles.col02.color,
+          font: themeStyles.font,
+          fontSize: "20px",
+        }}
+      >
+        <input
+          type="radio"
+          value={EDITOR_MODES.RESIZABLE_EDITOR_MODE}
+          checked={editorMode === EDITOR_MODES.RESIZABLE_EDITOR_MODE}
+          onChange={handleModeChange}
+          className="form-radio pl-2"
+          id={EDITOR_MODES.RESIZABLE_EDITOR_MODE}
+        />
+        Resizable Editor
+      </label>
+    </>
   );
 };
 

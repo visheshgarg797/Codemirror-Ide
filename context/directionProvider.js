@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import constants from "@/utils/constants";
+import { Direction } from "@/constants/Direction";
 
 // Create the diretion context
 
@@ -13,8 +13,8 @@ const initDirection = () => {
     return storedDirection;
   } else {
     // If no stored direction, set the initial direction
-    localStorage.setItem("direction", constants.LEFT_TO_RIGHT);
-    return constants.LEFT_TO_RIGHT;
+    localStorage.setItem("direction", Directions.LTR);
+    return Directions.LTR;
   }
 };
 
@@ -25,9 +25,7 @@ export function DirectionProvider({ children }) {
   // Toggle between ltr and rtl
   const toggleDirection = () => {
     const updatedDirection =
-      direction === constants.LEFT_TO_RIGHT
-        ? constants.RIGHT_TO_LEFT
-        : constants.LEFT_TO_RIGHT;
+      direction === Direction.LTR ? Direction.RTL : Direction.LTR;
     setDirection(updatedDirection);
 
     document.documentElement.dir = updatedDirection;

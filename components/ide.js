@@ -4,7 +4,7 @@ import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import MultiLineEditor from "./MultilineEditor";
 import SingleLineEditor from "./SinglelineEditor";
 import ResizaleEditor from "./ResizableEditor";
-import constants from "@/utils/constants";
+import { EDITOR_MODES } from "@/constants/EditorModes";
 
 const IDE = () => {
   const { editorMode } = useCustomEditorMode();
@@ -18,9 +18,9 @@ const IDE = () => {
         backgroundColor: themeStyles.col02.backgroundColor,
       }}
     >
-      {editorMode === constants.MULTILINE_EDITOR_MODE ? (
+      {editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE ? (
         <MultiLineEditor />
-      ) : editorMode === constants.SINGLELINE_EDITOR_MODE ? (
+      ) : editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE ? (
         <SingleLineEditor />
       ) : (
         <ResizaleEditor />

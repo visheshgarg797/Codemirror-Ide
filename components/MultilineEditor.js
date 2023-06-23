@@ -30,7 +30,7 @@ import keywordFilter from "@/utils/GetSuggestions";
 
 import { startCompletion } from "@codemirror/autocomplete";
 
-import constants from "@/utils/constants";
+import { Theme_Name } from "@/constants/ThemeName";
 
 import { wordHover } from "./hover-tooltip";
 
@@ -47,10 +47,7 @@ const MultiLineEditor = () => {
 
   let code = "";
 
-  // idea: record the chnages in the document using editor.updateListener then on keypress of enter, dispatch a space to the editor. Maybe that will trigger an autocompete since applying a space using autocomplete does not
-
   useEffect(() => {
-    let firstUpdate = true;
     if (viewRef && viewRef.current) {
       code = viewRef.current.state.doc.toString();
     }
@@ -70,11 +67,11 @@ const MultiLineEditor = () => {
         syntaxHighlighting(myHighlightStyle),
 
         SampleThemeList[
-          direction === constants.LEFT_TO_RIGHT
-            ? themeStyles.theme === constants.LIGHT_MODE
+          direction === "ltr"
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
-            : themeStyles.theme === constants.LIGHT_MODE
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
             ? 2
             : 3
         ],

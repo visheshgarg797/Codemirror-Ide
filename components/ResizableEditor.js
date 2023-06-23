@@ -30,7 +30,9 @@ import keywordFilter from "@/utils/GetSuggestions";
 
 import { startCompletion } from "@codemirror/autocomplete";
 
-import constants from "@/utils/constants";
+import { Theme_Name } from "@/constants/ThemeName";
+
+import { Direction } from "@/constants/Direction";
 
 import { wordHover } from "./hover-tooltip";
 
@@ -70,11 +72,11 @@ const ResizaleEditor = () => {
         syntaxHighlighting(myHighlightStyle),
 
         ResizableSampleThemeList[
-          direction === constants.LEFT_TO_RIGHT
-            ? themeStyles.theme === constants.LIGHT_MODE
+          direction === Direction.LTR
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
-            : themeStyles.theme === constants.LIGHT_MODE
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
             ? 2
             : 3
         ],
