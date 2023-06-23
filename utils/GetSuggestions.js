@@ -1,8 +1,19 @@
 import Data from "./Data";
 import { getTokensForText } from "@/components/antrl4-lang";
+import { ResearchAdvanceQLLexer } from "../components/antlrGenerated";
 
-const INVALID_TOKENS = new Set(["EOF", "LPAREN", "RPAREN"]);
-const USE_TOKENS = new Set(["PHRASE", "TERM_NORMAL", "AND", "OR", "NOT"]);
+const invalidTokens = new Set([
+  ResearchAdvanceQLLexer.EOF,
+  ResearchAdvanceQLLexer.LPAREN,
+  ResearchAdvanceQLLexer.RPAREN,
+]);
+const useTokens = new Set([
+  ResearchAdvanceQLLexer.PHRASE,
+  ResearchAdvanceQLLexer.TERM_NORMAL,
+  ResearchAdvanceQLLexer.AND,
+  ResearchAdvanceQLLexer.NOT,
+  ResearchAdvanceQLLexer.OR,
+]);
 
 const traverseBackCursor = (TextInEditor) => {
   let recommendNewWord = false;
@@ -12,7 +23,7 @@ const traverseBackCursor = (TextInEditor) => {
     return { lastStr: "", secLastStr: "" };
   }
   const tokens = getTokensForText(TextInEditor).reduce((acc, token) => {
-    if (!INVALID_TOKENS.has(token.tokenName)) {
+    if (!invalidTokens.has(token.type)) {
       return [...acc, token];
     }
     return acc;
@@ -21,11 +32,12 @@ const traverseBackCursor = (TextInEditor) => {
   for (let i = tokens.length - 1; i >= 0; i--) {
     if (
       i === tokens.length - 1 &&
-      (tokens[i].tokenName === "WS" || tokens[i].tokenName === "COLON")
+      (tokens[i].type === ResearchAdvanceQLLexer.WS ||
+        tokens[i].type === ResearchAdvanceQLLexer.COLON)
     ) {
       recommendNewWord = true;
     }
-    if (USE_TOKENS.has(tokens[i].tokenName)) {
+    if (useTokens.has(tokens[i].type)) {
       if (lastStr === "") {
         lastStr = tokens[i].text;
       } else if (secLastStr === "") {
@@ -52,8 +64,8 @@ const keywordFilter = (context) => {
   const TextInEditor = context.matchBefore(EntireTextRegex).text;
 
   const pos = Math.max(
-    context.pos - window.totalEditorText
-      ? window.totalEditorText.length
+    context.pos - context?.state?.doc
+      ? context.state.doc.length
       : 0 + TextInEditor.length,
     TextInEditor.length
   );
