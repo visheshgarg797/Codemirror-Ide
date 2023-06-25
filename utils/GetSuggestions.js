@@ -15,14 +15,14 @@ const useTokens = new Set([
   ResearchAdvanceQLLexer.OR,
 ]);
 
-const traverseBackCursor = (TextInEditor) => {
+const traverseBackCursor = (textInEditor) => {
   let recommendNewWord = false;
   let lastStr = "",
     secLastStr = "";
-  if (!TextInEditor) {
+  if (!textInEditor) {
     return { lastStr: "", secLastStr: "" };
   }
-  const tokens = getTokensForText(TextInEditor).reduce((acc, token) => {
+  const tokens = getTokensForText(textInEditor).reduce((acc, token) => {
     if (!invalidTokens.has(token.type)) {
       return [...acc, token];
     }
@@ -59,34 +59,34 @@ const traverseBackCursor = (TextInEditor) => {
 };
 
 const keywordFilter = (context) => {
-  const EntireTextRegex = /.*/;
+  const entireTextRegex = /.*/;
 
-  const TextInEditor = context.matchBefore(EntireTextRegex).text;
+  const textInEditor = context.matchBefore(entireTextRegex).text;
 
   const pos = Math.max(
     context.pos - context?.state?.doc
       ? context.state.doc.length
-      : 0 + TextInEditor.length,
-    TextInEditor.length
+      : 0 + textInEditor.length,
+    textInEditor.length
   );
 
   const wordBeforeCursor =
-    traverseBackCursor(TextInEditor, pos).wordBeforeCursor || "";
+    traverseBackCursor(textInEditor, pos).wordBeforeCursor || "";
 
   const secLastWordBeforeCursor =
-    traverseBackCursor(TextInEditor, pos).secLastWordBeforeCursor || "";
+    traverseBackCursor(textInEditor, pos).secLastWordBeforeCursor || "";
 
-  const Keywords = new Set();
-  const Operators = new Set();
+  const keywords = new Set();
+  const operators = new Set();
   const advancedOperators = new Set();
   const advancedOperatorsOptions = new Set();
 
   Data.keywords.forEach((item) => {
-    Keywords.add(item.label);
+    keywords.add(item.label);
   });
 
   Data.operators.forEach((item) => {
-    Operators.add(item.apply.substr(0, item.apply.length - 1));
+    operators.add(item.apply.substr(0, item.apply.length - 1));
   });
 
   Data.city.forEach((items) => {
@@ -130,7 +130,7 @@ const keywordFilter = (context) => {
 
   // case after a word has been typed
   if (wordBeforeCursor.length === 0 && secLastWordBeforeCursor.length > 0) {
-    if (Operators.has(secLastWordBeforeCursor)) {
+    if (operators.has(secLastWordBeforeCursor)) {
       return {
         from: context.pos,
         options: Data.keywords.concat(Data.advancedOperators),
@@ -152,7 +152,7 @@ const keywordFilter = (context) => {
         options: Data.operators,
       };
     }
-    if (Keywords.has(secLastWordBeforeCursor)) {
+    if (keywords.has(secLastWordBeforeCursor)) {
       return {
         from: context.pos,
         options: Data.operators,
@@ -185,7 +185,7 @@ const keywordFilter = (context) => {
         options: filteredSuggesions,
       };
     }
-    if (Operators.has(secLastWordBeforeCursor)) {
+    if (operators.has(secLastWordBeforeCursor)) {
       // give keywords and advanced operators
       const possibleSuggestions = Data.keywords.concat(Data.advancedOperators);
       const filteredSuggesions = possibleSuggestions.filter((item) => {
@@ -218,7 +218,7 @@ const keywordFilter = (context) => {
         options: filteredSuggesions,
       };
     }
-    if (Keywords.has(secLastWordBeforeCursor)) {
+    if (keywords.has(secLastWordBeforeCursor)) {
       // give operators
       const possibleSuggestions = Data.operators;
       const filteredSuggesions = possibleSuggestions.filter((item) => {

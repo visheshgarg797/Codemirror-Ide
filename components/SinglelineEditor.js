@@ -7,15 +7,16 @@ import { autocompletion } from "@codemirror/autocomplete";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
 import keywordFilter from "@/utils/GetSuggestions";
 import myHighlightStyle from "@/utils/Highlights";
-import { language, syntaxHighlighting } from "@codemirror/language";
+import { syntaxHighlighting } from "@codemirror/language";
 import { startCompletion } from "@codemirror/autocomplete";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
-
+import { Direction } from "@/constants/Direction";
 import { Theme_Name } from "@/constants/ThemeName";
 import Popup from "./Popup";
 import { antrl4Lang } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
+import { getTokensForText } from "./antrl4-lang";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -40,19 +41,19 @@ const SingleLineEditor = () => {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length,
+        from: popupState.selectionPos + popupState.selection.length + 2,
         insert: textToInsert,
       },
     ];
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length + 2,
+        anchor: viewRef.current.state.doc.toString().length,
         head: viewRef.current.state.doc.toString().length,
       },
     });
     viewRef.current.dispatch;
-    setPopupState({ ...popupState, showPopup: false });
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
   };
 
   const handlePaste = (pastedText) => {
@@ -85,19 +86,24 @@ const SingleLineEditor = () => {
   };
 
   const handleTextSelection = () => {
-    const { ranges } = View.state.selection;
+    const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
+      const tokens = getTokensForText(viewRef.current.state.doc.toString());
       const checkValidityOfSelection = IsValidSelection(
-        window.totalEditorText,
+        tokens,
         ranges[0].from,
         ranges[0].to
       );
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
-      const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-      const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
-      setPopupState({
+      const st = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualStartPos
+      );
+      const ed = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualEndPos
+      );
+      setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
         popupPosition: {
@@ -106,13 +112,18 @@ const SingleLineEditor = () => {
         },
         selectionPos: checkValidityOfSelection.actualStartPos,
         showPopup: true,
-      });
+      }));
     }
   };
 
   const handleMouseDown = () => {
-    setPopupState({ ...popupState, selection: null, showPopup: false });
-    return startCompletion(View, { trigger: "input" });
+    setCode(viewRef.current.state.doc.toString());
+    setPopupState((popupState) => ({
+      ...popupState,
+      selection: null,
+      showPopup: false,
+    }));
+    return startCompletion(viewRef.current, { trigger: "input" });
   };
 
   const handleCut = () => {
@@ -136,9 +147,8 @@ const SingleLineEditor = () => {
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
         ),
-
         SampleThemeListForSingleLineEditor[
-          direction === "ltr"
+          direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
@@ -174,7 +184,6 @@ const SingleLineEditor = () => {
     });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
-
     viewRef.current = View;
 
     return () => {

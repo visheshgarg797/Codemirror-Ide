@@ -15,10 +15,10 @@ import { Theme_Name } from "@/constants/ThemeName";
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import Popup from "./Popup";
+import { Direction } from "@/constants/Direction";
 
 const MultiLineEditor = () => {
   const editorRef = useRef(null);
-
   const viewRef = useRef(null);
 
   const { themeStyles } = useCustomTheme();
@@ -49,8 +49,8 @@ const MultiLineEditor = () => {
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length,
-        head: viewRef.current.state.doc.toString().length,
+        anchor: code.length,
+        head: code.length,
       },
     });
     setPopupState((popupState) => ({ ...popupState, showPopup: false }));
@@ -66,7 +66,6 @@ const MultiLineEditor = () => {
     return startCompletion(viewRef.current, { trigger: "input" });
   };
 
-  // code to handle popup on selection
   const handleTextSelection = (e) => {
     const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
@@ -99,9 +98,6 @@ const MultiLineEditor = () => {
   };
 
   useEffect(() => {
-    let firstUpdate = true;
-
-    // Assignment for retaining code when useEffect gets triggered
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
     }
@@ -116,7 +112,7 @@ const MultiLineEditor = () => {
         }),
         syntaxHighlighting(myHighlightStyle),
         SampleThemeList[
-          direction === "ltr"
+          direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
@@ -125,13 +121,9 @@ const MultiLineEditor = () => {
             : 3
         ],
         EditorView.lineWrapping,
-        // triggers autocomplete on any change in doc
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
             handleTextSelection();
-          }
-          if (firstUpdate) {
-            firstUpdate = false;
           }
           if (update.docChanged) {
             setCode(viewRef.current.state.doc.toString());

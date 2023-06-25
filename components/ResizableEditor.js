@@ -30,7 +30,7 @@ export default function ResizaleEditor() {
     selectionPos: -1,
   });
 
-  let code = "";
+  const [code, setCode] = useState("");
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -41,67 +41,72 @@ export default function ResizaleEditor() {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length,
+        from: popupState.selectionPos + popupState.selection.length + 2,
         insert: textToInsert,
       },
     ];
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length,
-        head: viewRef.current.state.doc.toString().length,
+        anchor: code.length,
+        head: code.length,
       },
     });
     viewRef.current.dispatch;
-    setPopupState({ ...popupState, showPopup: false });
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
+  const handleTextSelection = (e) => {
+    const { ranges } = viewRef.current.state.selection;
+    if (ranges.some((range) => !range.empty)) {
+      const tokens = getTokensForText(viewRef.current.state.doc.toString());
+      const checkValidityOfSelection = IsValidSelection(
+        tokens,
+        ranges[0].from,
+        ranges[0].to
+      );
+      if (!checkValidityOfSelection.isValidSelection) {
+        return;
+      }
+      const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
+      const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+      setPopupState((popupState) => ({
+        ...popupState,
+        selection: checkValidityOfSelection.actualSelectedText,
+        popupPosition: {
+          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          y: (st.bottom + ed.bottom) / 2,
+        },
+        selectionPos: checkValidityOfSelection.actualStartPos,
+        showPopup: true,
+      }));
+    }
+  };
+
+  const handleMouseDown = () => {
+    setCode(viewRef.current.state.doc.toString());
+    setPopupState((popupState) => ({
+      ...popupState,
+      selection: null,
+      showPopup: false,
+    }));
+    return startCompletion(viewRef.current, { trigger: "input" });
   };
 
   useEffect(() => {
-    let firstUpdate = true;
     if (viewRef && viewRef.current) {
-      code = viewRef.current.state.doc.toString();
+      setCode(viewRef.current.state.doc.toString());
     }
-
-    const handleTextSelection = (e) => {
-      const { ranges } = View.state.selection;
-      if (ranges.some((range) => !range.empty)) {
-        const checkValidityOfSelection = IsValidSelection(
-          window.totalEditorText,
-          ranges[0].from,
-          ranges[0].to
-        );
-        if (!checkValidityOfSelection.isValidSelection) {
-          return;
-        }
-        const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-        const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
-        setPopupState({
-          ...popupState,
-          selection: checkValidityOfSelection.actualSelectedText,
-          popupPosition: {
-            x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
-            y: (st.bottom + ed.bottom) / 2,
-          },
-          selectionPos: checkValidityOfSelection.actualStartPos,
-          showPopup: true,
-        });
-      }
-    };
 
     const startState = EditorState.create({
       doc: code,
-
       extensions: [
         basicSetup,
-
         antrl4Lang,
-
         autocompletion({
           override: [keywordFilter],
         }),
-
         syntaxHighlighting(myHighlightStyle),
-
         ResizableSampleThemeList[
           direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
@@ -111,53 +116,30 @@ export default function ResizaleEditor() {
             ? 2
             : 3
         ],
-
         EditorView.updateListener.of((update) => {
-          if (update.docChanged || firstUpdate) {
-            firstUpdate = false;
-            const text = update.view.state.doc.toString();
-            const tokens = getTokensForText(text);
-            console.log("====tokens", tokens);
+          if (update?.state?.selection?.ranges) {
+            handleTextSelection();
           }
-        }),
-
-        EditorView.updateListener.of((update) => {
-          window.totalEditorText = viewRef.current.state.doc.toString();
-
           if (update.docChanged) {
+            setCode(viewRef.current.state.doc.toString());
             return startCompletion(View, { trigger: "input" });
           }
         }),
       ],
     });
 
-    const handleMouseDown = () => {
-      setPopupState({ ...popupState, selection: null, showPopup: false });
-      return startCompletion(View, { trigger: "input" });
-    };
-
     const View = new EditorView({
       state: startState,
-
       parent: editorRef.current,
     });
 
-    View.dom.addEventListener("mousedown", (e) => {
-      // use this in getSuggestions.js to find total text
-
-      window.totalEditorText = viewRef.current.state.doc.toString();
-
-      return startCompletion(View, { trigger: "input" });
-    });
-
     View.dom.addEventListener("mousedown", handleMouseDown);
-
     viewRef.current = View;
 
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, code]);
+  }, [themeStyles, direction]);
 
   return (
     <>

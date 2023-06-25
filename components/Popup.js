@@ -1,4 +1,4 @@
-import componentConstants from "./ComponentConstants";
+import COMPONENT_CONSTANTS from "./ComponentConstants";
 import React, { useState } from "react";
 import Select from "react-select";
 
@@ -44,7 +44,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
     <div style={divStyle}>
       {selection}
       <Select
-        options={componentConstants.optionList}
+        options={COMPONENT_CONSTANTS.optionList}
         isMulti
         value={selectedOptions}
         onChange={handleSelect}

@@ -1,3 +1,4 @@
+import { ResearchAdvanceQLLexer } from "@/components/antlrGenerated";
 const IsValidSelection = (tokens, startPos, endPos) => {
   let actualStartPos = startPos,
     actualEndPos = endPos,
@@ -6,7 +7,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
 
   tokens.forEach((token) => {
     if (
-      token.tokenName === "PHRASE" &&
+      token.tokenName === ResearchAdvanceQLLexer.PHRASE &&
       token.startIndex <= startPos &&
       token.stopIndex >= endPos
     ) {
