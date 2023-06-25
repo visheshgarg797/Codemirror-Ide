@@ -7,7 +7,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
 
   tokens.forEach((token) => {
     if (
-      token.tokenName === ResearchAdvanceQLLexer.PHRASE &&
+      token.type === ResearchAdvanceQLLexer.PHRASE &&
       token.startIndex <= startPos &&
       token.stopIndex >= endPos
     ) {

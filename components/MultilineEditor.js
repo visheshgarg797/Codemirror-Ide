@@ -70,11 +70,13 @@ const MultiLineEditor = () => {
     const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
       const tokens = getTokensForText(viewRef.current.state.doc.toString());
+      console.log(tokens);
       const checkValidityOfSelection = IsValidSelection(
         tokens,
         ranges[0].from,
         ranges[0].to
       );
+      console.log(checkValidityOfSelection);
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
