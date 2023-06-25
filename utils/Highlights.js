@@ -12,6 +12,7 @@ const myHighlightStyle = HighlightStyle.define([
   { color: "#F5D76E", tag: [tags.arithmeticOperator, tags.inserted] },
   { color: "#19B5FE", fontWeight: "bold", tag: [tags.className, tags.deleted] },
   { color: "#19B5FE", tag: [tags.className, tags.deleted] },
+  { color: "#A71709", tag: [tags.content, tags.inserted] },
 ]);
 
 export default myHighlightStyle;

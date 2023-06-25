@@ -1,41 +1,60 @@
 "use cilent";
-import React, { useRef, useEffect, useContext } from "react";
-
+import React, { useRef, useState, useEffect } from "react";
 import { EditorState } from "@codemirror/state";
-
 import { EditorView, lineNumbers } from "@codemirror/view";
-
 import { basicSetup } from "codemirror";
-
-import { javascript } from "@codemirror/lang-javascript";
-
 import { autocompletion } from "@codemirror/autocomplete";
-
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
-
 import keywordFilter from "@/utils/GetSuggestions";
-
 import myHighlightStyle from "@/utils/Highlights";
-
-import { language, syntaxHighlighting } from "@codemirror/language";
-
+import { syntaxHighlighting } from "@codemirror/language";
 import { startCompletion } from "@codemirror/autocomplete";
-
 import { useCustomTheme } from "@/context/useThemeHook";
-
 import { useCustomDirection } from "@/context/useDirectionHook";
-
+import { Direction } from "@/constants/Direction";
 import { Theme_Name } from "@/constants/ThemeName";
-import { wordHover } from "./hover-tooltip";
-
-import { antrl4Lang, getTokensForText } from "./antrl4-lang";
+import Popup from "./Popup";
+import { antrl4Lang } from "./antrl4-lang";
+import IsValidSelection from "@/utils/IsValidSelection";
+import { getTokensForText } from "./antrl4-lang";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
   const { direction } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
-  let code = "";
+  const [popupState, setPopupState] = useState({
+    selection: null,
+    showPopup: false,
+    popupPosition: { x: 0, y: 0 },
+    selectionPos: -1,
+  });
+
+  const [code, setCode] = useState("");
+
+  const pushSelectionChangesToEditor = (wordsToInsert) => {
+    let textToInsert = "";
+    wordsToInsert.forEach((word) => {
+      textToInsert += ` OR ${word.label}`;
+    });
+    textToInsert += ")";
+    const changes = [
+      { from: popupState.selectionPos, insert: "(" },
+      {
+        from: popupState.selectionPos + popupState.selection.length + 2,
+        insert: textToInsert,
+      },
+    ];
+    viewRef.current.dispatch({ changes });
+    viewRef.current.dispatch({
+      selection: {
+        anchor: viewRef.current.state.doc.toString().length,
+        head: viewRef.current.state.doc.toString().length,
+      },
+    });
+    viewRef.current.dispatch;
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
 
   const handlePaste = (pastedText) => {
     let concatenatedText = "";
@@ -66,14 +85,54 @@ const SingleLineEditor = () => {
     });
   };
 
+  const handleTextSelection = () => {
+    const { ranges } = viewRef.current.state.selection;
+    if (ranges.some((range) => !range.empty)) {
+      const tokens = getTokensForText(viewRef.current.state.doc.toString());
+      const checkValidityOfSelection = IsValidSelection(
+        tokens,
+        ranges[0].from,
+        ranges[0].to
+      );
+      if (!checkValidityOfSelection.isValidSelection) {
+        return;
+      }
+      const st = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualStartPos
+      );
+      const ed = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualEndPos
+      );
+      setPopupState((popupState) => ({
+        ...popupState,
+        selection: checkValidityOfSelection.actualSelectedText,
+        popupPosition: {
+          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          y: (st.bottom + ed.bottom) / 2,
+        },
+        selectionPos: checkValidityOfSelection.actualStartPos,
+        showPopup: true,
+      }));
+    }
+  };
+
+  const handleMouseDown = () => {
+    setCode(viewRef.current.state.doc.toString());
+    setPopupState((popupState) => ({
+      ...popupState,
+      selection: null,
+      showPopup: false,
+    }));
+    return startCompletion(viewRef.current, { trigger: "input" });
+  };
+
   const handleCut = () => {
     return;
   };
 
   useEffect(() => {
-    let firstUpdate = true;
     if (viewRef && viewRef.current) {
-      code = viewRef.current.state.doc.toString();
+      setCode(viewRef.current.state.doc.toString());
     }
 
     const startState = EditorState.create({
@@ -88,9 +147,8 @@ const SingleLineEditor = () => {
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
         ),
-
         SampleThemeListForSingleLineEditor[
-          direction === "ltr"
+          direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
               : 1
@@ -109,83 +167,43 @@ const SingleLineEditor = () => {
           },
         }),
         EditorView.updateListener.of((update) => {
-          if (update.docChanged || firstUpdate) {
-            firstUpdate = false;
-            const text = update.view.state.doc.toString();
-            const tokens = getTokensForText(text);
-            console.log("====tokens", tokens);
+          if (update?.state?.selection?.ranges) {
+            handleTextSelection();
           }
-        }),
-
-        EditorView.updateListener.of((update) => {
-          window.totalEditorText = viewRef.current.state.doc.toString();
-
           if (update.docChanged) {
+            setCode(viewRef.current.state.doc.toString());
             return startCompletion(View, { trigger: "input" });
           }
         }),
       ],
     });
 
-    //seeing selected text  and calling callback if any text is selected
-
-    let isTextSelected = false;
-
-    const handleTextSelection = () => {
-      if (isTextSelected) {
-        const { ranges } = View.state.selection;
-
-        if (ranges.some((range) => !range.empty)) {
-          const selectedText = ranges
-            .map((range) => View.state.doc.sliceString(range.from, range.to))
-            .join("");
-          // Call your callback function with the selected text
-          console.log("Selected text:", selectedText);
-        }
-
-        isTextSelected = false;
-      }
-    };
-
-    const handleMouseDown = () => {
-      isTextSelected = false;
-    };
-
-    const handleMouseUp = () => {
-      isTextSelected = true;
-      setTimeout(handleTextSelection, 0);
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-        isTextSelected = true;
-        setTimeout(handleTextSelection, 0);
-      }
-    };
-
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
     });
 
-    // this retriggers autocomplete after any particular selection from autocomplete
-
-    View.dom.addEventListener("keyup", (e) => {
-      // use this in getSuggestions.js to find total text
-      window.totalEditorText = viewRef.current.state.doc.toString();
-      if (e.key === "Enter") {
-        return startCompletion(View, { trigger: "input" });
-      }
-    });
-
+    View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
 
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, code]);
+  }, [themeStyles, direction]);
 
-  return <div ref={editorRef} className="EditorContainer" />;
+  return (
+    <>
+      <div ref={editorRef} className="EditorContainer">
+        {popupState.showPopup && (
+          <Popup
+            position={popupState.popupPosition}
+            selection={popupState.selection}
+            handleOnClick={pushSelectionChangesToEditor}
+          />
+        )}
+      </div>
+    </>
+  );
 };
 
 export default SingleLineEditor;

@@ -13,8 +13,8 @@ const initDirection = () => {
     return storedDirection;
   } else {
     // If no stored direction, set the initial direction
-    localStorage.setItem("direction", Directions.LTR);
-    return Directions.LTR;
+    localStorage.setItem("direction", Direction.LTR);
+    return Direction.LTR;
   }
 };
 
