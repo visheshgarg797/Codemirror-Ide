@@ -16,6 +16,12 @@ import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import Popup from "./Popup";
 import { Direction } from "@/constants/Direction";
+import { ResearchAdvanceQLLexer } from "./antlrGenerated";
+import { ResearchAdvanceQLParser } from "./antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
+import ResearchAdvanceQLErrorStrategy from "./errorhandler";
+import { linter, Diagnostic } from "@codemirror/lint";
+import antlr4 from "antlr4";
 
 const MultiLineEditor = () => {
   const editorRef = useRef(null);
@@ -32,6 +38,73 @@ const MultiLineEditor = () => {
   });
 
   const [code, setCode] = useState("");
+
+  const createParserFromLexer = (lexer) => {
+    const tokens = new antlr4.CommonTokenStream(lexer);
+
+    return {
+      tokens: tokens.tokens,
+      parser: new ResearchAdvanceQLParser(tokens),
+    };
+  };
+
+  const createLexer = (input) => {
+    const chars = new antlr4.InputStream(input);
+
+    const lexer = new ResearchAdvanceQLLexer(chars);
+
+    lexer.strictMode = false;
+
+    return lexer;
+  };
+
+  function getErrors(text) {
+    const errors = [];
+    const lexer = createLexer(text);
+    //removing errorListeners of lexer as these errors will be reported in tokensProvider
+    lexer.removeErrorListeners();
+    const { parser, tokens } = createParserFromLexer(lexer);
+    parser.removeErrorListeners();
+    parser._errHandler = new ResearchAdvanceQLErrorStrategy();
+
+    try {
+      parser.mainQ();
+      console.log("hann6");
+    } catch (e) {
+      console.log("hannn3", e);
+      console.log("hannn3", e.offendingToken);
+      errors.push({
+        from: e.offendingToken.start,
+        to: e.offendingToken.stop + 1,
+      });
+    }
+    return errors;
+  }
+
+  // customized  extension to show errors on editor
+  const regexpLinter = linter((view) => {
+    let diagnostics = [];
+    const text = viewRef.current.state.doc.toString();
+    const errors = getErrors(text);
+    errors.map((error) => {
+      console.log("myname4", errors);
+      diagnostics.push({
+        from: error.from,
+        to: error.to,
+        severity: "warning",
+        message: "INVALID QUERY",
+        actions: [
+          {
+            name: "Remove",
+            apply(view, from, to) {
+              view.dispatch({ changes: { from, to } });
+            },
+          },
+        ],
+      });
+    });
+    return diagnostics;
+  });
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -109,6 +182,7 @@ const MultiLineEditor = () => {
       extensions: [
         basicSetup,
         antrl4Lang,
+        regexpLinter,
         autocompletion({
           override: [keywordFilter],
         }),
