@@ -1,16 +1,22 @@
 "use client";
 import React from "react";
 import { useCustomTheme } from "../context/useThemeHook";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { Theme_Name } from "@/constants/ThemeName";
 
 const ThemeToggleButton = () => {
   const { themeStyles, toggleTheme } = useCustomTheme();
   return (
-    <button onClick={toggleTheme} className={themeStyles.classButton}>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRDNW8b6sLF4IrKXmqod4_t_key4XESlyWSg&usqp=CAU"
-        width="20"
-        height="20"
-      ></img>
+    <button
+      onClick={toggleTheme}
+      className={themeStyles.classButton}
+      style={{ marginLeft: "20px" }}
+    >
+      {themeStyles.theme === Theme_Name.DARK_MODE ? (
+        <FaSun />
+      ) : (
+        <FaMoon color="black" />
+      )}
     </button>
   );
 };
