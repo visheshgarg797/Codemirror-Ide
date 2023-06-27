@@ -1,5 +1,5 @@
 import { EditorView } from "@codemirror/view";
-const SampleThemeList = [
+const MultilineSampleThemeList = [
   EditorView.theme(
     {
       "&": {
@@ -146,4 +146,4 @@ const SampleThemeList = [
     { dark: true }
   ),
 ];
-export { SampleThemeList };
+export { MultilineSampleThemeList };

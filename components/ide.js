@@ -4,6 +4,7 @@ import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import MultiLineEditor from "./MultilineEditor";
 import SingleLineEditor from "./SinglelineEditor";
 import ResizaleEditor from "./ResizableEditor";
+import MultiThemeEditor from "./MutliThemeEditor";
 import { EDITOR_MODES } from "@/constants/EditorModes";
 
 const IDE = () => {
@@ -19,7 +20,11 @@ const IDE = () => {
       }}
     >
       {editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE ? (
-        <MultiLineEditor />
+        // #TODO: change this back to multiline editor
+        <div className="flex">
+          <MultiThemeEditor className="w-1/2" />
+          <MultiThemeEditor className="w-1/2" />
+        </div>
       ) : editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE ? (
         <SingleLineEditor />
       ) : (

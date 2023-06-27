@@ -6,7 +6,6 @@ import { FaGithub } from "react-icons/fa";
 
 const GitHubButton = () => {
   const { themeStyles } = useCustomTheme();
-  console.log("global", GlobalThemeStyles);
   return (
     <a
       href="https://github.com/visheshgarg797/Codemirror-Ide"

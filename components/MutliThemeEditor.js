@@ -4,7 +4,7 @@ import { EditorState } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
-import { MultilineSampleThemeList } from "@/utils/MultilineSampleThemeList";
+import { multiThemeSampleThemeList } from "@/utils/multithemeSampleThemeList";
 import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
@@ -18,9 +18,16 @@ import Popup from "./Popup";
 import { Direction } from "@/constants/Direction";
 import CustomSuggestionsComponent from "./CustomSuggestionsComponent";
 
-const MultiLineEditor = () => {
+const MultiThemeEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
+
+  // Will be used in theme dropdown
+  const themeNames = ["LIGHT #1", "DARK #1", "LIGHT #2", "DARK #2"];
+  const themeMapping = {};
+  for (let i = 0; i < 4; i++) {
+    themeMapping[themeNames[i]] = i;
+  }
 
   const { themeStyles } = useCustomTheme();
   const { direction } = useCustomDirection();
@@ -34,6 +41,27 @@ const MultiLineEditor = () => {
 
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
+  const [themeIndex, setThemeIndex] = useState(
+    direction === Direction.LTR
+      ? themeStyles.theme === Theme_Name.LIGHT_MODE
+        ? 0
+        : 1
+      : themeStyles.theme === Theme_Name.LIGHT_MODE
+      ? 4
+      : 5
+  );
+  const [currentThemeSelected, setCurrentThemeSelected] = useState(
+    themeNames[themeIndex]
+  );
+
+  const handleThemeChange = (themeChangeEvent) => {
+    let idx =
+      themeMapping[themeChangeEvent.target.value] +
+      (direction === Direction.RTL ? 4 : 0);
+    setThemeIndex(idx);
+    setCurrentThemeSelected(themeNames[idx % 4]);
+  };
+
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
     wordsToInsert.forEach((word) => {
@@ -117,15 +145,7 @@ const MultiLineEditor = () => {
           ],
         }),
         syntaxHighlighting(myHighlightStyle),
-        MultilineSampleThemeList[
-          direction === Direction.LTR
-            ? themeStyles.theme === Theme_Name.LIGHT_MODE
-              ? 0
-              : 1
-            : themeStyles.theme === Theme_Name.LIGHT_MODE
-            ? 2
-            : 3
-        ],
+        multiThemeSampleThemeList[themeIndex],
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
@@ -150,11 +170,64 @@ const MultiLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction]);
+  }, [themeStyles, direction, themeIndex]);
+
+  useEffect(() => {
+    console.log(themeStyles.theme, direction);
+    let idx;
+    if (
+      direction == Direction.LTR &&
+      themeStyles.theme === Theme_Name.LIGHT_MODE
+    ) {
+      idx = 0;
+    } else if (
+      direction == Direction.LTR &&
+      themeStyles.theme === Theme_Name.DARK_MODE
+    ) {
+      idx = 1;
+    } else if (
+      direction == Direction.RTL &&
+      themeStyles.theme === Theme_Name.LIGHT_MODE
+    ) {
+      idx = 4;
+    } else if (
+      direction == Direction.RTL &&
+      themeStyles.theme === Theme_Name.DARK_MODE
+    ) {
+      idx = 5;
+    }
+    setThemeIndex(idx);
+    setCurrentThemeSelected(themeNames[idx]);
+  }, [themeStyles.theme]);
 
   return (
-    <>
-      <div ref={editorRef} className="EditorContainer">
+    <div className="flex" style={{ marginRight: "2rem" }}>
+      <div
+        className="ThemeSelectionContainer w-1/10"
+        style={{ marginRight: "1rem", color: "black" }}
+      >
+        <select
+          value={currentThemeSelected}
+          onChange={(themeChangeEvent) => handleThemeChange(themeChangeEvent)}
+          style={{
+            backgroundColor: themeStyles.col02.backgroundColor,
+            color: themeStyles.col02.color,
+          }}
+        >
+          {themeNames.map((themeName, index) => {
+            return (
+              <option value={themeName} key={index}>
+                {themeName}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div
+        ref={editorRef}
+        className="EditorContainer w-9/10"
+        style={{ width: "23rem" }}
+      >
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
@@ -163,8 +236,7 @@ const MultiLineEditor = () => {
           />
         )}
       </div>
-      <CustomSuggestionsComponent items={suggestions?.options} />
-    </>
+    </div>
   );
 };
-export default MultiLineEditor;
+export default MultiThemeEditor;

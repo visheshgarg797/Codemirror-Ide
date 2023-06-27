@@ -3,6 +3,7 @@ import ButtonLeft from "./leftNavButton";
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import LeftNavButton from "./leftNavButton";
+import EditorLeftNavButton from "./EditorLeftNavbutton";
 
 const Sidebar = () => {
   const { themeStyles } = useCustomTheme();
@@ -19,7 +20,7 @@ const Sidebar = () => {
         <div className="p-4 py-10 " />
         <LeftNavButton index="Introduction" path="/intro" />
         <LeftNavButton index="Analysis" path="/analysis" />
-        <LeftNavButton index="Editor" path="/editor" />
+        <EditorLeftNavButton index="Editor" path="/editor" />
         <LeftNavButton index="Conclusion" path="/conclusion" />
       </nav>
     </div>
