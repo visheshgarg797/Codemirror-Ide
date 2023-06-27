@@ -5,31 +5,15 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
-import { EDITOR_MODES } from "@/constants/EditorModes";
+import COMPONENT_CONSTANTS from "./ComponentConstants";
 
 const EditorLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
-  const { direction } = useCustomDirection();
   const { push } = useRouter();
   const pathname = usePathname();
-  const { editorMode, updateEditorMode } = useCustomEditorMode();
+  const { updateEditorMode } = useCustomEditorMode();
 
   const path = useMemo(() => props.path, []);
-
-  const options = [
-    {
-      label: "multiline editor",
-      value: EDITOR_MODES.MULTILINE_EDITOR_MODE,
-    },
-    {
-      label: "singleline editor",
-      value: EDITOR_MODES.SINGLELINE_EDITOR_MODE,
-    },
-    {
-      label: "resizable editor",
-      value: EDITOR_MODES.RESIZABLE_EDITOR_MODE,
-    },
-  ];
 
   const handleClick = useCallback(() => {
     setIsOpen(!isOpen);
@@ -69,11 +53,27 @@ const EditorLeftNavButton = (props) => {
       </button>
       <div className="text-left">
         {isOpen && (
-          <ul className={themeStyles.classLnb}>
-            {options.map((option) => (
+          <ul>
+            {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((option) => (
               <li
                 key={option.value}
-                className="text-gray-700 block px-4 py-2 text-sm"
+                className={themeStyles.classLnb}
+                style={{
+                  color:
+                    props.path == pathname
+                      ? themeStyles.col03.color
+                      : themeStyles.col01.color,
+                  width: "20rem",
+                  fontFamily: themeStyles.font,
+                  fontWeight: "500",
+                  fontSize: "1.1rem",
+                  height: "3rem",
+
+                  borderStartEndRadius: "20px",
+                  borderEndEndRadius: "20px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+                }}
                 onClick={() => handleOptionClick(option)}
               >
                 {option.label}

@@ -17,7 +17,7 @@ const Sidebar = () => {
       }}
     >
       <nav className="flex flex-col items-stretch" style={{ width: "20rem" }}>
-        <div className="p-4 py-10 " />
+        <div className="p-4 py-1 " />
         <LeftNavButton index="Introduction" path="/intro" />
         <LeftNavButton index="Analysis" path="/analysis" />
         <EditorLeftNavButton index="Editor" path="/editor" />

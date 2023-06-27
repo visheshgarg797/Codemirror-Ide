@@ -1,19 +1,30 @@
 import React from "react";
+import { useCustomTheme } from "@/context/useThemeHook";
 
 const CustomSuggestionsComponent = ({ items }) => {
+  const { themeStyles } = useCustomTheme();
   return (
     <ul
-      style={{ color: "black" }}
-      className="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700"
+      class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+      style={{
+        backgroundColor: themeStyles.col01.backgroundColor,
+        color: themeStyles.col01.color,
+      }}
     >
-      {items?.map((item, index) => (
-        <li
-          key={index}
-          className="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
-        >
-          {item.label}
-        </li>
-      ))}
+      {items?.map((item, index) => {
+        return (
+          <li
+            className="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600"
+            style={{
+              backgroundColor: themeStyles.col01.backgroundColor,
+              color: themeStyles.col01.color,
+            }}
+            key={index}
+          >
+            {item.label}
+          </li>
+        );
+      })}
     </ul>
   );
 };

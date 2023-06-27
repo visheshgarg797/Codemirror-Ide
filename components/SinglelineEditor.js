@@ -5,7 +5,7 @@ import { EditorView, lineNumbers } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
-import keywordFilter from "@/utils/GetSuggestions";
+import getKeywordFilter from "@/utils/GetSuggestions";
 import myHighlightStyle from "@/utils/Highlights";
 import { syntaxHighlighting } from "@codemirror/language";
 import { startCompletion } from "@codemirror/autocomplete";
@@ -17,6 +17,7 @@ import Popup from "./Popup";
 import { antrl4Lang } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import { getTokensForText } from "./antrl4-lang";
+import CustomSuggestionsComponent from "./CustomSuggestionsComponent";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -30,6 +31,7 @@ const SingleLineEditor = () => {
     selectionPos: -1,
   });
 
+  const [suggestions, setSuggestions] = useState(null);
   const [code, setCode] = useState("");
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
@@ -141,7 +143,12 @@ const SingleLineEditor = () => {
         basicSetup,
         antrl4Lang,
         autocompletion({
-          override: [keywordFilter],
+          override: [
+            getKeywordFilter({
+              setSuggestions,
+              showCustomSuggestionsPopup: true,
+            }),
+          ],
         }),
         syntaxHighlighting(myHighlightStyle),
         EditorState.transactionFilter.of((tr) =>
@@ -202,6 +209,7 @@ const SingleLineEditor = () => {
           />
         )}
       </div>
+      <CustomSuggestionsComponent items={suggestions?.options} />
     </>
   );
 };

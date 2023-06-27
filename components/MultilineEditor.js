@@ -129,6 +129,7 @@ const MultiLineEditor = () => {
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
+            console.log(code);
             handleTextSelection();
           }
           if (update.docChanged) {
@@ -163,7 +164,7 @@ const MultiLineEditor = () => {
           />
         )}
       </div>
-      <CustomSuggestionsComponent items={suggestions?.options} />
+      {/* <CustomSuggestionsComponent items={suggestions?.options} /> */}
     </>
   );
 };

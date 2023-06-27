@@ -16,7 +16,6 @@ import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import Popup from "./Popup";
 import { Direction } from "@/constants/Direction";
-import CustomSuggestionsComponent from "./CustomSuggestionsComponent";
 
 const MultiThemeEditor = () => {
   const editorRef = useRef(null);
@@ -173,7 +172,6 @@ const MultiThemeEditor = () => {
   }, [themeStyles, direction, themeIndex]);
 
   useEffect(() => {
-    console.log(themeStyles.theme, direction);
     let idx;
     if (
       direction == Direction.LTR &&

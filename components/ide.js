@@ -14,21 +14,21 @@ const IDE = () => {
   return (
     <div
       style={{
-        height: "480px",
         marginTop: "10px",
         backgroundColor: themeStyles.col02.backgroundColor,
       }}
     >
       {editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE ? (
-        // #TODO: change this back to multiline editor
-        <div className="flex">
-          <MultiThemeEditor className="w-1/2" />
-          <MultiThemeEditor className="w-1/2" />
-        </div>
+        <MultiLineEditor />
       ) : editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE ? (
         <SingleLineEditor />
-      ) : (
+      ) : editorMode === EDITOR_MODES.RESIZABLE_EDITOR_MODE ? (
         <ResizaleEditor />
+      ) : (
+        <div className="flex">
+          <MultiThemeEditor />
+          <MultiThemeEditor />
+        </div>
       )}
     </div>
   );
