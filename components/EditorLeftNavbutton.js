@@ -59,6 +59,7 @@ const EditorLeftNavButton = (props) => {
                 key={option.value}
                 className={themeStyles.classLnb}
                 style={{
+                  cursor: "pointer",
                   color:
                     props.path == pathname
                       ? themeStyles.col03.color

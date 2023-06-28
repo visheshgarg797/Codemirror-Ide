@@ -33,6 +33,10 @@ const SingleLineEditor = () => {
 
   const [suggestions, setSuggestions] = useState(null);
   const [code, setCode] = useState("");
+  const [suggestionBoxCorrds, setSuggestionBoxCoords] = useState({
+    left: 0,
+    top: 0,
+  });
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -125,6 +129,7 @@ const SingleLineEditor = () => {
       selection: null,
       showPopup: false,
     }));
+
     return startCompletion(viewRef.current, { trigger: "input" });
   };
 
@@ -166,7 +171,6 @@ const SingleLineEditor = () => {
         lineNumbers({ visible: false }),
         EditorView.domEventHandlers({
           paste(event, view) {
-            console.log("paste event");
             handlePaste(event.clipboardData.getData("text/plain"));
           },
           cut(event, view) {
@@ -193,6 +197,15 @@ const SingleLineEditor = () => {
     View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
 
+    const suggestionCoords = editorRef.current.getBoundingClientRect();
+    if (suggestionBoxCorrds.left === 0 && suggestionBoxCorrds.top === 0) {
+      setSuggestionBoxCoords((suggestionBoxCorrds) => ({
+        ...suggestionBoxCorrds,
+        left: suggestionCoords.left - 2,
+        top: suggestionCoords.top + 50,
+      }));
+    }
+
     return () => {
       View.destroy();
     };
@@ -200,7 +213,16 @@ const SingleLineEditor = () => {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer">
+      <div ref={editorRef} className="EditorContainer" id>
+        <style>
+          {`.cm-tooltip {
+            top:${suggestionBoxCorrds.top}px !important;
+            left:${suggestionBoxCorrds.left}px !important;
+            position: fixed !important;
+            border: 1px solid #181a1f;
+            width: 61.2%;
+          }`}
+        </style>
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
@@ -209,7 +231,6 @@ const SingleLineEditor = () => {
           />
         )}
       </div>
-      <CustomSuggestionsComponent items={suggestions?.options} />
     </>
   );
 };

@@ -26,7 +26,43 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-gutters": {
         backgroundColor: "white",
       },
+      // ".cm-tooltip": {
+      //   position: "absolute",
+      //   marginTop: "1.2rem",
+      //   border: "1px solid #181a1f",
+      //   width: "61.2%",
+      //   marginLeft: "-1.1rem",
+      // backgroundColor: "#1d1e22",
     },
+    // ".cm-tooltip-autocomplete": {
+    //   width: "700px",
+    // },
+
+    // ".cm-completionLabel": {
+    //   color: "blue",
+    //   padding: "50px",
+    //   height: "100px",
+    // },
+    // ".cm-completionInfo": {
+    //   marginTop: "60px",
+    // },
+    // ".cm-tooltip-autocomplete": {
+    //   minWidth: "400px",
+    //   maxHeight: "40vh !important",
+    //   padding: "6px 0 !important",
+    //   fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
+    //   borderRadius: "1.5rem",
+    // },
+    // ".cm-tooltip-autocomplete > ul": {
+    //   color: "purple",
+    //   paddingLeft: "100px",
+    //   borderRadius: "2rem",
+    //   wordWrap: "break-word",
+    // },
+    // ".cm-completionInfo": {
+    //   width: "1000px",
+    // },
+
     { dark: false }
   ),
 

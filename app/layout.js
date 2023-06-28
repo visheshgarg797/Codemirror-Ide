@@ -16,12 +16,7 @@ export default function RootLayout({ children }) {
       <EditorModeProvider>
         <ThemeProvider>
           <DirectionProvider>
-            <body
-              className={inter.className}
-              style={{ backgroundColor: "#23272f" }}
-            >
-              {children}
-            </body>
+            <body className={inter.className}>{children}</body>
           </DirectionProvider>
         </ThemeProvider>
       </EditorModeProvider>
