@@ -19,8 +19,9 @@ import { Direction } from "@/constants/Direction";
 import { ResearchAdvanceQLLexer } from "./antlrGenerated";
 import { ResearchAdvanceQLParser } from "./antlrGenerated";
 import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
-import ResearchAdvanceQLErrorStrategy from "./errorhandler";
-import { linter, Diagnostic } from "@codemirror/lint";
+import EditorErrorStrategy from "./editorErrorStrategy";
+import EditorQueryVisitor from "./editorVisitor";
+import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
 import antlr4 from "antlr4";
 
 const MultiLineEditor = () => {
@@ -65,17 +66,18 @@ const MultiLineEditor = () => {
     lexer.removeErrorListeners();
     const { parser, tokens } = createParserFromLexer(lexer);
     parser.removeErrorListeners();
-    parser._errHandler = new ResearchAdvanceQLErrorStrategy();
+    parser._errHandler = new EditorErrorStrategy();
 
     try {
-      parser.mainQ();
-      console.log("hann6");
+      const tree = parser.mainQ();
+      const visitor = new EditorQueryVisitor();
+      tree.accept(visitor);
     } catch (e) {
-      console.log("hannn3", e);
       console.log("hannn3", e.offendingToken);
       errors.push({
         from: e.offendingToken.start,
         to: e.offendingToken.stop + 1,
+        message: e.message,
       });
     }
     return errors;
@@ -87,20 +89,11 @@ const MultiLineEditor = () => {
     const text = viewRef.current.state.doc.toString();
     const errors = getErrors(text);
     errors.map((error) => {
-      console.log("myname4", errors);
       diagnostics.push({
         from: error.from,
         to: error.to,
-        severity: "warning",
-        message: "INVALID QUERY",
-        actions: [
-          {
-            name: "Remove",
-            apply(view, from, to) {
-              view.dispatch({ changes: { from, to } });
-            },
-          },
-        ],
+        severity: "error",
+        message: error.message,
       });
     });
     return diagnostics;
@@ -183,6 +176,7 @@ const MultiLineEditor = () => {
         basicSetup,
         antrl4Lang,
         regexpLinter,
+        lintGutter(),
         autocompletion({
           override: [keywordFilter],
         }),

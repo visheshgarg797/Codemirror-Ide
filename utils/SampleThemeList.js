@@ -48,6 +48,11 @@ const SampleThemeList = [
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
       },
+      ".cm-diagnostic": {
+        fontSize: "10px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),

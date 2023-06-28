@@ -1,0 +1,293 @@
+import antrl4 from "antlr4";
+import { ResearchAdvanceQLParser } from "./antlrGenerated";
+import ParseCancellationException from "./ParseCancellationException";
+
+class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
+  reportMissingValueInAtom(recognizer, e) {
+    if (
+      recognizer._ctx instanceof ResearchAdvanceQLParser.AtomContext &&
+      recognizer.getCurrentToken().type === ResearchAdvanceQLParser.TERM_NORMAL
+    ) {
+      let offendingToken = e.offendingToken;
+
+      if (recognizer.getInputStream().LT(2) !== null) {
+        offendingToken = recognizer.getInputStream().LT(2);
+      }
+
+      throw new ParseCancellationException(
+        recognizer,
+        "expecting some value after advance operator{city, country} ",
+        offendingToken
+      );
+    }
+  }
+  reportNoViableAlternative(recognizer, e) {
+    const tokens = recognizer.getInputStream();
+    let msg;
+    const offendingToken = e.offendingToken;
+    if (tokens != null) {
+      if (e.startToken.type === ResearchAdvanceQLParser.EOF) {
+        msg = "no viable alternative at input <EOF>";
+      } else {
+        this.reportMissingValueInAtom(recognizer, e);
+        if (e.startToken.type === ResearchAdvanceQLParser.WS) {
+          if (
+            (recognizer.getInputStream().LT(-1).type ===
+              ResearchAdvanceQLParser.OR) |
+            (recognizer.getInputStream().LT(-1).type ===
+              ResearchAdvanceQLParser.AND) |
+            (recognizer.getInputStream().LT(-1).type ===
+              ResearchAdvanceQLParser.NOT)
+          ) {
+            msg = `unnecessary operator (add a keyword or advance_operator{city, country} after each operator)`;
+          } else {
+            msg = `expecting operator {AND , OR  , NOT}`;
+          }
+        } else {
+          msg = `no viable alternative at input ${this.escapeWSAndQuote(
+            tokens.getText(e.startToken, e.offendingToken)
+          )}`;
+        }
+      }
+    } else {
+      msg = "no viable alternative at input <unknown input>";
+    }
+    throw new ParseCancellationException(recognizer, msg, offendingToken);
+  }
+
+  reportFailedPredicate(recognizer, e) {
+    const ruleName = recognizer.ruleNames[recognizer._ctx.ruleIndex];
+    const msg = `rule ${ruleName} ${e.getMessage()}`;
+    throw new ParseCancellationException(
+      recognizer,
+      msg,
+      recognizer.getCurrentToken()
+    );
+  }
+
+  validatePreviousToken(recognizer) {
+    if (recognizer.getInputStream().index === 0) {
+      return;
+    }
+    const previousTokenType = recognizer.getInputStream().LA(-1);
+    if (previousTokenType === ResearchAdvanceQLParser.PHRASE) {
+      const previousToken = recognizer.getInputStream().LT(-1);
+      if (previousToken !== null) {
+        SUSPICIOUS_WORDS_IN_PHRASE.forEach((word) => {
+          const previousWord = previousToken.text.replace(/"/g, "");
+          if (previousWord.trim().endsWith(word)) {
+            throw new ParseCancellationException(
+              recognizer,
+              "error1",
+              offendingToken
+            );
+            throw new ParseCancellationException(
+              recognizer,
+              "error2",
+              previousToken
+            );
+          }
+        });
+      }
+    }
+  }
+
+  validateNextToken(recognizer) {
+    const previousTokenType = recognizer.getInputStream().LA(2);
+    if (previousTokenType === ResearchAdvanceQLParser.PHRASE) {
+      const nextToken = recognizer.getInputStream().LT(2);
+      if (nextToken !== null) {
+        SUSPICIOUS_WORDS_IN_PHRASE.forEach((word) => {
+          const nextWord = nextToken.text.replace(/"/g, "");
+          if (nextWord.trim().endsWith(word)) {
+            throw new ParseCancellationException(
+              recognizer,
+              "error1",
+              offendingToken
+            );
+            throw new ParseCancellationException(
+              recognizer,
+              "error2",
+              nextToken
+            );
+          }
+        });
+      }
+    }
+  }
+
+  reportUnwantedToken(recognizer) {
+    this.beginErrorCondition(recognizer);
+    const t = recognizer.getCurrentToken();
+    const tokenName = this.getTokenErrorDisplay(t);
+    const expecting = this.getExpectedTokens(recognizer);
+
+    let msg;
+    if (t.type === ResearchAdvanceQLParser.TERM_NORMAL) {
+      msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
+        recognizer.literalNames,
+        recognizer.symbolicNames
+      )} or operator{AND , OR  , NOT} before ${tokenName}`;
+    } else if (
+      t.type === ResearchAdvanceQLParser.OR ||
+      t.type === ResearchAdvanceQLParser.AND ||
+      t.type === ResearchAdvanceQLParser.NOT
+    ) {
+      msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
+        recognizer.literalNames,
+        recognizer.symbolicNames
+      )} or keyword/advance_operator after ${tokenName}`;
+    } else {
+      msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
+        recognizer.literalNames,
+        recognizer.symbolicNames
+      )} `;
+    }
+    throw new ParseCancellationException(
+      recognizer,
+      msg,
+      recognizer.getCurrentToken()
+    );
+  }
+
+  reportMissingToken(recognizer) {
+    this.beginErrorCondition(recognizer);
+    const t = recognizer.getCurrentToken();
+    const expecting = this.getExpectedTokens(recognizer);
+    let msg = `missing ${expecting.toString(
+      recognizer.literalNames,
+      recognizer.symbolicNames
+    )} at ${this.getTokenErrorDisplay(t)}`;
+    msg = this.modifyErrorMessageIfRequired(recognizer, expecting, msg);
+    throw new ParseCancellationException(
+      recognizer,
+      msg,
+      recognizer.getCurrentToken()
+    );
+  }
+
+  singleTokenInsertion(recognizer) {
+    const currentSymbolType = recognizer.getInputStream().LA(1);
+    const currentState = recognizer._interp.atn.states[recognizer.state];
+    const next = currentState.transitions[0].target;
+    const atn = recognizer._interp.atn;
+    const expectingAtLL2 = atn.nextTokens(next, recognizer._ctx);
+    if (expectingAtLL2.contains(currentSymbolType)) {
+      this.reportMissingToken(recognizer);
+      return true;
+    }
+    return false;
+  }
+
+  singleTokenDeletion(recognizer) {
+    const nextTokenType = recognizer.getInputStream().LA(2);
+    const expecting = recognizer.getExpectedTokens(recognizer);
+    if (expecting.contains(nextTokenType)) {
+      this.reportUnwantedToken(recognizer);
+      return recognizer.getCurrentToken();
+    }
+    return null;
+  }
+
+  reportInputMismatch(recognizer, e) {
+    if (recognizer.getInputStream().tokens.length > 1) {
+      const msg = `mismatched input ${this.getTokenErrorDisplay(
+        e.offendingToken
+      )} expecting ${e.toString(
+        recognizer.literalNames,
+        recognizer.symbolicNames
+      )}`;
+      throw new ParseCancellationException(recognizer, msg, e.offendingToken);
+    }
+  }
+
+  sync(recognizer) {
+    const s = recognizer._interp.atn.states[recognizer.state];
+    const tokens = recognizer.getInputStream();
+    const la = tokens.LA(1);
+    const nextTokens = recognizer.atn.nextTokens(s);
+    if (nextTokens.contains(la)) {
+      this.nextTokensContext = null;
+      this.nextTokensState = -1;
+    } else if (nextTokens.contains(-2)) {
+      if (this.nextTokensContext === null) {
+        this.nextTokensContext = recognizer._ctx;
+        this.nextTokensState = recognizer.state;
+      }
+    } else {
+      switch (s.stateType) {
+        case 3:
+        case 4:
+        case 5:
+        case 10:
+          if (this.singleTokenDeletion(recognizer) !== null) {
+            return;
+          }
+          this.validatePreviousToken(recognizer);
+          this.validateNextToken(recognizer);
+          throw new antrl4.error.InputMismatchException(recognizer);
+        case 9:
+        case 11:
+          this.reportUnwantedToken(recognizer);
+          break;
+        case 6:
+        case 7:
+        case 8:
+        default:
+      }
+    }
+  }
+
+  recover(recognizer, e) {
+    //do nothing
+  }
+
+  recoverInline(recognizer) {
+    const matchedSymbol = this.singleTokenDeletion(recognizer);
+    if (matchedSymbol != null) {
+      return matchedSymbol;
+    }
+    if (this.singleTokenInsertion(recognizer)) {
+      return null;
+    }
+    let e;
+    if (this.nextTokensContext == null) {
+      e = new antrl4.error.InputMismatchException(recognizer);
+    } else {
+      e = new antrl4.error.InputMismatchException(
+        recognizer,
+        this.nextTokensState,
+        this.nextTokensContext
+      );
+    }
+    this.reportInputMismatch(recognizer, e);
+    return null;
+  }
+  reportInvalidAdvanceOperator(recognizer, start, end) {
+    let offendingToken = recognizer.getCurrentToken();
+    offendingToken.start = start;
+    offendingToken.stop = end;
+    throw new ParseCancellationException(
+      recognizer,
+      `use correct operator before colon {city: , country:}`,
+      offendingToken
+    );
+  }
+  reportError(recognizer, e) {
+    if (e instanceof antrl4.error.NoViableAltException) {
+      this.reportNoViableAlternative(recognizer, e);
+    } else if (e instanceof antrl4.error.InputMismatchException) {
+      this.reportInputMismatch(recognizer, e);
+    } else if (e instanceof antrl4.error.FailedPredicateException) {
+      this.reportFailedPredicate(recognizer, e);
+    } else {
+      throw new ParseCancellationException(
+        recognizer,
+        `unknown recognition error type: ${e.constructor.name}`,
+        recognizer.getCurrentToken()
+      );
+    }
+  }
+}
+
+export default EditorErrorStrategy;
