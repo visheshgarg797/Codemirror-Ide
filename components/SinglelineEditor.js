@@ -221,7 +221,12 @@ const SingleLineEditor = () => {
             position: fixed !important;
             border: 1px solid #181a1f;
             width: 61.2%;
-          }`}
+          }
+          .cm-tooltip > ul > li{
+            width:100%
+          }
+          
+          `}
         </style>
         {popupState.showPopup && (
           <Popup

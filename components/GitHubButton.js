@@ -11,13 +11,14 @@ const GitHubButton = () => {
       href="https://github.com/visheshgarg797/Codemirror-Ide"
       style={{
         marginLeft: "20px",
+        marginTop: "8px",
         color:
           themeStyles.theme === Theme_Name.DARK_MODE
             ? GlobalThemeStyles[0].col01.color
             : GlobalThemeStyles[1].col01.color,
       }}
     >
-      <FaGithub size={"43px"} />
+      <FaGithub size={30} />
     </a>
   );
 };

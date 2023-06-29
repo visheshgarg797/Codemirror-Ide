@@ -13,11 +13,11 @@ const ResizableSampleThemeList = [
       ".cm-scroller": {
         overflow: "auto",
         minHeight: "24px",
-        minWidth: "72px",
+        minWidth: "90px",
       },
       ".cm-content": {
         minHeight: "24px",
-        minWidth: "72px",
+        minWidth: "90px",
         caretColor: "#0e9",
       },
       "&.cm-focused .cm-cursor": {

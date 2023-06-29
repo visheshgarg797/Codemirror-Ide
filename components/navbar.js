@@ -1,6 +1,4 @@
 "use client";
-import Button from "./button";
-import ButtonDark from "./themeToggleButton";
 import React from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import ThemeToggleButton from "./themeToggleButton";
@@ -12,10 +10,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className="py-0 px-4   sticky top-0 z-10"
+      className="py-0 px-4 sticky top-0 z-10"
       style={{
         backgroundColor: themeStyles.col01.backgroundColor,
-        height: "60px",
+        height: "3rem",
         boxShadow:
           "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
       }}
@@ -25,15 +23,15 @@ const Navbar = () => {
           className="text-white flex-grow"
           style={{
             color: themeStyles.col03.color,
-            fontSize: "30px",
+            fontSize: "25px",
             fontFamily: themeStyles.font,
             fontWeight: "700",
-            marginTop: "8px",
+            marginTop: "5px",
           }}
         >
           CODEMIRROR IDE
         </h1>
-        <div className="flex justify-end" style={{ marginTop: "8px" }}>
+        <div className="flex justify-end">
           <DirectionChangeButton />
           <GitHubButton />
           <ThemeToggleButton />

@@ -8,7 +8,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "1rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
-        height: "50px",
+        height: "60px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -25,6 +25,10 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "white",
+      },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
       },
       // ".cm-tooltip": {
       //   position: "absolute",

@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Optimistic Text";
+  src: url("../font/Optimistic_Display_W_Bd.woff2") format("woff2"),
+    url("../font/Optimistic_Display_W_Md.woff2") format("woff2"),
+    url("../font/Optimistic_Display_W_SBd.woff2") format("woff2"),
+    url("../font/Optimistic_Text_W_Bd.woff2") format("woff2"),
+    url("../font/Optimistic_Text_W_It.woff2") format("woff2"),
+    url("../font/Optimistic_Text_W_Md.woff2") format("woff2"),
+    url("../font/Optimistic_Text_W_Rg.woff2") format("woff2"),
+    url("../font/Source-Code-Pro-Regular.woff2") format("woff2");
+}

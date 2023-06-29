@@ -10,12 +10,14 @@ const ThemeToggleButton = () => {
     <button
       onClick={toggleTheme}
       className={themeStyles.classButton}
-      style={{ marginLeft: "20px" }}
+      style={{ marginLeft: "20px", marginTop: "8px", borderRadius: "50%" }}
+      height="32px"
+      width="32px"
     >
       {themeStyles.theme === Theme_Name.DARK_MODE ? (
-        <FaSun />
+        <FaSun size={15} />
       ) : (
-        <FaMoon color="black" />
+        <FaMoon color="black" size={15} />
       )}
     </button>
   );

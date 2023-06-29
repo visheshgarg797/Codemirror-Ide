@@ -5,6 +5,7 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
+import { Direction } from "@/constants/Direction";
 import COMPONENT_CONSTANTS from "./ComponentConstants";
 
 const EditorLeftNavButton = (props) => {
@@ -12,78 +13,78 @@ const EditorLeftNavButton = (props) => {
   const { push } = useRouter();
   const pathname = usePathname();
   const { updateEditorMode } = useCustomEditorMode();
+  const { direction } = useCustomDirection();
 
   const path = useMemo(() => props.path, []);
 
-  const handleClick = useCallback(() => {
-    setIsOpen(!isOpen);
+  const handleCallBack = useCallback(() => {
     if (path !== "editor") {
       push(path);
     }
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+    handleCallBack();
+  };
 
   const handleOptionClick = (option) => {
     updateEditorMode(option.value);
-    setIsOpen(!isOpen);
   };
 
-  return (
-    <>
-      <button
-        onClick={handleClick}
-        className={themeStyles.classLnb}
-        style={{
-          color:
-            props.path == pathname
-              ? themeStyles.col03.color
-              : themeStyles.col01.color,
-          width: "20rem",
-          fontFamily: themeStyles.font,
-          fontWeight: "700",
-          marginTop: "5px",
-          borderStartEndRadius: "50px",
-          borderEndEndRadius: "50px",
-          boxShadow:
-            "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-        }}
-      >
-        {props.index}
-      </button>
-      <div className="text-left">
-        {isOpen && (
-          <ul>
-            {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((option) => (
-              <li
-                key={option.value}
-                className={themeStyles.classLnb}
-                style={{
-                  cursor: "pointer",
-                  color:
-                    props.path == pathname
-                      ? themeStyles.col03.color
-                      : themeStyles.col01.color,
-                  width: "20rem",
-                  fontFamily: themeStyles.font,
-                  fontWeight: "500",
-                  fontSize: "1.1rem",
-                  height: "3rem",
+  const [isOpen, setIsOpen] = useState(false);
 
-                  borderStartEndRadius: "20px",
-                  borderEndEndRadius: "20px",
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-                }}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>
-        )}
+  return (
+    <div className="space-y-4">
+      <div className="">
+        <div
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-100 rounded-2xl rounded-${
+            direction === Direction.LTR ? "l" : "r"
+          }-none`}
+          onClick={() => handleClick()}
+          style={{
+            color:
+              props.path == pathname
+                ? themeStyles.col03.color
+                : themeStyles.col01.color,
+          }}
+        >
+          <span>{props.index}</span>
+          <svg
+            className={`w-4 h-4 transition-transform transform ${
+              isOpen ? "rotate-90" : ""
+            }`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </div>
+        <div className={`${isOpen ? "block" : "hidden"} `}>
+          {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((item) => (
+            <div
+              key={item.value}
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-100 text-gray-700 pl-5 rounded-2xl rounded-${
+                direction === Direction.LTR ? "l" : "r"
+              }-none`}
+              // style={{
+              //   color:
+              //     props.path == pathname
+              //       ? themeStyles.col03.color
+              //       : themeStyles.col01.color,
+              // }}
+              onClick={() => handleOptionClick(item)}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

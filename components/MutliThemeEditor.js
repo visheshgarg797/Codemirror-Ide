@@ -199,10 +199,10 @@ const MultiThemeEditor = () => {
   }, [themeStyles.theme]);
 
   return (
-    <div className="flex" style={{ marginRight: "2rem" }}>
+    <div className="" style={{ marginRight: "2rem", marginTop: "-50px" }}>
       <div
         className="ThemeSelectionContainer w-1/10"
-        style={{ marginRight: "1rem", color: "black" }}
+        style={{ marginRight: "1rem", color: "black", marginBottom: "65px" }}
       >
         <select
           value={currentThemeSelected}
@@ -224,7 +224,7 @@ const MultiThemeEditor = () => {
       <div
         ref={editorRef}
         className="EditorContainer w-9/10"
-        style={{ width: "23rem" }}
+        style={{ width: "29rem" }}
       >
         {popupState.showPopup && (
           <Popup
