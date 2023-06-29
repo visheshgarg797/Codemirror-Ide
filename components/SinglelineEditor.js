@@ -17,6 +17,13 @@ import Popup from "./Popup";
 import { antrl4Lang } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import { getTokensForText } from "./antrl4-lang";
+import { ResearchAdvanceQLLexer } from "./antlrGenerated";
+import { ResearchAdvanceQLParser } from "./antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
+import EditorErrorStrategy from "./editorErrorStrategy";
+import EditorQueryVisitor from "./editorVisitor";
+import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
+import antlr4 from "antlr4";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -31,6 +38,65 @@ const SingleLineEditor = () => {
   });
 
   const [code, setCode] = useState("");
+
+  const createParserFromLexer = (lexer) => {
+    const tokens = new antlr4.CommonTokenStream(lexer);
+
+    return {
+      tokens: tokens.tokens,
+      parser: new ResearchAdvanceQLParser(tokens),
+    };
+  };
+
+  const createLexer = (input) => {
+    const chars = new antlr4.InputStream(input);
+
+    const lexer = new ResearchAdvanceQLLexer(chars);
+
+    lexer.strictMode = false;
+
+    return lexer;
+  };
+
+  function getErrors(text) {
+    const errors = [];
+    const lexer = createLexer(text);
+    //removing errorListeners of lexer as these errors will be reported in tokensProvider
+    lexer.removeErrorListeners();
+    const { parser, tokens } = createParserFromLexer(lexer);
+    parser.removeErrorListeners();
+    parser._errHandler = new EditorErrorStrategy();
+
+    try {
+      const tree = parser.mainQ();
+      const visitor = new EditorQueryVisitor();
+      tree.accept(visitor);
+    } catch (e) {
+      console.log("hannn3", e.offendingToken);
+      errors.push({
+        from: e.offendingToken.start,
+        to: e.offendingToken.stop + 1,
+        message: e.message,
+      });
+    }
+    return errors;
+  }
+
+  // customized  extension to show errors on editor
+  const regexpLinter = linter((view) => {
+    let diagnostics = [];
+    const text = viewRef.current.state.doc.toString();
+    const errors = getErrors(text);
+    errors.map((error) => {
+      diagnostics.push({
+        from: error.from,
+        to: error.to,
+        severity: "error",
+        message: error.message,
+      });
+    });
+    return diagnostics;
+  });
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -140,6 +206,7 @@ const SingleLineEditor = () => {
       extensions: [
         basicSetup,
         antrl4Lang,
+        regexpLinter,
         autocompletion({
           override: [keywordFilter],
         }),

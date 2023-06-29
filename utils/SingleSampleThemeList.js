@@ -26,6 +26,11 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-gutters": {
         backgroundColor: "white",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -55,6 +60,11 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "#16181d",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }
@@ -86,6 +96,11 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-gutters": {
         backgroundColor: "white",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -116,6 +131,11 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "#16181d",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

@@ -49,7 +49,7 @@ const SampleThemeList = [
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
       },
       ".cm-diagnostic": {
-        fontSize: "10px",
+        fontSize: "12px",
         backgroundColor: "white",
         color: "purple",
       },
@@ -83,6 +83,11 @@ const SampleThemeList = [
         minHeight: "200px",
         border: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: true }
   ),
@@ -115,6 +120,11 @@ const SampleThemeList = [
 
         border: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -146,6 +156,11 @@ const SampleThemeList = [
         minHeight: "200px",
 
         border: "none",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

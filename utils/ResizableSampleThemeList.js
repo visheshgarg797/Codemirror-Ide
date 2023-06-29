@@ -50,6 +50,11 @@ const ResizableSampleThemeList = [
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -101,6 +106,11 @@ const ResizableSampleThemeList = [
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }
@@ -154,6 +164,11 @@ const ResizableSampleThemeList = [
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -205,6 +220,11 @@ const ResizableSampleThemeList = [
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

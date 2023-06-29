@@ -39,7 +39,11 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
             (recognizer.getInputStream().LT(-1).type ===
               ResearchAdvanceQLParser.NOT)
           ) {
-            msg = `unnecessary operator (add a keyword or advance_operator{city, country} after each operator)`;
+            if (e.offendingToken.type === ResearchAdvanceQLParser.DQUOTE) {
+              msg = `add a valid phrase {"text"}`;
+            } else {
+              msg = `unnecessary operator (add a keyword or advance_operator{city, country} after each operator)`;
+            }
           } else {
             msg = `expecting operator {AND , OR  , NOT}`;
           }
@@ -133,10 +137,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
       t.type === ResearchAdvanceQLParser.AND ||
       t.type === ResearchAdvanceQLParser.NOT
     ) {
-      msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
-        recognizer.literalNames,
-        recognizer.symbolicNames
-      )} or keyword/advance_operator after ${tokenName}`;
+      msg = `extraneous input ${tokenName}  expecting  $ keyword/advance_operator after ${tokenName}`;
     } else {
       msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
         recognizer.literalNames,
@@ -190,13 +191,37 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
   }
 
   reportInputMismatch(recognizer, e) {
-    if (recognizer.getInputStream().tokens.length > 1) {
-      const msg = `mismatched input ${this.getTokenErrorDisplay(
+    // console.log("visit6", recognizer.getInputStream().LT(-1));
+    let msg;
+    if (
+      e.offendingToken.type === ResearchAdvanceQLParser.OR ||
+      e.offendingToken.type === ResearchAdvanceQLParser.AND ||
+      e.offendingToken.type === ResearchAdvanceQLParser.NOT
+    ) {
+      msg = `mismatched input ${this.getTokenErrorDisplay(
         e.offendingToken
-      )} expecting ${e.toString(
-        recognizer.literalNames,
-        recognizer.symbolicNames
+      )} expecting keyword after ${this.getTokenErrorDisplay(
+        e.offendingToken
       )}`;
+      throw new ParseCancellationException(recognizer, msg, e.offendingToken);
+    } else if (recognizer.getInputStream().tokens.length > 1) {
+      if (
+        recognizer.getInputStream().LT(-1).type ===
+          ResearchAdvanceQLParser.OR ||
+        recognizer.getInputStream().LT(-1).type ===
+          ResearchAdvanceQLParser.AND ||
+        recognizer.getInputStream().LT(-1).type === ResearchAdvanceQLParser.NOT
+      ) {
+        msg = `mismatched input ${
+          recognizer.getInputStream().LT(-1).text
+        } expecting keyword as ${this.getTokenErrorDisplay(e.offendingToken)}`;
+      } else {
+        if (e.offendingToken.type === ResearchAdvanceQLParser.RPAREN) {
+          msg = `mismatched input write a valid query inside parenthes and `;
+        } else {
+          msg = `mismatch input need to add ')' `;
+        }
+      }
       throw new ParseCancellationException(recognizer, msg, e.offendingToken);
     }
   }
@@ -246,9 +271,6 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     const matchedSymbol = this.singleTokenDeletion(recognizer);
     if (matchedSymbol != null) {
       return matchedSymbol;
-    }
-    if (this.singleTokenInsertion(recognizer)) {
-      return null;
     }
     let e;
     if (this.nextTokensContext == null) {
