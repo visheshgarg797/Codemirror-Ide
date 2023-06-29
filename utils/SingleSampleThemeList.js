@@ -29,44 +29,17 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-line": {
         height: "30px",
         fontSize: "20px",
+        width: 0,
+        height: 0,
       },
-      // ".cm-tooltip": {
-      //   position: "absolute",
-      //   marginTop: "1.2rem",
-      //   border: "1px solid #181a1f",
-      //   width: "61.2%",
-      //   marginLeft: "-1.1rem",
-      // backgroundColor: "#1d1e22",
+      ".cm-activeLineGutter": {
+        backgroundColor: "white",
+      },
+      ".cm-tooltip-autocomplete > ul": {},
+      ".cm-activeLine": {
+        backgroundColor: "pink",
+      },
     },
-    // ".cm-tooltip-autocomplete": {
-    //   width: "700px",
-    // },
-
-    // ".cm-completionLabel": {
-    //   color: "blue",
-    //   padding: "50px",
-    //   height: "100px",
-    // },
-    // ".cm-completionInfo": {
-    //   marginTop: "60px",
-    // },
-    // ".cm-tooltip-autocomplete": {
-    //   minWidth: "400px",
-    //   maxHeight: "40vh !important",
-    //   padding: "6px 0 !important",
-    //   fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
-    //   borderRadius: "1.5rem",
-    // },
-    // ".cm-tooltip-autocomplete > ul": {
-    //   color: "purple",
-    //   paddingLeft: "100px",
-    //   borderRadius: "2rem",
-    //   wordWrap: "break-word",
-    // },
-    // ".cm-completionInfo": {
-    //   width: "1000px",
-    // },
-
     { dark: false }
   ),
 
@@ -96,6 +69,15 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-gutters": {
         backgroundColor: "#16181d",
       },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+        width: 0,
+        height: 0,
+      },
+      ".cm-activeLineGutter": {
+        backgroundColor: "#16181d",
+      },
     },
     { dark: true }
   ),
@@ -108,7 +90,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "1rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
-        height: "50px",
+        height: "60px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -124,6 +106,15 @@ const SampleThemeListForSingleLineEditor = [
         width: "0px",
       },
       ".cm-gutters": {
+        backgroundColor: "white",
+      },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+        width: 0,
+        height: 0,
+      },
+      ".cm-activeLineGutter": {
         backgroundColor: "white",
       },
     },

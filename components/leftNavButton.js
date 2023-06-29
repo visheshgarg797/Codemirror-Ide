@@ -5,7 +5,7 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { Direction } from "@/constants/Direction";
-import "./style.css";
+import styles from "./style.css";
 
 const LeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
@@ -28,7 +28,7 @@ const LeftNavButton = (props) => {
           }-none`}
           onClick={() => handleClick()}
           style={{
-            fontFamily: "Optimistic Text",
+            fontFamily: "Optimistic Text, serif",
             color:
               props.path == pathname
                 ? themeStyles.col03.color

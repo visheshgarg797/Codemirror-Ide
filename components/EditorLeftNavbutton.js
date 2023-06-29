@@ -7,6 +7,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import { Direction } from "@/constants/Direction";
 import COMPONENT_CONSTANTS from "./ComponentConstants";
+import styles from "./style.css";
 
 const EditorLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
@@ -43,6 +44,7 @@ const EditorLeftNavButton = (props) => {
           }-none`}
           onClick={() => handleClick()}
           style={{
+            fontFamily: "Optimistic Text",
             color:
               props.path == pathname
                 ? themeStyles.col03.color
@@ -71,12 +73,13 @@ const EditorLeftNavButton = (props) => {
               className={`px-4 py-2 cursor-pointer hover:bg-gray-100 text-gray-700 pl-5 rounded-2xl rounded-${
                 direction === Direction.LTR ? "l" : "r"
               }-none`}
-              // style={{
-              //   color:
-              //     props.path == pathname
-              //       ? themeStyles.col03.color
-              //       : themeStyles.col01.color,
-              // }}
+              style={{
+                fontFamily: "Optimistic Text",
+                color:
+                  props.path == pathname
+                    ? themeStyles.col03.color
+                    : themeStyles.col01.color,
+              }}
               onClick={() => handleOptionClick(item)}
             >
               {item.label}

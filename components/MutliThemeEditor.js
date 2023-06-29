@@ -172,30 +172,45 @@ const MultiThemeEditor = () => {
   }, [themeStyles, direction, themeIndex]);
 
   useEffect(() => {
-    let idx;
+    let persistCurrentTheme = false;
     if (
-      direction == Direction.LTR &&
+      currentThemeSelected === themeNames[2] &&
       themeStyles.theme === Theme_Name.LIGHT_MODE
     ) {
-      idx = 0;
-    } else if (
-      direction == Direction.LTR &&
-      themeStyles.theme === Theme_Name.DARK_MODE
-    ) {
-      idx = 1;
-    } else if (
-      direction == Direction.RTL &&
-      themeStyles.theme === Theme_Name.LIGHT_MODE
-    ) {
-      idx = 4;
-    } else if (
-      direction == Direction.RTL &&
-      themeStyles.theme === Theme_Name.DARK_MODE
-    ) {
-      idx = 5;
+      persistCurrentTheme = true;
     }
-    setThemeIndex(idx);
-    setCurrentThemeSelected(themeNames[idx]);
+    if (
+      currentThemeSelected === themeNames[3] &&
+      themeStyles.theme === Theme_Name.DARK_MODE
+    ) {
+      persistCurrentTheme = true;
+    }
+    let idx;
+    if (!persistCurrentTheme) {
+      if (
+        direction == Direction.LTR &&
+        themeStyles.theme === Theme_Name.LIGHT_MODE
+      ) {
+        idx = 0;
+      } else if (
+        direction == Direction.LTR &&
+        themeStyles.theme === Theme_Name.DARK_MODE
+      ) {
+        idx = 1;
+      } else if (
+        direction == Direction.RTL &&
+        themeStyles.theme === Theme_Name.LIGHT_MODE
+      ) {
+        idx = 4;
+      } else if (
+        direction == Direction.RTL &&
+        themeStyles.theme === Theme_Name.DARK_MODE
+      ) {
+        idx = 5;
+      }
+      setThemeIndex(idx);
+      setCurrentThemeSelected(themeNames[idx]);
+    }
   }, [themeStyles.theme]);
 
   return (

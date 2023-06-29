@@ -1,7 +1,7 @@
 "use cilent";
 import React, { useRef, useState, useEffect } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView, lineNumbers } from "@codemirror/view";
+import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
@@ -168,6 +168,7 @@ const SingleLineEditor = () => {
             ? 2
             : 3
         ],
+        highlightActiveLine(),
         lineNumbers({ visible: false }),
         EditorView.domEventHandlers({
           paste(event, view) {
