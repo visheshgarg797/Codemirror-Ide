@@ -150,7 +150,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
       t.type === ResearchAdvanceQLParser.AND ||
       t.type === ResearchAdvanceQLParser.NOT
     ) {
-      msg = `extraneous input ${tokenName}  expecting  $ keyword/advance_operator after ${tokenName}`;
+      msg = `extraneous input ${tokenName}  expecting  keyword/advance_operator after ${tokenName}`;
     } else {
       msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
         recognizer.literalNames,

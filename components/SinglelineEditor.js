@@ -206,6 +206,7 @@ const SingleLineEditor = () => {
         basicSetup,
         antrl4Lang,
         regexpLinter,
+        lintGutter(),
         autocompletion({
           override: [keywordFilter],
         }),

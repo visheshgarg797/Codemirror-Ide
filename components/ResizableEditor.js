@@ -169,6 +169,7 @@ export default function ResizaleEditor() {
         basicSetup,
         antrl4Lang,
         regexpLinter,
+        lintGutter(),
         autocompletion({
           override: [keywordFilter],
         }),
