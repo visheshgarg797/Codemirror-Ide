@@ -52,6 +52,11 @@ const MultilineSampleThemeList = [
         paddingLeft: "100px",
         wordWrap: "break-word",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -106,6 +111,11 @@ const MultilineSampleThemeList = [
         color: "white",
         paddingLeft: "100px",
         wordWrap: "break-word",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }
@@ -162,6 +172,11 @@ const MultilineSampleThemeList = [
         paddingLeft: "100px",
         wordWrap: "break-word",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -217,6 +232,11 @@ const MultilineSampleThemeList = [
         color: "white",
         paddingLeft: "100px",
         wordWrap: "break-word",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

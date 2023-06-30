@@ -65,6 +65,11 @@ const multiThemeSampleThemeList = [
       ".cm-activeLine .cm-line": {
         display: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: true }
   ),
@@ -99,6 +104,11 @@ const multiThemeSampleThemeList = [
       ".cm-activeLine .cm-line": {
         display: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -132,6 +142,11 @@ const multiThemeSampleThemeList = [
       },
       ".cm-activeLine .cm-line": {
         display: "none",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }
@@ -168,6 +183,11 @@ const multiThemeSampleThemeList = [
       ".cm-activeLine .cm-line": {
         display: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -203,6 +223,11 @@ const multiThemeSampleThemeList = [
       ".cm-activeLine .cm-line": {
         display: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: true }
   ),
@@ -237,6 +262,11 @@ const multiThemeSampleThemeList = [
       ".cm-activeLine .cm-line": {
         display: "none",
       },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
+      },
     },
     { dark: false }
   ),
@@ -270,6 +300,12 @@ const multiThemeSampleThemeList = [
       },
       ".cm-activeLine .cm-line": {
         display: "none",
+      },
+
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

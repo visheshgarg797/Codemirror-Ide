@@ -26,7 +26,7 @@ const IDE = () => {
               marginTop: "-3rem",
               marginBottom: "2rem",
               fontFamily: "Optimistic Text",
-              fontSize: "1.3rem",
+              fontSize: "2rem",
               fontStyle: "normal",
             }}
           >
@@ -42,7 +42,7 @@ const IDE = () => {
               marginTop: "-3rem",
               marginBottom: "2rem",
               fontFamily: "Optimistic Text",
-              fontSize: "1.3rem",
+              fontSize: "2rem",
               fontStyle: "normal",
             }}
           >
@@ -58,7 +58,7 @@ const IDE = () => {
               marginTop: "-3rem",
               marginBottom: "2rem",
               fontFamily: "Optimistic Text",
-              fontSize: "1.3rem",
+              fontSize: "2rem",
               fontStyle: "normal",
             }}
           >
@@ -74,7 +74,7 @@ const IDE = () => {
               marginTop: "-3rem",
               marginBottom: "2rem",
               fontFamily: "Optimistic Text",
-              fontSize: "1.3rem",
+              fontSize: "2rem",
               fontStyle: "normal",
             }}
           >
