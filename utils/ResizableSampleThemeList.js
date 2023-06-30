@@ -7,17 +7,16 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
         overflow: "auto",
         minHeight: "24px",
-        minWidth: "72px",
+        minWidth: "90px",
       },
       ".cm-content": {
         minHeight: "24px",
-        minWidth: "72px",
+        minWidth: "90px",
         caretColor: "#0e9",
       },
       "&.cm-focused .cm-cursor": {
@@ -34,21 +33,29 @@ const ResizableSampleThemeList = [
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
       },
+      ".cm-activeLineGutter": {
+        backgroundColor: "white",
+      },
       ".cm-tooltip-autocomplete": {
         minWidth: "180px",
         maxHeight: "40vh !important",
         padding: "6px 0 !important",
         fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
-        borderRadius: "1.5rem",
+        backgroundColor: "white",
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       },
       ".cm-tooltip-autocomplete > ul": {
-        color: "purple",
+        color: "black",
         paddingLeft: "100px",
-        borderRadius: "2rem",
         wordWrap: "break-word",
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: false }
@@ -61,7 +68,6 @@ const ResizableSampleThemeList = [
         minWidth: "20px",
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -86,21 +92,29 @@ const ResizableSampleThemeList = [
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
       },
+      ".cm-activeLineGutter": {
+        backgroundColor: "#16181d",
+      },
       ".cm-tooltip-autocomplete": {
         minWidth: "180px",
         maxHeight: "40vh !important",
         padding: "6px 0 !important",
         fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
-        borderRadius: "1.5rem",
+        backgroundColor: "#0a0a0a",
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       },
       ".cm-tooltip-autocomplete > ul": {
-        color: "purple",
+        color: "white",
         paddingLeft: "100px",
-        borderRadius: "2rem",
         wordWrap: "break-word",
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }
@@ -113,7 +127,6 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -138,21 +151,29 @@ const ResizableSampleThemeList = [
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
       },
+      ".cm-activeLineGutter": {
+        backgroundColor: "white",
+      },
       ".cm-tooltip-autocomplete": {
         minWidth: "180px",
         maxHeight: "40vh !important",
         padding: "6px 0 !important",
         fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
-        borderRadius: "1.5rem",
+        backgroundColor: "white",
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       },
       ".cm-tooltip-autocomplete > ul": {
-        color: "purple",
+        color: "black",
         paddingLeft: "100px",
-        borderRadius: "2rem",
         wordWrap: "break-word",
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: false }
@@ -165,7 +186,6 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -190,21 +210,29 @@ const ResizableSampleThemeList = [
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
       },
+      ".cm-activeLineGutter": {
+        backgroundColor: "#16181d",
+      },
       ".cm-tooltip-autocomplete": {
         minWidth: "180px",
         maxHeight: "40vh !important",
         padding: "6px 0 !important",
         fontFamily: "DejaVuSansMono, Menlo-Regular, Inconsolata !important",
-        borderRadius: "1.5rem",
+        backgroundColor: "#0a0a0a",
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       },
       ".cm-tooltip-autocomplete > ul": {
-        color: "purple",
+        color: "white",
         paddingLeft: "100px",
-        borderRadius: "2rem",
         wordWrap: "break-word",
       },
       ".cm-completionIcon-Fruit": {
         src: "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+      },
+      ".cm-diagnostic": {
+        fontSize: "12px",
+        backgroundColor: "white",
+        color: "purple",
       },
     },
     { dark: true }

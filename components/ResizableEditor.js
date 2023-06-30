@@ -9,13 +9,20 @@ import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import myHighlightStyle from "@/utils/Highlights";
-import keywordFilter from "@/utils/GetSuggestions";
+import getKeywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
 import { Direction } from "@/constants/Direction";
 import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import Popup from "./Popup";
 import IsValidSelection from "@/utils/IsValidSelection";
+import { ResearchAdvanceQLLexer } from "./antlrGenerated";
+import { ResearchAdvanceQLParser } from "./antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
+import EditorErrorStrategy from "./editorErrorStrategy";
+import EditorQueryVisitor from "./editorVisitor";
+import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
+import antlr4 from "antlr4";
 
 export default function ResizaleEditor() {
   const editorRef = useRef(null);
@@ -31,6 +38,65 @@ export default function ResizaleEditor() {
   });
 
   const [code, setCode] = useState("");
+  const [suggestions, setSuggestions] = useState(null);
+
+  const createParserFromLexer = (lexer) => {
+    const tokens = new antlr4.CommonTokenStream(lexer);
+
+    return {
+      tokens: tokens.tokens,
+      parser: new ResearchAdvanceQLParser(tokens),
+    };
+  };
+
+  const createLexer = (input) => {
+    const chars = new antlr4.InputStream(input);
+
+    const lexer = new ResearchAdvanceQLLexer(chars);
+
+    lexer.strictMode = false;
+
+    return lexer;
+  };
+
+  function getErrors(text) {
+    const errors = [];
+    const lexer = createLexer(text);
+    //removing errorListeners of lexer as these errors will be reported in tokensProvider
+    lexer.removeErrorListeners();
+    const { parser, tokens } = createParserFromLexer(lexer);
+    parser.removeErrorListeners();
+    parser._errHandler = new EditorErrorStrategy();
+
+    try {
+      const tree = parser.mainQ();
+      const visitor = new EditorQueryVisitor();
+      tree.accept(visitor);
+    } catch (e) {
+      errors.push({
+        from: e.offendingToken.start,
+        to: e.offendingToken.stop + 1,
+        message: e.message,
+      });
+    }
+    return errors;
+  }
+
+  // customized  extension to show errors on editor
+  const regexpLinter = linter((view) => {
+    let diagnostics = [];
+    const text = viewRef.current.state.doc.toString();
+    const errors = getErrors(text);
+    errors.map((error) => {
+      diagnostics.push({
+        from: error.from,
+        to: error.to,
+        severity: "error",
+        message: error.message,
+      });
+    });
+    return diagnostics;
+  });
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
@@ -52,7 +118,6 @@ export default function ResizaleEditor() {
         head: code.length,
       },
     });
-    viewRef.current.dispatch;
     setPopupState((popupState) => ({ ...popupState, showPopup: false }));
   };
 
@@ -68,8 +133,12 @@ export default function ResizaleEditor() {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
-      const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-      const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+      const st = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualStartPos
+      );
+      const ed = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualEndPos
+      );
       setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
@@ -103,8 +172,15 @@ export default function ResizaleEditor() {
       extensions: [
         basicSetup,
         antrl4Lang,
+        regexpLinter,
+        lintGutter(),
         autocompletion({
-          override: [keywordFilter],
+          override: [
+            getKeywordFilter({
+              setSuggestions,
+              showCustomSuggestionsPopup: true,
+            }),
+          ],
         }),
         syntaxHighlighting(myHighlightStyle),
         ResizableSampleThemeList[

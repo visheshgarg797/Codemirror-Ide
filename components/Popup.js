@@ -44,7 +44,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
     <div style={divStyle}>
       {selection}
       <Select
-        options={COMPONENT_CONSTANTS.optionList}
+        options={COMPONENT_CONSTANTS.POPUP_OPTION_LIST}
         isMulti
         value={selectedOptions}
         onChange={handleSelect}

@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import EDITOR_MODES from "@/utils/constants";
+import { EDITOR_MODES } from "@/constants/EditorModes";
 
 export const EditorModeContext = createContext();
 
