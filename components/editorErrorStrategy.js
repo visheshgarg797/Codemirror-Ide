@@ -32,11 +32,11 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
         this.reportMissingValueInAtom(recognizer, e);
         if (e.startToken.type === ResearchAdvanceQLParser.WS) {
           if (
-            (recognizer.getInputStream().LT(-1).type ===
+            (recognizer.getInputStream().LT(-1)?.type ===
               ResearchAdvanceQLParser.OR) |
-            (recognizer.getInputStream().LT(-1).type ===
+            (recognizer.getInputStream().LT(-1)?.type ===
               ResearchAdvanceQLParser.AND) |
-            (recognizer.getInputStream().LT(-1).type ===
+            (recognizer.getInputStream().LT(-1)?.type ===
               ResearchAdvanceQLParser.NOT)
           ) {
             if (e.offendingToken.type === ResearchAdvanceQLParser.DQUOTE) {
@@ -45,7 +45,20 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
               msg = `unnecessary operator (add a keyword or advance_operator{city, country} after each operator)`;
             }
           } else {
-            msg = `expecting operator {AND , OR  , NOT}`;
+            for (let token in tokens.tokens) {
+              if (
+                tokens.tokens[token].type !== 20 &&
+                tokens.tokens[token].type !== -1
+              ) {
+                msg = `expecting operator {AND , OR  , NOT}`;
+                throw new ParseCancellationException(
+                  recognizer,
+                  msg,
+                  offendingToken
+                );
+              }
+            }
+            msg = `add some keyword to start the query`;
           }
         } else {
           msg = `no viable alternative at input ${this.escapeWSAndQuote(
@@ -192,6 +205,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
 
   reportInputMismatch(recognizer, e) {
     // console.log("visit6", recognizer.getInputStream().LT(-1));
+
     let msg;
     if (
       e.offendingToken.type === ResearchAdvanceQLParser.OR ||
@@ -217,7 +231,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
         } expecting keyword as ${this.getTokenErrorDisplay(e.offendingToken)}`;
       } else {
         if (e.offendingToken.type === ResearchAdvanceQLParser.RPAREN) {
-          msg = `mismatched input write a valid query inside parenthes and `;
+          msg = `mismatched input write a valid query inside parenthes `;
         } else {
           msg = `mismatch input need to add ')' `;
         }
@@ -296,6 +310,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     );
   }
   reportError(recognizer, e) {
+    console.log("visit66");
     if (e instanceof antrl4.error.NoViableAltException) {
       this.reportNoViableAlternative(recognizer, e);
     } else if (e instanceof antrl4.error.InputMismatchException) {
