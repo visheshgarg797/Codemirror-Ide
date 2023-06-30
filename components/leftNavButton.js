@@ -5,6 +5,7 @@ import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { Direction } from "@/constants/Direction";
+import { Theme_Name } from "@/constants/ThemeName";
 import styles from "./style.css";
 
 const LeftNavButton = (props) => {
@@ -23,7 +24,9 @@ const LeftNavButton = (props) => {
     <div className="space-y-4">
       <div className="">
         <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-100 rounded-2xl rounded-${
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-${
+            themeStyles.theme === Theme_Name.LIGHT_MODE ? 100 : 500
+          } rounded-2xl rounded-${
             direction === Direction.LTR ? "l" : "r"
           }-none`}
           onClick={() => handleClick()}

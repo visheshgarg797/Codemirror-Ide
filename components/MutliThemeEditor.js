@@ -217,7 +217,12 @@ const MultiThemeEditor = () => {
     <div className="" style={{ marginRight: "2rem", marginTop: "-50px" }}>
       <div
         className="ThemeSelectionContainer w-1/10"
-        style={{ marginRight: "1rem", color: "black", marginBottom: "65px" }}
+        style={{
+          marginRight: "1rem",
+          color: "black",
+          marginBottom: "1.5rem",
+          marginTop: "2rem",
+        }}
       >
         <select
           value={currentThemeSelected}

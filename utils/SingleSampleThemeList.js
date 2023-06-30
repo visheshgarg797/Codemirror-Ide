@@ -35,7 +35,10 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-activeLineGutter": {
         backgroundColor: "white",
       },
-      ".cm-tooltip-autocomplete > ul": {},
+      ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
+        color: "red",
+        width: "55rem !important ",
+      },
       ".cm-activeLine": {
         backgroundColor: "pink",
       },

@@ -7,13 +7,14 @@ import { useCallback, useMemo, useState } from "react";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import { Direction } from "@/constants/Direction";
 import COMPONENT_CONSTANTS from "./ComponentConstants";
+import { Theme_Name } from "@/constants/ThemeName";
 import styles from "./style.css";
 
 const EditorLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
   const { push } = useRouter();
   const pathname = usePathname();
-  const { updateEditorMode } = useCustomEditorMode();
+  const { editorMode, updateEditorMode } = useCustomEditorMode();
   const { direction } = useCustomDirection();
 
   const path = useMemo(() => props.path, []);
@@ -39,7 +40,9 @@ const EditorLeftNavButton = (props) => {
     <div className="space-y-4">
       <div className="">
         <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-100 rounded-2xl rounded-${
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-${
+            themeStyles.theme === Theme_Name.LIGHT_MODE ? 100 : 500
+          } rounded-2xl rounded-${
             direction === Direction.LTR ? "l" : "r"
           }-none`}
           onClick={() => handleClick()}
@@ -70,13 +73,15 @@ const EditorLeftNavButton = (props) => {
           {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((item) => (
             <div
               key={item.value}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-100 text-gray-700 pl-5 rounded-2xl rounded-${
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-${
+                themeStyles.theme === Theme_Name.LIGHT_MODE ? 100 : 500
+              } text-gray-700 pl-5 rounded-2xl rounded-${
                 direction === Direction.LTR ? "l" : "r"
               }-none`}
               style={{
                 fontFamily: "Optimistic Text",
                 color:
-                  props.path == pathname
+                  editorMode === item.value && props.path == pathname
                     ? themeStyles.col03.color
                     : themeStyles.col01.color,
               }}

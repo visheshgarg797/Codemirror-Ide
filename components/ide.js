@@ -19,16 +19,72 @@ const IDE = () => {
       }}
     >
       {editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE ? (
-        <MultiLineEditor />
+        <>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
+              marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "1.3rem",
+              fontStyle: "normal",
+            }}
+          >
+            Fixed height editor
+          </div>
+          <MultiLineEditor />
+        </>
       ) : editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE ? (
-        <SingleLineEditor />
+        <>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
+              marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "1.3rem",
+              fontStyle: "normal",
+            }}
+          >
+            Text input editor
+          </div>
+          <SingleLineEditor />
+        </>
       ) : editorMode === EDITOR_MODES.RESIZABLE_EDITOR_MODE ? (
-        <ResizaleEditor />
+        <>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
+              marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "1.3rem",
+              fontStyle: "normal",
+            }}
+          >
+            Dynamic height editor
+          </div>
+          <ResizaleEditor />
+        </>
       ) : (
-        <div className="flex">
-          <MultiThemeEditor />
-          <MultiThemeEditor />
-        </div>
+        <>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
+              marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "1.3rem",
+              fontStyle: "normal",
+            }}
+          >
+            Multitheme editor
+          </div>
+          <div className="flex">
+            <MultiThemeEditor />
+            <MultiThemeEditor />
+          </div>
+        </>
       )}
     </div>
   );

@@ -7,7 +7,6 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -61,7 +60,6 @@ const ResizableSampleThemeList = [
         minWidth: "20px",
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -113,7 +111,6 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -165,7 +162,6 @@ const ResizableSampleThemeList = [
         maxHeight: "355px",
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
