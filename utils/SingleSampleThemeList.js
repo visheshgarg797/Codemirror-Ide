@@ -8,7 +8,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "1rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
-        height: "50px",
+        height: "60px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -25,6 +25,22 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "white",
+      },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+        width: 0,
+        height: 0,
+      },
+      ".cm-activeLineGutter": {
+        backgroundColor: "white",
+      },
+      ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
+        color: "red",
+        width: "55rem !important ",
+      },
+      ".cm-activeLine": {
+        backgroundColor: "pink",
       },
       ".cm-diagnostic": {
         fontSize: "12px",
@@ -61,6 +77,15 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-gutters": {
         backgroundColor: "#16181d",
       },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+        width: 0,
+        height: 0,
+      },
+      ".cm-activeLineGutter": {
+        backgroundColor: "#16181d",
+      },
       ".cm-diagnostic": {
         fontSize: "12px",
         backgroundColor: "white",
@@ -78,7 +103,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "1rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
-        height: "50px",
+        height: "60px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -94,6 +119,15 @@ const SampleThemeListForSingleLineEditor = [
         width: "0px",
       },
       ".cm-gutters": {
+        backgroundColor: "white",
+      },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+        width: 0,
+        height: 0,
+      },
+      ".cm-activeLineGutter": {
         backgroundColor: "white",
       },
       ".cm-diagnostic": {

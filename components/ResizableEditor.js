@@ -9,7 +9,7 @@ import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import myHighlightStyle from "@/utils/Highlights";
-import keywordFilter from "@/utils/GetSuggestions";
+import getKeywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
 import { Direction } from "@/constants/Direction";
@@ -38,6 +38,7 @@ export default function ResizaleEditor() {
   });
 
   const [code, setCode] = useState("");
+  const [suggestions, setSuggestions] = useState(null);
 
   const createParserFromLexer = (lexer) => {
     const tokens = new antlr4.CommonTokenStream(lexer);
@@ -117,7 +118,6 @@ export default function ResizaleEditor() {
         head: code.length,
       },
     });
-    viewRef.current.dispatch;
     setPopupState((popupState) => ({ ...popupState, showPopup: false }));
   };
 
@@ -133,8 +133,12 @@ export default function ResizaleEditor() {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
-      const st = View.coordsAtPos(checkValidityOfSelection.actualStartPos);
-      const ed = View.coordsAtPos(checkValidityOfSelection.actualEndPos);
+      const st = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualStartPos
+      );
+      const ed = viewRef.current.coordsAtPos(
+        checkValidityOfSelection.actualEndPos
+      );
       setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
@@ -171,7 +175,12 @@ export default function ResizaleEditor() {
         regexpLinter,
         lintGutter(),
         autocompletion({
-          override: [keywordFilter],
+          override: [
+            getKeywordFilter({
+              setSuggestions,
+              showCustomSuggestionsPopup: true,
+            }),
+          ],
         }),
         syntaxHighlighting(myHighlightStyle),
         ResizableSampleThemeList[

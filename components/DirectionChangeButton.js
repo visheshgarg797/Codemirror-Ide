@@ -2,6 +2,7 @@
 import React from "react";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { useCustomTheme } from "../context/useThemeHook";
+import { BsArrowLeftRight } from "react-icons/bs";
 
 const DirectionChangeButton = () => {
   const { direction, toggleDirection } = useCustomDirection();
@@ -21,10 +22,15 @@ const DirectionChangeButton = () => {
         cursor: "pointer",
         color: themeStyles.col02.color,
         fontFamily: themeStyles.font,
-        margin: "5px",
+        marginLeft: "20px",
+        borderRadius: "50%",
+        marginTop: "8px",
+        // width: "40px",
+        // height: "40px",
+        // paddingRight: "  6px",
       }}
     >
-      {name}
+      <BsArrowLeftRight size={15} />
     </button>
   );
 };

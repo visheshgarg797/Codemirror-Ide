@@ -4,6 +4,9 @@ import { useCustomTheme } from "../context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
+import { Direction } from "@/constants/Direction";
+import { Theme_Name } from "@/constants/ThemeName";
+import styles from "./style.css";
 
 const LeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
@@ -17,27 +20,29 @@ const LeftNavButton = (props) => {
     push(path);
   }, []);
 
+  // -${
+  //   themeStyles.theme === Theme_Name.LIGHT_MODE ? "200 " : "500 "
+  // }
   return (
-    <button
-      onClick={handleClick}
-      className={themeStyles.classLnb}
-      style={{
-        color:
-          props.path == pathname
-            ? themeStyles.col03.color
-            : themeStyles.col01.color,
-        width: "20rem",
-        fontFamily: themeStyles.font,
-        fontWeight: "700",
-        marginTop: "5px",
-        borderStartEndRadius: "50px",
-        borderEndEndRadius: "50px",
-        boxShadow:
-          "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-      }}
-    >
-      {props.index}
-    </button>
+    <div className="space-y-4">
+      <div className="">
+        <div
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 rounded-2xl rounded-${
+            direction === Direction.LTR ? "l" : "r"
+          }-none`}
+          onClick={() => handleClick()}
+          style={{
+            fontFamily: "Optimistic Text, serif",
+            color:
+              props.path == pathname
+                ? themeStyles.col03.color
+                : themeStyles.col01.color,
+          }}
+        >
+          <span>{props.index}</span>
+        </div>
+      </div>
+    </div>
   );
 };
 
