@@ -204,8 +204,6 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
   }
 
   reportInputMismatch(recognizer, e) {
-    // console.log("visit6", recognizer.getInputStream().LT(-1));
-
     let msg;
     if (
       e.offendingToken.type === ResearchAdvanceQLParser.OR ||
@@ -310,7 +308,6 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     );
   }
   reportError(recognizer, e) {
-    console.log("visit66");
     if (e instanceof antrl4.error.NoViableAltException) {
       this.reportNoViableAlternative(recognizer, e);
     } else if (e instanceof antrl4.error.InputMismatchException) {

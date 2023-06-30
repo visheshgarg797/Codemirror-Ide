@@ -72,7 +72,6 @@ const SingleLineEditor = () => {
       const visitor = new EditorQueryVisitor();
       tree.accept(visitor);
     } catch (e) {
-      console.log("hannn3", e.offendingToken);
       errors.push({
         from: e.offendingToken.start,
         to: e.offendingToken.stop + 1,
