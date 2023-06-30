@@ -30,38 +30,43 @@ const MainConclusion = () => {
       <p
         style={{
           color: themeStyles.col02.color,
-          fontSize: "20px",
+          fontSize: "1rem",
           fontFamily: themeStyles.font,
           fontWeight: "300",
           lineHeight: "1.5",
+          marginTop: "2rem",
         }}
       >
-        warn Fast Refresh had to perform a full reload. Read more:
-        https://nextjs.org/docs/messages/fast-refresh-reload - wait compiling...
-        - event compiled client and server successfully in 831 ms (634 modules)
-        to perform a full reload due to a runtime error. - wait compiling... -
-        event compiled client and server successfully in 594 ms (634 modules) -
-        wait compiling... - event compiled client and server successfully in 310
-        resh had to perform a full reload. Read more:
-        https://nextjs.org/docs/messages/fast-refresh-reload - wait compiling...
-        - event compiled client and server successfully in 831 ms (634 modules)
-        to perform a full reload due to a runtime error. - wait compiling... -
-        event compiled client and server successfully in 594 ms (634 modules) -
-        wait compiling... - event compiled client and server successfully in 310
-        ms (579 modules) - wait compiling /favicon.ico/route (client and
-        server)..ompiled successfully in 67 ms (304 modules) - wait compiling...
-        - event compiled client and server successfully in 297 ms (579 modules)
-        - wait compiling /favicon.ico/route (client and server)... - event
-        compiled successfully in 80 ms (304 modules)warn Fast Refresh had to
-        perform a full reload. Read more:
-        https://nextjs.org/docs/messages/fast-refresh-reload - wait compiling...
-        - event compiled client and server successfully in 831 ms (634 modules)
-        - warn Fast Refresh had to perform a full reload due to a runtime error.
-        - wait compiling... - event compiled client and server successfully in
-        594 ms (634 modules) - wait compiling... - event compiled client and
-        server successfully in 310 ms (579 modules) - wait compiling
-        /favicon.ico/route (client and server)... - event compiled successfully
-        in 67 ms (304 modules) - wait compiling... - event compiled
+        After conducting a thorough comparison of Ace, CodeMirror, and Monaco,
+        we have determined that CodeMirror is the superior choice for a code
+        editor. It offers versatility by being easily embeddable in any web page
+        or JavaScript application, supporting multiple languages and themes.
+        CodeMirror boasts an extensive feature set, including essential
+        functionalities like syntax highlighting, code folding, and
+        autocompletion. Its comprehensive documentation enables developers to
+        quickly get started and leverage its capabilities effectively. The
+        active community support ensures prompt bug fixes, feature enhancements,
+        and a wide range of third-party plugins and extensions. Moreover,
+        CodeMirror seamlessly integrates with other tools and frameworks, thanks
+        to its modular architecture.
+        <br /> <br />
+        In our development process, we built the entire editor using CodeMirror,
+        successfully implementing most of the features found in the existing
+        Monaco editor. Additionally, we went beyond by incorporating advanced
+        features like right-to-left (RTL) support, multiple theme editors within
+        a single page, a dynamic length editor, and the ability to paste files
+        via drag and drop. These added features enhance the editor's
+        functionality and provide an even more customizable and efficient code
+        editing experience for developers.
+        <br /> <br />
+        With CodeMirror as our chosen platform, we provide an efficient and
+        customizable code editing experience that empowers developers to work
+        with ease and efficiency, while enjoying the benefits of RTL support,
+        multiple theme editors, dynamic length editing, and file pasting through
+        drag and drop. Overall, CodeMirror proves to be the ideal choice,
+        combining a robust feature set, comprehensive documentation, active
+        community support, and the flexibility to incorporate additional
+        functionalities to meet the specific needs of developers.
       </p>
     </div>
   );

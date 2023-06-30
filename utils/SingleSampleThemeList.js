@@ -29,18 +29,12 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-line": {
         height: "30px",
         fontSize: "20px",
-        width: 0,
-        height: 0,
       },
       ".cm-activeLineGutter": {
         backgroundColor: "white",
       },
       ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
-        color: "red",
         width: "55rem !important ",
-      },
-      ".cm-activeLine": {
-        backgroundColor: "pink",
       },
       ".cm-diagnostic": {
         fontSize: "12px",
@@ -80,8 +74,6 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-line": {
         height: "30px",
         fontSize: "20px",
-        width: 0,
-        height: 0,
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
@@ -124,11 +116,12 @@ const SampleThemeListForSingleLineEditor = [
       ".cm-line": {
         height: "30px",
         fontSize: "20px",
-        width: 0,
-        height: 0,
       },
       ".cm-activeLineGutter": {
         backgroundColor: "white",
+      },
+      ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
+        width: "55rem !important ",
       },
       ".cm-diagnostic": {
         fontSize: "12px",
@@ -164,6 +157,13 @@ const SampleThemeListForSingleLineEditor = [
         width: "0px",
       },
       ".cm-gutters": {
+        backgroundColor: "#16181d",
+      },
+      ".cm-line": {
+        height: "30px",
+        fontSize: "20px",
+      },
+      ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
       },
       ".cm-diagnostic": {

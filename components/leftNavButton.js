@@ -25,22 +25,20 @@ const LeftNavButton = (props) => {
   // }
   return (
     <div className="space-y-4">
-      <div className="">
-        <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 rounded-2xl rounded-${
-            direction === Direction.LTR ? "l" : "r"
-          }-none`}
-          onClick={() => handleClick()}
-          style={{
-            fontFamily: "Optimistic Text, serif",
-            color:
-              props.path == pathname
-                ? themeStyles.col03.color
-                : themeStyles.col01.color,
-          }}
-        >
-          <span>{props.index}</span>
-        </div>
+      <div
+        className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300`}
+        onClick={() => handleClick()}
+        style={{
+          fontFamily: "Optimistic Text, serif",
+          color:
+            props.path == pathname
+              ? themeStyles.col03.color
+              : themeStyles.col01.color,
+          borderStartEndRadius: "50px",
+          borderEndEndRadius: "50px",
+        }}
+      >
+        <span>{props.index}</span>
       </div>
     </div>
   );

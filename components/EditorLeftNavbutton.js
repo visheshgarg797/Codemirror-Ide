@@ -40,9 +40,7 @@ const EditorLeftNavButton = (props) => {
     <div className="space-y-4">
       <div className="">
         <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 rounded-2xl rounded-${
-            direction === Direction.LTR ? "l" : "r"
-          }-none`}
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 `}
           onClick={() => handleClick()}
           style={{
             fontFamily: "Optimistic Text",
@@ -50,6 +48,8 @@ const EditorLeftNavButton = (props) => {
               props.path == pathname
                 ? themeStyles.col03.color
                 : themeStyles.col01.color,
+            borderStartEndRadius: "50px",
+            borderEndEndRadius: "50px",
           }}
         >
           <span>{props.index}</span>
@@ -71,15 +71,15 @@ const EditorLeftNavButton = (props) => {
           {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((item) => (
             <div
               key={item.value}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5 rounded-2xl rounded-${
-                direction === Direction.LTR ? "l" : "r"
-              }-none`}
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5`}
               style={{
                 fontFamily: "Optimistic Text",
                 color:
                   editorMode === item.value && props.path == pathname
                     ? themeStyles.col03.color
                     : themeStyles.col01.color,
+                borderStartEndRadius: "50px",
+                borderEndEndRadius: "50px",
               }}
               onClick={() => handleOptionClick(item)}
             >

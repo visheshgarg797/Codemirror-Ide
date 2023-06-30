@@ -37,33 +37,68 @@ const MainIntro = () => {
           lineHeight: "1.5",
         }}
       >
-        CodeMirror 6 is a versatile text editor implemented in JavaScript for
-        the browser. It is specialized for editing code and comes with a number
-        of language modes and addons used for more advanced editing
-        functionalities. In this article, we will discuss how to build a code
-        editor using CodeMirror 6's unique API. The library supports browsers up
-        from Internet Explorer 11 (with some polyfills). CodeMirror 6 is
-        published as a set of NPM packages under the @codemirror scope, and each
-        package exposes ECMAScript and CommonJS modules. To use them in the
-        browser, we need to use some kind of bundler or loader. In this
-        tutorial, we will use npm to install the CodeMirror6 packages and create
-        a new project. We will then create the main editor file, editor.js, and
-        add the necessary code to create a functional code editor. CodeMirror 6
-        supports CSS, C++, HTML, Java, JavaScript, JSON, Markdown, Python, Rust,
-        and XML. If your language is not listed above, you may still find a
-        solution there. To add custom language integration and custom
-        autocomplete to CodeMirror 6, you can follow these steps: Create a
-        language package for your custom language by implementing a parser,
-        which is used for highlighting but also provides the metadata for
-        autocompletion 1 . Use the @codemirror/autocomplete package to provide
-        functionality for displaying input suggestions in the editor 2 . Connect
-        your completion source to the editor using the override option 2 . Pass
-        your custom fields as an object mapping to serialize them 3 . If you
-        want to enrich your code editor experience in your browser application
-        by using LSP to try to autocomplete what the user would like to type,
-        you can use Typescript LSP 4 . You can also configure a basic mixed HTML
-        parser with autocomplete by importing the necessary packages and
-        configuring the parser
+        <div
+          style={{
+            fontSize: "1rem",
+            marginBottom: "1.2rem",
+            marginTop: "1.2rem",
+          }}
+        >
+          The objective of our project is to explore alternative options to the
+          Monaco Editor. The motivation behind this endeavor stems from the need
+          to address certain critical features that have emerged as essential
+          requirements for our web editing environment. Specifically, we are
+          seeking alternatives that can provide us with multiple themes in
+          editors within the same page, resizable editor components, and robust
+          support for right-to-left (RTL) languages like Arabic, Hebrew, Urdu
+          etc. By venturing into this project, we aim to identify a suitable
+          solution that not only fulfills these specific demands but also aligns
+          with our overarching goal of delivering a highly flexible and
+          user-centric web editing experience.
+        </div>
+        <div
+          style={{
+            fontSize: "1rem",
+            marginBottom: "1.2rem",
+            marginTop: "1.2rem",
+          }}
+        >
+          In the beginning, we undertook a comprehensive exploration of several
+          prominent editor frameworks, including ACE, Monaco, Orion, and Theia.
+          After meticulous evaluation, we have concluded that CodeMirror emerges
+          as the optimal choice for our requirements. CodeMirror possesses a
+          multitude of advantages that set it apart from its counterparts.
+          Firstly, its compact package size ensures efficient resource
+          utilization, resulting in enhanced performance and reduced loading
+          times. Additionally, CodeMirror benefits from a vibrant and active
+          community, providing extensive support, regular updates, and a wealth
+          of user-contributed plugins and extensions. Moreover, CodeMirror
+          offers an array of built-in features, such as multi-theme editors
+          within the same page, resizable editor components, and robust
+          right-to-left (RTL) language support, allows heavily customizing the
+          editor in terms of both looks and functioning, each aligning
+          seamlessly with our project objectives. With its comprehensive feature
+          set, widespread adoption, and continuous development, CodeMirror
+          emerges as the superior choice to empower our web editing environment.
+        </div>
+        <div
+          style={{
+            fontSize: "1rem",
+            marginBottom: "1.2rem",
+            marginTop: "1.2rem",
+          }}
+        >
+          Several notable companies have successfully migrated from Monaco to
+          CodeMirror. For instance, Sourcegraph migrated their website away from
+          Monaco to CodeMirror, replacing 90% of Monaco functionality within
+          just two days. Replit initially switched from Ace to Monaco but later
+          made the transition to CodeMirror, appreciating its lighter weight and
+          modularity. Checkly replaced their CodeMirror-based editor with
+          Monaco, leveraging its customization capabilities to define custom
+          tokens and enable context-aware autocomplete and hover features. These
+          examples highlight the flexibility and advantages offered by
+          CodeMirror.
+        </div>
       </p>
     </div>
   );
