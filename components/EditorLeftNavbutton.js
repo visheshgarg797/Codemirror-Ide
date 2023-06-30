@@ -40,9 +40,7 @@ const EditorLeftNavButton = (props) => {
     <div className="space-y-4">
       <div className="">
         <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-${
-            themeStyles.theme === Theme_Name.LIGHT_MODE ? 100 : 500
-          } rounded-2xl rounded-${
+          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 rounded-2xl rounded-${
             direction === Direction.LTR ? "l" : "r"
           }-none`}
           onClick={() => handleClick()}
@@ -73,9 +71,7 @@ const EditorLeftNavButton = (props) => {
           {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((item) => (
             <div
               key={item.value}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-${
-                themeStyles.theme === Theme_Name.LIGHT_MODE ? 100 : 500
-              } text-gray-700 pl-5 rounded-2xl rounded-${
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5 rounded-2xl rounded-${
                 direction === Direction.LTR ? "l" : "r"
               }-none`}
               style={{
