@@ -5,7 +5,7 @@ const SampleThemeListForSingleLineEditor = [
       "&": {
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1rem",
+        borderRadius: "0.7rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
         height: "60px",
@@ -24,13 +24,21 @@ const SampleThemeListForSingleLineEditor = [
         width: "0px",
       },
       ".cm-gutters": {
-        backgroundColor: "white",
+        width: 0,
+        zIndex: "-1 !important",
       },
       ".cm-line": {
-        height: "30px",
-        fontSize: "20px",
+        marginTop: "4px",
+        height: "23px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
+        backgroundColor: "white",
+      },
+      ".cm-tooltip-autocomplete > ul": {
+        color: "black",
+        paddingLeft: "100px",
+        wordWrap: "break-word",
         backgroundColor: "white",
       },
       ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
@@ -50,7 +58,7 @@ const SampleThemeListForSingleLineEditor = [
       "&": {
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1rem",
+        borderRadius: "0.7rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
         height: "50px",
@@ -70,13 +78,22 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "#16181d",
+        width: 0,
+        zIndex: "-1 !important",
       },
       ".cm-line": {
-        height: "30px",
-        fontSize: "20px",
+        marginTop: "4px",
+        height: "23px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
+      },
+      ".cm-tooltip-autocomplete > ul": {
+        color: "white",
+        paddingLeft: "100px",
+        wordWrap: "break-word",
+        backgroundColor: "black",
       },
       ".cm-diagnostic": {
         fontSize: "12px",
@@ -92,7 +109,7 @@ const SampleThemeListForSingleLineEditor = [
         direction: "rtl",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1rem",
+        borderRadius: "0.7rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
         height: "60px",
@@ -112,10 +129,19 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "white",
+        width: 0,
+        zIndex: "-1 !important",
       },
       ".cm-line": {
-        height: "30px",
-        fontSize: "20px",
+        marginTop: "4px",
+        height: "23px",
+        fontSize: "15px",
+      },
+      ".cm-tooltip-autocomplete > ul": {
+        color: "black",
+        paddingLeft: "100px",
+        wordWrap: "break-word",
+        backgroundColor: "white",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "white",
@@ -138,7 +164,7 @@ const SampleThemeListForSingleLineEditor = [
         direction: "rtl",
         color: "white",
         backgroundColor: "#16181d",
-        borderRadius: "1rem",
+        borderRadius: "0.7rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
         overflow: "hidden",
         height: "50px",
@@ -158,13 +184,22 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "#16181d",
+        width: 0,
+        zIndex: "-1 !important",
       },
       ".cm-line": {
-        height: "30px",
-        fontSize: "20px",
+        marginTop: "4px",
+        height: "23px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
+      },
+      ".cm-tooltip-autocomplete > ul": {
+        color: "white",
+        paddingLeft: "100px",
+        wordWrap: "break-word",
+        backgroundColor: "black",
       },
       ".cm-diagnostic": {
         fontSize: "12px",

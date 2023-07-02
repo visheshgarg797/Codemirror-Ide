@@ -16,37 +16,9 @@ const MainAnalysis = () => {
       }}
     >
       {analysis === ANALYSIS_SUBHEADINGS.ANALYSIS_OPTION_1 ? (
-        <>
-          <div
-            style={{
-              color: themeStyles.col02.color,
-              marginTop: "-3rem",
-              marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
-              fontSize: "2rem",
-              fontStyle: "normal",
-            }}
-          >
-            Poular Editors
-          </div>
-          <PopularEditor />
-        </>
+        <PopularEditor />
       ) : (
-        <>
-          <div
-            style={{
-              color: themeStyles.col02.color,
-              marginTop: "-3rem",
-              marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
-              fontSize: "2rem",
-              fontStyle: "normal",
-            }}
-          >
-            Comparison
-          </div>
-          <Comparison />
-        </>
+        <Comparison />
       )}
     </div>
   );

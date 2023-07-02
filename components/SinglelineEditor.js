@@ -304,14 +304,14 @@ const SingleLineEditor = () => {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer" id>
+      <div ref={editorRef} className="EditorContainer" style={{ width: "80%" }}>
         <style>
           {`.cm-tooltip {
             top:${suggestionBoxCorrds.top}px !important;
             left:${suggestionBoxCorrds.left}px !important;
             position: fixed !important;
             border: 1px solid #181a1f;
-            width: 61.2%;
+            width: 49%;
           }
           .cm-tooltip > ul > li{
             width:100%

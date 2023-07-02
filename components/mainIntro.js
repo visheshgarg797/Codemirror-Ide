@@ -17,37 +17,9 @@ const MainIntro = () => {
       }}
     >
       {intro === INTRO_SUBHEADINGS.INTRO_OPTION_1 ? (
-        <>
-          <div
-            style={{
-              color: themeStyles.col02.color,
-              marginTop: "-3rem",
-              marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
-              fontSize: "2rem",
-              fontStyle: "normal",
-            }}
-          >
-            Overview
-          </div>
-          <Overview />
-        </>
+        <Overview />
       ) : (
-        <>
-          <div
-            style={{
-              color: themeStyles.col02.color,
-              marginTop: "-3rem",
-              marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
-              fontSize: "2rem",
-              fontStyle: "normal",
-            }}
-          >
-            Requirements
-          </div>
-          <Requirements />
-        </>
+        <Requirements />
       )}
     </div>
   );

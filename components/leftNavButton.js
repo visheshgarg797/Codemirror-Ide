@@ -29,6 +29,7 @@ const LeftNavButton = (props) => {
         className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300`}
         onClick={() => handleClick()}
         style={{
+          width: "16rem",
           fontFamily: "Optimistic Text, serif",
           color:
             props.path == pathname

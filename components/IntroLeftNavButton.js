@@ -44,6 +44,7 @@ const IntroLeftNavButton = (props) => {
           className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 `}
           onClick={() => handleClick()}
           style={{
+            width: "16rem",
             fontFamily: "Optimistic Text",
             color:
               props.path == pathname
@@ -74,7 +75,10 @@ const IntroLeftNavButton = (props) => {
               key={item.value}
               className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5`}
               style={{
-                fontFamily: "Optimistic Text",
+                width: "16rem",
+                fontWeight: "400",
+                fontSize: "0.85rem",
+                paddingLeft: "2rem",
                 color:
                   intro === item.value && props.path == pathname
                     ? themeStyles.col03.color

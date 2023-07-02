@@ -43,6 +43,7 @@ const EditorLeftNavButton = (props) => {
           className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 `}
           onClick={() => handleClick()}
           style={{
+            width: "16rem",
             fontFamily: "Optimistic Text",
             color:
               props.path == pathname
@@ -71,9 +72,12 @@ const EditorLeftNavButton = (props) => {
           {COMPONENT_CONSTANTS.EDITOR_MODE_OPTIONS.map((item) => (
             <div
               key={item.value}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5`}
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700`}
               style={{
-                fontFamily: "Optimistic Text",
+                width: "16rem",
+                fontWeight: "400",
+                fontSize: "0.85rem",
+                paddingLeft: "2rem",
                 color:
                   editorMode === item.value && props.path == pathname
                     ? themeStyles.col03.color
