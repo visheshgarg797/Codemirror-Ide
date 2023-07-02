@@ -64,7 +64,7 @@ const MultiThemeEditor = () => {
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
     wordsToInsert.forEach((word) => {
-      textToInsert += ` OR ${word.label}`;
+      textToInsert += ` OR "${word}"`;
     });
     textToInsert += ")";
     const changes = [

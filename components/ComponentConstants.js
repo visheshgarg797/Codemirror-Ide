@@ -2,9 +2,16 @@ import { EDITOR_MODES } from "@/constants/EditorModes";
 
 const COMPONENT_CONSTANTS = {
   POPUP_OPTION_LIST: [
-    { label: "Red", value: "red" },
-    { label: "Green", value: "green" },
-    { label: "Blue", value: "blue" },
+    "1. Amsterdam canal",
+    "2. Anne Frank House",
+    "3. Van Gogh Museum",
+    "4. Red Light District",
+    "5. Heineken Experience",
+    "6. Rijksmuseum",
+    "7. Vondelpark",
+    "8. Jordaan",
+    "9. Bloemenmarkt",
+    "10. Albert Cuyp Market",
   ],
   EDITOR_MODE_OPTIONS: [
     {

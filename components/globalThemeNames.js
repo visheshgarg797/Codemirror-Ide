@@ -15,6 +15,12 @@ const GlobalThemeStyles = [
       backgroundColor: "#2a3541",
       color: "#129eca",
     },
+    col04: {
+      backgroundColor: "rgb(33, 42, 100)",
+      color: "white",
+      hoverButtonColor: "#090647",
+      buttonColor: "#4b8afc",
+    },
     font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
     classButton: "px-4 py-2 ml-2 rounded-full bg-gray-700 hover:bg-gray-500",
     classLnb:
@@ -34,6 +40,12 @@ const GlobalThemeStyles = [
     col03: {
       backgroundColor: "#e6f6ff",
       color: "#0c7ea3",
+    },
+    col04: {
+      backgroundColor: "rgb(33, 42, 100)",
+      color: "white",
+      hoverButtonColor: "#090647",
+      buttonColor: "#4b8afc",
     },
     font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
     classButton: "px-4 py-2 ml-2 rounded-full bg-gray-200  hover:bg-gray-300 ",
