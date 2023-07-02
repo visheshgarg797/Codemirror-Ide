@@ -42,7 +42,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
             if (e.offendingToken.type === ResearchAdvanceQLParser.DQUOTE) {
               msg = `add a valid phrase {"text"}`;
             } else {
-              msg = `unnecessary operator (add a keyword or advance_operator{city, country} after each operator)`;
+              msg = `add a keyword {apple , sprinklr , city, country} after each operator {AND , OR , NOT})`;
             }
           } else {
             for (let token in tokens.tokens) {
@@ -303,7 +303,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     offendingToken.stop = end;
     throw new ParseCancellationException(
       recognizer,
-      `use correct operator before colon {city: , country:}`,
+      `unknown operator '${offendingToken.text}' use correct operator before colon {city: , country:}`,
       offendingToken
     );
   }

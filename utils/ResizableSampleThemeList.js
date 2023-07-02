@@ -3,8 +3,8 @@ const ResizableSampleThemeList = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "24px",
-        maxHeight: "355px",
+        minHeight: "60px",
+        maxHeight: "144px",
         color: "black",
         backgroundColor: "white",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",

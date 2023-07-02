@@ -1,374 +1,53 @@
 "use client";
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
-
+import { useAnalysisMode } from "@/context/useAnalysisHook";
+import { ANALYSIS_SUBHEADINGS } from "@/constants/AnalysisSubheadings";
+import PopularEditor from "./PopularEditor";
+import Comparison from "./Comparison";
 const MainAnalysis = () => {
   const { themeStyles } = useCustomTheme();
+  const { analysis } = useAnalysisMode();
   return (
     <div
-      className="main-division p-5 pb-70 mt-2 mb-5"
       style={{
+        marginTop: "10px",
         backgroundColor: themeStyles.col02.backgroundColor,
-        marginInlineStart: "390px",
-        marginInlineEnd: "130px",
-        paddingEnd: "20px",
-        paddingBottom: "60px",
       }}
     >
-      <h1
-        style={{
-          color: themeStyles.col02.color,
-          paddingTop: "40px",
-          fontSize: "40px",
-          fontFamily: themeStyles.font,
-          fontWeight: "700",
-        }}
-      >
-        Analysis and Comparison
-      </h1>
-      <p
-        style={{
-          color: themeStyles.col02.color,
-          fontSize: "20px",
-          fontFamily: themeStyles.font,
-          fontWeight: "300",
-          lineHeight: "1.5",
-          marginTop: "2rem",
-        }}
-      >
-        <div style={{ color: "black" }}>
-          <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-            <p>
-              While considering a code editor for selection, we give priority to
-              the needed features, stability, and the availability of
-              documentation for adding new features or resolving existing
-              issues. In our rigorous evaluation process, we considered
-              CodeMirror, Monaco, Orion, Theia, and Ace as the most popular
-              choices used in the industry. Each editor brought its unique
-              strengths and weaknesses to the table, leading us to narrow down
-              our options. Ultimately, we opted to compare CodeMirror, Monaco,
-              and Ace, focusing on crucial features such as multi-line and
-              single-line editing, syntax highlighting, error visualization,
-              auto-completion, and resizing capabilities. We identified the
-              following weaknesses in our current editor, Sprinklr Monaco
-              editor, which drove our evaluation:
-            </p>
-            <ol style={{ fontStyle: "oblique" }}>
-              <li>1) Missing Bidirectional support</li>
-              <li>2) No option for multiple theme editors on a single page</li>
-              <li>3) Dynamic length editor</li>
-              <li>4) Pasting files on drag and drop</li>
-            </ol>
-            <p>
-              After careful consideration, we concluded that CodeMirror emerged
-              as the standout choice due to its comprehensive feature set and
-              unmatched versatility.
-            </p>
-          </div>
-          <table
+      {analysis === ANALYSIS_SUBHEADINGS.ANALYSIS_OPTION_1 ? (
+        <>
+          <div
             style={{
-              borderCollapse: "collapse",
-              border: "1px solid black",
-              fontSize: "1rem",
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
               marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "2rem",
+              fontStyle: "normal",
             }}
           >
-            <thead>
-              <tr>
-                <th
-                  style={{
-                    textAlign: "center",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  FEATURES
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                    paddingRight: "10px",
-                  }}
-                >
-                  CODEMIRROR
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                    paddingLeft: "10px",
-                  }}
-                >
-                  MONACO
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  ACE
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Multi line editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Single line editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Keyword highlighting</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Bracket Matching</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Comments</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  Error highlighting and syntax error visualization
-                </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Auto completion support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Callback support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Editor resizing</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  Cut, copy, paste support
-                </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  Substring selection support
-                </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Read only editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>onKeyDown listener</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Themes</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  &gt;1 editor with different theme
-                </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>RTL support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>
-                  NO, HAS A BUG WITH ARABIC
-                </td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Custom language support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>
-                  NOT MUCH RESOURCES AVAILABLE
-                </td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  File drag and drop support
-                </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-            <ol>
-              <li>
-                <strong>1) Multi-line Editor:</strong>
-                <br />
-                All three editors—CodeMirror, Monaco, and Ace—provide robust
-                support for multi-line editing, allowing developers to work with
-                multiple lines of code effortlessly.
-              </li>
-              <li>
-                <strong>2) Single-line Editor:</strong>
-                <br />
-                CodeMirror and Monaco both offer single-line editing
-                capabilities, while Ace does not have built-in support for this
-                feature.
-              </li>
-              <li>
-                <strong>3) Keyword Highlighting:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace excel in keyword highlighting,
-                aiding code readability and comprehension.
-              </li>
-              <li>
-                <strong>4) Bracket Matching:</strong>
-                <br />
-                All three editors showcase seamless bracket matching
-                functionality, simplifying code editing and reducing syntax
-                errors.
-              </li>
-              <li>
-                <strong>5)Comments:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace ensure efficient handling of code
-                comments, enhancing code organization and collaboration.
-              </li>
-              <li>
-                <strong>
-                  6) Error Highlighting and Syntax Error Visualization:
-                </strong>
-                <br />
-                CodeMirror, Monaco, and Ace provide effective error highlighting
-                and visual feedback, enabling developers to spot and rectify
-                coding mistakes promptly.
-              </li>
-              <li>
-                <strong>7) Auto-completion Support:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace offer reliable auto-completion
-                capabilities, facilitating faster coding and reducing errors.
-              </li>
-              <li>
-                <strong>8) Callback Support:</strong>
-                <br />
-                All three editors exhibit strong support for callbacks, allowing
-                developers to customize and extend editor functionality as
-                needed.
-              </li>
-              <li>
-                <strong>9) Editor Resizing:</strong>
-                <br />
-                CodeMirror and Ace include built-in editor resizing features,
-                offering developers the flexibility to adjust the editor's
-                dimensions dynamically. Monaco lacks this capability.
-              </li>
-              <li>
-                <strong>10) Cut, Copy, Paste Support:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace all provide seamless cut, copy, and
-                paste functionality, streamlining code editing tasks.
-              </li>
-              <li>
-                <strong>11) Substring Selection Support:</strong>
-                <br />
-                CodeMirror and Monaco enable substring selection, while Ace does
-                not possess this functionality out of the box.
-              </li>
-              <li>
-                <strong>12) Read-only Editor:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace support read-only mode, which is
-                valuable for displaying code snippets or readonly content.
-              </li>
-              <li>
-                <strong>13) onKeyDown Listener:</strong>
-                <br />
-                All three editors—CodeMirror, Monaco, and Ace—allow developers
-                to listen to keydown events, enabling customized key handling.
-              </li>
-              <li>
-                <strong>14) Themes:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace boast an extensive collection of
-                themes, empowering developers to personalize the editor's
-                appearance according to their preferences.
-              </li>
-              <li>
-                <strong>15) Multiple Editors with Different Themes:</strong>
-                <br />
-                CodeMirror is the only editor among the three that supports
-                multiple editors with different themes on the same page.
-              </li>
-              <li>
-                <strong>16) RTL Support:</strong>
-                <br />
-                CodeMirror provides comprehensive right-to-left (RTL) language
-                support, while Monaco lacks this feature. Ace has known issues
-                with RTL languages.
-              </li>
-              <li>
-                <strong>17)Custom Language Support:</strong>
-                <br />
-                CodeMirror and Monaco both offer robust support for creating
-                custom language modes, while Ace has fewer resources available
-                in this regard.
-              </li>
-              <li>
-                <strong>18)File drag and drop support:</strong>
-                <br />
-                CodeMirror enables users to drag and drop text files or text
-                directly into the CodeMirror editor interface. It then renders
-                the code inside the files and, additionally, parses, highlights,
-                and displays any errors present in the text. However, Monaco and
-                Ace editor lack this feature.
-              </li>
-            </ol>
+            Poular Editors
           </div>
-        </div>
-      </p>
+          <PopularEditor />
+        </>
+      ) : (
+        <>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              marginTop: "-3rem",
+              marginBottom: "2rem",
+              fontFamily: "Optimistic Text",
+              fontSize: "2rem",
+              fontStyle: "normal",
+            }}
+          >
+            Comparison
+          </div>
+          <Comparison />
+        </>
+      )}
     </div>
   );
 };

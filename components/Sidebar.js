@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
 import LeftNavButton from "./leftNavButton";
+import IntroLeftNavButton from "./IntroLeftNavButton";
 import EditorLeftNavButton from "./EditorLeftNavbutton";
+import AnalysisLeftNavButton from "./AnalysisLeftNabButton";
 import styles from "./style.css";
 
 const Sidebar = () => {
@@ -27,8 +29,8 @@ const Sidebar = () => {
         >
           GET STARTED
         </div>
-        <LeftNavButton index="Introduction" path="/intro" />
-        <LeftNavButton index="Analysis" path="/analysis" />
+        <IntroLeftNavButton index="Introduction" path="/intro" />
+        <AnalysisLeftNavButton index="Analysis" path="/analysis" />
         <EditorLeftNavButton index="Editor" path="/editor" />
         <LeftNavButton index="Conclusion" path="/conclusion" />
       </nav>

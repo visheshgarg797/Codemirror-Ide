@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
-import EditorModeToggleButton from "./EditorModeToggleButton";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import IDE from "./ide";
 const MainEditor = () => {

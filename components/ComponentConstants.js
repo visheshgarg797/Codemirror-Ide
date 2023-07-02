@@ -24,6 +24,26 @@ const COMPONENT_CONSTANTS = {
       value: EDITOR_MODES.MULTITHEME_EDITOR_MODE,
     },
   ],
+  INTRODUCTION_SUBHEADINGS_OPTIONS: [
+    {
+      label: "Overview",
+      value: "Overview",
+    },
+    {
+      label: "Requirements",
+      value: "Requirements",
+    },
+  ],
+  ANALYSIS_SUBHEADINGS_OPTIONS: [
+    {
+      label: "Popular Editors",
+      value: "Popular Editors",
+    },
+    {
+      label: "Comparison",
+      value: "Comparison",
+    },
+  ],
 };
 
 export default COMPONENT_CONSTANTS;

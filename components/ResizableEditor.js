@@ -192,6 +192,7 @@ export default function ResizaleEditor() {
             ? 2
             : 3
         ],
+        EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
             handleTextSelection();
