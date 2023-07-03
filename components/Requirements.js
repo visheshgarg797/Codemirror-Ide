@@ -10,8 +10,8 @@ const Requirements = () => {
       className="main-division p-5 pb-70 mt-2 mb-5"
       style={{
         backgroundColor: themeStyles.col02.backgroundColor,
-        marginInlineStart: "390px",
-        marginInlineEnd: "130px",
+        marginInlineStart: "350px",
+        marginInlineEnd: "170px",
         paddingRight: "20px",
         paddingBottom: "60px",
       }}

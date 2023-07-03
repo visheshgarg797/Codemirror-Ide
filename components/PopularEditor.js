@@ -36,7 +36,7 @@ const PopularEditor = () => {
           marginTop: "2rem",
         }}
       >
-        <div style={{ color: "black" }}>
+        <div style={{ color: themeStyles.col02.color }}>
           <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
             <p>
               While considering a code editor for selection, we give priority to

@@ -22,12 +22,10 @@ const DirectionChangeButton = () => {
         cursor: "pointer",
         color: themeStyles.col02.color,
         fontFamily: themeStyles.font,
-        marginLeft: "20px",
+        marginInlineStart: "20px",
         borderRadius: "50%",
         marginTop: "8px",
-        // width: "40px",
-        // height: "40px",
-        // paddingRight: "  6px",
+        marginInlineEnd: "  12px",
       }}
     >
       <BsArrowLeftRight size={15} />

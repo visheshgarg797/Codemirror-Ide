@@ -26,7 +26,7 @@ const LeftNavButton = (props) => {
   return (
     <div className="space-y-4">
       <div
-        className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300`}
+        className={themeStyles.classLnb2}
         onClick={() => handleClick()}
         style={{
           width: "16rem",

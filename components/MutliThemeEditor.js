@@ -64,7 +64,7 @@ const MultiThemeEditor = () => {
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
     wordsToInsert.forEach((word) => {
-      textToInsert += ` OR "${word}"`;
+      textToInsert += ` OR ${word.label}`;
     });
     textToInsert += ")";
     const changes = [
@@ -244,7 +244,7 @@ const MultiThemeEditor = () => {
       <div
         ref={editorRef}
         className="EditorContainer w-9/10"
-        style={{ width: "29rem" }}
+        style={{ width: "24rem" }}
       >
         {popupState.showPopup && (
           <Popup

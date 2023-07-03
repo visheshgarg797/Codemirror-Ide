@@ -11,6 +11,7 @@ import MainEditor from "./mainEditor";
 import MainIntro from "./mainIntro";
 
 import { useCustomDirection } from "@/context/useDirectionHook";
+import RightBar from "./RightFeatures";
 
 const MODULES = {
   INTRO: "intro",
@@ -48,6 +49,7 @@ const BasicLayout = ({ children }) => {
       <Navbar />
       <Sidebar />
       <BodyComponent />
+      {/* <RightBar /> */}
       <Footer />
     </div>
   );

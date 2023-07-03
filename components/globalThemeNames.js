@@ -22,9 +22,9 @@ const GlobalThemeStyles = [
       buttonColor: "#4b8afc",
     },
     font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
-    classButton: "px-4 py-2 ml-2 rounded-full bg-gray-700 hover:bg-gray-500",
-    classLnb:
-      "text-xl py-3 px-4 mb-0.5 text-center flex-1 rounded-r-ful bg-gray-700 hover:bg-gray-500 ",
+    classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-500",
+    classLnb2:
+      "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-500 ",
   },
   {
     theme: "light",
@@ -48,9 +48,9 @@ const GlobalThemeStyles = [
       buttonColor: "#4b8afc",
     },
     font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
-    classButton: "px-4 py-2 ml-2 rounded-full bg-gray-200  hover:bg-gray-300 ",
-    classLnb:
-      "text-xl py-3 px-4 mb-0.5 text-center flex-1 rounded-r-ful bg-gray-200 hover:bg-gray-300 ",
+    classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-300",
+    classLnb2:
+      "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 ",
   },
 ];
 

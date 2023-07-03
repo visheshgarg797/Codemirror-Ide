@@ -10,7 +10,12 @@ const ThemeToggleButton = () => {
     <button
       onClick={toggleTheme}
       className={themeStyles.classButton}
-      style={{ marginLeft: "20px", marginTop: "8px", borderRadius: "50%" }}
+      style={{
+        marginInlineStart: "20px",
+        marginTop: "8px",
+        borderRadius: "50%",
+        marginInlineEnd: "6px",
+      }}
       height="32px"
       width="32px"
     >

@@ -5,6 +5,7 @@ import { DirectionProvider } from "@/context/directionProvider";
 import { EditorModeProvider } from "@/context/editorModeProvider";
 import { AnalysisProvider } from "@/context/ananlysisSubheading";
 import { IntroProvider } from "@/context/introSubheading";
+import { useCustomTheme } from "@/context/useThemeHook";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -20,7 +21,12 @@ export default function RootLayout({ children }) {
           <EditorModeProvider>
             <ThemeProvider>
               <DirectionProvider>
-                <body className={inter.className}>{children}</body>
+                <body
+                  className={inter.className}
+                  style={{ backgroundColor: "#23272f" }}
+                >
+                  {children}
+                </body>
               </DirectionProvider>
             </ThemeProvider>
           </EditorModeProvider>

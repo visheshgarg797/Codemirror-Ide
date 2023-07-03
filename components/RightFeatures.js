@@ -7,14 +7,15 @@ import EditorLeftNavButton from "./EditorLeftNavbutton";
 import AnalysisLeftNavButton from "./AnalysisLeftNabButton";
 import styles from "./style.css";
 
-const Sidebar = () => {
+const RightBar = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
     <div
-      className="bg-gray-800 w-128 fixed mt-8"
+      className="bg-gray-800 w-256 fixed mt-8"
       style={{
         width: "20rem",
+        marginInlineEnd: "0px !important",
         backgroundColor: themeStyles.col02.backgroundColor,
       }}
     >
@@ -38,4 +39,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default RightBar;

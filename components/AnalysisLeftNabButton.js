@@ -40,7 +40,7 @@ const AnalysisLeftNavButton = (props) => {
     <div className="space-y-4">
       <div className="">
         <div
-          className={`flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 `}
+          className={themeStyles.classLnb2}
           onClick={() => handleClick()}
           style={{
             width: "16rem",
@@ -72,7 +72,7 @@ const AnalysisLeftNavButton = (props) => {
           {COMPONENT_CONSTANTS.ANALYSIS_SUBHEADINGS_OPTIONS.map((item) => (
             <div
               key={item.value}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-300 text-gray-700 pl-5`}
+              className={themeStyles.classLnb}
               style={{
                 width: "16rem",
                 fontWeight: "400",

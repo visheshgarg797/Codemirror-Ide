@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useCustomTheme } from "../context/useThemeHook";
-
+import { TiTick, TiTimes } from "react-icons/ti";
+import "./IconsColor.css";
 const Comparison = () => {
   const { themeStyles } = useCustomTheme();
   return (
@@ -36,11 +37,12 @@ const Comparison = () => {
           marginTop: "2rem",
         }}
       >
-        <div style={{ color: "black" }}>
+        <div style={{ color: themeStyles.col02.color }}>
           <table
             style={{
+              width: "100%",
               borderCollapse: "collapse",
-              border: "1px solid black",
+              border: `1px solid ${themeStyles.col02.color}`,
               fontSize: "1rem",
               marginBottom: "2rem",
             }}
@@ -49,28 +51,31 @@ const Comparison = () => {
               <tr>
                 <th
                   style={{
-                    textAlign: "center",
+                    textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
+                    color: themeStyles.col03.color,
                   }}
                 >
                   FEATURES
                 </th>
                 <th
                   style={{
-                    textAlign: "center",
+                    textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    paddingRight: "10px",
+                    color: themeStyles.col03.color,
                   }}
                 >
                   CODEMIRROR
                 </th>
                 <th
                   style={{
-                    textAlign: "center",
+                    textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
+                    marginLeft: "50px",
+                    color: themeStyles.col03.color,
                     paddingLeft: "10px",
                   }}
                 >
@@ -78,9 +83,10 @@ const Comparison = () => {
                 </th>
                 <th
                   style={{
-                    textAlign: "center",
+                    textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
+                    color: themeStyles.col03.color,
                   }}
                 >
                   ACE
@@ -88,127 +94,513 @@ const Comparison = () => {
               </tr>
             </thead>
             <tbody>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Multi line editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Single line editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Keyword highlighting</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Bracket Matching</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Comments</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
-                  Error highlighting and syntax error visualization
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Multi line editor
                 </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Auto completion support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Single line editor
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Callback support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Keyword highlighting
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Editor resizing</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Bracket Matching
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Comments
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Error highlighting
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Auto completion support
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Callback support
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    textAlign: "right",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Editor resizing
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTimes size={30} className="red-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
                   Cut, copy, paste support
                 </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
                   Substring selection support
                 </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Read only editor</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Read only editor
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>onKeyDown listener</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  onKeyDown listener
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Themes</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Themes
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTick size={30} className="green-icon" />
+                </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
                   &gt;1 editor with different theme
                 </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-              </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>RTL support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>
-                  NO, HAS A BUG WITH ARABIC
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTimes size={30} className="red-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
                 </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>Custom language support</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>
-                  NOT MUCH RESOURCES AVAILABLE
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  RTL support
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTimes size={30} className="red-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
                 </td>
               </tr>
-              <tr style={{ border: "1px solid black" }}>
-                <td style={{ textAlign: "center" }}>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
+                  Custom language support
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
+                </td>
+              </tr>
+              <tr style={{ border: `1px solid ${themeStyles.col02.color}` }}>
+                <td
+                  style={{
+                    textAlign: "left",
+
+                    fontWeight: "bold",
+                  }}
+                >
                   File drag and drop support
                 </td>
-                <td style={{ textAlign: "center" }}>YES</td>
-                <td style={{ textAlign: "center" }}>NO</td>
-                <td style={{ textAlign: "center" }}>NO</td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTick size={30} className="green-icon" />
+                </td>
+                <td
+                  style={{
+                    paddingLeft: "60px",
+                  }}
+                >
+                  <TiTimes size={30} className="red-icon" />
+                </td>
+                <td>
+                  <TiTimes size={30} className="red-icon" />
+                </td>
               </tr>
             </tbody>
           </table>
@@ -226,8 +618,9 @@ const Comparison = () => {
                 <strong>2) Single-line Editor:</strong>
                 <br />
                 CodeMirror and Monaco both offer single-line editing
-                capabilities, while Ace does not have built-in support for this
-                feature.
+                capabilities, while Ace does{" "}
+                <TiTimes size={30} className="red-icon" />t have built-in
+                support for this feature.
               </li>
               <li>
                 <strong>3) Keyword Highlighting:</strong>
@@ -287,7 +680,8 @@ const Comparison = () => {
                 <strong>11) Substring Selection Support:</strong>
                 <br />
                 CodeMirror and Monaco enable substring selection, while Ace does
-                not possess this functionality out of the box.
+                <TiTimes size={30} className="red-icon" />t possess this
+                functionality out of the box.
               </li>
               <li>
                 <strong>12) Read-only Editor:</strong>
@@ -318,8 +712,9 @@ const Comparison = () => {
                 <strong>16) RTL Support:</strong>
                 <br />
                 CodeMirror provides comprehensive right-to-left (RTL) language
-                support, while Monaco lacks this feature. Ace has known issues
-                with RTL languages.
+                support, while Monaco lacks this feature. Ace has k
+                <TiTimes size={30} className="red-icon" />
+                wn issues with RTL languages.
               </li>
               <li>
                 <strong>17)Custom Language Support:</strong>

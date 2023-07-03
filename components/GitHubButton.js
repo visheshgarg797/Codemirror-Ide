@@ -10,8 +10,9 @@ const GitHubButton = () => {
     <a
       href="https://github.com/visheshgarg797/Codemirror-Ide"
       style={{
-        marginLeft: "20px",
+        marginInlineStart: "20px",
         marginTop: "8px",
+        marginInlineEnd: "12px",
         color:
           themeStyles.theme === Theme_Name.DARK_MODE
             ? GlobalThemeStyles[0].col01.color

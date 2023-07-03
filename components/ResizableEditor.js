@@ -220,7 +220,7 @@ export default function ResizaleEditor() {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer">
+      <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
