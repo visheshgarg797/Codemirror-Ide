@@ -54,7 +54,7 @@ const Comparison = () => {
                     textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: themeStyles.col03.color,
+                    color: themeStyles.col02.color,
                   }}
                 >
                   FEATURES
@@ -64,7 +64,7 @@ const Comparison = () => {
                     textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: themeStyles.col03.color,
+                    color: themeStyles.col02.color,
                   }}
                 >
                   CODEMIRROR
@@ -75,7 +75,7 @@ const Comparison = () => {
                     fontSize: "1.5rem",
                     fontWeight: "bold",
                     marginLeft: "50px",
-                    color: themeStyles.col03.color,
+                    color: themeStyles.col02.color,
                     paddingLeft: "10px",
                   }}
                 >
@@ -86,7 +86,7 @@ const Comparison = () => {
                     textAlign: "left",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: themeStyles.col03.color,
+                    color: themeStyles.col02.color,
                   }}
                 >
                   ACE
