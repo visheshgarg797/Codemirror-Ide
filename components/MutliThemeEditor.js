@@ -22,11 +22,17 @@ const MultiThemeEditor = () => {
   const viewRef = useRef(null);
 
   // Will be used in theme dropdown
-  const themeNames = ["LIGHT #1", "DARK #1", "LIGHT #2", "DARK #2"];
+  const themeNames = [
+    "Github Light Theme",
+    "Github Dark Theme",
+    "Gruvbox Light Hard",
+    "Gruvbox Dark Hard",
+  ];
   const themeMapping = {};
   for (let i = 0; i < 4; i++) {
     themeMapping[themeNames[i]] = i;
   }
+  const [themeNamesRender, setThemeNamesRender] = useState([]);
 
   const { themeStyles } = useCustomTheme();
   const { direction } = useCustomDirection();
@@ -175,48 +181,52 @@ const MultiThemeEditor = () => {
 
   useEffect(() => {
     let persistCurrentTheme = false;
-    if (
-      currentThemeSelected === themeNames[2] &&
-      themeStyles.theme === Theme_Name.LIGHT_MODE
-    ) {
-      persistCurrentTheme = true;
-    }
-    if (
-      currentThemeSelected === themeNames[3] &&
-      themeStyles.theme === Theme_Name.DARK_MODE
-    ) {
-      persistCurrentTheme = true;
-    }
     let idx;
-    if (!persistCurrentTheme) {
+    if (themeStyles.theme == Theme_Name.LIGHT_MODE) {
+      setThemeNamesRender((themeNamesRender) => [
+        "Github Light Theme",
+        "Gruvbox Light Hard",
+      ]);
       if (
-        direction == Direction.LTR &&
-        themeStyles.theme === Theme_Name.LIGHT_MODE
+        currentThemeSelected === themeNames[0] ||
+        currentThemeSelected === themeNames[2]
       ) {
-        idx = 0;
-      } else if (
-        direction == Direction.LTR &&
-        themeStyles.theme === Theme_Name.DARK_MODE
-      ) {
-        idx = 1;
-      } else if (
-        direction == Direction.RTL &&
-        themeStyles.theme === Theme_Name.LIGHT_MODE
-      ) {
-        idx = 4;
-      } else if (
-        direction == Direction.RTL &&
-        themeStyles.theme === Theme_Name.DARK_MODE
-      ) {
-        idx = 5;
+        persistCurrentTheme = true;
+      } else {
+        if (currentThemeSelected === themeNames[1]) {
+          idx = 0;
+        }
+        if (currentThemeSelected === themeNames[3]) {
+          idx = 2;
+        }
       }
+    } else {
+      setThemeNamesRender((themeNamesRender) => [
+        "Github Dark Theme",
+        "Gruvbox Dark Hard",
+      ]);
+      if (
+        currentThemeSelected === themeNames[1] ||
+        currentThemeSelected === themeNames[3]
+      ) {
+        persistCurrentTheme = true;
+      } else {
+        if (currentThemeSelected === themeNames[0]) {
+          idx = 1;
+        }
+        if (currentThemeSelected === themeNames[2]) {
+          idx = 3;
+        }
+      }
+    }
+    if (!persistCurrentTheme) {
       setThemeIndex(idx);
       setCurrentThemeSelected(themeNames[idx]);
     }
   }, [themeStyles.theme]);
 
   return (
-    <div className="" style={{ marginRight: "2rem", marginTop: "-50px" }}>
+    <div className="" style={{ marginRight: "2rem", marginTop: "" }}>
       <div
         className="ThemeSelectionContainer w-1/10"
         style={{
@@ -232,9 +242,14 @@ const MultiThemeEditor = () => {
           style={{
             backgroundColor: themeStyles.col02.backgroundColor,
             color: themeStyles.col02.color,
+            border: `1px solid ${
+              themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
+            }`,
+            borderRadius: "3px",
+            padding: "2px",
           }}
         >
-          {themeNames.map((themeName, index) => {
+          {themeNamesRender.map((themeName, index) => {
             return (
               <option value={themeName} key={index}>
                 {themeName}

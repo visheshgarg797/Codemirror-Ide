@@ -7,7 +7,7 @@ const multiThemeSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -40,8 +40,8 @@ const multiThemeSampleThemeList = [
       "&": {
         maxHeight: "355px",
         color: "white",
-        backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
+        backgroundColor: "#24292e",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -79,8 +79,8 @@ const multiThemeSampleThemeList = [
       "&": {
         maxHeight: "355px",
         color: "black",
-        backgroundColor: "#A9A9A9",
-        borderRadius: "1.5rem",
+        backgroundColor: "#f8f5d7",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -118,8 +118,8 @@ const multiThemeSampleThemeList = [
       "&": {
         maxHeight: "355px",
         color: "white",
-        backgroundColor: "#696969",
-        borderRadius: "1.5rem",
+        backgroundColor: "#1e2021",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -159,7 +159,7 @@ const multiThemeSampleThemeList = [
         maxHeight: "355px",
         color: "black",
         backgroundColor: "white",
-        borderRadius: "1.5rem",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -199,8 +199,8 @@ const multiThemeSampleThemeList = [
         direction: "rtl",
         maxHeight: "355px",
         color: "white",
-        backgroundColor: "#16181d",
-        borderRadius: "1.5rem",
+        backgroundColor: "#24292e",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -240,8 +240,8 @@ const multiThemeSampleThemeList = [
         direction: "rtl",
         maxHeight: "355px",
         color: "black",
-        backgroundColor: "#A9A9A9",
-        borderRadius: "1.5rem",
+        backgroundColor: "#f8f5d7",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {
@@ -280,8 +280,8 @@ const multiThemeSampleThemeList = [
         direction: "rtl",
         maxHeight: "355px",
         color: "white",
-        backgroundColor: "#696969",
-        borderRadius: "1.5rem",
+        backgroundColor: "#1e2021",
+        borderRadius: "2px",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
       },
       ".cm-scroller": {

@@ -72,7 +72,7 @@ const IDE = () => {
             style={{
               color: themeStyles.col02.color,
               marginTop: "-3rem",
-              marginBottom: "2rem",
+              marginBottom: "0.5rem",
               fontFamily: "Optimistic Text",
               fontSize: "2rem",
               fontStyle: "normal",
@@ -80,7 +80,7 @@ const IDE = () => {
           >
             Multitheme editor
           </div>
-          <div className="flex">
+          <div className="flex flex-wrap">
             <MultiThemeEditor />
             <MultiThemeEditor />
           </div>
