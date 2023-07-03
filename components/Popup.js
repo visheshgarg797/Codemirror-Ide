@@ -44,12 +44,12 @@ const Popup = ({ position, selection, handleOnClick }) => {
     fontSize: "10px",
     marginTop: "20px",
     position: "absolute",
-    width: "400px",
+    width: "300px",
     backgroundColor: themeStyles.col04.backgroundColor,
     padding: "10px",
     position: "absolute",
-    top: position.y,
-    left: position.x - 200,
+    top: position.y - 5,
+    left: position.x - 150,
     zIndex: "10",
     textAlign: "center",
     color: themeStyles.col04.color,
@@ -100,7 +100,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
           <br />
           <div
             style={{
-              width: "400px",
+              width: "300px",
               paddingRight: "1rem",
               marginTop: "0.5rem",
               textAlign: "left",
@@ -118,7 +118,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
 
                     padding: "4px 10px",
                     borderRadius: "5px",
-                    fontSize: "0.7rem",
+                    fontSize: "10px",
                     fontFamily: "system ui",
                     alignContent: "normal",
                   }}
