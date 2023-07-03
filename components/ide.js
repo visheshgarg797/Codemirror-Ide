@@ -6,7 +6,7 @@ import SingleLineEditor from "./SinglelineEditor";
 import ResizaleEditor from "./ResizableEditor";
 import MultiThemeEditor from "./MutliThemeEditor";
 import { EDITOR_MODES } from "@/constants/EditorModes";
-
+import RightBar from "./RightFeatures";
 const IDE = () => {
   const { editorMode } = useCustomEditorMode();
   const { themeStyles } = useCustomTheme();
@@ -33,6 +33,15 @@ const IDE = () => {
             Fixed height editor
           </div>
           <MultiLineEditor />
+          <RightBar
+            features={[
+              "Fixed height editor both vertically and horizontally",
+              "Horizontally text wraps to another line",
+              "Vertically, editor scrolls",
+              "Completion box appears near the cursor and error gets underlined",
+              "We can drag and drop a file into the editor and the text/code inside it will be inserted into the editor",
+            ]}
+          />
         </>
       ) : editorMode === EDITOR_MODES.SINGLELINE_EDITOR_MODE ? (
         <>
@@ -49,6 +58,14 @@ const IDE = () => {
             Text input editor
           </div>
           <SingleLineEditor />
+          <RightBar
+            features={[
+              "Height of editor fixed at single line",
+              "Acts as a simple input box",
+              "Recommendations appear at bottom of the editor at a fixed place which acts as a drop-down",
+              "We can copy and paste multiple lines in the editor and it will get appended at the cursor point as a single line",
+            ]}
+          />
         </>
       ) : editorMode === EDITOR_MODES.RESIZABLE_EDITOR_MODE ? (
         <>
@@ -65,6 +82,13 @@ const IDE = () => {
             Dynamic height editor
           </div>
           <ResizaleEditor />
+          <RightBar
+            features={[
+              "Tackles issue of editor resizing",
+              "Editor which expands height when a certain amount of text is added or when we want to add a line",
+              "Includes all features of multiline editor like fixed height, autocompletions, error display etc",
+            ]}
+          />
         </>
       ) : (
         <>
@@ -83,6 +107,15 @@ const IDE = () => {
           <div className="flex flex-wrap">
             <MultiThemeEditor />
             <MultiThemeEditor />
+            <RightBar
+              features={[
+                "Tackles the issue of maintaining more than one editor with different theme on the same page",
+                "Gives two options on light and dark modes i.e. GitHub theme and Gruvbox theme",
+                "Persists editor theme on changing global theme from light to dark mode and vice versa",
+                "Maintains state of code seperately for both editor so program doesnt break or show ambiguous behaviour",
+                "Includes all features of multiline editor like fixed height, autocompletions, error display etc",
+              ]}
+            />
           </div>
         </>
       )}

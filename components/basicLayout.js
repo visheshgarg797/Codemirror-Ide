@@ -49,7 +49,6 @@ const BasicLayout = ({ children }) => {
       <Navbar />
       <Sidebar />
       <BodyComponent />
-      {/* <RightBar /> */}
       <Footer />
     </div>
   );

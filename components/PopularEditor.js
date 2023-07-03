@@ -37,7 +37,7 @@ const PopularEditor = () => {
         }}
       >
         <div style={{ color: themeStyles.col02.color }}>
-          <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
+          <div style={{ fontSize: "1rem", marginBottom: "1rem" }}>
             <p>
               While considering a code editor for selection, we give priority to
               the needed features, stability, and the availability of
@@ -46,9 +46,11 @@ const PopularEditor = () => {
               CodeMirror, Monaco, Orion, Theia, and Ace as the most popular
               choices used in the industry. Each editor brought its unique
               strengths and weaknesses to the table, leading us to narrow down
-              our options. Ultimately, we opted to compare CodeMirror, Monaco,
-              and Ace, focusing on crucial features such as multi-line and
-              single-line editing, syntax highlighting, error visualization,
+              our options as Theia being a lot bulky compared to all other
+              editors and Orion having no documentation availability .
+              Ultimately, we opted to compare CodeMirror, Monaco, and Ace,
+              focusing on crucial features such as multi-line and single-line
+              editing, syntax highlighting, error visualization,
               auto-completion, and resizing capabilities. We identified the
               following weaknesses in our current editor, Sprinklr Monaco
               editor, which drove our evaluation:
@@ -57,140 +59,58 @@ const PopularEditor = () => {
               <li>1) Missing Bidirectional support</li>
               <li>2) No option for multiple theme editors on a single page</li>
               <li>3) Dynamic length editor</li>
-              <li>4) Pasting files on drag and drop</li>
+              <li>4) Drag and Drop file support </li>
             </ol>
-            <p>
-              After careful consideration, we concluded that CodeMirror emerged
-              as the standout choice due to its comprehensive feature set and
-              unmatched versatility.
-            </p>
           </div>
 
           <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-            <ol>
-              <li>
-                <strong>1) Multi-line Editor:</strong>
-                <br />
-                All three editors—CodeMirror, Monaco, and Ace—provide robust
-                support for multi-line editing, allowing developers to work with
-                multiple lines of code effortlessly.
-              </li>
-              <li>
-                <strong>2) Single-line Editor:</strong>
-                <br />
-                CodeMirror and Monaco both offer single-line editing
-                capabilities, while Ace does not have built-in support for this
-                feature.
-              </li>
-              <li>
-                <strong>3) Keyword Highlighting:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace excel in keyword highlighting,
-                aiding code readability and comprehension.
-              </li>
-              <li>
-                <strong>4) Bracket Matching:</strong>
-                <br />
-                All three editors showcase seamless bracket matching
-                functionality, simplifying code editing and reducing syntax
-                errors.
-              </li>
-              <li>
-                <strong>5)Comments:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace ensure efficient handling of code
-                comments, enhancing code organization and collaboration.
-              </li>
-              <li>
-                <strong>
-                  6) Error Highlighting and Syntax Error Visualization:
-                </strong>
-                <br />
-                CodeMirror, Monaco, and Ace provide effective error highlighting
-                and visual feedback, enabling developers to spot and rectify
-                coding mistakes promptly.
-              </li>
-              <li>
-                <strong>7) Auto-completion Support:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace offer reliable auto-completion
-                capabilities, facilitating faster coding and reducing errors.
-              </li>
-              <li>
-                <strong>8) Callback Support:</strong>
-                <br />
-                All three editors exhibit strong support for callbacks, allowing
-                developers to customize and extend editor functionality as
-                needed.
-              </li>
-              <li>
-                <strong>9) Editor Resizing:</strong>
-                <br />
-                CodeMirror and Ace include built-in editor resizing features,
-                offering developers the flexibility to adjust the editor's
-                dimensions dynamically. Monaco lacks this capability.
-              </li>
-              <li>
-                <strong>10) Cut, Copy, Paste Support:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace all provide seamless cut, copy, and
-                paste functionality, streamlining code editing tasks.
-              </li>
-              <li>
-                <strong>11) Substring Selection Support:</strong>
-                <br />
-                CodeMirror and Monaco enable substring selection, while Ace does
-                not possess this functionality out of the box.
-              </li>
-              <li>
-                <strong>12) Read-only Editor:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace support read-only mode, which is
-                valuable for displaying code snippets or readonly content.
-              </li>
-              <li>
-                <strong>13) onKeyDown Listener:</strong>
-                <br />
-                All three editors—CodeMirror, Monaco, and Ace—allow developers
-                to listen to keydown events, enabling customized key handling.
-              </li>
-              <li>
-                <strong>14) Themes:</strong>
-                <br />
-                CodeMirror, Monaco, and Ace boast an extensive collection of
-                themes, empowering developers to personalize the editor's
-                appearance according to their preferences.
-              </li>
-              <li>
-                <strong>15) Multiple Editors with Different Themes:</strong>
-                <br />
-                CodeMirror is the only editor among the three that supports
-                multiple editors with different themes on the same page.
-              </li>
-              <li>
-                <strong>16) RTL Support:</strong>
-                <br />
-                CodeMirror provides comprehensive right-to-left (RTL) language
-                support, while Monaco lacks this feature. Ace has known issues
-                with RTL languages.
-              </li>
-              <li>
-                <strong>17)Custom Language Support:</strong>
-                <br />
-                CodeMirror and Monaco both offer robust support for creating
-                custom language modes, while Ace has fewer resources available
-                in this regard.
-              </li>
-              <li>
-                <strong>18)File drag and drop support:</strong>
-                <br />
-                CodeMirror enables users to drag and drop text files or text
-                directly into the CodeMirror editor interface. It then renders
-                the code inside the files and, additionally, parses, highlights,
-                and displays any errors present in the text. However, Monaco and
-                Ace editor lack this feature.
-              </li>
-            </ol>
+            <h1
+              style={{
+                color: themeStyles.col02.color,
+                paddingTop: "40px",
+                fontSize: "20px",
+                fontFamily: themeStyles.font,
+                fontWeight: "700",
+              }}
+            >
+              Editors used by different companies
+            </h1>
+            <p>
+              {" "}
+              Codeirror is being used by Github , WordPress , Dropbox Paper ,
+              Mozilla , Replit and many companies are shifting to codemirror
+              from Monaco and Ace . While , Monacco is popular because it is
+              used by Microsoft . Salesforce and Azure are the others using it .
+              Ace is stable editor but getting unpopular as it is lacking in
+              latest features . It is being used by Cloud9 IDE , Brackets ,
+              NetBeans . There has been a shift from Ace to Monaco and now to
+              Codemirror in case of popularity and usage among companies .
+            </p>
+            <img
+              class="float-left ..."
+              src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
+              style={{ width: "75%", marginInlineEnd: "1rem" }}
+            ></img>
+            <p>
+              Popularity of editors according to npm package usage till 2020 is
+              shown in the image , monaco was most popular at that time . It is
+              clear that codemirror was less popular than monaco and ace but the
+              trend started changing and if we see downloads for last 1 year ,
+              codemirror is the most popular and widely used among all . We can
+              see that in last 1 year codemirror has most downloads among them .
+            </p>
+            <img
+              class="float-left ..."
+              src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
+              style={{ width: "75%", marginInlineEnd: "1rem" }}
+            ></img>
+            <p>
+              This change in trend tends towards codemirror to choose as editor
+              because most of companies are shifting towards it and it is having
+              stable version as it has Codemirror 6.0 . It seems like it will
+              have good community to add new features and resolve issues in
+              existing features in coming years then rest of them .
+            </p>
           </div>
         </div>
       </p>

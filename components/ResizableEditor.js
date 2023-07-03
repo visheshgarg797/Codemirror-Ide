@@ -74,9 +74,9 @@ export default function ResizaleEditor() {
       tree.accept(visitor);
     } catch (e) {
       errors.push({
-        from: e.offendingToken.start,
-        to: e.offendingToken.stop + 1,
-        message: e.message,
+        from: e?.offendingToken.start,
+        to: e?.offendingToken.stop + 1,
+        message: e?.message,
       });
     }
     return errors;
