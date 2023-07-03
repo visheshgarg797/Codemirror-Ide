@@ -7,6 +7,8 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     keywords.add(item.label);
   });
 
+  let selectedTextIsKeyword = false;
+
   let actualStartPos = startPos,
     actualEndPos = endPos,
     isValidSelection = false,
@@ -16,7 +18,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     if (
       token.type === ResearchAdvanceQLLexer.PHRASE &&
       token.startIndex <= startPos &&
-      token.stopIndex >= endPos - 1
+      token.stopIndex >= endPos
     ) {
       actualSelectedText = token.text;
       actualStartPos = token.startIndex;
@@ -27,8 +29,9 @@ const IsValidSelection = (tokens, startPos, endPos) => {
       token.type === ResearchAdvanceQLLexer.TERM_NORMAL &&
       keywords.has(token.text) &&
       token.startIndex <= startPos &&
-      token.stopIndex >= endPos - 1
+      token.stopIndex >= endPos
     ) {
+      selectedTextIsKeyword = true;
       actualSelectedText = token.text;
       actualStartPos = token.startIndex;
       actualEndPos = token.stopIndex;
@@ -46,6 +49,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     actualStartPos: actualStartPos,
     actualEndPos: actualEndPos,
     isValidSelection: isValidSelection,
+    selectedTextIsKeyword: selectedTextIsKeyword,
   };
 };
 export default IsValidSelection;

@@ -40,6 +40,7 @@ const MultiLineEditor = () => {
 
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
+  const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
 
   const createParserFromLexer = (lexer) => {
     const tokens = new antlr4.CommonTokenStream(lexer);
@@ -108,7 +109,11 @@ const MultiLineEditor = () => {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length + 2,
+        from:
+          popupState.selectionPos +
+          popupState.selection.length +
+          2 -
+          selectedTextIsKeyword,
         insert: textToInsert,
       },
     ];
@@ -146,6 +151,7 @@ const MultiLineEditor = () => {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
+      setSelectedTextIsKeyword(checkValidityOfSelection.selectedTextIsKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
       );
