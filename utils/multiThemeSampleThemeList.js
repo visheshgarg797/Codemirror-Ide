@@ -78,7 +78,7 @@ const multiThemeSampleThemeList = [
     {
       "&": {
         maxHeight: "355px",
-        color: "white",
+        color: "black",
         backgroundColor: "#A9A9A9",
         borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
@@ -151,6 +151,7 @@ const multiThemeSampleThemeList = [
     },
     { dark: true }
   ),
+  //light 1 rtl
   EditorView.theme(
     {
       "&": {
@@ -191,6 +192,7 @@ const multiThemeSampleThemeList = [
     },
     { dark: false }
   ),
+  //dark 1 rtl
   EditorView.theme(
     {
       "&": {
@@ -231,12 +233,13 @@ const multiThemeSampleThemeList = [
     },
     { dark: true }
   ),
+  //light 2 rtl
   EditorView.theme(
     {
       "&": {
         direction: "rtl",
         maxHeight: "355px",
-        color: "white",
+        color: "black",
         backgroundColor: "#A9A9A9",
         borderRadius: "1.5rem",
         boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
@@ -270,6 +273,7 @@ const multiThemeSampleThemeList = [
     },
     { dark: false }
   ),
+  // dark 2 rtl
   EditorView.theme(
     {
       "&": {

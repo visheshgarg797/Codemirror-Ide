@@ -159,7 +159,9 @@ export default function ResizaleEditor() {
       selection: null,
       showPopup: false,
     }));
-    return startCompletion(viewRef.current, { trigger: "input" });
+    if (!popupState.showPopup) {
+      return startCompletion(viewRef.current, { trigger: "input" });
+    }
   };
 
   useEffect(() => {

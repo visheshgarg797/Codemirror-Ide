@@ -91,7 +91,9 @@ const MultiThemeEditor = () => {
       selection: null,
       showPopup: false,
     }));
-    return startCompletion(viewRef.current, { trigger: "input" });
+    if (!popupState.showPopup) {
+      return startCompletion(viewRef.current, { trigger: "input" });
+    }
   };
 
   const handleTextSelection = (e) => {
