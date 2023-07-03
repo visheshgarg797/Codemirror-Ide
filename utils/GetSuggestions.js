@@ -77,7 +77,6 @@ const getKeywordFilter =
 
     const secLastWordBeforeCursor =
       traverseBackCursor(textInEditor, pos).secLastWordBeforeCursor || "";
-    console.log(wordBeforeCursor, secLastWordBeforeCursor);
 
     const keywords = new Set();
     const operators = new Set();

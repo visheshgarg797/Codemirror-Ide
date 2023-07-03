@@ -102,7 +102,7 @@ const MultiLineEditor = () => {
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
     wordsToInsert.forEach((word) => {
-      textToInsert += ` OR ${word.label}`;
+      textToInsert += ` OR "${word}"`;
     });
     textToInsert += ")";
     const changes = [
@@ -196,7 +196,6 @@ const MultiLineEditor = () => {
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
-            console.log(code);
             handleTextSelection();
           }
           if (update.docChanged) {

@@ -1,10 +1,12 @@
 import { ResearchAdvanceQLLexer } from "@/components/antlrGenerated";
 import Data from "./Data";
-const keywords = new Set();
-Data.keywords.forEach((item) => {
-  keywords.add(item.label);
-});
+
 const IsValidSelection = (tokens, startPos, endPos) => {
+  const keywords = new Set();
+  Data.keywords.forEach((item) => {
+    keywords.add(item.label);
+  });
+
   let actualStartPos = startPos,
     actualEndPos = endPos,
     isValidSelection = false,
@@ -14,7 +16,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     if (
       token.type === ResearchAdvanceQLLexer.PHRASE &&
       token.startIndex <= startPos &&
-      token.stopIndex >= endPos
+      token.stopIndex >= endPos - 1
     ) {
       actualSelectedText = token.text;
       actualStartPos = token.startIndex;
@@ -25,7 +27,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
       token.type === ResearchAdvanceQLLexer.TERM_NORMAL &&
       keywords.has(token.text) &&
       token.startIndex <= startPos &&
-      token.stopIndex >= endPos
+      token.stopIndex >= endPos - 1
     ) {
       actualSelectedText = token.text;
       actualStartPos = token.startIndex;
@@ -37,7 +39,9 @@ const IsValidSelection = (tokens, startPos, endPos) => {
   return {
     actualSelectedText:
       actualSelectedText.length > 0
-        ? actualSelectedText.substring(1, actualSelectedText.length - 1)
+        ? keywords.has(actualSelectedText)
+          ? actualSelectedText
+          : actualSelectedText.substring(1, actualSelectedText.length - 1)
         : 0,
     actualStartPos: actualStartPos,
     actualEndPos: actualEndPos,
