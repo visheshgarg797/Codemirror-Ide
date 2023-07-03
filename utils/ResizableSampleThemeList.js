@@ -4,7 +4,7 @@ const style1 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "96px",
         color: "black",
         backgroundColor: "white",
@@ -64,7 +64,7 @@ const style1 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "96px",
         minWidth: "20px",
         color: "white",
@@ -124,7 +124,7 @@ const style1 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "96px",
         color: "black",
         backgroundColor: "white",
@@ -183,7 +183,7 @@ const style1 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "96px",
         color: "white",
         backgroundColor: "#16181d",
@@ -244,7 +244,7 @@ const style2 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "144px",
         color: "black",
         backgroundColor: "white",
@@ -304,7 +304,7 @@ const style2 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "144px",
         minWidth: "20px",
         color: "white",
@@ -364,7 +364,7 @@ const style2 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "144px",
         color: "black",
         backgroundColor: "white",
@@ -423,7 +423,7 @@ const style2 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "144px",
         color: "white",
         backgroundColor: "#16181d",
@@ -484,7 +484,7 @@ const style3 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "192px",
         color: "black",
         backgroundColor: "white",
@@ -544,7 +544,7 @@ const style3 = [
   EditorView.theme(
     {
       "&": {
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "192px",
         minWidth: "20px",
         color: "white",
@@ -604,7 +604,7 @@ const style3 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "192px",
         color: "black",
         backgroundColor: "white",
@@ -663,7 +663,7 @@ const style3 = [
     {
       "&": {
         direction: "rtl",
-        minHeight: "60px",
+        minHeight: "30px",
         maxHeight: "192px",
         color: "white",
         backgroundColor: "#16181d",

@@ -1,9 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useCustomTheme } from "../context/useThemeHook";
-import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import IDE from "./ide";
-import RightBar from "./RightFeatures";
 
 const MainEditor = () => {
   const { themeStyles } = useCustomTheme();

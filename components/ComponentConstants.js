@@ -39,6 +39,104 @@ const COMPONENT_CONSTANTS = {
       value: "Comparison",
     },
   ],
+  COMPARISION_TABLE_CONTENT: [
+    {
+      feature: "Multi line editor",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Single line editor",
+      codemirror: "YES",
+      ace: "NO",
+      monaco: "YES",
+    },
+    {
+      feature: "Keyword highlighting",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Bracket Matching",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Comments",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Error highlighting and syntax error visualization",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Auto completion support",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Callback support",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Editor resizing",
+      codemirror: "YES",
+      ace: "NO",
+      monaco: "NO",
+    },
+    {
+      feature: "Copy, paste support",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Substring selection support",
+      codemirror: "YES",
+      ace: "NO",
+      monaco: "YES",
+    },
+    {
+      feature: "Read only editor",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Multiple theme support",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "NO",
+    },
+    {
+      feature: "RTL support",
+      codemirror: "YES",
+      ace: "NO",
+      monaco: "NO",
+    },
+    {
+      feature: "Custom language support",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
+    {
+      feature: "Drag and drop support",
+      codemirror: "YES",
+      ace: "NO",
+      monaco: "NO",
+    },
+  ],
 };
 
 export default COMPONENT_CONSTANTS;

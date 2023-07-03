@@ -1,11 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useCustomTheme } from "../context/useThemeHook";
-import LeftNavButton from "./leftNavButton";
-import IntroLeftNavButton from "./IntroLeftNavButton";
-import EditorLeftNavButton from "./EditorLeftNavbutton";
-import AnalysisLeftNavButton from "./AnalysisLeftNabButton";
-import styles from "./style.css";
 
 const RightBar = (props) => {
   const { themeStyles } = useCustomTheme();

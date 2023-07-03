@@ -87,6 +87,7 @@ const IDE = () => {
               "Tackles issue of editor resizing",
               "Editor which expands height when a certain amount of text is added or when we want to add a line",
               "Includes all features of multiline editor like fixed height, autocompletions, error display etc",
+              "The resizable editor feature offers users the flexibility to customize the height of the editor, enhancing the overall user experience by allowing them to adjust it according to their preferences and needs.",
             ]}
           />
         </>

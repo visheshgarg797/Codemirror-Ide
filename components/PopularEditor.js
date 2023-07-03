@@ -47,13 +47,13 @@ const PopularEditor = () => {
               choices used in the industry. Each editor brought its unique
               strengths and weaknesses to the table, leading us to narrow down
               our options as Theia being a lot bulky compared to all other
-              editors and Orion having no documentation availability .
-              Ultimately, we opted to compare CodeMirror, Monaco, and Ace,
-              focusing on crucial features such as multi-line and single-line
-              editing, syntax highlighting, error visualization,
-              auto-completion, and resizing capabilities. We identified the
-              following weaknesses in our current editor, Sprinklr Monaco
-              editor, which drove our evaluation:
+              editors and Orion not having good documentation. Ultimately, we
+              opted to compare CodeMirror, Monaco, and Ace, focusing on crucial
+              features such as multi-line and single-line editing, syntax
+              highlighting, error visualization, auto-completion, and resizing
+              capabilities. We identified the following weaknesses in our
+              current editor, Sprinklr Monaco editor, which drove our
+              evaluation:
             </p>
             <ol style={{ fontStyle: "oblique" }}>
               <li>1) Missing Bidirectional support</li>
