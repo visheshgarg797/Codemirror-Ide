@@ -36,9 +36,14 @@ export default function ResizaleEditor() {
     popupPosition: { x: 0, y: 0 },
     selectionPos: -1,
   });
-
+  const Heightoptions = [
+    { maxLine: "Maximum lines 4", index: "0" },
+    { maxLine: "Maximum lines 6", index: "1" },
+    { maxLine: "Maximum lines 8", index: "2" },
+  ];
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
+  const [maxLines, setMaxLines] = useState(0);
 
   const createParserFromLexer = (lexer) => {
     const tokens = new antlr4.CommonTokenStream(lexer);
@@ -59,6 +64,11 @@ export default function ResizaleEditor() {
     return lexer;
   };
 
+  const handleHeightChange = (heightChangeEvent) => {
+    let idx = (1 + parseInt(heightChangeEvent.target.value[14])) / 3;
+    idx = parseInt(idx) - 1;
+    setMaxLines(idx);
+  };
   function getErrors(text) {
     const errors = [];
     const lexer = createLexer(text);
@@ -185,7 +195,7 @@ export default function ResizaleEditor() {
           ],
         }),
         syntaxHighlighting(myHighlightStyle),
-        ResizableSampleThemeList[
+        ResizableSampleThemeList[maxLines][
           direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
@@ -218,11 +228,35 @@ export default function ResizaleEditor() {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction]);
+  }, [themeStyles, direction, maxLines]);
 
   return (
     <>
       <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
+        <select
+          // value={maxLines.value}
+          onChange={(heightChangeEvent) =>
+            handleHeightChange(heightChangeEvent)
+          }
+          style={{
+            backgroundColor: themeStyles.col02.backgroundColor,
+            color: themeStyles.col02.color,
+            border: `1px solid ${
+              themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
+            }`,
+            borderRadius: "3px",
+
+            marginBottom: "30px",
+          }}
+        >
+          {Heightoptions.map((index) => {
+            return (
+              <option value={index.maxLine} key={index.index}>
+                {index.maxLine}
+              </option>
+            );
+          })}
+        </select>
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
