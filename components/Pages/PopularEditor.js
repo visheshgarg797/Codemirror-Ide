@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useCustomTheme } from "@/context/useThemeHook";
+import Image from "next/image";
 
 const PopularEditor = () => {
   const { themeStyles } = useCustomTheme();
@@ -106,9 +107,10 @@ const PopularEditor = () => {
               see that in last 1 year codemirror has most downloads among them .
             </p>
 
+            {/* <a href="https://ibb.co/wQQV9QL"><img src="https://i.ibb.co/myykLyB/populareditors.png" alt="populareditors" border="0" /></a> */}
             <img
               class="float-center ..."
-              src="https://github-production-user-asset-6210df.s3.amazonaws.com/78925554/250829164-3da10068-93fa-4c29-8386-b614aa4ce830.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230704%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230704T091737Z&X-Amz-Expires=300&X-Amz-Signature=e527703ff35e2372f3d194647387bbf818665253fc2dfe141eeb31550349de7a&X-Amz-SignedHeaders=host&actor_id=78925554&key_id=0&repo_id=650643208"
+              src="https://i.ibb.co/myykLyB/populareditors.png"
               style={{
                 width: "90%",
                 marginInlineEnd: "1rem",

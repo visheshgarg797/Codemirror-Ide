@@ -141,6 +141,7 @@ const MultiLineEditor = () => {
 
   const handleTextSelection = (e) => {
     const { ranges } = viewRef.current.state.selection;
+
     if (ranges.some((range) => !range.empty)) {
       const tokens = getTokensForText(viewRef.current.state.doc.toString());
       const checkValidityOfSelection = IsValidSelection(
@@ -149,6 +150,9 @@ const MultiLineEditor = () => {
         ranges[0].to
       );
       if (!checkValidityOfSelection.isValidSelection) {
+        return;
+      }
+      if (checkValidityOfSelection.actualSelectedText.includes(" ")) {
         return;
       }
       setSelectedTextIsKeyword(checkValidityOfSelection.isSelectedTextKeyword);
