@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 
 const Overview = () => {
   const { themeStyles } = useCustomTheme();

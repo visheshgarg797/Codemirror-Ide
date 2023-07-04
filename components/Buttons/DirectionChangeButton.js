@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useCustomDirection } from "@/context/useDirectionHook";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import { Theme_Name } from "@/constants/ThemeName";
 import { Direction } from "@/constants/Direction";
 

@@ -1,5 +1,5 @@
 import Data from "./Data";
-import { getTokensForText } from "@/components/antrl4-lang";
+import { getTokensForText } from "@/components/Grammer/antrl4-lang";
 import { ResearchAdvanceQLLexer } from "../components/antlrGenerated";
 import {
   keywords,

@@ -1,5 +1,5 @@
 import { hoverTooltip } from "@codemirror/view";
-import { getTokensForText } from "./antrl4-lang";
+import { getTokensForText } from "./Grammer/antrl4-lang";
 
 export const wordHover = hoverTooltip((view, pos, side) => {
   let { from, to, text } = view.state.doc.lineAt(pos);

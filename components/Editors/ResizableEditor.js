@@ -1,73 +1,50 @@
-"use cilent";
-import React, { useRef, useState, useEffect } from "react";
+"use client";
+import React, { useRef, useEffect, useState } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
+import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
-import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
-import getKeywordFilter from "@/utils/GetSuggestions";
-import myHighlightStyle from "@/utils/Highlights";
+import { ResizableSampleThemeList } from "@/utils/ResizableSampleThemeList";
 import { syntaxHighlighting } from "@codemirror/language";
-import { startCompletion } from "@codemirror/autocomplete";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
-import { Direction } from "@/constants/Direction";
+import myHighlightStyle from "@/utils/Highlights";
+import getKeywordFilter from "@/utils/GetSuggestions";
+import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
-import Popup from "./Popup";
-import { antrl4Lang } from "./antrl4-lang";
+import { Direction } from "@/constants/Direction";
+import { antrl4Lang, getTokensForText } from "../Grammer/antrl4-lang";
+import Popup from "../Autocomplete/Popup";
 import IsValidSelection from "@/utils/IsValidSelection";
-import { getTokensForText } from "./antrl4-lang";
-import CustomSuggestionsComponent from "./CustomSuggestionsComponent";
-import { ResearchAdvanceQLLexer } from "./antlrGenerated";
-import { ResearchAdvanceQLParser } from "./antlrGenerated";
-import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
-import EditorErrorStrategy from "./editorErrorStrategy";
-import EditorQueryVisitor from "./editorVisitor";
+import { ResearchAdvanceQLLexer } from "../antlrGenerated";
+import { ResearchAdvanceQLParser } from "../antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "../antlrGenerated";
+import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
+import EditorQueryVisitor from "../Grammer/editorVisitor";
 import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
 import antlr4 from "antlr4";
 
-const SingleLineEditor = () => {
+export default function ResizaleEditor() {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
-  const { direction } = useCustomDirection();
   const { themeStyles } = useCustomTheme();
+
+  const { direction } = useCustomDirection();
   const [popupState, setPopupState] = useState({
     selection: null,
     showPopup: false,
     popupPosition: { x: 0, y: 0 },
     selectionPos: -1,
   });
-
-  const [suggestions, setSuggestions] = useState(null);
+  const Heightoptions = [
+    { maxLine: "Maximum lines 4", index: "0" },
+    { maxLine: "Maximum lines 6", index: "1" },
+    { maxLine: "Maximum lines 8", index: "2" },
+  ];
   const [code, setCode] = useState("");
+  const [suggestions, setSuggestions] = useState(null);
   const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
-  const [suggestionBoxCorrds, setSuggestionBoxCoords] = useState({
-    left: 0,
-    top: 0,
-  });
-
-  function getErrors(text) {
-    const errors = [];
-    const lexer = createLexer(text);
-    //removing errorListeners of lexer as these errors will be reported in tokensProvider
-    lexer.removeErrorListeners();
-    const { parser, tokens } = createParserFromLexer(lexer);
-    parser.removeErrorListeners();
-    parser._errHandler = new EditorErrorStrategy();
-
-    try {
-      const tree = parser.mainQ();
-      const visitor = new EditorQueryVisitor();
-      tree.accept(visitor);
-    } catch (e) {
-      errors.push({
-        from: e.offendingToken.start,
-        to: e.offendingToken.stop + 1,
-        message: e.message,
-      });
-    }
-    return errors;
-  }
+  const [maxLines, setMaxLines] = useState(0);
 
   const createParserFromLexer = (lexer) => {
     const tokens = new antlr4.CommonTokenStream(lexer);
@@ -88,6 +65,11 @@ const SingleLineEditor = () => {
     return lexer;
   };
 
+  const handleHeightChange = (heightChangeEvent) => {
+    let idx = (1 + parseInt(heightChangeEvent.target.value[14])) / 3;
+    idx = parseInt(idx) - 1;
+    setMaxLines(idx);
+  };
   function getErrors(text) {
     const errors = [];
     const lexer = createLexer(text);
@@ -147,44 +129,14 @@ const SingleLineEditor = () => {
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length,
-        head: viewRef.current.state.doc.toString().length,
+        anchor: code.length,
+        head: code.length,
       },
     });
-    viewRef.current.dispatch;
     setPopupState((popupState) => ({ ...popupState, showPopup: false }));
   };
 
-  const handlePaste = (pastedText) => {
-    let concatenatedText = "";
-    pastedText.split("\n").forEach((singlularText) => {
-      concatenatedText += singlularText;
-      singlularText += "  ";
-    });
-
-    const { anchor, head } = viewRef.current.state.selection.main;
-    let newCursorPosition = anchor + concatenatedText.length;
-    newCursorPosition =
-      newCursorPosition -
-      (pastedText.split("\n").length === 1 ? concatenatedText.length : 0);
-
-    viewRef.current.dispatch({
-      // changes cursor position to end of string i.e. to the new cursor position
-      selection: {
-        anchor: newCursorPosition,
-        head: newCursorPosition,
-      },
-      changes: [
-        {
-          from: anchor,
-          to: head,
-          insert: pastedText.split("\n").length > 1 ? concatenatedText : "",
-        },
-      ],
-    });
-  };
-
-  const handleTextSelection = () => {
+  const handleTextSelection = (e) => {
     const { ranges } = viewRef.current.state.selection;
     if (ranges.some((range) => !range.empty)) {
       const tokens = getTokensForText(viewRef.current.state.doc.toString());
@@ -228,10 +180,6 @@ const SingleLineEditor = () => {
     }
   };
 
-  const handleCut = () => {
-    return;
-  };
-
   useEffect(() => {
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
@@ -253,10 +201,7 @@ const SingleLineEditor = () => {
           ],
         }),
         syntaxHighlighting(myHighlightStyle),
-        EditorState.transactionFilter.of((tr) =>
-          tr.newDoc.lines > 1 ? [] : tr
-        ),
-        SampleThemeListForSingleLineEditor[
+        ResizableSampleThemeList[maxLines][
           direction === Direction.LTR
             ? themeStyles.theme === Theme_Name.LIGHT_MODE
               ? 0
@@ -265,16 +210,7 @@ const SingleLineEditor = () => {
             ? 2
             : 3
         ],
-        highlightActiveLine(),
-        lineNumbers({ visible: false }),
-        EditorView.domEventHandlers({
-          paste(event, view) {
-            handlePaste(event.clipboardData.getData("text/plain"));
-          },
-          cut(event, view) {
-            handleCut();
-          },
-        }),
+        EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {
             handleTextSelection();
@@ -295,37 +231,39 @@ const SingleLineEditor = () => {
     View.dom.addEventListener("mousedown", handleMouseDown);
     viewRef.current = View;
 
-    const suggestionCoords = editorRef.current.getBoundingClientRect();
-    if (suggestionBoxCorrds.left === 0 && suggestionBoxCorrds.top === 0) {
-      setSuggestionBoxCoords((suggestionBoxCorrds) => ({
-        ...suggestionBoxCorrds,
-        left: suggestionCoords.left - 2,
-        top: suggestionCoords.top + 50,
-      }));
-    }
-
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction]);
+  }, [themeStyles, direction, maxLines]);
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer" style={{ width: "80%" }}>
-        <style>
-          {`.cm-tooltip {
-            top:${suggestionBoxCorrds.top}px !important;
-            left:${suggestionBoxCorrds.left}px !important;
-            position: fixed !important;
-            border: 1px solid #181a1f;
-            width: 49%;
+      <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
+        <select
+          // value={maxLines.value}
+          onChange={(heightChangeEvent) =>
+            handleHeightChange(heightChangeEvent)
           }
-          .cm-tooltip > ul > li{
-            width:100%
-          }
-          
-          `}
-        </style>
+          style={{
+            backgroundColor: themeStyles.col02.backgroundColor,
+            color: themeStyles.col02.color,
+            border: `1px solid ${
+              themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
+            }`,
+
+            borderRadius: "3px",
+            marginInlineStart: "600px",
+            marginBottom: "30px",
+          }}
+        >
+          {Heightoptions.map((index) => {
+            return (
+              <option value={index.maxLine} key={index.index}>
+                {index.maxLine}
+              </option>
+            );
+          })}
+        </select>
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
@@ -336,6 +274,4 @@ const SingleLineEditor = () => {
       </div>
     </>
   );
-};
-
-export default SingleLineEditor;
+}

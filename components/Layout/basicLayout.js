@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import Sidebar from "./Sidebar";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import MainAnalysis from "./mainAnalysis";
-import MainConclusion from "./mainConclusion";
-import MainEditor from "./mainEditor";
-import MainIntro from "./mainIntro";
+import MainAnalysis from "../Pages/mainAnalysis";
+import MainConclusion from "../Pages/mainConclusion";
+import MainEditor from "../Pages/mainEditor";
+import MainIntro from "../Pages/mainIntro";
 
 import { useCustomDirection } from "@/context/useDirectionHook";
 

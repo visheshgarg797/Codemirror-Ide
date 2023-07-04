@@ -1,10 +1,10 @@
 "use client";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
-import MultiLineEditor from "./MultilineEditor";
-import SingleLineEditor from "./SinglelineEditor";
-import ResizaleEditor from "./ResizableEditor";
-import MultiThemeEditor from "./MutliThemeEditor";
+import MultiLineEditor from "../Editors/MultilineEditor";
+import SingleLineEditor from "../Editors/SinglelineEditor";
+import ResizaleEditor from "../Editors/ResizableEditor";
+import MultiThemeEditor from "../Editors/MutliThemeEditor";
 import { EDITOR_MODES } from "@/constants/EditorModes";
 import RightBar from "./RightFeatures";
 const IDE = () => {

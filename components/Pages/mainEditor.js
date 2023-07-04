@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { useCustomTheme } from "../context/useThemeHook";
-import IDE from "./ide";
+import { useCustomTheme } from "../../context/useThemeHook";
+import IDE from "../Layout/ide";
 
 const MainEditor = () => {
   const { themeStyles } = useCustomTheme();

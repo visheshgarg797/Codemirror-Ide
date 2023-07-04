@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import "./RightFeatures.css";
 const RightBar = (props) => {
   const { themeStyles } = useCustomTheme();

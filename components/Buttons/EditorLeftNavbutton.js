@@ -1,14 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
 import { Direction } from "@/constants/Direction";
-import COMPONENT_CONSTANTS from "./ComponentConstants";
+import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { Theme_Name } from "@/constants/ThemeName";
-import styles from "./style.css";
+import styles from "../style.css";
 
 const EditorLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();

@@ -1,5 +1,5 @@
-import { ResearchAdvanceQLParser } from "./antlrGenerated";
-import { ResearchAdvanceQLVisitor } from "./antlrGenerated";
+import { ResearchAdvanceQLParser } from "../antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "../antlrGenerated";
 import { ADVANCE_OPERATOR } from "@/constants/AdvanceOperator";
 import ParseCancellationException from "./ParseCancellationException";
 class EditorQueryVisitor extends ResearchAdvanceQLVisitor {

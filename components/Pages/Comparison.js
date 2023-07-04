@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import { TiTick, TiTimes } from "react-icons/ti";
-import COMPONENT_CONSTANTS from "./ComponentConstants";
+import COMPONENT_CONSTANTS from "../ComponentConstants";
 import "./IconsColor.css";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { Direction } from "@/constants/Direction";

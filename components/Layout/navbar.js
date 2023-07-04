@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { useCustomTheme } from "../context/useThemeHook";
-import ThemeToggleButton from "./themeToggleButton";
-import DirectionChangeButton from "./DirectionChangeButton";
-import GitHubButton from "./GitHubButton";
+import { useCustomTheme } from "../../context/useThemeHook";
+import ThemeToggleButton from "../Buttons/themeToggleButton";
+import DirectionChangeButton from "../Buttons/DirectionChangeButton";
+import GitHubButton from "../Buttons/GitHubButton";
 
 const Navbar = () => {
   const { themeStyles } = useCustomTheme();

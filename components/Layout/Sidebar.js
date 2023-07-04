@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { useCustomTheme } from "../context/useThemeHook";
-import LeftNavButton from "./leftNavButton";
-import IntroLeftNavButton from "./IntroLeftNavButton";
-import EditorLeftNavButton from "./EditorLeftNavbutton";
-import AnalysisLeftNavButton from "./AnalysisLeftNabButton";
-import styles from "./style.css";
+import { useCustomTheme } from "../../context/useThemeHook";
+import LeftNavButton from "../Buttons/leftNavButton";
+import IntroLeftNavButton from "../Buttons/IntroLeftNavButton";
+import EditorLeftNavButton from "../Buttons/EditorLeftNavbutton";
+import AnalysisLeftNavButton from "../Buttons/AnalysisLeftNabButton";
+import styles from "../style.css";
 
 const Sidebar = () => {
   const { themeStyles } = useCustomTheme();

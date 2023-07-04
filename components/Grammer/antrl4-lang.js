@@ -2,7 +2,7 @@ import antlr from "antlr4";
 import { styleTags, tags, Tag } from "@lezer/highlight";
 import { StreamLanguage } from "@codemirror/language";
 
-import { ResearchAdvanceQLLexer } from "./antlrGenerated";
+import { ResearchAdvanceQLLexer } from "../antlrGenerated";
 function getStyleNameByTag(tag) {
   for (let t in tags) {
     if (tags[t] === tag) {

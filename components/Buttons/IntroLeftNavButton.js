@@ -1,20 +1,21 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
-import { useAnalysisMode } from "@/context/useAnalysisHook";
-import { ANALYSIS_SUBHEADINGS } from "@/constants/AnalysisSubheadings";
-import COMPONENT_CONSTANTS from "./ComponentConstants";
+import { useCustomEditorMode } from "@/context/useEditorModeHook";
+import { Direction } from "@/constants/Direction";
+import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { Theme_Name } from "@/constants/ThemeName";
-import styles from "./style.css";
+import styles from "../style.css";
+import { useIntroMode } from "@/context/useIntroHook";
 
-const AnalysisLeftNavButton = (props) => {
+const IntroLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
   const { push } = useRouter();
   const pathname = usePathname();
-  const { analysis, toggleAnalysis } = useAnalysisMode();
+  const { intro, toggleIntro } = useIntroMode();
   const { direction } = useCustomDirection();
 
   const path = useMemo(() => props.path, []);
@@ -31,7 +32,7 @@ const AnalysisLeftNavButton = (props) => {
   };
 
   const handleOptionClick = (option) => {
-    toggleAnalysis(option.value);
+    toggleIntro(option.value);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +70,7 @@ const AnalysisLeftNavButton = (props) => {
           </svg>
         </div>
         <div className={`${isOpen ? "block" : "hidden"} `}>
-          {COMPONENT_CONSTANTS.ANALYSIS_SUBHEADINGS_OPTIONS.map((item) => (
+          {COMPONENT_CONSTANTS.INTRODUCTION_SUBHEADINGS_OPTIONS.map((item) => (
             <div
               key={item.value}
               className={themeStyles.classLnb}
@@ -79,7 +80,7 @@ const AnalysisLeftNavButton = (props) => {
                 fontSize: "0.85rem",
                 paddingLeft: "2rem",
                 color:
-                  analysis === item.value && props.path == pathname
+                  intro === item.value && props.path == pathname
                     ? themeStyles.col03.color
                     : themeStyles.col01.color,
                 borderStartEndRadius: "50px",
@@ -96,4 +97,4 @@ const AnalysisLeftNavButton = (props) => {
   );
 };
 
-export default AnalysisLeftNavButton;
+export default IntroLeftNavButton;

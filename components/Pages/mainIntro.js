@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useCustomTheme } from "../context/useThemeHook";
+import { useCustomTheme } from "../../context/useThemeHook";
 import Overview from "./Overview";
 import { INTRO_SUBHEADINGS } from "@/constants/IntroSubheadings";
 import { useIntroMode } from "@/context/useIntroHook";
