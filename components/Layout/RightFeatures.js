@@ -35,9 +35,10 @@ const RightBar = (props) => {
                 fontWeight: "500",
               }}
             >
-              {props.features.map((prop) => {
+              {props.features.map((prop, index) => {
                 return (
                   <div
+                    key={index}
                     class="flex justify-between py-2"
                     style={{ width: "250px" }}
                   >

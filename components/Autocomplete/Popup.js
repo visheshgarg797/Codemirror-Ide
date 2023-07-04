@@ -97,9 +97,10 @@ const Popup = ({ position, selection, handleOnClick }) => {
               textAlign: "left",
             }}
           >
-            {additionalKeywords.map((item) => {
+            {additionalKeywords.map((item, index) => {
               return (
                 <button
+                  key={index}
                   onClick={() => handleSelect(item)}
                   style={{
                     margin: "2px",

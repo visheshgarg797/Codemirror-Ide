@@ -78,9 +78,10 @@ const Comparison = () => {
           </tr>
         </thead>
         <tbody>
-          {COMPONENT_CONSTANTS.COMPARISION_TABLE_CONTENT.map((item) => {
+          {COMPONENT_CONSTANTS.COMPARISION_TABLE_CONTENT.map((item, index) => {
             return (
               <tr
+                key={index}
                 className="border-b transition duration-300 ease-in-out hover:bg-gray-400"
                 style={{ backgroundColor: themeStyles.col02.backgroundColor }}
               >

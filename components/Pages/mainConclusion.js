@@ -53,11 +53,11 @@ const MainConclusion = () => {
         In our development process, we built the entire editor using CodeMirror,
         successfully implementing most of the features found in the existing
         Monaco editor. Additionally, we went beyond by incorporating advanced
-        features like right-to-left (RTL) support, multiple theme editors within
-        a single page, a dynamic length editor, and the ability to paste files
-        via drag and drop. These added features enhance the editor's
-        functionality and provide an even more customizable and efficient code
-        editing experience for developers.
+        features like right-to-left support, multiple theme editors within a
+        single page, a dynamic length editor, and the ability to paste files via
+        drag and drop. These added features enhance the editor functionality and
+        provide an even more customizable and efficient code editing experience
+        for developers.
         <br /> <br />
         With CodeMirror as our chosen platform, we provide an efficient and
         customizable code editing experience that empowers developers to work
