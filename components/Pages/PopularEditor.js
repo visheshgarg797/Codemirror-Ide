@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { useCustomTheme } from "../../context/useThemeHook";
+import React from "react";
+import { useCustomTheme } from "@/context/useThemeHook";
 
 const PopularEditor = () => {
   const { themeStyles } = useCustomTheme();
@@ -63,7 +63,7 @@ const PopularEditor = () => {
             </ol>
           </div>
 
-          <div style={{ fontSize: "1rem", marginBottom: "2rem" }}>
+          <div style={{ fontSize: "1rem", marginBottom: "1rem" }}>
             <h1
               style={{
                 color: themeStyles.col02.color,
@@ -87,9 +87,15 @@ const PopularEditor = () => {
               Codemirror in case of popularity and usage among companies .
             </p>
             <img
-              class="float-left ..."
+              class="float-center ..."
               src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
-              style={{ width: "75%", marginInlineEnd: "1rem" }}
+              style={{
+                width: "90%",
+                marginInlineEnd: "1rem",
+                marginTop: "1rem",
+                marginInlineStart: "1.5rem",
+                marginBottom: "1rem",
+              }}
             ></img>
             <p>
               Popularity of editors according to npm package usage till 2020 is
@@ -99,10 +105,17 @@ const PopularEditor = () => {
               codemirror is the most popular and widely used among all . We can
               see that in last 1 year codemirror has most downloads among them .
             </p>
+
             <img
-              class="float-left ..."
-              src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
-              style={{ width: "75%", marginInlineEnd: "1rem" }}
+              class="float-center ..."
+              src="https://github-production-user-asset-6210df.s3.amazonaws.com/78925554/250829164-3da10068-93fa-4c29-8386-b614aa4ce830.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230704%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230704T091737Z&X-Amz-Expires=300&X-Amz-Signature=e527703ff35e2372f3d194647387bbf818665253fc2dfe141eeb31550349de7a&X-Amz-SignedHeaders=host&actor_id=78925554&key_id=0&repo_id=650643208"
+              style={{
+                width: "90%",
+                marginInlineEnd: "1rem",
+                marginTop: "1rem",
+                marginInlineStart: "1.5rem",
+                marginBottom: "1rem",
+              }}
             ></img>
             <p>
               This change in trend tends towards codemirror to choose as editor

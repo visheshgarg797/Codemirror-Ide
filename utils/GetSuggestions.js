@@ -55,12 +55,12 @@ const traverseBackCursor = (textInEditor) => {
   if (recommendNewWord) {
     return {
       wordBeforeCursor: "",
-      secLastWordBeforeCursor: lastStr,
+      secLastWordBeforeCursor: lastStr.toLowerCase(),
     };
   }
   return {
-    wordBeforeCursor: lastStr,
-    secLastWordBeforeCursor: secLastStr,
+    wordBeforeCursor: lastStr.toLowerCase(),
+    secLastWordBeforeCursor: secLastStr.toLowerCase(),
   };
 };
 
@@ -176,7 +176,7 @@ const getKeywordFilter =
       ) {
         const possibleSuggestions = Data.operators;
         const filteredSuggesions = possibleSuggestions.filter((item) => {
-          return item.label.startsWith(wordBeforeCursor);
+          return item.label.startsWith(wordBeforeCursor.toUpperCase());
         });
         if (!returnValue) {
           returnValue = {
@@ -217,7 +217,7 @@ const getKeywordFilter =
         // give operators
         const possibleSuggestions = Data.operators;
         const filteredSuggesions = possibleSuggestions.filter((item) => {
-          return item.label.startsWith(wordBeforeCursor);
+          return item.label.startsWith(wordBeforeCursor.toUpperCase());
         });
         if (!returnValue) {
           returnValue = {

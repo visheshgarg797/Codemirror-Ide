@@ -9,7 +9,7 @@ Data.keywords.forEach((item) => {
 });
 
 Data.operators.forEach((item) => {
-  operators.add(item.apply.substr(0, item.apply.length - 1));
+  operators.add(item.apply.substr(0, item.apply.length - 1).toLowerCase());
 });
 
 Data.city.forEach((items) => {
