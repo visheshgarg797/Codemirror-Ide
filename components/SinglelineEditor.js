@@ -196,7 +196,7 @@ const SingleLineEditor = () => {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
-      setSelectedTextIsKeyword(checkValidityOfSelection.selectedTextIsKeyword);
+      setSelectedTextIsKeyword(checkValidityOfSelection.isSelectedTextKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
       );

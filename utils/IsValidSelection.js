@@ -1,13 +1,8 @@
 import { ResearchAdvanceQLLexer } from "@/components/antlrGenerated";
-import Data from "./Data";
+import { keywords } from "./DataSets";
 
 const IsValidSelection = (tokens, startPos, endPos) => {
-  const keywords = new Set();
-  Data.keywords.forEach((item) => {
-    keywords.add(item.label);
-  });
-
-  let selectedTextIsKeyword = false;
+  let isSelectedTextKeyword = false;
 
   let actualStartPos = startPos,
     actualEndPos = endPos,
@@ -31,7 +26,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
       token.startIndex <= startPos &&
       token.stopIndex >= endPos
     ) {
-      selectedTextIsKeyword = true;
+      isSelectedTextKeyword = true;
       actualSelectedText = token.text;
       actualStartPos = token.startIndex;
       actualEndPos = token.stopIndex;
@@ -49,7 +44,7 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     actualStartPos: actualStartPos,
     actualEndPos: actualEndPos,
     isValidSelection: isValidSelection,
-    selectedTextIsKeyword: selectedTextIsKeyword,
+    isSelectedTextKeyword: isSelectedTextKeyword,
   };
 };
 export default IsValidSelection;
