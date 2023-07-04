@@ -76,8 +76,8 @@ const MultiLineEditor = () => {
       tree.accept(visitor);
     } catch (e) {
       errors.push({
-        from: e?.offendingToken.start,
-        to: e?.offendingToken.stop + 1,
+        from: e?.offendingToken?.start,
+        to: e?.offendingToken?.stop + 1,
         message: e?.message,
       });
     }
@@ -91,10 +91,10 @@ const MultiLineEditor = () => {
     const errors = getErrors(text);
     errors.map((error) => {
       diagnostics.push({
-        from: error.from,
-        to: error.to,
+        from: error?.from,
+        to: error?.to,
         severity: "error",
-        message: error.message,
+        message: error?.message,
       });
     });
     return diagnostics;

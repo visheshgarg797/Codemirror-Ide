@@ -85,8 +85,8 @@ export default function ResizaleEditor() {
       tree.accept(visitor);
     } catch (e) {
       errors.push({
-        from: e?.offendingToken.start,
-        to: e?.offendingToken.stop + 1,
+        from: e?.offendingToken?.start,
+        to: e?.offendingToken?.stop + 1,
         message: e?.message,
       });
     }
@@ -100,10 +100,10 @@ export default function ResizaleEditor() {
     const errors = getErrors(text);
     errors.map((error) => {
       diagnostics.push({
-        from: error.from,
-        to: error.to,
+        from: error?.from,
+        to: error?.to,
         severity: "error",
-        message: error.message,
+        message: error?.message,
       });
     });
     return diagnostics;
@@ -250,8 +250,9 @@ export default function ResizaleEditor() {
             border: `1px solid ${
               themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
             }`,
-            borderRadius: "3px",
 
+            borderRadius: "3px",
+            marginInlineStart: "600px",
             marginBottom: "30px",
           }}
         >

@@ -11,7 +11,7 @@ const MainEditor = () => {
       className="main-division p-5 pb-70 mt-2 mb-5"
       style={{
         backgroundColor: themeStyles.col02.backgroundColor,
-        paddingTop: "100px",
+        paddingTop: "60px",
         marginInlineStart: "320px",
         marginInlineEnd: "200px",
         paddingRight: "20px",
