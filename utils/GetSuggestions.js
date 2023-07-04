@@ -97,6 +97,12 @@ const getKeywordFilter =
     Data.country.forEach((item) => {
       advancedOperatorsOptions.add(item.label);
     });
+    Data.fruit.forEach((item) => {
+      advancedOperatorsOptions.add(item.label);
+    });
+    Data.author.forEach((item) => {
+      advancedOperatorsOptions.add(item.label);
+    });
 
     Data.advancedOperators.forEach((item) => {
       advancedOperators.add(item.label);

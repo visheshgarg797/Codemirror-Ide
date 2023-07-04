@@ -11,7 +11,6 @@ const MainAnalysis = () => {
   return (
     <div
       style={{
-        marginTop: "10px",
         backgroundColor: themeStyles.col02.backgroundColor,
       }}
     >

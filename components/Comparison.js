@@ -25,39 +25,53 @@ const Comparison = () => {
       <h1
         style={{
           color: themeStyles.col02.color,
-          paddingTop: "40px",
-          fontSize: "40px",
+          paddingTop: "20px",
+          fontSize: "2.5rem",
           fontFamily: themeStyles.font,
           fontWeight: "700",
         }}
       >
         Comparison
       </h1>
-      <table class="min-w-full mt-5">
-        <thead class="bg-gray-200 border-b">
+      <table className="min-w-full mt-5">
+        <thead
+          className="border-b"
+          style={{ backgroundColor: themeStyles.col01.backgroundColor }}
+        >
           <tr>
             <th
               scope="col"
-              style={{}}
-              class="text-lg font-large text-gray-900 px-6 py-4"
+              style={{
+                color: themeStyles.col02.color,
+              }}
+              className="text-m font-large text-gray-900 px-6 py-3"
             >
               Features
             </th>
             <th
               scope="col"
-              class="text-lg font-large text-gray-900 px-6 py-4 text-left"
+              style={{
+                color: themeStyles.col02.color,
+              }}
+              className="text-m font-large px-6 py-3 text-left"
             >
               Codemirror Editor
             </th>
             <th
               scope="col"
-              class="text-lg font-large text-gray-900 px-6 py-4 text-left"
+              style={{
+                color: themeStyles.col02.color,
+              }}
+              className="text-m font-large px-6 py-3 text-left"
             >
               Monaco Editor
             </th>
             <th
               scope="col"
-              class="text-lg font-large text-gray-900 px-6 py-4 text-left"
+              style={{
+                color: themeStyles.col02.color,
+              }}
+              className="text-m font-large px-6 py-3 text-left"
             >
               Ace Editor
             </th>
@@ -66,15 +80,22 @@ const Comparison = () => {
         <tbody>
           {COMPONENT_CONSTANTS.COMPARISION_TABLE_CONTENT.map((item) => {
             return (
-              <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr
+                className="border-b transition duration-300 ease-in-out hover:bg-gray-400"
+                style={{ backgroundColor: themeStyles.col02.backgroundColor }}
+              >
+                <td
+                  className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                  style={{ color: themeStyles.col02.color }}
+                >
                   {item.feature}
                 </td>
                 <td
-                  className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center"
+                  className="px-6 py-2 whitespace-nowrap text-sm font-medium"
                   style={{
                     paddingLeft: direction === Direction.LTR ? "7%" : "0%",
                     paddingRight: direction === Direction.RTL ? "13%" : "0%",
+                    color: themeStyles.col02.color,
                   }}
                 >
                   {item.codemirror === "YES" ? (
@@ -84,10 +105,11 @@ const Comparison = () => {
                   )}
                 </td>
                 <td
-                  className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center"
+                  className="px-6 py-2 whitespace-nowrap text-sm font-medium"
                   style={{
                     paddingLeft: direction === Direction.LTR ? "5%" : "0%",
                     paddingRight: direction === Direction.RTL ? "12%" : "0%",
+                    color: themeStyles.col02.color,
                   }}
                 >
                   {item.monaco === "YES" ? (
@@ -97,10 +119,11 @@ const Comparison = () => {
                   )}
                 </td>
                 <td
-                  className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center"
+                  className="px-6 py-2 whitespace-nowrap text-sm font-medium"
                   style={{
                     paddingLeft: direction === Direction.LTR ? "4%" : "0%",
                     paddingRight: direction === Direction.RTL ? "9%" : "0%",
+                    color: themeStyles.col02.color,
                   }}
                 >
                   {item.ace === "YES" ? (
