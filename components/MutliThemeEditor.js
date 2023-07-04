@@ -16,21 +16,15 @@ import { antrl4Lang, getTokensForText } from "./antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import Popup from "./Popup";
 import { Direction } from "@/constants/Direction";
+import COMPONENT_CONSTANTS from "./ComponentConstants";
 
 const MultiThemeEditor = () => {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
 
-  // Will be used in theme dropdown
-  const themeNames = [
-    "Github Light Theme",
-    "Github Dark Theme",
-    "Gruvbox Light Hard",
-    "Gruvbox Dark Hard",
-  ];
   const themeMapping = {};
   for (let i = 0; i < 4; i++) {
-    themeMapping[themeNames[i]] = i;
+    themeMapping[COMPONENT_CONSTANTS.THEME_NAMES[i]] = i;
   }
   const [themeNamesRender, setThemeNamesRender] = useState([]);
 
@@ -46,6 +40,8 @@ const MultiThemeEditor = () => {
 
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
+  const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
+
   const [themeIndex, setThemeIndex] = useState(
     direction === Direction.LTR
       ? themeStyles.theme === Theme_Name.LIGHT_MODE
@@ -56,7 +52,7 @@ const MultiThemeEditor = () => {
       : 5
   );
   const [currentThemeSelected, setCurrentThemeSelected] = useState(
-    themeNames[themeIndex]
+    COMPONENT_CONSTANTS.THEME_NAMES[themeIndex]
   );
 
   const handleThemeChange = (themeChangeEvent) => {
@@ -64,7 +60,7 @@ const MultiThemeEditor = () => {
       themeMapping[themeChangeEvent.target.value] +
       (direction === Direction.RTL ? 4 : 0);
     setThemeIndex(idx);
-    setCurrentThemeSelected(themeNames[idx % 4]);
+    setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx % 4]);
   };
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
@@ -76,7 +72,11 @@ const MultiThemeEditor = () => {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length + 2,
+        from:
+          popupState.selectionPos +
+          popupState.selection.length +
+          2 -
+          selectedTextIsKeyword,
         insert: textToInsert,
       },
     ];
@@ -114,6 +114,7 @@ const MultiThemeEditor = () => {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
+      setSelectedTextIsKeyword(checkValidityOfSelection.selectedTextIsKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
       );
@@ -188,15 +189,15 @@ const MultiThemeEditor = () => {
         "Gruvbox Light Hard",
       ]);
       if (
-        currentThemeSelected === themeNames[0] ||
-        currentThemeSelected === themeNames[2]
+        currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[0] ||
+        currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[2]
       ) {
         persistCurrentTheme = true;
       } else {
-        if (currentThemeSelected === themeNames[1]) {
+        if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[1]) {
           idx = 0;
         }
-        if (currentThemeSelected === themeNames[3]) {
+        if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[3]) {
           idx = 2;
         }
       }
@@ -206,22 +207,22 @@ const MultiThemeEditor = () => {
         "Gruvbox Dark Hard",
       ]);
       if (
-        currentThemeSelected === themeNames[1] ||
-        currentThemeSelected === themeNames[3]
+        currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[1] ||
+        currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[3]
       ) {
         persistCurrentTheme = true;
       } else {
-        if (currentThemeSelected === themeNames[0]) {
+        if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[0]) {
           idx = 1;
         }
-        if (currentThemeSelected === themeNames[2]) {
+        if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[2]) {
           idx = 3;
         }
       }
     }
     if (!persistCurrentTheme) {
       setThemeIndex(idx);
-      setCurrentThemeSelected(themeNames[idx]);
+      setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx]);
     }
   }, [themeStyles.theme]);
 

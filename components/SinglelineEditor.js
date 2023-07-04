@@ -40,6 +40,7 @@ const SingleLineEditor = () => {
 
   const [suggestions, setSuggestions] = useState(null);
   const [code, setCode] = useState("");
+  const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
   const [suggestionBoxCorrds, setSuggestionBoxCoords] = useState({
     left: 0,
     top: 0,
@@ -135,7 +136,11 @@ const SingleLineEditor = () => {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length + 2,
+        from:
+          popupState.selectionPos +
+          popupState.selection.length +
+          2 -
+          selectedTextIsKeyword,
         insert: textToInsert,
       },
     ];
@@ -191,6 +196,7 @@ const SingleLineEditor = () => {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
+      setSelectedTextIsKeyword(checkValidityOfSelection.selectedTextIsKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
       );

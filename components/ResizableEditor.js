@@ -43,6 +43,7 @@ export default function ResizaleEditor() {
   ];
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
+  const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
   const [maxLines, setMaxLines] = useState(0);
 
   const createParserFromLexer = (lexer) => {
@@ -117,7 +118,11 @@ export default function ResizaleEditor() {
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
-        from: popupState.selectionPos + popupState.selection.length + 2,
+        from:
+          popupState.selectionPos +
+          popupState.selection.length +
+          2 -
+          selectedTextIsKeyword,
         insert: textToInsert,
       },
     ];
@@ -143,6 +148,7 @@ export default function ResizaleEditor() {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
+      setSelectedTextIsKeyword(checkValidityOfSelection.selectedTextIsKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
       );

@@ -137,6 +137,13 @@ const COMPONENT_CONSTANTS = {
       monaco: "NO",
     },
   ],
+  // Will be used in theme dropdown
+  THEME_NAMES: [
+    "Github Light Theme",
+    "Github Dark Theme",
+    "Gruvbox Light Hard",
+    "Gruvbox Dark Hard",
+  ],
 };
 
 export default COMPONENT_CONSTANTS;

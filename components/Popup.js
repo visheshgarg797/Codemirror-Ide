@@ -44,12 +44,12 @@ const Popup = ({ position, selection, handleOnClick }) => {
     fontSize: "10px",
     marginTop: "20px",
     position: "absolute",
-    width: "300px",
+    width: "260px",
     backgroundColor: themeStyles.col04.backgroundColor,
     padding: "10px",
     position: "absolute",
     top: position.y - 5,
-    left: position.x - 150,
+    left: position.x - 130,
     zIndex: "10",
     textAlign: "center",
     color: themeStyles.col04.color,
@@ -89,18 +89,9 @@ const Popup = ({ position, selection, handleOnClick }) => {
         <GridLoader color="white" loading={loading} size={7} />
       ) : (
         <>
-          <span
-            style={{
-              fontSize: "1rem",
-              fontFamily: "Optical text",
-            }}
-          >
-            {selection.toUpperCase()}
-          </span>
-          <br />
           <div
             style={{
-              width: "300px",
+              width: "260px",
               paddingRight: "1rem",
               marginTop: "0.5rem",
               textAlign: "left",
@@ -113,9 +104,8 @@ const Popup = ({ position, selection, handleOnClick }) => {
                   style={{
                     margin: "2px",
                     backgroundColor: selectedOptions.includes(item)
-                      ? "#1858ce"
+                      ? "#2b8217"
                       : "rgba(255, 255, 255, 0.12)",
-
                     padding: "4px 10px",
                     borderRadius: "5px",
                     fontSize: "10px",
@@ -123,7 +113,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
                     alignContent: "normal",
                   }}
                 >
-                  + {item}
+                  {item}
                 </button>
               );
             })}
@@ -132,15 +122,15 @@ const Popup = ({ position, selection, handleOnClick }) => {
           <div className="flex justify-between">
             <button
               onClick={() => handleOnClick(selectedOptions)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              style={{ fontSize: "0.8rem", fontFamily: "system ui" }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-2 py-1"
+              style={{ fontSize: "0.7rem", fontFamily: "system ui" }}
             >
               Add selected
             </button>
             <button
               onClick={handleSelectAll}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              style={{ fontSize: "0.8rem", fontFamily: "system ui" }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 py-1 rounded"
+              style={{ fontSize: "0.7rem", fontFamily: "system ui" }}
             >
               Select all
             </button>
