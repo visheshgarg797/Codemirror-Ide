@@ -16,7 +16,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
 
       throw new ParseCancellationException(
         recognizer,
-        "expecting some value after advance operator{city, country} ",
+        "expecting some value after advance operator{city, country , author , fruit} ",
         offendingToken
       );
     }
