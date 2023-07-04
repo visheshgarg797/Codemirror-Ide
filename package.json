@@ -35,5 +35,12 @@
     "react-select": "^5.7.3",
     "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.2"
+  },
+  "build": {
+    "command": "npm run build",
+    "publish": ".next"
+  },
+  "plugins": {
+    "package": "@netlify/plugin-nextjs"
   }
 }
