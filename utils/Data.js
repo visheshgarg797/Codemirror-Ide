@@ -407,10 +407,10 @@ const Data = {
       apply: '"blueberry" ',
     },
     {
-      label: "lemon",
+      label: "orange",
       type: "fruit",
       detail: "",
-      apply: '"lemon" ',
+      apply: '"orange" ',
     },
     {
       label: "peach",
