@@ -44,7 +44,8 @@ const AnalysisLeftNavButton = (props) => {
           onClick={() => handleClick()}
           style={{
             width: "16rem",
-            fontFamily: "Optimistic Text",
+            fontFamily: themeStyles.font,
+            fontWeight: "700",
             color:
               props.path == pathname
                 ? themeStyles.col03.color

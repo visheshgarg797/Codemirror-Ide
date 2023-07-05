@@ -190,7 +190,7 @@ const MultiThemeEditor = () => {
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
         popupPosition: {
-          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          x: ed.right - 2,
           y: (st.bottom + ed.bottom) / 2,
         },
         selectionPos: checkValidityOfSelection.actualStartPos,

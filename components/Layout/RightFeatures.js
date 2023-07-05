@@ -30,7 +30,7 @@ const RightBar = (props) => {
                 fontSize: "14px",
                 marginTop: "4px",
                 color: themeStyles.col02.color,
-                fontFamily: "Optimistic Text, serif",
+                fontFamily: themeStyles.font,
                 fontWeight: "500",
               }}
             >

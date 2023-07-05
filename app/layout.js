@@ -25,6 +25,10 @@ export default function RootLayout({ children }) {
                   className={inter.className}
                   style={{ backgroundColor: "#23272f" }}
                 >
+                  <link
+                    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+                    rel="stylesheet"
+                  />
                   {children}
                 </body>
               </DirectionProvider>

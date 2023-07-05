@@ -1,4 +1,5 @@
 // Theme colors for dark and light mode , there are three type of combination colorset for element namely col01 , col02 , col03
+import "../app/globals.css";
 
 const GlobalThemeStyles = [
   {
@@ -21,7 +22,7 @@ const GlobalThemeStyles = [
       hoverButtonColor: "#090647",
       buttonColor: "#4b8afc",
     },
-    font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+    font: "Montserrat",
     classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-500",
     classLnb2:
       "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-500 ",
@@ -47,7 +48,7 @@ const GlobalThemeStyles = [
       hoverButtonColor: "#090647",
       buttonColor: "#4b8afc",
     },
-    font: "Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+    font: "Montserrat",
     classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-300",
     classLnb2:
       "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 ",

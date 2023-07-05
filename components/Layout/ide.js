@@ -25,9 +25,10 @@ const IDE = () => {
               color: themeStyles.col02.color,
               marginTop: "-3rem",
               marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
+              fontFamily: themeStyles.font,
               fontSize: "2rem",
               fontStyle: "normal",
+              fontWeight: "500",
             }}
           >
             Fixed height editor
@@ -50,9 +51,10 @@ const IDE = () => {
               color: themeStyles.col02.color,
               marginTop: "-3rem",
               marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
+              fontFamily: themeStyles.font,
               fontSize: "2rem",
               fontStyle: "normal",
+              fontWeight: "500",
             }}
           >
             Text input editor
@@ -74,9 +76,10 @@ const IDE = () => {
               color: themeStyles.col02.color,
               marginTop: "-3rem",
               marginBottom: "2rem",
-              fontFamily: "Optimistic Text",
+              fontFamily: themeStyles.font,
               fontSize: "2rem",
               fontStyle: "normal",
+              fontWeight: "500",
             }}
           >
             Dynamic height editor
@@ -98,9 +101,10 @@ const IDE = () => {
               color: themeStyles.col02.color,
               marginTop: "-3rem",
               marginBottom: "0.5rem",
-              fontFamily: "Optimistic Text",
+              fontFamily: themeStyles.font,
               fontSize: "2rem",
               fontStyle: "normal",
+              fontWeight: "500",
             }}
           >
             Multitheme editor
