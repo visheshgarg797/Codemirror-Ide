@@ -152,9 +152,6 @@ const MultiLineEditor = () => {
       if (!checkValidityOfSelection.isValidSelection) {
         return;
       }
-      if (checkValidityOfSelection.actualSelectedText.includes(" ")) {
-        return;
-      }
       setSelectedTextIsKeyword(checkValidityOfSelection.isSelectedTextKeyword);
       const st = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualStartPos
@@ -162,11 +159,12 @@ const MultiLineEditor = () => {
       const ed = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualEndPos
       );
+      console.log(st, ed);
       setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
         popupPosition: {
-          x: ((st.left + ed.left) / 2 + (st.right + ed.right) / 2) / 2,
+          x: ed.right - 2,
           y: (st.bottom + ed.bottom) / 2,
         },
         selectionPos: checkValidityOfSelection.actualStartPos,
