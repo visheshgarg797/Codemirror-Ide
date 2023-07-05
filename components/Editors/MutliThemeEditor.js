@@ -16,6 +16,13 @@ import { antrl4Lang, getTokensForText } from "../Grammer/antrl4-lang";
 import IsValidSelection from "@/utils/IsValidSelection";
 import Popup from "../Autocomplete/Popup";
 import { Direction } from "@/constants/Direction";
+import { ResearchAdvanceQLLexer } from "../antlrGenerated";
+import { ResearchAdvanceQLParser } from "../antlrGenerated";
+import { ResearchAdvanceQLVisitor } from "../antlrGenerated";
+import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
+import EditorQueryVisitor from "../Grammer/editorVisitor";
+import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
+import antlr4 from "antlr4";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
 
 const MultiThemeEditor = () => {
@@ -41,6 +48,64 @@ const MultiThemeEditor = () => {
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
   const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
+
+  const createParserFromLexer = (lexer) => {
+    const tokens = new antlr4.CommonTokenStream(lexer);
+
+    return {
+      tokens: tokens.tokens,
+      parser: new ResearchAdvanceQLParser(tokens),
+    };
+  };
+
+  const createLexer = (input) => {
+    const chars = new antlr4.InputStream(input);
+
+    const lexer = new ResearchAdvanceQLLexer(chars);
+
+    lexer.strictMode = false;
+
+    return lexer;
+  };
+
+  function getErrors(text) {
+    const errors = [];
+    const lexer = createLexer(text);
+    //removing errorListeners of lexer as these errors will be reported in tokensProvider
+    lexer.removeErrorListeners();
+    const { parser, tokens } = createParserFromLexer(lexer);
+    parser.removeErrorListeners();
+    parser._errHandler = new EditorErrorStrategy();
+
+    try {
+      const tree = parser.mainQ();
+      const visitor = new EditorQueryVisitor();
+      tree.accept(visitor);
+    } catch (e) {
+      errors.push({
+        from: e?.offendingToken?.start,
+        to: e?.offendingToken?.stop + 1,
+        message: e?.message,
+      });
+    }
+    return errors;
+  }
+
+  // customized  extension to show errors on editor
+  const regexpLinter = linter((view) => {
+    let diagnostics = [];
+    const text = viewRef.current.state.doc.toString();
+    const errors = getErrors(text);
+    errors.map((error) => {
+      diagnostics.push({
+        from: error?.from,
+        to: error?.to,
+        severity: "error",
+        message: error?.message,
+      });
+    });
+    return diagnostics;
+  });
 
   const [themeIndex, setThemeIndex] = useState(
     direction === Direction.LTR
@@ -144,6 +209,8 @@ const MultiThemeEditor = () => {
       extensions: [
         basicSetup,
         antrl4Lang,
+        regexpLinter,
+        lintGutter(),
         autocompletion({
           override: [
             getKeywordFilter({
