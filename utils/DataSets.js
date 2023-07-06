@@ -5,7 +5,7 @@ const advancedOperators = new Set();
 const advancedOperatorsOptions = new Set();
 
 Data.keywords.forEach((item) => {
-  keywords.add(item.label);
+  keywords.add(item.label.toLowerCase());
 });
 
 Data.operators.forEach((item) => {

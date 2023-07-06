@@ -1,6 +1,9 @@
 import Data from "./Data";
+
 import { getTokensForText } from "@/components/Grammer/antrl4-lang";
+
 import { ResearchAdvanceQLLexer } from "../components/antlrGenerated";
+
 import {
   keywords,
   operators,
@@ -10,28 +13,39 @@ import {
 
 const invalidTokens = new Set([
   ResearchAdvanceQLLexer.EOF,
+
   ResearchAdvanceQLLexer.LPAREN,
+
   ResearchAdvanceQLLexer.RPAREN,
 ]);
+
 const useTokens = new Set([
   ResearchAdvanceQLLexer.PHRASE,
+
   ResearchAdvanceQLLexer.TERM_NORMAL,
+
   ResearchAdvanceQLLexer.AND,
+
   ResearchAdvanceQLLexer.NOT,
+
   ResearchAdvanceQLLexer.OR,
 ]);
 
 const traverseBackCursor = (textInEditor) => {
   let recommendNewWord = false;
+
   let lastStr = "",
     secLastStr = "";
+
   if (!textInEditor) {
     return { lastStr: "", secLastStr: "" };
   }
+
   const tokens = getTokensForText(textInEditor).reduce((acc, token) => {
     if (!invalidTokens.has(token.type)) {
       return [...acc, token];
     }
+
     return acc;
   }, []);
 
@@ -43,6 +57,7 @@ const traverseBackCursor = (textInEditor) => {
     ) {
       recommendNewWord = true;
     }
+
     if (useTokens.has(tokens[i].type)) {
       if (lastStr === "") {
         lastStr = tokens[i].text;
@@ -55,11 +70,14 @@ const traverseBackCursor = (textInEditor) => {
   if (recommendNewWord) {
     return {
       wordBeforeCursor: "",
+
       secLastWordBeforeCursor: lastStr.toLowerCase(),
     };
   }
+
   return {
     wordBeforeCursor: lastStr.toLowerCase(),
+
     secLastWordBeforeCursor: secLastStr.toLowerCase(),
   };
 };
@@ -75,6 +93,7 @@ const getKeywordFilter =
       context.pos - context?.state?.doc
         ? context.state.doc.length
         : 0 + textInEditor.length,
+
       textInEditor.length
     );
 
@@ -87,51 +106,63 @@ const getKeywordFilter =
     let returnValue = null;
 
     // handle new line
+
     if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length === 0) {
       if (!returnValue) {
         returnValue = {
           from: context.pos,
+
           options: [...Data.keywords.concat(Data.advancedOperators)],
         };
       }
     }
 
     // starting case
+
     if (secLastWordBeforeCursor.length === 0 && wordBeforeCursor.length > 0) {
       const possibleSuggestions = Data.keywords.concat(Data.advancedOperators);
+
       const filteredSuggesions = possibleSuggestions.filter((item) => {
         return item.label.startsWith(wordBeforeCursor);
       });
+
       if (!returnValue) {
         returnValue = {
           from: context.pos - wordBeforeCursor.length,
+
           options: filteredSuggesions,
         };
       }
     }
 
     // case after a word has been typed
+
     if (wordBeforeCursor.length === 0 && secLastWordBeforeCursor.length > 0) {
       if (operators.has(secLastWordBeforeCursor)) {
         if (!returnValue) {
           returnValue = {
             from: context.pos,
+
             options: Data.keywords.concat(Data.advancedOperators),
           };
         }
       }
+
       if (advancedOperators.has(secLastWordBeforeCursor)) {
         if (!returnValue) {
           returnValue = {
             from: context.pos,
+
             options: Data[secLastWordBeforeCursor],
           };
         }
       }
+
       if (
         advancedOperatorsOptions.has(
           secLastWordBeforeCursor.substring(
             1,
+
             secLastWordBeforeCursor.length - 1
           )
         )
@@ -139,14 +170,17 @@ const getKeywordFilter =
         if (!returnValue) {
           returnValue = {
             from: context.pos,
+
             options: Data.operators,
           };
         }
       }
+
       if (keywords.has(secLastWordBeforeCursor)) {
         if (!returnValue) {
           returnValue = {
             from: context.pos,
+
             options: Data.operators,
           };
         }
@@ -154,6 +188,7 @@ const getKeywordFilter =
     }
 
     // middle case
+
     if (wordBeforeCursor.length > 0 && secLastWordBeforeCursor.length > 0) {
       if (
         wordBeforeCursor[0] === '"' &&
@@ -162,79 +197,105 @@ const getKeywordFilter =
         if (!returnValue) {
           returnValue = {
             from: context.pos,
+
             options: Data.operators,
           };
         }
       }
+
       if (
         advancedOperatorsOptions.has(
           secLastWordBeforeCursor.substring(
             1,
+
             secLastWordBeforeCursor.length - 1
           )
         )
       ) {
         const possibleSuggestions = Data.operators;
+
         const filteredSuggesions = possibleSuggestions.filter((item) => {
           return item.label.startsWith(wordBeforeCursor.toUpperCase());
         });
+
         if (!returnValue) {
           returnValue = {
             from: context.pos - wordBeforeCursor.length,
+
             options: filteredSuggesions,
           };
         }
       }
+
       if (operators.has(secLastWordBeforeCursor)) {
         // give keywords and advanced operators
+
         const possibleSuggestions = Data.keywords.concat(
           Data.advancedOperators
         );
+
         const filteredSuggesions = possibleSuggestions.filter((item) => {
           return item.label.startsWith(wordBeforeCursor);
         });
+
         if (!returnValue) {
           returnValue = {
             from: context.pos - wordBeforeCursor.length,
+
             options: filteredSuggesions,
           };
         }
       }
+
       if (advancedOperators.has(secLastWordBeforeCursor)) {
         // give specific city or country
+
         const possibleSuggestions = Data[secLastWordBeforeCursor];
+
         const filteredSuggesions = possibleSuggestions.filter((item) => {
           return item.label.startsWith(wordBeforeCursor);
         });
+
         if (!returnValue) {
           returnValue = {
             from: context.pos - wordBeforeCursor.length,
+
             options: filteredSuggesions,
           };
         }
       }
+
       if (advancedOperatorsOptions.has(secLastWordBeforeCursor)) {
         // give operators
+
         const possibleSuggestions = Data.operators;
+
         const filteredSuggesions = possibleSuggestions.filter((item) => {
           return item.label.startsWith(wordBeforeCursor.toUpperCase());
         });
+
         if (!returnValue) {
           returnValue = {
             from: context.pos - wordBeforeCursor.length,
+
             options: filteredSuggesions,
           };
         }
       }
+
       if (keywords.has(secLastWordBeforeCursor)) {
         // give operators
+
         const possibleSuggestions = Data.operators;
+
         const filteredSuggesions = possibleSuggestions.filter((item) => {
-          return item.label.startsWith(wordBeforeCursor);
+          return item.label.startsWith(wordBeforeCursor.toUpperCase());
         });
+
         if (!returnValue) {
           returnValue = {
             from: context.pos - wordBeforeCursor.length,
+
             options: filteredSuggesions,
           };
         }
@@ -242,17 +303,25 @@ const getKeywordFilter =
     }
 
     // bracket case
+
     if (wordBeforeCursor === "") {
       if (!returnValue) {
         returnValue = {
           from: context.pos,
+
           options: [
             ...Data.keywords.concat(Data.advancedOperators),
+
             // {
+
             //   label: "not",
+
             //   type: "operatorNot",
+
             //   info: "not",
+
             //   apply: "not ",
+
             // },
           ],
         };
@@ -262,6 +331,8 @@ const getKeywordFilter =
     if (showCustomSuggestionsPopup) {
       setSuggestions(returnValue);
     }
+
     return returnValue;
   };
+
 export default getKeywordFilter;
