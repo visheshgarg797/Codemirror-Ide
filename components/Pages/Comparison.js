@@ -28,7 +28,7 @@ const Comparison = () => {
           paddingTop: "20px",
           fontSize: "2.5rem",
           fontFamily: themeStyles.font,
-          fontWeight: "700",
+          fontWeight: "500",
         }}
       >
         Comparison
@@ -144,7 +144,7 @@ const Comparison = () => {
           paddingTop: "40px",
           fontSize: "20px",
           fontFamily: themeStyles.font,
-          fontWeight: "700",
+          fontWeight: "500",
         }}
       >
         Conclusion

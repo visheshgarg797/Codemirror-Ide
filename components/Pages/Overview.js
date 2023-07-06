@@ -22,7 +22,7 @@ const Overview = () => {
           paddingTop: "40px",
           fontSize: "40px",
           fontFamily: themeStyles.font,
-          fontWeight: "700",
+          fontWeight: "500",
         }}
       >
         Overview{" "}

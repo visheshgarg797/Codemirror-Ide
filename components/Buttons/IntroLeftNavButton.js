@@ -46,7 +46,7 @@ const IntroLeftNavButton = (props) => {
           style={{
             width: "16rem",
             fontFamily: themeStyles.font,
-            fontWeight: "700",
+            fontWeight: "600",
             color:
               props.path == pathname
                 ? themeStyles.col03.color
