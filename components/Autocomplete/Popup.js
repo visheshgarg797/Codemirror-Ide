@@ -105,7 +105,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
                   style={{
                     margin: "2px",
                     backgroundColor: selectedOptions.includes(item)
-                      ? "#2b8217"
+                      ? "#3c81f6"
                       : "rgba(255, 255, 255, 0.12)",
                     padding: "4px 10px",
                     borderRadius: "5px",

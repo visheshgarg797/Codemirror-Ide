@@ -569,22 +569,22 @@ const Data = {
       apply: "sprinklr ",
     },
     {
-      label: "apple",
+      label: "cricket",
       detail: "[keyword]",
       type: "keyword",
-      apply: "apple ",
+      apply: "Cricket ",
     },
     {
-      label: "banana",
-      apply: "banana ",
+      label: "Virat",
+      apply: "Virat ",
       detail: "[keyword]",
       type: "keyword",
     },
     {
-      label: "cat",
+      label: "Messi",
       detail: "[keyword]",
       type: "keyword",
-      apply: "cat ",
+      apply: "Messi ",
     },
   ],
   advancedOperators: [

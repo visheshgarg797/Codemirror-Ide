@@ -41,13 +41,13 @@ const COMPONENT_CONSTANTS = {
   ],
   COMPARISION_TABLE_CONTENT: [
     {
-      feature: "Multi line editor",
+      feature: "Fixed height editor",
       codemirror: "YES",
       ace: "YES",
       monaco: "YES",
     },
     {
-      feature: "Single line editor",
+      feature: "Text input editor",
       codemirror: "YES",
       ace: "NO",
       monaco: "YES",
@@ -101,7 +101,7 @@ const COMPONENT_CONSTANTS = {
       monaco: "YES",
     },
     {
-      feature: "Substring selection support",
+      feature: "Selection support",
       codemirror: "YES",
       ace: "NO",
       monaco: "YES",
