@@ -38,13 +38,12 @@ const IntroLeftNavButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">
       <div className="">
         <div
           className={themeStyles.classLnb2}
           onClick={() => handleClick()}
           style={{
-            width: "16rem",
             fontFamily: themeStyles.font,
             fontWeight: "600",
             color:
@@ -76,7 +75,6 @@ const IntroLeftNavButton = (props) => {
               key={item.value}
               className={themeStyles.classLnb}
               style={{
-                width: "16rem",
                 fontWeight: "400",
                 fontSize: "0.85rem",
                 paddingLeft: "2rem",

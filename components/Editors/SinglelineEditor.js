@@ -348,7 +348,11 @@ const SingleLineEditor = () => {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer" style={{ width: "80%" }}>
+      <div
+        ref={editorRef}
+        className="EditorContainer"
+        style={{ width: "83.8%" }}
+      >
         <style>
           {`.cm-tooltip {
             top:${suggestionBoxCorrds.top + 2}px !important;
@@ -359,7 +363,7 @@ const SingleLineEditor = () => {
             }px !important;
             position: fixed !important;
             border: 1px solid #181a1f;
-            width: 48.85%;
+            width: 48.85%
           }
           .cm-tooltip > ul > li{
             width:100%

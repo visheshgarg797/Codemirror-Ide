@@ -151,11 +151,17 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
       t.type === ResearchAdvanceQLParser.NOT
     ) {
       msg = `extraneous input ${tokenName}  expecting  keyword/advance_operator after ${tokenName}`;
+    } else if (
+      recognizer.getInputStream().LT(-1).type ===
+        ResearchAdvanceQLParser.LINE_COMMENT ||
+      recognizer.getInputStream().LT(-1).type ===
+        ResearchAdvanceQLParser.MULTI_LINE_COMMENT ||
+      recognizer.getInputStream().LT(-1).type ===
+        ResearchAdvanceQLParser.PHRASE_COMMENT
+    ) {
+      msg = `add a query , there is only a comment`;
     } else {
-      msg = `extraneous input ${tokenName}  expecting  ${expecting.toString(
-        recognizer.literalNames,
-        recognizer.symbolicNames
-      )} `;
+      msg = `This input cannot be ${tokenName}  expecting keyword , phrase or closing bracket or whitespace `;
     }
     throw new ParseCancellationException(
       recognizer,
@@ -248,6 +254,9 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
   }
 
   sync(recognizer) {
+    if (recognizer.getInputStream().index === 0) {
+      return;
+    }
     const s = recognizer._interp.atn.states[recognizer.state];
     const tokens = recognizer.getInputStream();
     const la = tokens.LA(1);
@@ -271,7 +280,13 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
           }
           this.validatePreviousToken(recognizer);
           this.validateNextToken(recognizer);
-        // throw new antrl4.error.InputMismatchException(recognizer);
+          if (recognizer.getInputStream().LT(1).type !== -1) {
+            throw new ParseCancellationException(
+              recognizer,
+              "invalid parenthes",
+              recognizer.getInputStream().LT(1)
+            );
+          }
         case 9:
         case 11:
           this.reportUnwantedToken(recognizer);
@@ -317,6 +332,9 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     );
   }
   reportError(recognizer, e) {
+    if (recognizer.getInputStream().tokens.length === 1) {
+      return;
+    }
     if (e instanceof antrl4.error.NoViableAltException) {
       this.reportNoViableAlternative(recognizer, e);
     } else if (e instanceof antrl4.error.InputMismatchException) {

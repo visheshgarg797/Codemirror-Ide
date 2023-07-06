@@ -276,7 +276,7 @@ const MultiLineEditor = () => {
   }, [themeStyles, direction]);
 
   return (
-    <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
+    <div ref={editorRef} className="EditorContainer " style={{ width: "85%" }}>
       {popupState.showPopup && (
         <Popup
           position={popupState.popupPosition}

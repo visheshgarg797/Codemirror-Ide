@@ -7,9 +7,8 @@ const RightBar = (props) => {
   return (
     <div className="right-div">
       <div
-        className="bg-gray-800 w-128 fixed top-0 mt-16 end-0 flex flex-col"
+        className="bg-gray-800 fixed top-0 mt-16 end-0 flex flex-col sm:w-16 md:w- lg:w-64"
         style={{
-          display: window.innerWidth <= 600 ? "none" : "block",
           backgroundColor: themeStyles.col02.backgroundColor,
           color: themeStyles.col02.color,
         }}
@@ -36,11 +35,7 @@ const RightBar = (props) => {
             >
               {props.features.map((prop, index) => {
                 return (
-                  <div
-                    key={index}
-                    class="flex justify-between py-2"
-                    style={{ width: "250px" }}
-                  >
+                  <div key={index} class="flex justify-between py-2">
                     {prop}
                   </div>
                 );

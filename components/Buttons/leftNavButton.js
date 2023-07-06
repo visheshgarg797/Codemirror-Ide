@@ -24,12 +24,11 @@ const LeftNavButton = (props) => {
   //   themeStyles.theme === Theme_Name.LIGHT_MODE ? "200 " : "500 "
   // }
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">
       <div
         className={themeStyles.classLnb2}
         onClick={() => handleClick()}
         style={{
-          width: "16rem",
           fontFamily: themeStyles.font,
           fontWeight: "600",
           color:

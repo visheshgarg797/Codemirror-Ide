@@ -14,8 +14,9 @@ const IDE = () => {
   return (
     <div
       style={{
+        width: "95%",
         marginTop: "10px",
-        backgroundColor: themeStyles.col02.backgroundColor,
+        backgroundColor: "themeStyles.col02.backgroundColor",
       }}
     >
       {editorMode === EDITOR_MODES.MULTILINE_EDITOR_MODE ? (
