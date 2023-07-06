@@ -24,6 +24,7 @@ const SampleThemeListForSingleLineEditor = [
         width: "0px",
       },
       ".cm-gutters": {
+        backgroundColor: "white",
         width: 0,
         zIndex: "-1 !important",
       },
@@ -41,16 +42,13 @@ const SampleThemeListForSingleLineEditor = [
         wordWrap: "break-word",
         backgroundColor: "white",
       },
-      ".cm-tooltip-autocomplete > ul > li [aria-selected]": {
-        width: "55rem !important ",
-      },
       ".cm-diagnostic": {
         fontSize: "12px",
         backgroundColor: "white",
         color: "purple",
       },
     },
-    { dark: false }
+    { dark: true }
   ),
 
   EditorView.theme(
@@ -155,7 +153,7 @@ const SampleThemeListForSingleLineEditor = [
         color: "purple",
       },
     },
-    { dark: false }
+    { dark: true }
   ),
 
   EditorView.theme(

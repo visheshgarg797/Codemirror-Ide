@@ -230,18 +230,15 @@ const MultiLineEditor = () => {
   }, [themeStyles, direction]);
 
   return (
-    <>
-      <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
-        {popupState.showPopup && (
-          <Popup
-            position={popupState.popupPosition}
-            selection={popupState.selection}
-            handleOnClick={pushSelectionChangesToEditor}
-          />
-        )}
-      </div>
-      {/* <CustomSuggestionsComponent items={suggestions?.options} /> */}
-    </>
+    <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
+      {popupState.showPopup && (
+        <Popup
+          position={popupState.popupPosition}
+          selection={popupState.selection}
+          handleOnClick={pushSelectionChangesToEditor}
+        />
+      )}
+    </div>
   );
 };
 export default MultiLineEditor;

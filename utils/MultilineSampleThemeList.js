@@ -63,7 +63,7 @@ const MultilineSampleThemeList = [
         width: "1rem !important",
       },
     },
-    { dark: false }
+    { dark: true }
   ),
   EditorView.theme(
     {
@@ -195,7 +195,7 @@ const MultilineSampleThemeList = [
         width: "1rem !important",
       },
     },
-    { dark: false }
+    { dark: true }
   ),
   EditorView.theme(
     {

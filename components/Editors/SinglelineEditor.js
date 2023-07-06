@@ -313,16 +313,19 @@ const SingleLineEditor = () => {
       <div ref={editorRef} className="EditorContainer" style={{ width: "80%" }}>
         <style>
           {`.cm-tooltip {
-            top:${suggestionBoxCorrds.top}px !important;
-            left:${suggestionBoxCorrds.left}px !important;
+            top:${suggestionBoxCorrds.top + 2}px !important;
+            left:${
+              suggestionBoxCorrds.left +
+              1 +
+              (direction === Direction.RTL ? 55 : 0)
+            }px !important;
             position: fixed !important;
             border: 1px solid #181a1f;
-            width: 49%;
+            width: 48.85%;
           }
           .cm-tooltip > ul > li{
             width:100%
           }
-          
           `}
         </style>
         {popupState.showPopup && (
