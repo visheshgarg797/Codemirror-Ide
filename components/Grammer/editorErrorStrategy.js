@@ -230,6 +230,15 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
       } else {
         if (e.offendingToken.type === ResearchAdvanceQLParser.RPAREN) {
           msg = `mismatched input write a valid query inside parenthes `;
+        } else if (
+          recognizer.getInputStream().LT(-1).type ===
+            ResearchAdvanceQLParser.LINE_COMMENT ||
+          recognizer.getInputStream().LT(-1).type ===
+            ResearchAdvanceQLParser.PHRASE_COMMENT ||
+          recognizer.getInputStream().LT(-1).type ===
+            ResearchAdvanceQLParser.MULTI_LINE_COMMENT
+        ) {
+          msg = `no query only comment`;
         } else {
           msg = `mismatch input need to add ')' `;
         }
@@ -262,7 +271,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
           }
           this.validatePreviousToken(recognizer);
           this.validateNextToken(recognizer);
-          throw new antrl4.error.InputMismatchException(recognizer);
+        // throw new antrl4.error.InputMismatchException(recognizer);
         case 9:
         case 11:
           this.reportUnwantedToken(recognizer);

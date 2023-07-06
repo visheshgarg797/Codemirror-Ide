@@ -66,6 +66,14 @@ const MultiLineEditor = () => {
       color: themeStyles.syntaxParenColor,
       tag: [tags.paren, tags.inserted],
     },
+    {
+      color: themeStyles.syntaxParenColor,
+      tag: [tags.paren, tags.inserted],
+    },
+    {
+      color: themeStyles.syntaxCommentColor,
+      tag: [tags.comment, tags.inserted],
+    },
   ]);
 
   const [code, setCode] = useState("");
@@ -105,7 +113,6 @@ const MultiLineEditor = () => {
       const visitor = new EditorQueryVisitor();
       tree.accept(visitor);
     } catch (e) {
-      console.log("hellp", e);
       errors.push({
         from: e?.offendingToken?.start,
         to: e?.offendingToken?.stop + 1,

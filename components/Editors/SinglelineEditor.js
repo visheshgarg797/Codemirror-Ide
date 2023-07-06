@@ -74,6 +74,10 @@ const SingleLineEditor = () => {
       color: themeStyles.syntaxParenColor,
       tag: [tags.paren, tags.inserted],
     },
+    {
+      color: themeStyles.syntaxCommentColor,
+      tag: [tags.comment, tags.inserted],
+    },
   ]);
 
   function getErrors(text) {

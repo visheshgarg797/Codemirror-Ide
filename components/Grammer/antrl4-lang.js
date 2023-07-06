@@ -77,8 +77,19 @@ export const antrl4Lang = StreamLanguage.define({
           break;
         case ResearchAdvanceQLLexer.RPAREN:
           valueClass = getStyleNameByTag(tags.paren);
+          break;
         case ResearchAdvanceQLLexer.LPAREN:
           valueClass = getStyleNameByTag(tags.paren);
+          break;
+        case ResearchAdvanceQLLexer.LINE_COMMENT:
+          valueClass = getStyleNameByTag(tags.comment);
+          break;
+        case ResearchAdvanceQLLexer.PHRASE_COMMENT:
+          valueClass = getStyleNameByTag(tags.comment);
+          break;
+        case ResearchAdvanceQLLexer.MULTI_LINE_COMMENT:
+          valueClass = getStyleNameByTag(tags.comment);
+          break;
         default:
           valueClass = "keyword";
           break;

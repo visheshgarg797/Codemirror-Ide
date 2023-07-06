@@ -32,7 +32,8 @@ const GlobalThemeStyles = [
     syntaxPhraseColor: "#CE9178",
     syntaxColonColor: "#19B5FE",
     syntaxNumberColor: "#BF40BF",
-    syntaxParenColor: "pink",
+    syntaxParenColor: "#19B5FE",
+    syntaxCommentColor: "#b9b1ba",
   },
   {
     theme: "light",
@@ -65,7 +66,8 @@ const GlobalThemeStyles = [
     syntaxPhraseColor: "#A71709",
     syntaxColonColor: "#19B5FE",
     syntaxNumberColor: "#BF40BF",
-    syntaxParenColor: "pink",
+    syntaxParenColor: "#b436c2",
+    syntaxCommentColor: "#6b686b",
   },
 ];
 
