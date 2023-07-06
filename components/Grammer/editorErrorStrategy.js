@@ -1,5 +1,5 @@
 import antrl4 from "antlr4";
-import { ResearchAdvanceQLParser } from "../antlrGenerated";
+import { ResearchAdvanceQLParser } from "../antlrGenerated/index.ts";
 import ParseCancellationException from "./ParseCancellationException";
 
 class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {

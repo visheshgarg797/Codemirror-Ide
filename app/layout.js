@@ -5,7 +5,6 @@ import { DirectionProvider } from "@/context/directionProvider";
 import { EditorModeProvider } from "@/context/editorModeProvider";
 import { AnalysisProvider } from "@/context/ananlysisSubheading";
 import { IntroProvider } from "@/context/introSubheading";
-import { useCustomTheme } from "@/context/useThemeHook";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

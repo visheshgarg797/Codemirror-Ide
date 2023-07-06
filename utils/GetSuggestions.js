@@ -102,6 +102,7 @@ const getKeywordFilter =
 
     const secLastWordBeforeCursor =
       traverseBackCursor(textInEditor, pos).secLastWordBeforeCursor || "";
+    console.log("1", wordBeforeCursor, "2", secLastWordBeforeCursor);
 
     let returnValue = null;
 
