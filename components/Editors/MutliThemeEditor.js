@@ -108,13 +108,7 @@ const MultiThemeEditor = () => {
   });
 
   const [themeIndex, setThemeIndex] = useState(
-    direction === Direction.LTR
-      ? themeStyles.theme === Theme_Name.LIGHT_MODE
-        ? 0
-        : 1
-      : themeStyles.theme === Theme_Name.LIGHT_MODE
-      ? 4
-      : 5
+    themeStyles.theme === Theme_Name.LIGHT_MODE ? 0 : 1
   );
   const [currentThemeSelected, setCurrentThemeSelected] = useState(
     COMPONENT_CONSTANTS.THEME_NAMES[themeIndex]
