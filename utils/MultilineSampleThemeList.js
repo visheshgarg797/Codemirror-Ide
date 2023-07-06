@@ -31,7 +31,6 @@ const MultilineSampleThemeList = [
         border: "none",
         backgroundColor: "white",
       },
-
       ".cm-line": {
         padding: "2px 2px 2px 4px",
         minHeight: "24px",
@@ -56,6 +55,12 @@ const MultilineSampleThemeList = [
         fontSize: "12px",
         backgroundColor: "white",
         color: "purple",
+      },
+      ".cm-foldGutter": {
+        width: "0 !important",
+      },
+      ".cm-gutters .cm-gutter-lint": {
+        width: "1rem !important",
       },
     },
     { dark: false }
@@ -116,6 +121,12 @@ const MultilineSampleThemeList = [
         fontSize: "12px",
         backgroundColor: "white",
         color: "purple",
+      },
+      ".cm-foldGutter": {
+        width: "0 !important",
+      },
+      ".cm-gutters .cm-gutter-lint": {
+        width: "1rem !important",
       },
     },
     { dark: true }
@@ -177,6 +188,12 @@ const MultilineSampleThemeList = [
         backgroundColor: "white",
         color: "purple",
       },
+      ".cm-foldGutter": {
+        width: "0 !important",
+      },
+      ".cm-gutters .cm-gutter-lint": {
+        width: "1rem !important",
+      },
     },
     { dark: false }
   ),
@@ -237,6 +254,12 @@ const MultilineSampleThemeList = [
         fontSize: "12px",
         backgroundColor: "white",
         color: "purple",
+      },
+      ".cm-foldGutter": {
+        width: "0 !important",
+      },
+      ".cm-gutters .cm-gutter-lint": {
+        width: "1rem !important",
       },
     },
     { dark: true }
