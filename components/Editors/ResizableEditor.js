@@ -202,6 +202,10 @@ export default function ResizaleEditor() {
     }
   };
 
+  const handleDiscardPopup = () => {
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
   const handleMouseDown = () => {
     setCode(viewRef.current.state.doc.toString());
     setPopupState((popupState) => ({
@@ -303,6 +307,7 @@ export default function ResizaleEditor() {
             position={popupState.popupPosition}
             selection={popupState.selection}
             handleOnClick={pushSelectionChangesToEditor}
+            handleDiscardPopup={handleDiscardPopup}
           />
         )}
       </div>

@@ -8,7 +8,7 @@ const style1 = [
         maxHeight: "96px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -69,7 +69,7 @@ const style1 = [
         minWidth: "20px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -128,7 +128,7 @@ const style1 = [
         maxHeight: "96px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -187,7 +187,7 @@ const style1 = [
         maxHeight: "96px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -248,7 +248,7 @@ const style2 = [
         maxHeight: "144px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -309,7 +309,7 @@ const style2 = [
         minWidth: "20px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -368,7 +368,7 @@ const style2 = [
         maxHeight: "144px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -427,7 +427,7 @@ const style2 = [
         maxHeight: "144px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -488,7 +488,7 @@ const style3 = [
         maxHeight: "192px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -549,7 +549,7 @@ const style3 = [
         minWidth: "20px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -608,7 +608,7 @@ const style3 = [
         maxHeight: "192px",
         color: "black",
         backgroundColor: "white",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -664,7 +664,7 @@ const style3 = [
         maxHeight: "192px",
         color: "white",
         backgroundColor: "#16181d",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",

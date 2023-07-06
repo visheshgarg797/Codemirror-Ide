@@ -250,6 +250,10 @@ const SingleLineEditor = () => {
     }
   };
 
+  const handleDiscardPopup = () => {
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
   const handleMouseDown = () => {
     setCode(viewRef.current.state.doc.toString());
     setPopupState((popupState) => ({
@@ -367,6 +371,7 @@ const SingleLineEditor = () => {
             position={popupState.popupPosition}
             selection={popupState.selection}
             handleOnClick={pushSelectionChangesToEditor}
+            handleDiscardPopup={handleDiscardPopup}
           />
         )}
       </div>

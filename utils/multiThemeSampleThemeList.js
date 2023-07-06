@@ -8,7 +8,7 @@ const multiThemeSampleThemeList = [
         color: "black",
         backgroundColor: "white",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -70,7 +70,7 @@ const multiThemeSampleThemeList = [
         color: "white",
         backgroundColor: "#24292e",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -132,7 +132,7 @@ const multiThemeSampleThemeList = [
         color: "black",
         backgroundColor: "#f8f5d7",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -199,7 +199,7 @@ const multiThemeSampleThemeList = [
         color: "white",
         backgroundColor: "#1e2021",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -262,7 +262,7 @@ const multiThemeSampleThemeList = [
         color: "black",
         backgroundColor: "white",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -325,7 +325,7 @@ const multiThemeSampleThemeList = [
         color: "white",
         backgroundColor: "#24292e",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -388,7 +388,7 @@ const multiThemeSampleThemeList = [
         color: "black",
         backgroundColor: "#f8f5d7",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",
@@ -451,7 +451,7 @@ const multiThemeSampleThemeList = [
         color: "white",
         backgroundColor: "#1e2021",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-scroller": {
         overflow: "auto",

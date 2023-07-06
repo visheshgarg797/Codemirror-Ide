@@ -211,6 +211,10 @@ const MultiLineEditor = () => {
     }
   };
 
+  const handleDiscardPopup = () => {
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
   useEffect(() => {
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
@@ -248,6 +252,10 @@ const MultiLineEditor = () => {
           }
           if (update.docChanged) {
             setCode(viewRef.current.state.doc.toString());
+            setPopupState((popupState) => ({
+              ...popupState,
+              showPopup: false,
+            }));
             return startCompletion(View, { trigger: "input" });
           }
         }),
@@ -274,6 +282,7 @@ const MultiLineEditor = () => {
           position={popupState.popupPosition}
           selection={popupState.selection}
           handleOnClick={pushSelectionChangesToEditor}
+          handleDiscardPopup={handleDiscardPopup}
         />
       )}
     </div>

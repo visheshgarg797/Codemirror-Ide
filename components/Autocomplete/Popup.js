@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useCustomTheme } from "@/context/useThemeHook";
-import { GridLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 
-const Popup = ({ position, selection, handleOnClick }) => {
+const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
   const [additionalKeywords, setAddionalKeywords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { themeStyle } = useCustomTheme();
 
   useEffect(() => {
     const requestOptions = {
@@ -44,12 +45,12 @@ const Popup = ({ position, selection, handleOnClick }) => {
     fontSize: "10px",
     marginTop: "20px",
     position: "absolute",
-    width: "260px",
+    width: "300px",
     backgroundColor: themeStyles.col04.backgroundColor,
     padding: "10px",
     position: "absolute",
     top: position.y - 5,
-    left: position.x - 130,
+    left: position.x - 145,
     zIndex: "10",
     textAlign: "center",
     color: themeStyles.col04.color,
@@ -67,7 +68,7 @@ const Popup = ({ position, selection, handleOnClick }) => {
     transform: "translateX(0%) translateY(-50%) rotate(180deg)",
     borderWidth: "10px",
     borderStyle: "solid",
-    borderColor: "black transparent transparent transparent",
+    borderColor: `${themeStyles.col04.backgroundColor} transparent transparent transparent`,
   };
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -86,12 +87,25 @@ const Popup = ({ position, selection, handleOnClick }) => {
   return (
     <div style={divStyle}>
       {loading ? (
-        <GridLoader color="white" loading={loading} size={7} />
+        <div
+          style={{
+            height: "1.5rem",
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "1rem",
+          }}
+        >
+          <PropagateLoader
+            color="white"
+            loading={loading}
+            style={{ alignSelf: "center" }}
+          />
+        </div>
       ) : (
         <>
           <div
             style={{
-              width: "260px",
+              width: "300px",
               paddingRight: "1rem",
               marginTop: "0.5rem",
               textAlign: "left",
@@ -107,9 +121,9 @@ const Popup = ({ position, selection, handleOnClick }) => {
                     backgroundColor: selectedOptions.includes(item)
                       ? "#3c81f6"
                       : "rgba(255, 255, 255, 0.12)",
-                    padding: "4px 10px",
+                    padding: "2px 6px",
                     borderRadius: "5px",
-                    fontSize: "10px",
+                    fontSize: "0.6rem",
                     fontFamily: "system ui",
                     alignContent: "normal",
                   }}
@@ -122,18 +136,37 @@ const Popup = ({ position, selection, handleOnClick }) => {
           <br />
           <div className="flex justify-between">
             <button
-              onClick={() => handleOnClick(selectedOptions)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-2 py-1"
-              style={{ fontSize: "0.7rem", fontFamily: "system ui" }}
-            >
-              Add selected
-            </button>
-            <button
               onClick={handleSelectAll}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 py-1 rounded"
-              style={{ fontSize: "0.7rem", fontFamily: "system ui" }}
+              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
+              style={{
+                fontSize: "0.7rem",
+                fontFamily: "system ui",
+                backgroundColor: themeStyles.col04.buttonColor,
+              }}
             >
               Select all
+            </button>
+            <button
+              onClick={handleDiscardPopup}
+              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
+              style={{
+                fontSize: "0.7rem",
+                fontFamily: "system ui",
+                backgroundColor: themeStyles.col04.buttonColor,
+              }}
+            >
+              Discard Popup
+            </button>
+            <button
+              onClick={() => handleOnClick(selectedOptions)}
+              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
+              style={{
+                fontSize: "0.7rem",
+                fontFamily: "system ui",
+                backgroundColor: themeStyles.col04.buttonColor,
+              }}
+            >
+              Add selected
             </button>
           </div>
         </>

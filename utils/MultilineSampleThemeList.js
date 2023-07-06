@@ -7,7 +7,7 @@ const MultilineSampleThemeList = [
         color: "black",
         backgroundColor: "white",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-editor": {
         padding: "10px",
@@ -72,7 +72,7 @@ const MultilineSampleThemeList = [
         color: "white",
         backgroundColor: "#16181d",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-editor": {
         padding: "10px",
@@ -139,7 +139,7 @@ const MultilineSampleThemeList = [
         color: "black",
         backgroundColor: "white",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-editor": {
         padding: "10px",
@@ -205,7 +205,7 @@ const MultilineSampleThemeList = [
         color: "white",
         backgroundColor: "#16181d",
         borderRadius: "2px",
-        boxShadow: "0 1rem 2rem 0px rgba(0, 0, 0, 0.5)",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       },
       ".cm-editor": {
         padding: "10px",

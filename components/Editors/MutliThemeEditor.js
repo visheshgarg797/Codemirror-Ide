@@ -227,6 +227,10 @@ const MultiThemeEditor = () => {
     }
   };
 
+  const handleDiscardPopup = () => {
+    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  };
+
   useEffect(() => {
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
@@ -364,6 +368,7 @@ const MultiThemeEditor = () => {
             position={popupState.popupPosition}
             selection={popupState.selection}
             handleOnClick={pushSelectionChangesToEditor}
+            handleDiscardPopup={handleDiscardPopup}
           />
         )}
       </div>
