@@ -75,6 +75,10 @@ export const antrl4Lang = StreamLanguage.define({
         case ResearchAdvanceQLLexer.NOT:
           valueClass = getStyleNameByTag(tags.bitwiseOperator);
           break;
+        case ResearchAdvanceQLLexer.RPAREN:
+          valueClass = getStyleNameByTag(tags.paren);
+        case ResearchAdvanceQLLexer.LPAREN:
+          valueClass = getStyleNameByTag(tags.paren);
         default:
           valueClass = "keyword";
           break;

@@ -8,7 +8,9 @@ import { multiThemeSampleThemeList } from "@/utils/multiThemeSampleThemeList";
 import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
-import myHighlightStyle from "@/utils/Highlights";
+import { tags } from "@lezer/highlight";
+import { HighlightStyle } from "@codemirror/language";
+import Data from "@/utils/Data";
 import getKeywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
@@ -48,6 +50,34 @@ const MultiThemeEditor = () => {
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
   const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
+
+  const myHighlightStyle = HighlightStyle.define([
+    { color: themeStyles.syntaxNumberColor, tag: [tags.number, tags.inserted] },
+    {
+      color: themeStyles.syntaxORColor,
+      tag: [tags.logicOperator, tags.inserted],
+    },
+    {
+      color: themeStyles.syntaxNOTColor,
+      tag: [tags.bitwiseOperator, tags.inserted],
+    },
+    {
+      color: themeStyles.syntaxANDColor,
+      tag: [tags.arithmeticOperator, tags.inserted],
+    },
+    {
+      color: themeStyles.syntaxColonColor,
+      tag: [tags.className, tags.deleted],
+    },
+    {
+      color: themeStyles.syntaxPhraseColor,
+      tag: [tags.content, tags.inserted],
+    },
+    {
+      color: themeStyles.syntaxParenColor,
+      tag: [tags.paren, tags.inserted],
+    },
+  ]);
 
   const createParserFromLexer = (lexer) => {
     const tokens = new antlr4.CommonTokenStream(lexer);

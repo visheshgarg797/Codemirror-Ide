@@ -48,7 +48,6 @@ const BasicLayout = ({ children }) => {
       <Navbar />
       <Sidebar />
       <BodyComponent />
-      <Footer />
     </div>
   );
 };
