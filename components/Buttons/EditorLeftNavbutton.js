@@ -18,7 +18,7 @@ const EditorLeftNavButton = (props) => {
   const { direction } = useCustomDirection();
   const path = useMemo(() => props.path, []);
   const [isOpen, setIsOpen] = useState(pathname === "/editor");
-  const pathname2 = window.location.pathname;
+
   const handleCallBack = useCallback(() => {
     if (path !== "editor") {
       push(path);

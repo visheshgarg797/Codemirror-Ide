@@ -48,7 +48,7 @@ const RightBar = ({ list }) => {
             >
               {list.map((listItem, index) => {
                 return (
-                  <div className="space-y-4">
+                  <div className="space-y-4" key={index}>
                     <div className="">
                       <div
                         className={themeStyles.classRnb}
