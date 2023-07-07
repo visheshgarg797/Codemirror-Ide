@@ -17,6 +17,7 @@ const AnalysisLeftNavButton = (props) => {
   const pathname = usePathname();
   const { analysis, toggleAnalysis } = useAnalysisMode();
   const { direction } = useCustomDirection();
+  const [isOpen, setIsOpen] = useState(pathname === "/analysis");
 
   const path = useMemo(() => props.path, []);
 
@@ -34,8 +35,6 @@ const AnalysisLeftNavButton = (props) => {
   const handleOptionClick = (option) => {
     toggleAnalysis(option.value);
   };
-
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">

@@ -18,7 +18,7 @@ const IntroLeftNavButton = (props) => {
   const pathname = usePathname();
   const { intro, toggleIntro } = useIntroMode();
   const { direction } = useCustomDirection();
-
+  const [isOpen, setIsOpen] = useState(pathname === "/intro");
   const path = useMemo(() => props.path, []);
 
   const handleCallBack = useCallback(() => {
@@ -35,8 +35,6 @@ const IntroLeftNavButton = (props) => {
   const handleOptionClick = (option) => {
     toggleIntro(option.value);
   };
-
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">

@@ -16,14 +16,18 @@ const EditorLeftNavButton = (props) => {
   const pathname = usePathname();
   const { editorMode, updateEditorMode } = useCustomEditorMode();
   const { direction } = useCustomDirection();
-
   const path = useMemo(() => props.path, []);
-
+  const [isOpen, setIsOpen] = useState(pathname === "/editor");
+  const pathname2 = window.location.pathname;
   const handleCallBack = useCallback(() => {
     if (path !== "editor") {
       push(path);
     }
   }, []);
+
+  // useEffect(() => {
+  //   setIsOpen(true);
+  // }, []);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -33,8 +37,6 @@ const EditorLeftNavButton = (props) => {
   const handleOptionClick = (option) => {
     updateEditorMode(option.value);
   };
-
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">
