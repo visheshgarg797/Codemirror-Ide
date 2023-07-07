@@ -85,7 +85,7 @@ const Requirements = () => {
             have different code editors with distinct themes within the same
             application or webpage. This allows users to customize and preview
             different themes simultaneously. Changes made in one theme editor
-            won't affect the other editors.
+            would not affect the other editors.
             <br /> <br />
             <h1
               id="section3"
@@ -100,12 +100,12 @@ const Requirements = () => {
               RTL Language support
             </h1>
             Firstly, the new editor needs to incorporate missing bidirectional
-            support, enabling developers to work with right-to-left (RTL)
-            languages. This is crucial for ensuring compatibility with languages
-            that require RTL rendering. As the existing editor is not able to
-            write in rtl languages it is difficult to do search in arabic and
-            other rtl languages . So , editor should have RTL support to resolve
-            this issue
+            support, enabling developers to work with right-to-left languages.
+            This is crucial for ensuring compatibility with languages that
+            require RTL rendering. As the existing editor is not able to write
+            in rtl languages it is difficult to do search in arabic and other
+            rtl languages . So , editor should have RTL support to resolve this
+            issue
             <br /> <br />
             <h1
               id="section4"
