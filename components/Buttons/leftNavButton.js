@@ -4,13 +4,9 @@ import { useCustomTheme } from "../../context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
-import { Direction } from "@/constants/Direction";
-import { Theme_Name } from "@/constants/ThemeName";
-import styles from "../style.css";
 
 const LeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
-  const { direction } = useCustomDirection();
   const { push } = useRouter();
   const pathname = usePathname();
 

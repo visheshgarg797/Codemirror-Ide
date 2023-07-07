@@ -12,7 +12,6 @@ import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { tags } from "@lezer/highlight";
 import { HighlightStyle } from "@codemirror/language";
-import Data from "@/utils/Data";
 import { Direction } from "@/constants/Direction";
 import { Theme_Name } from "@/constants/ThemeName";
 import Popup from "../Autocomplete/Popup";
@@ -47,6 +46,7 @@ const SingleLineEditor = () => {
     left: 0,
     top: 0,
   });
+  let selectedIndex = 0;
 
   const myHighlightStyle = HighlightStyle.define([
     { color: themeStyles.syntaxNumberColor, tag: [tags.number, tags.inserted] },
@@ -270,6 +270,11 @@ const SingleLineEditor = () => {
     return;
   };
 
+  const handleKeyPress = (e) => {
+    console.log(e);
+    setkeyPressed(e.code);
+  };
+
   useEffect(() => {
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
@@ -330,6 +335,11 @@ const SingleLineEditor = () => {
     });
 
     View.dom.addEventListener("mousedown", handleMouseDown);
+    // View.dom.addEventListener("keydown", (e) => {
+    //   console.log(e.code);
+    //   selectedIndex = selectedIndex + 1;
+    //   console.log(selectedIndex);
+    // });
     viewRef.current = View;
 
     const suggestionCoords = editorRef.current.getBoundingClientRect();
@@ -344,7 +354,7 @@ const SingleLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction]);
+  }, [themeStyles, direction, selectedIndex]);
 
   return (
     <>
@@ -357,13 +367,17 @@ const SingleLineEditor = () => {
           {`.cm-tooltip {
             top:${suggestionBoxCorrds.top + 2}px !important;
             left:${suggestionBoxCorrds.left + 1}px !important;
+            left:${suggestionBoxCorrds.left + 1}px !important;
             position: fixed !important;
             border: 1px solid #181a1f;
             width: 40.1rem;
           }
           .cm-tooltip > ul > li{
-            width:100%
+            width:100%;
           }
+          // .cm-tooltip-autocomplete{
+          //   display:none
+          // }
           `}
         </style>
         {popupState.showPopup && (

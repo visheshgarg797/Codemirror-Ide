@@ -26,6 +26,8 @@ const GlobalThemeStyles = [
     classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-500",
     classLnb2:
       "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-500 ",
+    classRnb:
+      "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5  ",
     syntaxANDColor: "#DCDCAA",
     syntaxORColor: "#4EC9B0",
     syntaxNOTColor: "#e36d83",
@@ -60,6 +62,8 @@ const GlobalThemeStyles = [
     classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-300",
     classLnb2:
       "flex items-center justify-between px-4 py-2 cursor-pointer select-none text-black pl-5 hover:bg-gray-300 ",
+    classRnb:
+      "flex items-center justify-between px-7 py-2 cursor-pointer select-none text-black pl-5  ",
     syntaxANDColor: "#FFC40C",
     syntaxORColor: "green",
     syntaxNOTColor: "red",

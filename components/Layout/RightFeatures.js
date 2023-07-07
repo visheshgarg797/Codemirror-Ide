@@ -1,42 +1,99 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
-import "./Rightfeatures.module.css";
-const RightBar = (props) => {
+
+const RightBar = ({ list }) => {
   const { themeStyles } = useCustomTheme();
+  const [isOpenArray, setIsOpenArray] = useState(
+    Array(list.length).fill(false)
+  );
+  const handleClick = (index) => {
+    setIsOpenArray((prevOpenArray) => {
+      const updatedArray = prevOpenArray.map((value, i) => {
+        return i === index ? !value : false;
+      });
+      return updatedArray;
+    });
+  };
+
   return (
     <div className="hidden lg:block">
       <div
-        className="bg-gray-800 fixed top-0 mt-16 end-0 flex flex-col sm:w-16 md:w- lg:w-64"
+        className="bg-gray-800 fixed top-0 mt-16 end-0 flex flex-col sm:w-16 md:w-32 lg:w-64"
         style={{
           backgroundColor: themeStyles.col02.backgroundColor,
           color: themeStyles.col02.color,
         }}
       >
-        <div className="flex items-center justify-end p-2">
+        <div className="flex items-center justify-end">
           <div
-            className="mb-4 text-opacity-100 text-gray-500  font-optimistic-text font-sans -apple-system ui-sans-serif system-ui BlinkMacSystemFont Segoe UI Roboto Helvetica Neue Arial Noto Sans sans-serif Apple Color Emoji Segoe UI Emoji Segoe UI Symbol Noto Color Emoji"
+            className="mb-4 text-opacity-100 text-gray-500 font-optimistic-text font-sans -apple-system ui-sans-serif system-ui BlinkMacSystemFont Segoe UI Roboto Helvetica Neue Arial Noto Sans sans-serif Apple Color Emoji Segoe UI Emoji Segoe UI Symbol Noto Color Emoji"
             style={{
               fontSize: "12px",
               marginTop: "10px",
               fontFamily: "Optimistic Text, serif",
             }}
           >
-            FEATURES
+            <span style={{ marginBottom: "2rem" }}>FEATURES</span>
             <div
               className="flex flex-col"
               style={{
                 fontSize: "14px",
                 marginTop: "4px",
+                paddingInlineEnd: "1rem",
                 color: themeStyles.col02.color,
                 fontFamily: themeStyles.font,
                 fontWeight: "500",
               }}
             >
-              {props.features.map((prop, index) => {
+              {list.map((listItem, index) => {
                 return (
-                  <div key={index} class="flex justify-between py-2">
-                    {prop}
+                  <div className="space-y-4">
+                    <div className="">
+                      <div
+                        className={themeStyles.classRnb}
+                        style={{
+                          fontFamily: themeStyles.font,
+                          paddingLeft: "0rem",
+                          fontWeight: "500",
+                          color: themeStyles.col02.color,
+                          backgroundColor: themeStyles.col02.backgroundColor,
+                        }}
+                        onClick={() => handleClick(index)}
+                      >
+                        <span>{listItem.heading}</span>
+                        <svg
+                          className={`w-4 h-4 transition-transform transform ${
+                            isOpenArray[index] ? "rotate-90" : ""
+                          }`}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </div>
+                      <div
+                        className={`${
+                          isOpenArray[index] ? "block" : "hidden"
+                        } `}
+                      >
+                        <div
+                          style={{
+                            fontWeight: "400",
+                            fontSize: "0.85rem",
+                            marginBottom: "1rem",
+                            backgroundColor: themeStyles.col02.backgroundColor,
+                            color: themeStyles.col02.color,
+                          }}
+                        >
+                          {listItem.body}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
