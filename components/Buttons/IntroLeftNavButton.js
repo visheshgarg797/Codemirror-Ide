@@ -10,6 +10,7 @@ import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { Theme_Name } from "@/constants/ThemeName";
 import styles from "../style.css";
 import { useIntroMode } from "@/context/useIntroHook";
+import { Link } from "react-router-dom";
 
 const IntroLeftNavButton = (props) => {
   const { themeStyles } = useCustomTheme();
@@ -21,7 +22,7 @@ const IntroLeftNavButton = (props) => {
   const path = useMemo(() => props.path, []);
 
   const handleCallBack = useCallback(() => {
-    if (path !== "introduction") {
+    if (path !== "intro") {
       push(path);
     }
   }, []);

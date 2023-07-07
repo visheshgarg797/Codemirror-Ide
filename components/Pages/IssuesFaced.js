@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 import AnchorBar from "../Layout/AnchorBar";
-const MainConclusion = () => {
+const MainIssuesFaced = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -26,7 +26,7 @@ const MainConclusion = () => {
             fontWeight: "500",
           }}
         >
-          Conclusion{" "}
+          Issues Faced{" "}
         </h1>
         <p
           style={{
@@ -82,4 +82,4 @@ const MainConclusion = () => {
   );
 };
 
-export default MainConclusion;
+export default MainIssuesFaced;

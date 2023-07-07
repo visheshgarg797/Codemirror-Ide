@@ -1,9 +1,10 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { usePathname } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useAnalysisMode } from "@/context/useAnalysisHook";
 import { ANALYSIS_SUBHEADINGS } from "@/constants/AnalysisSubheadings";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
@@ -20,7 +21,7 @@ const AnalysisLeftNavButton = (props) => {
   const path = useMemo(() => props.path, []);
 
   const handleCallBack = useCallback(() => {
-    if (path !== "introduction") {
+    if (path !== "analysis") {
       push(path);
     }
   }, []);

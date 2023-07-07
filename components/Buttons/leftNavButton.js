@@ -20,9 +20,6 @@ const LeftNavButton = (props) => {
     push(path);
   }, []);
 
-  // -${
-  //   themeStyles.theme === Theme_Name.LIGHT_MODE ? "200 " : "500 "
-  // }
   return (
     <div className="space-y-4 sm:w-12 md:w-32 lg:w-64">
       <div
