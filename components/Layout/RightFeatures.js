@@ -49,49 +49,45 @@ const RightBar = ({ list }) => {
               {list.map((listItem, index) => {
                 return (
                   <div className="space-y-4" key={index}>
-                    <div className="">
+                    <div
+                      className={themeStyles.classRnb}
+                      style={{
+                        fontFamily: themeStyles.font,
+                        paddingLeft: "0rem",
+                        fontWeight: "500",
+                        color: themeStyles.col02.color,
+                        backgroundColor: themeStyles.col02.backgroundColor,
+                      }}
+                      onClick={() => handleClick(index)}
+                    >
+                      <span>{listItem.heading}</span>
+                      <svg
+                        className={`w-4 h-4 transition-transform transform ${
+                          isOpenArray[index] ? "rotate-90" : ""
+                        }`}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </div>
+                    <div
+                      className={`${isOpenArray[index] ? "block" : "hidden"} `}
+                    >
                       <div
-                        className={themeStyles.classRnb}
                         style={{
-                          fontFamily: themeStyles.font,
-                          paddingLeft: "0rem",
-                          fontWeight: "500",
-                          color: themeStyles.col02.color,
+                          fontWeight: "400",
+                          fontSize: "0.85rem",
+                          marginBottom: "1rem",
                           backgroundColor: themeStyles.col02.backgroundColor,
+                          color: themeStyles.col02.color,
                         }}
-                        onClick={() => handleClick(index)}
                       >
-                        <span>{listItem.heading}</span>
-                        <svg
-                          className={`w-4 h-4 transition-transform transform ${
-                            isOpenArray[index] ? "rotate-90" : ""
-                          }`}
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M9 18l6-6-6-6" />
-                        </svg>
-                      </div>
-                      <div
-                        className={`${
-                          isOpenArray[index] ? "block" : "hidden"
-                        } `}
-                      >
-                        <div
-                          style={{
-                            fontWeight: "400",
-                            fontSize: "0.85rem",
-                            marginBottom: "1rem",
-                            backgroundColor: themeStyles.col02.backgroundColor,
-                            color: themeStyles.col02.color,
-                          }}
-                        >
-                          {listItem.body}
-                        </div>
+                        {listItem.body}
                       </div>
                     </div>
                   </div>

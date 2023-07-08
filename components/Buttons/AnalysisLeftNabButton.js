@@ -17,9 +17,9 @@ const AnalysisLeftNavButton = (props) => {
   const pathname = usePathname();
   const { analysis, toggleAnalysis } = useAnalysisMode();
   const { direction } = useCustomDirection();
-  const [isOpen, setIsOpen] = useState(pathname === "/analysis");
 
   const path = useMemo(() => props.path, []);
+  const [isOpen, setIsOpen] = useState(pathname === "/analysis");
 
   const handleCallBack = useCallback(() => {
     if (path !== "analysis") {
