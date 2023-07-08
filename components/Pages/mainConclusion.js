@@ -71,6 +71,7 @@ const MainConclusion = () => {
         </p>
       </div>
       <AnchorBar
+        margin={"10px"}
         features={[
           { anchor: "#section1", heading: "heading of section1" },
           { anchor: "#section2", heading: "heading of section2" },

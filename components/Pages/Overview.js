@@ -42,7 +42,6 @@ const Overview = () => {
             style={{
               fontSize: "1rem",
               marginBottom: "2rem",
-              marginTop: "1rem",
             }}
           >
             <h1
@@ -69,7 +68,7 @@ const Overview = () => {
             specific demands but also aligns with our overarching goal of
             delivering a highly flexible and user-centric web editing
             experience.
-            <br /> <br />
+            <br />
             <h1
               id="section2"
               style={{
@@ -100,7 +99,7 @@ const Overview = () => {
             With its comprehensive feature set, widespread adoption, and
             continuous development, CodeMirror emerges as the superior choice to
             empower our web editing environment.
-            <br /> <br />
+            <br />
             <h1
               id="section3"
               style={{
@@ -123,12 +122,13 @@ const Overview = () => {
             capabilities to define custom tokens and enable context-aware
             autocomplete and hover features. These examples highlight the
             flexibility and advantages offered by CodeMirror.
-            <br /> <br />
+            <br />
           </div>
         </p>
       </div>
 
       <AnchorBar
+        margin={"10px"}
         features={[
           { anchor: "#section1", heading: "Objective" },
           { anchor: "#section2", heading: "Exploring different editors" },

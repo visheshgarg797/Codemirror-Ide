@@ -3,4 +3,5 @@ export const ADVANCE_OPERATOR = {
   city: "city",
   fruit: "fruit",
   author: "author",
+  arabic: "عليكم",
 };

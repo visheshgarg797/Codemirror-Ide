@@ -3,13 +3,14 @@ import React from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 const AnchorBar = (props) => {
   const { themeStyles } = useCustomTheme();
+  let margin = props.margin;
   return (
     <div className="hidden lg:block">
       <div
         className="bg-gray-800 fixed top-0 mt-16 end-0 flex flex-col sm:w-16 md:w-32 lg:w-60"
         style={{
           width: "190px",
-          marginInlineEnd: "10px",
+          marginInlineEnd: margin,
           backgroundColor: themeStyles.col02.backgroundColor,
           color: themeStyles.col02.color,
         }}

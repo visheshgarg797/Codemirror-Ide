@@ -41,7 +41,6 @@ const Requirements = () => {
             style={{
               fontSize: "1rem",
               marginBottom: "2rem",
-              marginTop: "1rem",
             }}
           >
             <h1
@@ -67,7 +66,7 @@ const Requirements = () => {
             component. If the content exceeds this maximum height, the editor
             will display a scroll bar to allow the user to scroll through the
             content vertically.
-            <br /> <br />
+            <br />
             <h1
               id="section2"
               style={{
@@ -86,7 +85,7 @@ const Requirements = () => {
             application or webpage. This allows users to customize and preview
             different themes simultaneously. Changes made in one theme editor
             would not affect the other editors.
-            <br /> <br />
+            <br />
             <h1
               id="section3"
               style={{
@@ -106,7 +105,7 @@ const Requirements = () => {
             in rtl languages it is difficult to do search in arabic and other
             rtl languages . So , editor should have RTL support to resolve this
             issue
-            <br /> <br />
+            <br />
             <h1
               id="section4"
               style={{
@@ -125,7 +124,7 @@ const Requirements = () => {
             streamlines the workflow and enhances user experience, eliminating
             the need for manual file selection through traditional file
             browsers.
-            <br /> <br />
+            <br />
             <h1
               id="section5"
               style={{
@@ -144,7 +143,7 @@ const Requirements = () => {
             plain language that is easy for users to understand.users can
             quickly grasp the nature of the error and take appropriate actions
             to resolve it.
-            <br /> <br />
+            <br />
             <h1
               id="section6"
               style={{
@@ -163,6 +162,7 @@ const Requirements = () => {
         </p>
       </div>
       <AnchorBar
+        margin={"10px"}
         features={[
           { anchor: "#section1", heading: "Dynamic height editor Support" },
           {

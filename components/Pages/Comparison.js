@@ -197,9 +197,14 @@ const Comparison = () => {
           contributes to its popularity and ease of integration.
         </p>
       </div>
+
       <AnchorBar
+        margin={"50px"}
         features={[
-          { anchor: "#section1", heading: "Table" },
+          {
+            anchor: "#section1",
+            heading: `Table of Features ${" "}  ${" "} ${" "} ${" "} ${" "} ${" "} ${" "} ${" "} `,
+          },
           { anchor: "#section2", heading: "Comparison" },
           { anchor: "#section3", heading: "Conclusion" },
         ]}
