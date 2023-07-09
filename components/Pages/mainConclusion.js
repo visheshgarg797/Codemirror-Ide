@@ -29,66 +29,90 @@ const MainConclusion = () => {
             fontWeight: "500",
           }}
         >
-          Conclusion{" "}
+          Conclusion
         </h1>
         <p
           style={{
             color: themeStyles.col02.color,
-            fontSize: "1rem",
+            fontSize: "20px",
             fontFamily: themeStyles.font,
             fontWeight: "300",
             lineHeight: "1.5",
-            marginTop: "2rem",
           }}
         >
-          After conducting a thorough comparison of Ace, CodeMirror, and Monaco,
-          we have determined that CodeMirror is the superior choice for a code
-          editor. It offers versatility by being easily embeddable in any web
-          page or JavaScript application, supporting multiple languages and
-          themes. CodeMirror boasts an extensive feature set, including
-          essential functionalities like syntax highlighting, code folding, and
-          autocompletion. Its comprehensive documentation enables developers to
-          quickly get started and leverage its capabilities effectively. The
-          active community support ensures prompt bug fixes, feature
-          enhancements, and a wide range of third-party plugins and extensions.
-          Moreover, CodeMirror seamlessly integrates with other tools and
-          frameworks, thanks to its modular architecture.
-          <br /> <br />
-          In our development process, we built the entire editor using
-          CodeMirror, successfully implementing most of the features found in
-          the existing Monaco editor. Additionally, we went beyond by
-          incorporating advanced features like right-to-left support, multiple
-          theme editors within a single page, a dynamic length editor, and the
-          ability to paste files via drag and drop. These added features enhance
-          the editor functionality and provide an even more customizable and
-          efficient code editing experience for developers.
-          <br /> <br />
-          With CodeMirror as our chosen platform, we provide an efficient and
-          customizable code editing experience that empowers developers to work
-          with ease and efficiency, while enjoying the benefits of RTL support,
-          multiple theme editors, dynamic length editing, and file pasting
-          through drag and drop. Overall, CodeMirror proves to be the ideal
-          choice, combining a robust feature set, comprehensive documentation,
-          active community support, and the flexibility to incorporate
-          additional functionalities to meet the specific needs of developers.
+          <div
+            style={{
+              fontSize: "1rem",
+              marginBottom: "2rem",
+            }}
+          >
+            <h1
+              id="section1"
+              style={{
+                color: themeStyles.col02.color,
+                paddingTop: "40px",
+                fontSize: "20px",
+                fontFamily: themeStyles.font,
+                fontWeight: "500",
+              }}
+            >
+              Why Codemirror ?
+            </h1>
+            After conducting a thorough comparison of Ace, CodeMirror, and
+            Monaco, we have determined that CodeMirror is the superior choice
+            for a code editor. It offers versatility by being easily embeddable
+            in any web page or JavaScript application, supporting multiple
+            languages and themes. CodeMirror boasts an extensive feature set,
+            including essential functionalities like syntax highlighting, code
+            folding, and autocompletion. Its comprehensive documentation enables
+            developers to quickly get started and leverage its capabilities
+            effectively. The active community support ensures prompt bug fixes,
+            feature enhancements, and a wide range of third-party plugins and
+            extensions. Moreover, CodeMirror seamlessly integrates with other
+            tools and frameworks, thanks to its modular architecture.
+            <h1
+              id="section2"
+              style={{
+                color: themeStyles.col02.color,
+                paddingTop: "40px",
+                fontSize: "20px",
+                fontFamily: themeStyles.font,
+                fontWeight: "500",
+              }}
+            >
+              What we Build ?
+            </h1>
+            In our development process, we built the entire editor using
+            CodeMirror, successfully implementing most of the features found in
+            the existing Monaco editor. Additionally, we went beyond by
+            incorporating advanced features like right-to-left support, multiple
+            theme editors within a single page, a dynamic length editor, and the
+            ability to paste files via drag and drop. These added features
+            enhance the editor functionality and provide an even more
+            customizable and efficient code editing experience for developers
+            and also help users with our error handling support as well
+            customized suggestion box for text input editor
+            <h1
+              id="section3"
+              style={{
+                color: themeStyles.col02.color,
+                paddingTop: "40px",
+                fontSize: "20px",
+                fontFamily: themeStyles.font,
+                fontWeight: "500",
+              }}
+            >
+              Performance Analysis for website
+            </h1>
+            <Image
+              src={performanceAnalysis}
+              style={{ marginTop: "1rem" }}
+              alt="Performance analysis"
+            />
+          </div>
         </p>
-        <Image
-          src={performanceAnalysis}
-          style={{ marginTop: "1rem" }}
-          alt="Performance analysis"
-        />
       </div>
-      <AnchorBar
-        margin={"10px"}
-        features={[
-          { anchor: "#section1", heading: "heading of section1" },
-          { anchor: "#section2", heading: "heading of section2" },
-          { anchor: "#section3", heading: "heading of section3" },
-          { anchor: "#section4", heading: "heading of section4" },
-        ]}
-      />
     </>
   );
 };
-
 export default MainConclusion;

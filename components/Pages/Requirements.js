@@ -94,7 +94,6 @@ const Requirements = () => {
             different themes simultaneously. Changes made in one theme editor
             would not affect the other editors.
             <Image src={multiThemeEditor} alt="Multi theme editor" />
-            <br />
             <h1
               id="section3"
               style={{
@@ -114,7 +113,14 @@ const Requirements = () => {
             in rtl languages it is difficult to do search in arabic and other
             rtl languages . So , editor should have RTL support to resolve this
             issue
-            <Image src={supportForRTL} alt="RTL support" />
+            <br /> <br />
+            <div style={{ height: "450px" }}>
+              <Image
+                src={supportForRTL}
+                alt="RTL support"
+                style={{ height: "100%" }}
+              />
+            </div>
             <h1
               id="section4"
               style={{
@@ -133,7 +139,13 @@ const Requirements = () => {
             streamlines the workflow and enhances user experience, eliminating
             the need for manual file selection through traditional file
             browsers.
-            <Image src={dragAndDrop} alt="Drag and drop feature" />
+            <div style={{ height: "550px" }}>
+              <Image
+                src={dragAndDrop}
+                alt="Drag and drop feature"
+                style={{ height: "100%" }}
+              />
+            </div>
             <h1
               id="section5"
               style={{
@@ -152,7 +164,13 @@ const Requirements = () => {
             plain language that is easy for users to understand.users can
             quickly grasp the nature of the error and take appropriate actions
             to resolve it.
-            <Image src={errorHandling} alt="Error handling" />
+            <div style={{ height: "350px" }}>
+              <Image
+                src={errorHandling}
+                alt="Error handling"
+                style={{ height: "100%" }}
+              />
+            </div>
             <h1
               id="section6"
               style={{
@@ -167,7 +185,9 @@ const Requirements = () => {
             </h1>
             Existing editor cannot have fixed suggestion box below text input
             box which need to be implemented to resolve designing problems .
-            <Image src={textInputEditor} alt="Text input editor" />
+            <div style={{ height: "200px" }}>
+              <Image src={textInputEditor} alt="Text input editor" />
+            </div>
           </div>
         </p>
       </div>
