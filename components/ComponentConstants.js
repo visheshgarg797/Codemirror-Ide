@@ -137,7 +137,6 @@ const COMPONENT_CONSTANTS = {
       monaco: "NO",
     },
   ],
-  // Will be used in theme dropdown
   THEME_NAMES: [
     "Github Light Theme",
     "Github Dark Theme",
@@ -238,6 +237,24 @@ const COMPONENT_CONSTANTS = {
     {
       heading: "Other features",
       body: "In addition to the dynamic sizing capabilities mentioned above, the editor incorporates various generic features to enhance the coding experience. This includes syntax highlighting,  error handling for better code debugging, and AI-powered selection assistance that provides recommended phrases and words related to the selected text.",
+    },
+  ],
+  ISSUES_FACED: [
+    {
+      heading: "Maintaining multiple themes",
+      body: "One of the major challenges we encountered with the Sprinklr Monaco editor was maintaining multiple editors with different themes on the same page. To overcome this, we implemented a solution by maintaining separate states for each individual editor. Whenever the theme was changed, we re-rendered the editor, ensuring that the states of multiple editors didn't conflict and cause ambiguous behavior.",
+    },
+    {
+      heading: "Inserting text in editor",
+      body: "We needed to insert text into the editor in scenarios involving pasting text or inserting phrases using the selection popup. The challenge we faced here was managing the anchor and head positions from where the desired text should be dispatched to the editor",
+    },
+    {
+      heading: "Grammer integration and error handling",
+      body: "One of the major challenges we encountered was the lack of comprehensive resources for integrating custom grammar with the CodeMirror module. To overcome this, we built extensions specifically designed to handle grammar integration, which were further utilized for error handling and syntax highlighting.",
+    },
+    {
+      heading: "Triggering suggestions",
+      body: "We implemented the algorithm to determine which suggestions to render based on previous words to identify valid phrases. However, we faced challenges in determining the conditions to trigger the suggestion box. The method used in the Sprinklr Monaco editor, which relied on spaces or specific triggering characters, was not supported in CodeMirror. As an alternative, we leveraged other methods such as monitoring changes in the editor's view state to trigger our custom suggestions. This approach also ensured that suggestions were displayed even when no characters were typed into the editor",
     },
   ],
 };
