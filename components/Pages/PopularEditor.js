@@ -2,6 +2,7 @@
 import React from "react";
 import { useCustomTheme } from "@/context/useThemeHook";
 import Image from "next/image";
+import popularEditors from "../images/popularEditors.png";
 import AnchorBar from "../Layout/AnchorBar";
 const PopularEditor = () => {
   const { themeStyles } = useCustomTheme();
@@ -124,17 +125,11 @@ const PopularEditor = () => {
             <br />
             These are the downloads of past 1 year , we can clearly see
             Codemirror has surpress other two editors .
-            <img
-              class="float-center ..."
-              src="https://i.ibb.co/myykLyB/populareditors.png"
-              style={{
-                width: "90%",
-                marginInlineEnd: "1rem",
-                marginTop: "1rem",
-                marginInlineStart: "1.5rem",
-                marginBottom: "1rem",
-              }}
-            ></img>
+            <Image
+              src={popularEditors}
+              style={{ marginTop: "1rem" }}
+              alt="Popular editors trend"
+            />
             <h1
               id="section5"
               style={{

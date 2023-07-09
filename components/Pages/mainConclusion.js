@@ -1,7 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 import AnchorBar from "../Layout/AnchorBar";
+import Image from "next/image";
+import performanceAnalysis from "../images/performanceAnalysis.png";
+
 const MainConclusion = () => {
   const { themeStyles } = useCustomTheme();
 
@@ -69,6 +72,11 @@ const MainConclusion = () => {
           active community support, and the flexibility to incorporate
           additional functionalities to meet the specific needs of developers.
         </p>
+        <Image
+          src={performanceAnalysis}
+          style={{ marginTop: "1rem" }}
+          alt="Performance analysis"
+        />
       </div>
       <AnchorBar
         margin={"10px"}

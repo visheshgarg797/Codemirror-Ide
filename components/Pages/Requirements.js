@@ -2,6 +2,14 @@
 import React, { useState } from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 import AnchorBar from "../Layout/AnchorBar";
+import Image from "next/image";
+import dynamicHeightEditor from "../images/dynamicHeightEditor.png";
+import multiThemeEditor from "../images/multiThemeEditor.png";
+import supportForRTL from "../images/supportForRTL.png";
+import dragAndDrop from "../images/dragAndDrop.png";
+import errorHandling from "../images/errorHandling.png";
+import textInputEditor from "../images/textInputEditor.png";
+
 const Requirements = () => {
   const { themeStyles } = useCustomTheme();
 
@@ -66,7 +74,7 @@ const Requirements = () => {
             component. If the content exceeds this maximum height, the editor
             will display a scroll bar to allow the user to scroll through the
             content vertically.
-            <br />
+            <Image src={dynamicHeightEditor} alt="Dynamic height editor" />
             <h1
               id="section2"
               style={{
@@ -85,6 +93,7 @@ const Requirements = () => {
             application or webpage. This allows users to customize and preview
             different themes simultaneously. Changes made in one theme editor
             would not affect the other editors.
+            <Image src={multiThemeEditor} alt="Multi theme editor" />
             <br />
             <h1
               id="section3"
@@ -105,7 +114,7 @@ const Requirements = () => {
             in rtl languages it is difficult to do search in arabic and other
             rtl languages . So , editor should have RTL support to resolve this
             issue
-            <br />
+            <Image src={supportForRTL} alt="RTL support" />
             <h1
               id="section4"
               style={{
@@ -124,7 +133,7 @@ const Requirements = () => {
             streamlines the workflow and enhances user experience, eliminating
             the need for manual file selection through traditional file
             browsers.
-            <br />
+            <Image src={dragAndDrop} alt="Drag and drop feature" />
             <h1
               id="section5"
               style={{
@@ -143,7 +152,7 @@ const Requirements = () => {
             plain language that is easy for users to understand.users can
             quickly grasp the nature of the error and take appropriate actions
             to resolve it.
-            <br />
+            <Image src={errorHandling} alt="Error handling" />
             <h1
               id="section6"
               style={{
@@ -158,6 +167,7 @@ const Requirements = () => {
             </h1>
             Existing editor cannot have fixed suggestion box below text input
             box which need to be implemented to resolve designing problems .
+            <Image src={textInputEditor} alt="Text input editor" />
           </div>
         </p>
       </div>

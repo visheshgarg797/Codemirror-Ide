@@ -86,11 +86,12 @@ const IDE = () => {
               fontSize: "2rem",
               fontStyle: "normal",
               fontWeight: "500",
+              marginLeft: "-2rem",
             }}
           >
             Multitheme editor
           </div>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap" style={{ marginLeft: "-2rem" }}>
             <MultiThemeEditor />
             <MultiThemeEditor />
             <RightBar list={COMPONENT_CONSTANTS.MULTITHEME_RIGHT_CONTENT} />
