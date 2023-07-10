@@ -350,6 +350,14 @@ const SingleLineEditor = () => {
     };
   }, [themeStyles, direction, selectedIndex]);
 
+  const giveDirection = () => {
+    if (direction === Direction.LTR) {
+      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
+    } else {
+      return `right:${suggestionBoxCorrds.left + 1}px !important;`;
+    }
+  };
+
   return (
     <>
       <div
@@ -361,9 +369,7 @@ const SingleLineEditor = () => {
           {`.cm-tooltip {
 
             top:${suggestionBoxCorrds.top + 2}px !important;
-
-            left:${suggestionBoxCorrds.left + 1}px !important;
-
+            ${giveDirection()}
             position: fixed !important;
 
             border: 1px solid #181a1f;

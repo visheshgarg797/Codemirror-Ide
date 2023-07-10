@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { PropagateLoader } from "react-spinners";
+import { useCustomDirection } from "@/context/useDirectionHook";
 
 const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
   const [additionalKeywords, setAddionalKeywords] = useState([]);
@@ -107,7 +108,7 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
           <div
             style={{
               width: "300px",
-              paddingRight: "1rem",
+              paddingInlineEnd: "1rem",
               marginTop: "0.5rem",
               textAlign: "left",
             }}
@@ -122,7 +123,9 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
                     backgroundColor: selectedOptions.includes(item)
                       ? "#3c81f6"
                       : "rgba(255, 255, 255, 0.12)",
-                    padding: "2px 6px",
+                    paddingTop: "2px",
+                    paddingBottom: "2px",
+                    paddingInline: "6px 6px",
                     borderRadius: "5px",
                     fontSize: "0.6rem",
                     fontFamily: "system ui",
