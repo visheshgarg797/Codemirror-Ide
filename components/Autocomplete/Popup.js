@@ -12,7 +12,8 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+        Authorization:
+          "Bearer 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",
       },
       body: JSON.stringify({
         model: "text-davinci-003",

@@ -271,7 +271,6 @@ const SingleLineEditor = () => {
   };
 
   const handleKeyPress = (e) => {
-    console.log(e);
     setkeyPressed(e.code);
   };
 

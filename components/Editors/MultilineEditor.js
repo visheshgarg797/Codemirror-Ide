@@ -197,7 +197,7 @@ const MultiLineEditor = () => {
       const ed = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualEndPos
       );
-      console.log(st, ed);
+
       setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
