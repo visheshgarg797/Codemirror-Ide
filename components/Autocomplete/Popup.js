@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCustomTheme } from "@/context/useThemeHook";
-import { PropagateLoader } from "react-spinners";
-import { useCustomDirection } from "@/context/useDirectionHook";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
   const [additionalKeywords, setAddionalKeywords] = useState([]);
@@ -18,7 +18,7 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
       },
       body: JSON.stringify({
         model: "text-davinci-003",
-        prompt: `Get 10 keywords related to ${selection}`,
+        prompt: `Get 12 keywords related to ${selection}`,
         temperature: 0.1,
         max_tokens: 200,
         top_p: 1,
@@ -47,12 +47,14 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
     fontSize: "10px",
     marginTop: "20px",
     position: "absolute",
-    width: "300px",
+    width: "280px",
+    paddingLeft: "0.5rem",
+    paddingBottom: "0.5rem",
+    paddingRight: "0.5rem",
     backgroundColor: themeStyles.col04.backgroundColor,
-    padding: "10px",
     position: "absolute",
     top: position.y - 5,
-    left: position.x - 145,
+    left: position.x - 137,
     zIndex: "10",
     textAlign: "center",
     color: themeStyles.col04.color,
@@ -66,7 +68,7 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
     width: "0",
     position: "absolute",
     top: "-10px",
-    left: "47.5%",
+    left: "47%",
     transform: "translateX(0%) translateY(-50%) rotate(180deg)",
     borderWidth: "10px",
     borderStyle: "solid",
@@ -88,31 +90,45 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
 
   return (
     <div style={divStyle}>
-      {loading ? (
-        <div
-          style={{
-            height: "1.5rem",
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: "1rem",
-          }}
-        >
-          <PropagateLoader
-            color="white"
-            loading={loading}
-            style={{ alignSelf: "center" }}
-          />
-        </div>
-      ) : (
-        <>
-          <div
-            style={{
-              width: "300px",
-              paddingInlineEnd: "1rem",
-              marginTop: "0.5rem",
-              textAlign: "left",
-            }}
+      <div
+        style={{
+          width: "280px",
+          paddingInlineEnd: "1rem",
+          marginTop: "0.5rem",
+          textAlign: "left",
+        }}
+      >
+        {loading ? (
+          // <SkeletonTheme baseColor="white" highlightColor="white" height="1rem">
+          <SkeletonTheme
+            baseColor="rgb(248,248,248)"
+            highlightColor="rgb(220,220,220)"
           >
+            <div className="flex justify-around" style={{ opacity: "0.4" }}>
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+            </div>
+            <div className="flex justify-around" style={{ opacity: "0.4" }}>
+              <Skeleton width="5.3rem" height="1.1rem" />
+              <Skeleton width="5.3rem" height="1.1rem" />
+              <Skeleton width="5.3rem" height="1.1rem" />
+            </div>
+            <div className="flex justify-around" style={{ opacity: "0.4" }}>
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+              <Skeleton width="4rem" height="1.1rem" />
+            </div>
+            <div className="flex justify-around" style={{ opacity: "0.4" }}>
+              <Skeleton width="5.3rem" height="1.1rem" />
+              <Skeleton width="5.3rem" height="1.1rem" />
+              <Skeleton width="5.3rem" height="1.1rem" />
+            </div>
+          </SkeletonTheme>
+        ) : (
+          <>
             {additionalKeywords.map((item, index) => {
               return (
                 <button
@@ -136,45 +152,46 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
                 </button>
               );
             })}
-          </div>
-          <br />
-          <div className="flex justify-between">
-            <button
-              onClick={handleSelectAll}
-              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
-              style={{
-                fontSize: "0.7rem",
-                fontFamily: "system ui",
-                backgroundColor: themeStyles.col04.buttonColor,
-              }}
-            >
-              Select all
-            </button>
-            <button
-              onClick={handleDiscardPopup}
-              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
-              style={{
-                fontSize: "0.7rem",
-                fontFamily: "system ui",
-                backgroundColor: themeStyles.col04.buttonColor,
-              }}
-            >
-              Discard Popup
-            </button>
-            <button
-              onClick={() => handleOnClick(selectedOptions)}
-              className="hover:bg-blue-900 text-white font-bold px-2 py-1 rounded"
-              style={{
-                fontSize: "0.7rem",
-                fontFamily: "system ui",
-                backgroundColor: themeStyles.col04.buttonColor,
-              }}
-            >
-              Add selected
-            </button>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
+      <br />
+      <div className="flex justify-between">
+        <button
+          onClick={handleSelectAll}
+          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          style={{
+            fontSize: "0.7rem",
+            fontFamily: "system ui",
+            backgroundColor: themeStyles.col04.buttonColor,
+          }}
+        >
+          Select all
+        </button>
+        <button
+          onClick={handleDiscardPopup}
+          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          style={{
+            fontSize: "0.7rem",
+            fontFamily: "system ui",
+            backgroundColor: themeStyles.col04.buttonColor,
+          }}
+        >
+          Discard Selections
+        </button>
+        <button
+          onClick={() => handleOnClick(selectedOptions)}
+          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          style={{
+            fontSize: "0.7rem",
+            fontFamily: "system ui",
+            backgroundColor: themeStyles.col04.buttonColor,
+          }}
+        >
+          Add selected
+        </button>
+      </div>
+
       <div style={arrowStyle}></div>
     </div>
   );
