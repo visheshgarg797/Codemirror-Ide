@@ -56,7 +56,7 @@ const GlobalThemeStyles = [
       backgroundColor: "rgb(33, 42, 100)",
       color: "white",
       hoverButtonColor: "#2270f5",
-      buttonColor: "#2485ed",
+      buttonColor: "#4755a8",
     },
     font: "Montserrat",
     classLnb: "px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-300",

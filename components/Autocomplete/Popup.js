@@ -159,7 +159,7 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
       <div className="flex justify-between">
         <button
           onClick={handleSelectAll}
-          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          className="text-white font-bold px-1 rounded"
           style={{
             fontSize: "0.7rem",
             fontFamily: "system ui",
@@ -170,18 +170,18 @@ const Popup = ({ position, selection, handleOnClick, handleDiscardPopup }) => {
         </button>
         <button
           onClick={handleDiscardPopup}
-          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          className="font-bold px-1 rounded"
           style={{
             fontSize: "0.7rem",
             fontFamily: "system ui",
             backgroundColor: themeStyles.col04.buttonColor,
           }}
         >
-          Discard Selections
+          Discard Popup
         </button>
         <button
           onClick={() => handleOnClick(selectedOptions)}
-          className="hover:bg-blue-900 text-white font-bold px-1 rounded"
+          className="text-white font-bold px-1 rounded"
           style={{
             fontSize: "0.7rem",
             fontFamily: "system ui",
