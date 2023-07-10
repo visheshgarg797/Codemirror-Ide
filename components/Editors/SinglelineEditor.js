@@ -359,15 +359,35 @@ const SingleLineEditor = () => {
       >
         <style>
           {`.cm-tooltip {
+
             top:${suggestionBoxCorrds.top + 2}px !important;
+
             left:${suggestionBoxCorrds.left + 1}px !important;
+
             position: fixed !important;
+
             border: 1px solid #181a1f;
+
             width: 40.1rem;
+
+            border-radius: 0px 0px 10px 10px;
+
+            
+
           }
+
           .cm-tooltip > ul > li{
+
             width:100%;
+
           }
+
+          .cm-tooltip > ul{
+
+            border-radius: 0px 0px 10px 10px;
+
+          }
+
           `}
         </style>
         {popupState.showPopup && (

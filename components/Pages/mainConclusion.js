@@ -112,6 +112,16 @@ const MainConclusion = () => {
           </div>
         </p>
       </div>
+      <AnchorBar
+        margin={"10px"}
+        features={[
+          { anchor: "#section1", heading: "Conclusion" },
+
+          { anchor: "#section2", heading: "Why codemirror?" },
+
+          { anchor: "#section3", heading: "Performance Analysis of website" },
+        ]}
+      />
     </>
   );
 };
