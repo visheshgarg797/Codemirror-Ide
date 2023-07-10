@@ -350,51 +350,31 @@ const SingleLineEditor = () => {
     };
   }, [themeStyles, direction, selectedIndex]);
 
-  const giveDirection = () => {
-    if (direction === Direction.LTR) {
-      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
-    } else {
-      return `right:${suggestionBoxCorrds.left + 1}px !important;`;
-    }
-  };
-
   return (
     <>
     
       <div
         ref={editorRef}
         className="EditorContainer"
-        style={{ width: "40rem" }}
+        style={{ width: "43.8rem", margin: "auto" }}
       >
         <style>
           {`.cm-tooltip {
-
             top:${suggestionBoxCorrds.top + 2}px !important;
-            ${giveDirection()}
+            left:${suggestionBoxCorrds.left + 1}px !important;
             position: fixed !important;
-
             border: 1px solid #181a1f;
-
-            width: 40.1rem;
-
+            width: 43.9rem;
             border-radius: 0px 0px 10px 10px;
-
-            
-
           }
 
           .cm-tooltip > ul > li{
-
             width:100%;
-
           }
 
           .cm-tooltip > ul{
-
             border-radius: 0px 0px 10px 10px;
-
           }
-
           `}
         </style>
         {popupState.showPopup && (

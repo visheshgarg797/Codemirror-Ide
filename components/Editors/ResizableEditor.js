@@ -276,7 +276,11 @@ export default function ResizaleEditor() {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
+      <div
+        ref={editorRef}
+        className="EditorContainer"
+        style={{ width: "100%" }}
+      >
         <select
           // value={maxLines.value}
           onChange={(heightChangeEvent) =>
@@ -290,7 +294,7 @@ export default function ResizaleEditor() {
             }`,
 
             borderRadius: "3px",
-            marginInlineStart: "600px",
+            marginInlineStart: "86%",
             marginBottom: "30px",
           }}
         >
