@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 import AnchorBar from "../Layout/AnchorBar";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
-
+import Image from "next/image";
+import performanceAnalysis from "../images/performanceAnalysis.png";
 const MainIssuesFaced = () => {
   const { themeStyles } = useCustomTheme();
 
@@ -28,7 +29,7 @@ const MainIssuesFaced = () => {
             fontWeight: "500",
           }}
         >
-          Issues faced and how we resolved them{" "}
+          Performance Analysis{" "}
         </h1>
         <p
           style={{
@@ -45,26 +46,23 @@ const MainIssuesFaced = () => {
               marginBottom: "2rem",
             }}
           >
-            {COMPONENT_CONSTANTS.ISSUES_FACED.map((item, index) => {
-              return (
-                <>
-                  <h1
-                    id={`section${index + 1}`}
-                    style={{
-                      color: themeStyles.col02.color,
-                      paddingTop: "40px",
-                      fontSize: "20px",
-                      fontFamily: themeStyles.font,
-                      fontWeight: "500",
-                    }}
-                    key={index}
-                  >
-                    {item.heading}
-                  </h1>
-                  <span>{item.body}</span>
-                </>
-              );
-            })}
+            <h1
+              id="section3"
+              style={{
+                color: themeStyles.col02.color,
+                paddingTop: "40px",
+                fontSize: "20px",
+                fontFamily: themeStyles.font,
+                fontWeight: "500",
+              }}
+            >
+              Performance Analysis for website
+            </h1>
+            <Image
+              src={performanceAnalysis}
+              style={{ marginTop: "1rem" }}
+              alt="Performance analysis"
+            />
           </div>
         </p>
       </div>

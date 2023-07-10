@@ -3,7 +3,6 @@ import React from "react";
 import { useCustomTheme } from "../../context/useThemeHook";
 import AnchorBar from "../Layout/AnchorBar";
 import Image from "next/image";
-import performanceAnalysis from "../images/performanceAnalysis.png";
 
 const MainConclusion = () => {
   const { themeStyles } = useCustomTheme();
@@ -92,34 +91,15 @@ const MainConclusion = () => {
             customizable and efficient code editing experience for developers
             and also help users with our error handling support as well
             customized suggestion box for text input editor
-            <h1
-              id="section3"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              Performance Analysis for website
-            </h1>
-            <Image
-              src={performanceAnalysis}
-              style={{ marginTop: "1rem" }}
-              alt="Performance analysis"
-            />
           </div>
         </p>
       </div>
       <AnchorBar
         margin={"10px"}
         features={[
-          { anchor: "#section1", heading: "Conclusion" },
+          { anchor: "#section1", heading: "Why codemirror?" },
 
-          { anchor: "#section2", heading: "Why codemirror?" },
-
-          { anchor: "#section3", heading: "Performance Analysis of website" },
+          { anchor: "#section2", heading: "What we Build ?" },
         ]}
       />
     </>

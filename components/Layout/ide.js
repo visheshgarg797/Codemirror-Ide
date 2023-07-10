@@ -55,7 +55,7 @@ const IDE = () => {
                 fontStyle: "normal",
                 fontWeight: "500",
                 width: "100%",
-                marginInlineStart: "17%",
+                marginInlineStart: "2rem",
               }}
             >
               Text input editor
@@ -82,6 +82,7 @@ const IDE = () => {
             >
               Dynamic height editor
             </div>
+
             <ResizaleEditor />
             <RightBar list={COMPONENT_CONSTANTS.RESIZEABLE_RIGHT_CONTENT} />
           </div>

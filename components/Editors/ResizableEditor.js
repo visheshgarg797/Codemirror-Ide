@@ -39,9 +39,9 @@ export default function ResizaleEditor() {
     selectionPos: -1,
   });
   const Heightoptions = [
-    { maxLine: "Maximum lines 4", index: "0" },
-    { maxLine: "Maximum lines 6", index: "1" },
-    { maxLine: "Maximum lines 8", index: "2" },
+    { maxLine: "4", index: "0" },
+    { maxLine: "6", index: "1" },
+    { maxLine: "8", index: "2" },
   ];
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
@@ -100,7 +100,7 @@ export default function ResizaleEditor() {
   };
 
   const handleHeightChange = (heightChangeEvent) => {
-    let idx = (1 + parseInt(heightChangeEvent.target.value[14])) / 3;
+    let idx = (1 + parseInt(heightChangeEvent.target.value[0])) / 3;
     idx = parseInt(idx) - 1;
     setMaxLines(idx);
   };
@@ -281,6 +281,12 @@ export default function ResizaleEditor() {
         className="EditorContainer"
         style={{ width: "100%" }}
       >
+        <h1
+          style={{ marginInlineStart: "36rem", color: themeStyles.col02.color }}
+        >
+          {" "}
+          MAXIMUM LINES
+        </h1>
         <select
           // value={maxLines.value}
           onChange={(heightChangeEvent) =>
@@ -294,8 +300,9 @@ export default function ResizaleEditor() {
             }`,
 
             borderRadius: "3px",
-            marginInlineStart: "86%",
+            marginInlineStart: "40rem",
             marginBottom: "30px",
+            marginTop: "5px",
           }}
         >
           {Heightoptions.map((index) => {

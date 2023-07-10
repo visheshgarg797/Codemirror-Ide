@@ -185,9 +185,7 @@ const Requirements = () => {
             </h1>
             Existing editor cannot have fixed suggestion box below text input
             box which need to be implemented to resolve designing problems .
-            <div style={{ height: "200px" }}>
-              <Image src={textInputEditor} alt="Text input editor" />
-            </div>
+            <Image src={textInputEditor} alt="Text input editor" />
           </div>
         </p>
       </div>
