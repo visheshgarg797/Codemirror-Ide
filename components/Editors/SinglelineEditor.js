@@ -360,6 +360,7 @@ const SingleLineEditor = () => {
 
   return (
     <>
+    
       <div
         ref={editorRef}
         className="EditorContainer"

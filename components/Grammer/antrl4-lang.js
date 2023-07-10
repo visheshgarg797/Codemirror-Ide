@@ -1,7 +1,6 @@
 import antlr from "antlr4";
 import { styleTags, tags, Tag } from "@lezer/highlight";
 import { StreamLanguage } from "@codemirror/language";
-
 import { ResearchAdvanceQLLexer } from "../antlrGenerated";
 function getStyleNameByTag(tag) {
   for (let t in tags) {
@@ -88,6 +87,9 @@ export const antrl4Lang = StreamLanguage.define({
           valueClass = getStyleNameByTag(tags.comment);
           break;
         case ResearchAdvanceQLLexer.MULTI_LINE_COMMENT:
+          valueClass = getStyleNameByTag(tags.comment);
+          break;
+        case ResearchAdvanceQLLexer.FIELD:
           valueClass = getStyleNameByTag(tags.comment);
           break;
         default:

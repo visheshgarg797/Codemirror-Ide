@@ -130,39 +130,6 @@ const PopularEditor = () => {
               style={{ marginTop: "1rem" }}
               alt="Popular editors trend"
             />
-            <h1
-              id="section5"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              What to see in Editor ?
-            </h1>
-            While considering a code editor for selection, we give priority to
-            the needed features, stability, and the availability of
-            documentation for adding new features or resolving existing issues.
-            In our rigorous evaluation process, we considered CodeMirror,
-            Monaco, Orion, Theia, and Ace as the most popular choices used in
-            the industry. Each editor brought its unique strengths and
-            weaknesses to the table, leading us to narrow down our options as
-            Theia being a lot bulky compared to all other editors and Orion not
-            having good documentation. Ultimately, we opted to compare
-            CodeMirror, Monaco, and Ace, focusing on crucial features such as
-            multi-line and single-line editing, syntax highlighting, error
-            visualization, auto-completion, and resizing capabilities. We
-            identified the following weaknesses in our current editor, Sprinklr
-            Monaco editor, which drove our evaluation:
-            <ol style={{ fontStyle: "oblique" }}>
-              <li>1) Missing Bidirectional support</li>
-              <li>2) No option for multiple theme editors on a single page</li>
-              <li>3) Dynamic length editor</li>
-              <li>4) Drag and Drop file support </li>
-            </ol>
-            <br />
           </div>
         </p>
       </div>
@@ -176,7 +143,6 @@ const PopularEditor = () => {
           },
           { anchor: "#section3", heading: "Companies using Ace" },
           { anchor: "#section4", heading: "npm trends" },
-          { anchor: "#section5", heading: "Wht else to see ?" },
         ]}
       />
     </>

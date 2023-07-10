@@ -54,7 +54,9 @@ const IDE = () => {
           >
             Text input editor
           </div>
-          <SingleLineEditor />
+          <div style={{ alignContent: "center", alignItems: "center" }}>
+            <SingleLineEditor />
+          </div>
           <RightBar list={COMPONENT_CONSTANTS.SINGLELINE_RIGHT_CONTENT} />
         </>
       ) : editorMode === EDITOR_MODES.RESIZABLE_EDITOR_MODE ? (
