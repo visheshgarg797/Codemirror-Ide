@@ -5,7 +5,7 @@ import AnchorBar from "../Layout/AnchorBar";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
 import Image from "next/image";
 import performanceAnalysis from "../images/performanceAnalysis.png";
-const MainIssuesFaced = () => {
+const MainPerformance = () => {
   const { themeStyles } = useCustomTheme();
 
   return (
@@ -69,7 +69,7 @@ const MainIssuesFaced = () => {
       <AnchorBar
         margin={"10px"}
         features={[
-          { anchor: "#section1", heading: "Maintaining multiple themes" },
+          { anchor: "#section1", heading: "Website Performance" },
           {
             anchor: "#section2",
             heading: "Inserting text in editor",
@@ -85,4 +85,4 @@ const MainIssuesFaced = () => {
   );
 };
 
-export default MainIssuesFaced;
+export default MainPerformance;
