@@ -68,30 +68,32 @@ const MainPerformance = () => {
               style={{ marginTop: "1rem" }}
               alt="Performance analysis"
             />
-            <h1
-              id="section2"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              Webpack bundle analysis
-            </h1>
-            <span style={{ display: "flex", marginTop: "1rem" }}>
-              <Image
-                src={bundleAnalyzer1}
-                alt="Bundle analyzer 1"
-                style={{ width: "26.2rem", marginInlineEnd: "1rem" }}
-              />
-              <Image
-                src={bundleAnalyzer2}
-                alt="Bundle analyzer 2"
-                style={{ width: "26.2rem" }}
-              />
-            </span>
+            <div>
+              <h1
+                id="section2"
+                style={{
+                  color: themeStyles.col02.color,
+                  paddingTop: "40px",
+                  fontSize: "20px",
+                  fontFamily: themeStyles.font,
+                  fontWeight: "500",
+                }}
+              >
+                Webpack bundle analysis
+              </h1>
+              <span style={{ display: "flex", marginTop: "1rem" }}>
+                <Image
+                  src={bundleAnalyzer1}
+                  alt="Bundle analyzer 1"
+                  style={{ marginInlineEnd: "2%", width: "49%" }}
+                />
+                <Image
+                  src={bundleAnalyzer2}
+                  alt="Bundle analyzer 2"
+                  style={{ width: "49%" }}
+                />
+              </span>
+            </div>
             <h1
               id="section3"
               style={{
@@ -107,7 +109,7 @@ const MainPerformance = () => {
             <Image
               src={bundleAnalyzer3}
               alt="Codemirror bundle analysis"
-              style={{ marginTop: "1rem" }}
+              style={{ marginTop: "1rem", width: "100%" }}
             />
             <h1
               id="section4"
@@ -122,7 +124,7 @@ const MainPerformance = () => {
               Production build size comparision
             </h1>
             <span style={{ display: "flex", marginTop: "1rem" }}>
-              <div>
+              <div style={{ width: "49%" }}>
                 <span
                   style={{
                     marginBottom: "1rem",
@@ -138,7 +140,7 @@ const MainPerformance = () => {
                   alt="Moanco bundle size"
                 />
               </div>
-              <div>
+              <div style={{ width: "49%" }}>
                 <span
                   style={{
                     marginInlineStart: "1rem",
