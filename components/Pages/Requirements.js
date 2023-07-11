@@ -164,13 +164,7 @@ const Requirements = () => {
             plain language that is easy for users to understand.users can
             quickly grasp the nature of the error and take appropriate actions
             to resolve it.
-            <div style={{ height: "350px" }}>
-              <Image
-                src={errorHandling}
-                alt="Error handling"
-                style={{ height: "100%" }}
-              />
-            </div>
+            <Image src={errorHandling} alt="Error handling" />
             <h1
               id="section6"
               style={{

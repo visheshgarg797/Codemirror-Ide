@@ -55,19 +55,13 @@ const COMPONENT_CONSTANTS = {
       monaco: "YES",
     },
     {
-      feature: "Keyword highlighting and Bracket Matching",
+      feature: "Keyword highlighting , Bracket Matching , Comments",
       content: "Highlights keywords accroding to grammar and matches brackets",
       codemirror: "YES",
       ace: "YES",
       monaco: "YES",
     },
-    {
-      feature: "Comments",
-      content: "Supports comments in the code",
-      codemirror: "YES",
-      ace: "YES",
-      monaco: "YES",
-    },
+
     {
       feature: "Error highlighting and syntax error visualization",
       content:

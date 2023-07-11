@@ -281,41 +281,47 @@ export default function ResizaleEditor() {
         className="EditorContainer"
         style={{ width: "100%" }}
       >
-        <h1
+        <div
           style={{
-            marginInlineStart: "36rem",
-            color: themeStyles.col02.color,
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "20px",
           }}
         >
-          {" "}
-          MAXIMUM LINES
-        </h1>
-        <select
-          // value={maxLines.value}
-          onChange={(heightChangeEvent) =>
-            handleHeightChange(heightChangeEvent)
-          }
-          style={{
-            backgroundColor: themeStyles.col02.backgroundColor,
-            color: themeStyles.col02.color,
-            border: `1px solid ${
-              themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
-            }`,
-
-            borderRadius: "3px",
-            marginInlineStart: "40rem",
-            marginBottom: "30px",
-            marginTop: "5px",
-          }}
-        >
-          {Heightoptions.map((index) => {
-            return (
-              <option value={index.maxLine} key={index.index}>
-                {index.maxLine}
-              </option>
-            );
-          })}
-        </select>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+            }}
+          >
+            {" "}
+            MAXIMUM LINES
+          </div>
+          <div>
+            <select
+              // value={maxLines.value}
+              onChange={(heightChangeEvent) =>
+                handleHeightChange(heightChangeEvent)
+              }
+              style={{
+                backgroundColor: themeStyles.col02.backgroundColor,
+                color: themeStyles.col02.color,
+                border: `1px solid ${
+                  themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
+                }`,
+                marginInlineStart: "9px",
+                borderRadius: "3px",
+              }}
+            >
+              {Heightoptions.map((index) => {
+                return (
+                  <option value={index.maxLine} key={index.index}>
+                    {index.maxLine}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
 
         {popupState.showPopup && (
           <Popup

@@ -73,12 +73,12 @@ const PopularEditor = () => {
                 fontWeight: "500",
               }}
             >
-              Companies using Monacco-Editor
+              Companies using Monaco-Editor
             </h1>
-            Monacco is popular because it is used by Microsoft . Salesforce and
-            Azure are the others using it . It was very popular in recent past
-            but it has some issues like no stable version and lack of features
-            and bulky size .
+            Monaco is maintained by microsoft and hence was a popular choice.
+            However, it losts its popularity because of several major issues.
+            e.g. absence of a stable version, fewer features compared to other
+            options and bulky size .
             <br />
             <h1
               id="section3"
