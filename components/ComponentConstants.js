@@ -98,13 +98,6 @@ const COMPONENT_CONSTANTS = {
       monaco: "YES",
     },
     {
-      feature: "Read only editor",
-      content: "Provides a read-only editor",
-      codemirror: "YES",
-      ace: "YES",
-      monaco: "YES",
-    },
-    {
       feature: "Multiple theme support",
       content: "Supports multiple themes on different editors on the same page",
       codemirror: "YES",
@@ -186,7 +179,7 @@ const COMPONENT_CONSTANTS = {
       body: "The editor provides a familiar input box experience but at the same time contains all the features of like autocomplete support, syntax highlighting, error handling, AI powered selection support etc.",
     },
     {
-      heading: "Recommendations like a dropdown",
+      heading: "Dropdown recommendations",
       body: "This solve the problem that is quite difficult to overcome with the existing Sprinklr Monaco edtitor of having customized suggestion box. We have customized the suggestion box such that it appears, not besides the cursor but at the bottom of the editor as a dropdown. With each suggestion, the suggestion box remains in place, providing a seamless and aesthetically pleasing user experience.",
     },
     {

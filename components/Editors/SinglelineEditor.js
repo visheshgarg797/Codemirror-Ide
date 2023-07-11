@@ -26,6 +26,7 @@ import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
 import EditorQueryVisitor from "../Grammer/editorVisitor";
 import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
 import antlr4 from "antlr4";
+import { DIVIDER } from "@netlify/plugin-nextjs/lib/constants";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -348,11 +349,19 @@ const SingleLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, selectedIndex]);
+  }, [themeStyles, direction]);
+
+  const giveDirection = () => {
+    console.log(direction);
+    if (direction === Direction.LTR) {
+      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
+    } else {
+      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
+    }
+  };
 
   return (
     <>
-    
       <div
         ref={editorRef}
         className="EditorContainer"
@@ -361,7 +370,7 @@ const SingleLineEditor = () => {
         <style>
           {`.cm-tooltip {
             top:${suggestionBoxCorrds.top + 2}px !important;
-            left:${suggestionBoxCorrds.left + 1}px !important;
+            ${giveDirection()}
             position: fixed !important;
             border: 1px solid #181a1f;
             width: 43.9rem;

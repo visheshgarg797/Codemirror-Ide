@@ -358,11 +358,7 @@ const MultiThemeEditor = () => {
           })}
         </select>
       </div>
-      <div
-        ref={editorRef}
-        // className="EditorContainer w-8/10"
-        style={{ width: "100%" }}
-      >
+      <div ref={editorRef} style={{ width: "100%" }}>
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}

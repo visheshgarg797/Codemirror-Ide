@@ -48,7 +48,7 @@ const SampleThemeListForSingleLineEditor = [
         color: "purple",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
 
   EditorView.theme(
@@ -153,7 +153,7 @@ const SampleThemeListForSingleLineEditor = [
         color: "purple",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
 
   EditorView.theme(
