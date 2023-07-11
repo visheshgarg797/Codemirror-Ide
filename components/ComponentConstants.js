@@ -135,10 +135,6 @@ const COMPONENT_CONSTANTS = {
       body: "The editor has a fixed height and width, providing a consistent and visually appealing layout.",
     },
     {
-      heading: "Vertical scroll",
-      body: "When the code in the editor exceeds its height limit, a vertical scroll bar automatically appears. This allows users to scroll through the code vertically, ensuring all content remains accessible.",
-    },
-    {
       heading: "Horizontal wrap",
       body: "The editor intelligently wraps code to the next line when it reaches the end of the current line horizontally. This prevents the need for horizontal scrolling and improves code readability.",
     },
@@ -159,7 +155,7 @@ const COMPONENT_CONSTANTS = {
       body: "A new feature addition to the editor is the support for drag and drop functionality. User can drag a file containing some code, drop it onto the editor, it will be appended into the editor. This grealty enhances user experience and speeds up the coding process",
     },
     {
-      heading: "Comments",
+      heading: "Code comments",
       body: "User can comment out some piece of code by putting '//' before the text. All the text in that line after that will be ignored by the editor. Comments help improve code readablilty and make the code more maintainable.",
     },
   ],

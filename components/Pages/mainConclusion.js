@@ -79,7 +79,7 @@ const MainConclusion = () => {
                 fontWeight: "500",
               }}
             >
-              What we Build ?
+              Outcomes
             </h1>
             In our development process, we built the entire editor using
             CodeMirror, successfully implementing most of the features found in

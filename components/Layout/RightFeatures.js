@@ -5,7 +5,7 @@ import { useCustomTheme } from "../../context/useThemeHook";
 const RightBar = ({ list }) => {
   const { themeStyles } = useCustomTheme();
   const [isOpenArray, setIsOpenArray] = useState(
-    Array(list.length).fill(false)
+    Array.from({ length: list.length }, (_, i) => i === 0)
   );
   const handleClick = (index) => {
     setIsOpenArray((prevOpenArray) => {
