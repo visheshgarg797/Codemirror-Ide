@@ -63,18 +63,19 @@ const Requirements = () => {
             >
               Dynamic height editor Support
             </h1>
-            Firstly, the new editor needs to incorporate dynamic height change
-            support which changes height on runtime as in the Monaco-Editor
-            (sprinklr editor) , height is fixed once and cant change on runtime
-            . The dynamic height feature allows the editor component to adjust
-            its height based on its content or user interaction. This means that
-            as the user types or interacts with the editor, the height of the
-            component automatically expands or shrinks to fit the content.The
-            max height option sets a maximum height limit for the editor
-            component. If the content exceeds this maximum height, the editor
-            will display a scroll bar to allow the user to scroll through the
-            content vertically.
-            <Image src={dynamicHeightEditor} alt="Dynamic height editor" />
+            <span style={{ textAlign: "justify" }}>
+              Firstly, the new editor needs to incorporate dynamic height change
+              support which changes height on runtime as in the Monaco-Editor
+              (sprinklr editor) , height is fixed once and cant change on
+              runtime . The dynamic height feature allows the editor component
+              to adjust its height based on its content or user interaction.
+              This means that as the user types or interacts with the editor,
+              the height of the component automatically expands or shrinks to
+              fit the content.The max height option sets a maximum height limit
+              for the editor component. If the content exceeds this maximum
+              height, the editor will display a scroll bar to allow the user to
+              scroll through the content vertically.
+            </span>
             <h1
               id="section2"
               style={{
@@ -87,13 +88,14 @@ const Requirements = () => {
             >
               Multitheme editor on a Single page
             </h1>
-            Another feature that the new editor should add is the option for
-            multiple theme editors on a single page. This allows developers to
-            have different code editors with distinct themes within the same
-            application or webpage. This allows users to customize and preview
-            different themes simultaneously. Changes made in one theme editor
-            would not affect the other editors.
-            <Image src={multiThemeEditor} alt="Multi theme editor" />
+            <span style={{ textAlign: "justify" }}>
+              Another feature that the new editor should add is the option for
+              multiple theme editors on a single page. This allows developers to
+              have different code editors with distinct themes within the same
+              application or webpage. This allows users to customize and preview
+              different themes simultaneously. Changes made in one theme editor
+              would not affect the other editors.
+            </span>
             <h1
               id="section3"
               style={{
@@ -106,21 +108,22 @@ const Requirements = () => {
             >
               RTL Language support
             </h1>
-            Firstly, the new editor needs to incorporate missing bidirectional
-            support, enabling developers to work with right-to-left languages.
-            This is crucial for ensuring compatibility with languages that
-            require RTL rendering. As the existing editor is not able to write
-            in rtl languages it is difficult to do search in arabic and other
-            rtl languages . So , editor should have RTL support to resolve this
-            issue
+            <span style={{ textAlign: "justify" }}>
+              Firstly, the new editor needs to incorporate missing bidirectional
+              support, enabling developers to work with right-to-left languages.
+              This is crucial for ensuring compatibility with languages that
+              require RTL rendering. As the existing editor is not able to write
+              in rtl languages it is difficult to do search in arabic and other
+              rtl languages . So , editor should have RTL support to resolve
+              this issue
+            </span>
             <br /> <br />
-            <div style={{ height: "450px" }}>
-              <Image
-                src={supportForRTL}
-                alt="RTL support"
-                style={{ height: "100%" }}
-              />
-            </div>
+            <Image
+              src={supportForRTL}
+              alt="RTL support"
+              style={{ height: "100%" }}
+            />
+            <br /> <br />
             <h1
               id="section4"
               style={{
@@ -133,19 +136,14 @@ const Requirements = () => {
             >
               Drag and Drop Support
             </h1>
-            The new editor should incorporate drag and drop file support,
-            enabling developers to easily import files into the editor by
-            dragging and dropping them from their local file system. This
-            streamlines the workflow and enhances user experience, eliminating
-            the need for manual file selection through traditional file
-            browsers.
-            <div style={{ height: "550px" }}>
-              <Image
-                src={dragAndDrop}
-                alt="Drag and drop feature"
-                style={{ height: "100%" }}
-              />
-            </div>
+            <span style={{ textAlign: "justify" }}>
+              The new editor should incorporate drag and drop file support,
+              enabling developers to easily import files into the editor by
+              dragging and dropping them from their local file system. This
+              streamlines the workflow and enhances user experience, eliminating
+              the need for manual file selection through traditional file
+              browsers.
+            </span>
             <h1
               id="section5"
               style={{
@@ -158,13 +156,14 @@ const Requirements = () => {
             >
               User Friendly Error Support
             </h1>
-            The existing Monaco editors show complex errors which leads to
-            echnical jargon or complex terminology , User-friendly error
-            messages present information in a clear and concise manner, using
-            plain language that is easy for users to understand.users can
-            quickly grasp the nature of the error and take appropriate actions
-            to resolve it.
-            <Image src={errorHandling} alt="Error handling" />
+            <span style={{ textAlign: "justify" }}>
+              The existing Monaco editors show complex errors which leads to
+              echnical jargon or complex terminology , User-friendly error
+              messages present information in a clear and concise manner, using
+              plain language that is easy for users to understand.users can
+              quickly grasp the nature of the error and take appropriate actions
+              to resolve it.
+            </span>
             <h1
               id="section6"
               style={{
@@ -177,9 +176,10 @@ const Requirements = () => {
             >
               Fixed Suggestion Box
             </h1>
-            Existing editor cannot have fixed suggestion box below text input
-            box which need to be implemented to resolve designing problems .
-            <Image src={textInputEditor} alt="Text input editor" />
+            <span style={{ textAlign: "justify" }}>
+              Existing editor cannot have fixed suggestion box below text input
+              box which need to be implemented to resolve designing problems .
+            </span>
           </div>
         </p>
       </div>

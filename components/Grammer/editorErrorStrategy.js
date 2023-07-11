@@ -42,7 +42,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
             if (e.offendingToken.type === ResearchAdvanceQLParser.DQUOTE) {
               msg = `add a valid phrase {"text"}`;
             } else {
-              msg = `add a keyword {apple , sprinklr , city, country} after each operator {AND , OR , NOT})`;
+              msg = `add a keyword {apple , sprinklr , city, country} or '('  after each operator {AND , OR , NOT})`;
             }
           } else {
             for (let token in tokens.tokens) {
