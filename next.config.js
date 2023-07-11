@@ -4,14 +4,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 require("dotenv").config();
 const nextConfig = {};
-module.exports = nextConfig;
-
 module.exports = {
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/",
-        destination: "/intro", // The :path parameter is used here so will not be automatically passed in the query
+        destination: "/intro/",
+        permanent: false,
       },
     ];
   },

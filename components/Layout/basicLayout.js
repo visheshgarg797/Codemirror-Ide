@@ -4,7 +4,6 @@ import { useParams } from "next/navigation";
 import { useCustomTheme } from "../../context/useThemeHook";
 import Sidebar from "./Sidebar";
 import Navbar from "./navbar";
-import Footer from "./footer";
 import MainAnalysis from "../Pages/mainAnalysis";
 import MainConclusion from "../Pages/mainConclusion";
 import MainEditor from "../Pages/mainEditor";
