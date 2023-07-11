@@ -90,13 +90,23 @@ const Comparison = () => {
                     }}
                   >
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
-                      style={{ color: themeStyles.col02.color }}
+                      className=" py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        color: themeStyles.col02.color,
+                        paddingLeft: "0.25rem",
+                      }}
                     >
                       {item.feature}
+                      <br />
+                      <span
+                        className="py-2 whitespace-nowrap text-xs font-small"
+                        style={{ fontWeight: "400" }}
+                      >
+                        {item.content || "NO CONTENT FOUND"}
+                      </span>
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "7%" : "0%",
                         paddingRight:
@@ -111,7 +121,7 @@ const Comparison = () => {
                       )}
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "5%" : "0%",
                         paddingRight:
@@ -126,7 +136,7 @@ const Comparison = () => {
                       )}
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "4%" : "0%",
                         paddingRight: direction === Direction.RTL ? "9%" : "0%",

@@ -282,7 +282,10 @@ export default function ResizaleEditor() {
         style={{ width: "100%" }}
       >
         <h1
-          style={{ marginInlineStart: "36rem", color: themeStyles.col02.color }}
+          style={{
+            marginInlineStart: "36rem",
+            color: themeStyles.col02.color,
+          }}
         >
           {" "}
           MAXIMUM LINES
@@ -313,6 +316,7 @@ export default function ResizaleEditor() {
             );
           })}
         </select>
+
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}
