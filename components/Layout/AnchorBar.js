@@ -4,6 +4,7 @@ import { useCustomTheme } from "../../context/useThemeHook";
 const AnchorBar = (props) => {
   const { themeStyles } = useCustomTheme();
   let margin = props.margin;
+  let giveMarginLeft = props.giveMarginLeft;
   return (
     <div className="hidden lg:block">
       <div
@@ -22,6 +23,7 @@ const AnchorBar = (props) => {
               fontSize: "12px",
               marginTop: "10px",
               fontFamily: "Optimistic Text, serif",
+              marginInlineEnd: `${giveMarginLeft ? "2rem" : "0"}`,
             }}
           >
             CONTENT
