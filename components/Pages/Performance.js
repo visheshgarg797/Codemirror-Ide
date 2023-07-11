@@ -107,7 +107,7 @@ const MainPerformance = () => {
             <Image
               src={bundleAnalyzer3}
               alt="Codemirror bundle analysis"
-              style={{ marginTop: "1rem", width: "50rem" }}
+              style={{ marginTop: "1rem" }}
             />
             <h1
               id="section4"
@@ -132,7 +132,11 @@ const MainPerformance = () => {
                 >
                   Basic Monaco Editor
                 </span>
-                <Image src={bundleAnalyzer4} style={{ height: "32rem" }} />
+                <Image
+                  src={bundleAnalyzer4}
+                  style={{ height: "32rem" }}
+                  alt="Moanco bundle size"
+                />
               </div>
               <div>
                 <span
@@ -148,6 +152,7 @@ const MainPerformance = () => {
                 <Image
                   src={bundleAnalyzer5}
                   style={{ height: "32rem", marginInlineStart: "1rem" }}
+                  alt="Codemirror bundle size"
                 />
               </div>
             </span>
