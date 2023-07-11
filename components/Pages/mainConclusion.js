@@ -213,15 +213,16 @@ const MainConclusion = () => {
               </li>
               <li>
                 <strong>Improved Performance and Retention:</strong>{" "}
-                CodeMirror's enhanced performance contributed to improved
+                CodeMirror&apos;s enhanced performance contributed to improved
                 retention rates for Replit, resulting in a better user
                 experience on the platform.
               </li>
               <li>
-                <strong>Flexibility and Customization:</strong> CodeMirror's
-                minimalist and modular approach allowed Replit to customize and
-                build exactly what they needed by adding and configuring various
-                components, providing greater flexibility compared to Monaco.
+                <strong>Flexibility and Customization:</strong>{" "}
+                CodeMirror&apos;s minimalist and modular approach allowed Replit
+                to customize and build exactly what they needed by adding and
+                configuring various components, providing greater flexibility
+                compared to Monaco.
               </li>
             </ul>
             <br />
@@ -238,13 +239,13 @@ const MainConclusion = () => {
               required significant effort to port over features and maintain a
               consistent user experience. Despite these challenges, the
               migration brought significant benefits. CodeMirror improved
-              Replit's overall performance, leading to better user retention
-              rates and a smoother coding experience. The modular nature of
-              CodeMirror provided Replit with more flexibility and customization
-              options, allowing them to tailor the code editor to their specific
-              needs. Additionally, Replit actively contributed to the CodeMirror
-              community by collaborating with the community support to address
-              bugs and sponsor feature developments.{" "}
+              Replit&apos;s overall performance, leading to better user
+              retention rates and a smoother coding experience. The modular
+              nature of CodeMirror provided Replit with more flexibility and
+              customization options, allowing them to tailor the code editor to
+              their specific needs. Additionally, Replit actively contributed to
+              the CodeMirror community by collaborating with the community
+              support to address bugs and sponsor feature developments.{" "}
             </span>
           </div>
         </p>

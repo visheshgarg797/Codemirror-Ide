@@ -1,4 +1,3 @@
-import countryIcon from "../components/images/countryIcon.png";
 const Data = {
   country: [
     {
@@ -6,7 +5,6 @@ const Data = {
       type: "text",
       detail: "",
       apply: '"afghanistan" ',
-      image: { countryIcon },
     },
     {
       label: "albania",
