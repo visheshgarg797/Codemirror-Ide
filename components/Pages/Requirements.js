@@ -51,6 +51,16 @@ const Requirements = () => {
               marginBottom: "2rem",
             }}
           >
+            <br />
+            <span style={{ textAlign: "justify" }}>
+              Editor requires to have all the features present in our existing
+              monaco-editor like Keyword highlighting , Bracket Matching ,
+              Comments , Error highlighting and syntax error visualization ,
+              Text selection support with callback, Custom grammer and
+              autocompletion support and other than that it requires some
+              additional features or enhancements in existing features which are
+              stated below :-
+            </span>
             <h1
               id="section1"
               style={{
