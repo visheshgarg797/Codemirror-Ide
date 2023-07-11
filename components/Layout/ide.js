@@ -8,8 +8,10 @@ import MultiThemeEditor from "../Editors/MutliThemeEditor";
 import { EDITOR_MODES } from "@/constants/EditorModes";
 import RightBar from "./RightFeatures";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
-
+import { useCustomDirection } from "@/context/useDirectionHook";
+import { Direction } from "@/constants/Direction";
 const IDE = () => {
+  const { direction } = useCustomDirection();
   const { editorMode } = useCustomEditorMode();
   const { themeStyles } = useCustomTheme();
 
@@ -39,6 +41,72 @@ const IDE = () => {
               Fixed height editor
             </div>
             <MultiLineEditor />
+            <br /> <br />
+            <table
+              id="section1"
+              className="min-w-full mt-5"
+              style={{ width: "90%" }}
+            >
+              <thead
+                className="border-b"
+                style={{ backgroundColor: themeStyles.col01.backgroundColor }}
+              >
+                <tr>
+                  <th
+                    scope="col"
+                    style={{
+                      color: themeStyles.col02.color,
+                    }}
+                    className="text-m font-large text-gray-900 px-6 py-3"
+                  ></th>
+                  <th
+                    scope="col"
+                    style={{
+                      color: themeStyles.col02.color,
+                    }}
+                    className="text-m font-large px-6 py-3 text-left"
+                  >
+                    SAMPLE QUERY EXAMPLES
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPONENT_CONSTANTS.QUERY_TABLE_CONTENT.map((item, index) => {
+                  return (
+                    <tr
+                      key={index}
+                      className="border-b transition duration-300 ease-in-out hover:bg-gray-400"
+                      style={{
+                        backgroundColor: themeStyles.col02.backgroundColor,
+                      }}
+                    >
+                      <td
+                        className=" py-4 whitespace-nowrap text-sm font-medium"
+                        style={{
+                          color: themeStyles.col02.color,
+                          paddingLeft: "0.25rem",
+                        }}
+                      >
+                        {item.heading}
+                        <br />
+                      </td>
+                      <td
+                        className="py-2 whitespace-nowrap text-sm font-medium"
+                        style={{
+                          paddingLeft:
+                            direction === Direction.LTR ? "7%" : "0%",
+                          paddingRight:
+                            direction === Direction.RTL ? "13%" : "0%",
+                          color: themeStyles.col02.color,
+                        }}
+                      >
+                        {item.query}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
           <RightBar list={COMPONENT_CONSTANTS.MULTILINE_RIGHT_CONTENT} />
         </>

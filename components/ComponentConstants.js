@@ -123,6 +123,45 @@ const COMPONENT_CONSTANTS = {
     },
   ],
 
+  QUERY_TABLE_CONTENT: [
+    {
+      heading: "OPERATORS",
+      query: "AND , OR , NOT",
+    },
+    {
+      heading: "ADVANCE OPERATORS",
+      query: "city , country , fruit , author ",
+    },
+    {
+      heading: "QUERY EXAMPLE 1",
+      query: `addidas AND city:"spain" OR  ("MESSI" OR city: "london" ) NOT nike `,
+    },
+    {
+      heading: "QUERY EXAMPLE 2",
+      query: `india AND Cricket OR "VIRAT KOHLI"`,
+    },
+    {
+      heading: "QUERY EXAMPLE 3",
+      query: `(SAMSUNG OR "Smartphone" OR "Galaxy" OR "Electronics" OR " Mobile Phone")`,
+    },
+    {
+      heading: "ERROR EXAMPLE 1",
+      query: `addidas AND city:"spain" OR ("MESSI" OR city: "london" ) NOT `,
+    },
+    {
+      heading: "ERROR EXAMPLE 2",
+      query: `addidas AND city:"spain"`,
+    },
+    {
+      heading: "ERROR EXAMPLE 3",
+      query: `DELL AND (city: "mumbai" AND TECHNOLOGY)`,
+    },
+    {
+      heading: "ERROR EXAMPLE 4",
+      query: ` (city: "beijing" ) OR ""`,
+    },
+  ],
+
   THEME_NAMES: [
     "Github Light Theme",
     "Github Dark Theme",

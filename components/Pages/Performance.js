@@ -9,10 +9,13 @@ import bundleAnalyzer2 from "../images/bundleAnalyzer2.png";
 import bundleAnalyzer3 from "../images/bundleAnalyzer3.png";
 import bundleAnalyzer4 from "../images/bundleAnalyzer4.png";
 import bundleAnalyzer5 from "../images/bundleAnalyzer5.png";
+import COMPONENT_CONSTANTS from "../ComponentConstants";
+import { Direction } from "@/constants/Direction";
+import { useCustomDirection } from "@/context/useDirectionHook";
 
 const MainPerformance = () => {
   const { themeStyles } = useCustomTheme();
-
+  const { direction } = useCustomDirection();
   return (
     <>
       <div
@@ -63,6 +66,10 @@ const MainPerformance = () => {
             >
               Performance Analysis for website
             </h1>
+            <span style={{ display: "flex", marginTop: "1rem" }}>
+              We optimised the site performance using lighthouse .
+            </span>
+            <br />
             <Image
               src={performanceAnalysis}
               style={{ marginTop: "1rem" }}
@@ -79,8 +86,132 @@ const MainPerformance = () => {
                   fontWeight: "500",
                 }}
               >
-                Webpack bundle analysis
+                Size Comparison
               </h1>
+              <table id="section1" className="min-w-full mt-5">
+                <thead
+                  className="border-b"
+                  style={{ backgroundColor: themeStyles.col01.backgroundColor }}
+                >
+                  <tr>
+                    <th
+                      scope="col"
+                      style={{
+                        color: themeStyles.col02.color,
+                      }}
+                      className="text-m font-large text-gray-900 px-6 py-3"
+                    >
+                      TYPE
+                    </th>
+                    <th
+                      scope="col"
+                      style={{
+                        color: themeStyles.col02.color,
+                      }}
+                      className="text-m font-large px-6 py-3 text-left"
+                    >
+                      Codemirror Editor
+                    </th>
+                    <th
+                      scope="col"
+                      style={{
+                        color: themeStyles.col02.color,
+                      }}
+                      className="text-m font-large px-6 py-3 text-left"
+                    >
+                      Basic Monaco Editor
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    key={0}
+                    className="border-b transition duration-300 ease-in-out hover:bg-gray-400"
+                    style={{
+                      backgroundColor: themeStyles.col02.backgroundColor,
+                    }}
+                  >
+                    <td
+                      className=" py-4 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        color: themeStyles.col02.color,
+                        paddingLeft: "0.25rem",
+                      }}
+                    >
+                      Unpacked Size
+                      <br />
+                    </td>
+
+                    <td
+                      className="py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        paddingLeft: direction === Direction.LTR ? "7%" : "0%",
+                        paddingRight:
+                          direction === Direction.RTL ? "13%" : "0%",
+                        color: themeStyles.col02.color,
+                      }}
+                    >
+                      {" "}
+                      1MB{" "}
+                    </td>
+                    <td
+                      className="py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        paddingLeft: direction === Direction.LTR ? "5%" : "0%",
+                        paddingRight:
+                          direction === Direction.RTL ? "12%" : "0%",
+                        color: themeStyles.col02.color,
+                      }}
+                    >
+                      87MB
+                    </td>
+                  </tr>
+
+                  <tr
+                    key={1}
+                    className="border-b transition duration-300 ease-in-out hover:bg-gray-400"
+                    style={{
+                      backgroundColor: themeStyles.col02.backgroundColor,
+                    }}
+                  >
+                    <td
+                      className=" py-4 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        color: themeStyles.col02.color,
+                        paddingLeft: "0.25rem",
+                      }}
+                    >
+                      Gzip Size
+                      <br />
+                    </td>
+                    <td
+                      className="py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        paddingLeft: direction === Direction.LTR ? "7%" : "0%",
+                        paddingRight:
+                          direction === Direction.RTL ? "13%" : "0%",
+                        color: themeStyles.col02.color,
+                      }}
+                    >
+                      {" "}
+                      200KB{" "}
+                    </td>
+                    <td
+                      className="py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        paddingLeft: direction === Direction.LTR ? "5%" : "0%",
+                        paddingRight:
+                          direction === Direction.RTL ? "12%" : "0%",
+                        color: themeStyles.col02.color,
+                      }}
+                    >
+                      900KB
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br />
               <span style={{ display: "flex", marginTop: "1rem" }}>
                 <Image
                   src={bundleAnalyzer2}
@@ -177,7 +308,7 @@ const MainPerformance = () => {
           { anchor: "#section1", heading: "Website performance analysis" },
           {
             anchor: "#section2",
-            heading: "Webpack bundle analysis",
+            heading: "Size Comparison",
           },
 
           { anchor: "#section3", heading: "Production size build comparision" },
