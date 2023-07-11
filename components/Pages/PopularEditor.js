@@ -57,11 +57,13 @@ const PopularEditor = () => {
             >
               Companies Using Codemirror
             </h1>
-            Codemirror is being used by Github , WordPress , Dropbox Paper ,
-            Mozilla , Replit and many companies are shifting to codemirror from
-            Monaco and Ace . CodeMirror is a widely adopted and highly regarded
-            code editor component that has gained popularity among various
-            companies and platforms.
+            <span style={{ textAlign: "justify" }}>
+              Codemirror is being used by Github , WordPress , Dropbox Paper ,
+              Mozilla , Replit and many companies are shifting to codemirror
+              from Monaco and Ace . CodeMirror is a widely adopted and highly
+              regarded code editor component that has gained popularity among
+              various companies and platforms.
+            </span>
             <br />
             <h1
               id="section2"
@@ -75,10 +77,12 @@ const PopularEditor = () => {
             >
               Companies using Monaco-Editor
             </h1>
-            Monaco is maintained by microsoft and hence was a popular choice.
-            However, it losts its popularity because of several major issues.
-            e.g. absence of a stable version, fewer features compared to other
-            options and bulky size .
+            <span style={{ textAlign: "justify" }}>
+              Monaco is maintained by microsoft and hence was a popular choice.
+              However, it losts its popularity because of several major issues.
+              e.g. absence of a stable version, fewer features compared to other
+              options and bulky size .
+            </span>
             <br />
             <h1
               id="section3"
@@ -92,10 +96,12 @@ const PopularEditor = () => {
             >
               Companies using Ace
             </h1>
-            Ace is stable editor but getting unpopular as it is lacking in
-            latest features . It is being used by Cloud9 IDE , Brackets ,
-            NetBeans . There has been a shift from Ace to Monaco and now to
-            Codemirror in case of popularity and usage among companies .
+            <span style={{ textAlign: "justify" }}>
+              Ace is stable editor but getting unpopular as it is lacking in
+              latest features . It is being used by Cloud9 IDE , Brackets ,
+              NetBeans . There has been a shift from Ace to Monaco and now to
+              Codemirror in case of popularity and usage among companies .
+            </span>
             <br />
             <h1
               id="section4"
@@ -109,8 +115,11 @@ const PopularEditor = () => {
             >
               npm Download trends
             </h1>
-            Below image shows downloads trend of 2020 , it is clearly visible
-            Monaco has most downloads in less years .
+            <span style={{ textAlign: "justify" }}>
+              Below image shows downloads trend of 2020 , it is clearly visible
+              Monacco has most downloads in less years .
+            </span>
+            <br /> <br />
             <img
               class="float-center ..."
               src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
@@ -123,13 +132,17 @@ const PopularEditor = () => {
               }}
             ></img>
             <br />
-            These are the downloads of past 1 year , we can clearly see
-            Codemirror has surpress other two editors .
+            <span style={{ textAlign: "justify" }}>
+              These are the downloads of past 1 year , we can clearly see
+              Codemirror has surpress other two editors .
+            </span>
+            <br /> <br />
             <Image
               src={popularEditors}
               style={{ marginTop: "1rem" }}
               alt="Popular editors trend"
             />
+            <br />
           </div>
         </p>
       </div>

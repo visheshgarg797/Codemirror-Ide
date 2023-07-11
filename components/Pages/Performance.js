@@ -83,36 +83,41 @@ const MainPerformance = () => {
               </h1>
               <span style={{ display: "flex", marginTop: "1rem" }}>
                 <Image
-                  src={bundleAnalyzer1}
-                  alt="Bundle analyzer 1"
+                  src={bundleAnalyzer2}
+                  alt="Bundle analyzer 2"
                   style={{ marginInlineEnd: "2%", width: "49%" }}
                 />
                 <Image
-                  src={bundleAnalyzer2}
-                  alt="Bundle analyzer 2"
+                  src={bundleAnalyzer3}
+                  alt="Bundle analyzer 3"
                   style={{ width: "49%" }}
                 />
               </span>
             </div>
+            <br /> <br />
+            <span style={{ textAlign: "justify" }}>
+              The Monaco Editor NPM package has an unpacked size of
+              approximately 87MB, which is quite large compared to other text
+              editors like CodeMirror. CodeMirror has a much smaller size, with
+              a stat size of around 1MB. Additionally, CodeMirror offers a
+              plugin option, which means that we can import only the
+              dependencies that we need for our editor, making it more
+              lightweight and customizable.While the Monaco Editor is a powerful
+              and feature-rich text editor, its large size can be a concern for
+              some projects. CodeMirror, on the other hand, is a lightweight
+              alternative that offers many of the same features as the Monaco
+              Editor. Its plugin system allows developers to pick and choose the
+              features they need, making it a more customizable option.In
+              summary, while the Monaco Editor is a great choice for projects
+              that require a powerful and feature-rich text editor, its large
+              size may not be suitable for all projects. CodeMirror, with its
+              smaller size and plugin system, is a more lightweight and
+              customizable alternative that may be a better fit for some
+              projects.
+            </span>
+            <br /> <br />
             <h1
               id="section3"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              Codemirror bundle analysis
-            </h1>
-            <Image
-              src={bundleAnalyzer3}
-              alt="Codemirror bundle analysis"
-              style={{ marginTop: "1rem", width: "100%" }}
-            />
-            <h1
-              id="section4"
               style={{
                 color: themeStyles.col02.color,
                 paddingTop: "40px",
@@ -174,11 +179,8 @@ const MainPerformance = () => {
             anchor: "#section2",
             heading: "Webpack bundle analysis",
           },
-          {
-            anchor: "#section3",
-            heading: "Codemirror bundle analysis",
-          },
-          { anchor: "#section4", heading: "Production size build comparision" },
+
+          { anchor: "#section3", heading: "Production size build comparision" },
         ]}
       />
     </>

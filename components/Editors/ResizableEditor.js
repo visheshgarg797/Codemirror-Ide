@@ -291,6 +291,7 @@ export default function ResizaleEditor() {
           <div
             style={{
               color: themeStyles.col02.color,
+              fontSize: "14px",
             }}
           >
             {" "}

@@ -34,7 +34,7 @@ const RightBar = ({ list }) => {
               fontFamily: "Optimistic Text, serif",
             }}
           >
-            <span style={{ marginBottom: "2rem" }}>FEATURES</span>
+            <span style={{ marginBottom: "2rem" }}>FEATURES SUPPORT</span>
             <div
               className="flex flex-col"
               style={{

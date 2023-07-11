@@ -176,14 +176,17 @@ const Comparison = () => {
             fontWeight: "300",
           }}
         >
-          Based on the provided feature comparison data, it is evident that
-          CodeMirror offers a better set of features compared to ACE and Monaco.
-          CodeMirror excels in multiple areas, including multi-line and
-          single-line editing, keyword highlighting, bracket matching, comments,
-          error highlighting, auto-completion support, callback support,
-          copy-paste support, substring selection support, read-only editor,
-          multiple theme support, custom language support, and more. It provides
-          a comprehensive and powerful editing experience for developers.
+          <span style={{ textAlign: "justify" }}>
+            Based on the provided feature comparison data, it is evident that
+            CodeMirror offers a better set of features compared to ACE and
+            Monaco. CodeMirror excels in multiple areas, including multi-line
+            and single-line editing, keyword highlighting, bracket matching,
+            comments, error highlighting, auto-completion support, callback
+            support, copy-paste support, substring selection support, read-only
+            editor, multiple theme support, custom language support, and more.
+            It provides a comprehensive and powerful editing experience for
+            developers.
+          </span>
           <br />
           <h1
             id="section3"
@@ -197,14 +200,16 @@ const Comparison = () => {
           >
             Conclusion
           </h1>
-          As a result of its robust feature set and functionality, CodeMirror
-          has experienced increasing adoption and usage by companies. Many
-          organizations have chosen to migrate to CodeMirror due to its proven
-          capabilities, flexibility, and extensive community support. Its active
-          development and regular updates ensure compatibility with modern web
-          technologies and evolving industry requirements. The availability of
-          thorough documentation and a strong community presence also
-          contributes to its popularity and ease of integration.
+          <span style={{ textAlign: "justify" }}>
+            As a result of its robust feature set and functionality, CodeMirror
+            has experienced increasing adoption and usage by companies. Many
+            organizations have chosen to migrate to CodeMirror due to its proven
+            capabilities, flexibility, and extensive community support. Its
+            active development and regular updates ensure compatibility with
+            modern web technologies and evolving industry requirements. The
+            availability of thorough documentation and a strong community
+            presence also contributes to its popularity and ease of integration.
+          </span>
         </p>
       </div>
 
