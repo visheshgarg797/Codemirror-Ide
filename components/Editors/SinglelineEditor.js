@@ -365,7 +365,7 @@ const SingleLineEditor = () => {
       <div
         ref={editorRef}
         className="EditorContainer"
-        style={{ width: "43.8rem", margin: "auto" }}
+        style={{ width: "43.7rem", margin: "auto" }}
       >
         <style>
           {`.cm-tooltip {
@@ -373,7 +373,7 @@ const SingleLineEditor = () => {
             ${giveDirection()}
             position: fixed !important;
             border: 1px solid #181a1f;
-            width: 43.9rem;
+            width: 43.83rem;
             border-radius: 0px 0px 10px 10px;
           }
 

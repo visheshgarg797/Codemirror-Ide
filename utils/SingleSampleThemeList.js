@@ -25,8 +25,11 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-gutters": {
         backgroundColor: "white",
-        width: 0,
+        width: "0",
         zIndex: "-1 !important",
+      },
+      ".cm-foldGutter": {
+        width: "0",
       },
       ".cm-line": {
         marginTop: "4px",
@@ -79,6 +82,9 @@ const SampleThemeListForSingleLineEditor = [
         width: 0,
         zIndex: "-1 !important",
       },
+      ".cm-foldGutter": {
+        width: "0",
+      },
       ".cm-line": {
         marginTop: "4px",
         height: "23px",
@@ -129,6 +135,9 @@ const SampleThemeListForSingleLineEditor = [
         backgroundColor: "white",
         width: 0,
         zIndex: "-1 !important",
+      },
+      ".cm-foldGutter": {
+        width: "0",
       },
       ".cm-line": {
         marginTop: "4px",
@@ -184,6 +193,9 @@ const SampleThemeListForSingleLineEditor = [
         backgroundColor: "#16181d",
         width: 0,
         zIndex: "-1 !important",
+      },
+      ".cm-foldGutter": {
+        width: "0",
       },
       ".cm-line": {
         marginTop: "4px",

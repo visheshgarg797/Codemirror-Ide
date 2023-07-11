@@ -161,7 +161,7 @@ const MainPerformance = () => {
             <br />
             It can be seen from the above images that the bundle size of a basic
             Monaco Editor is ~900kB whereas the bundle size of Codemirror Editor
-            is ~200kB. Monacco-Editor Production build size is more than
+            is ~200kB. Monaco-Editor Production build size is more than
             Codemirror-Editor and the reduced size helps improve performance.
           </div>
         </p>

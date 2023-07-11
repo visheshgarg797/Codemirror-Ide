@@ -110,7 +110,7 @@ const PopularEditor = () => {
               npm Download trends
             </h1>
             Below image shows downloads trend of 2020 , it is clearly visible
-            Monacco has most downloads in less years .
+            Monaco has most downloads in less years .
             <img
               class="float-center ..."
               src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
@@ -139,7 +139,7 @@ const PopularEditor = () => {
           { anchor: "#section1", heading: "Companies using Codemirror" },
           {
             anchor: "#section2",
-            heading: "Companies using Monacco",
+            heading: "Companies using Monaco",
           },
           { anchor: "#section3", heading: "Companies using Ace" },
           { anchor: "#section4", heading: "npm trends" },

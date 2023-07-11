@@ -118,10 +118,10 @@ const Overview = () => {
             within just two days. Replit initially switched from Ace to Monaco
             but later made the transition to CodeMirror, appreciating its
             lighter weight and modularity. Checkly replaced their
-            CodeMirror-based editor with Monaco, leveraging its customization
-            capabilities to define custom tokens and enable context-aware
-            autocomplete and hover features. These examples highlight the
-            flexibility and advantages offered by CodeMirror.
+            CodeMirror-based editor with Monaco, leveraging its stable features
+            like custom grammer integration to generate tokens, autcompletion
+            and hover tooltip. These examples highlight the flexibility and
+            advantages offered by CodeMirror.
             <br />
           </div>
         </p>

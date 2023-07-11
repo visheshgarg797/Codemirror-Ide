@@ -158,7 +158,7 @@ const Requirements = () => {
             >
               User Friendly Error Support
             </h1>
-            The existing monacco editors show complex errors which leads to
+            The existing Monaco editors show complex errors which leads to
             echnical jargon or complex terminology , User-friendly error
             messages present information in a clear and concise manner, using
             plain language that is easy for users to understand.users can
