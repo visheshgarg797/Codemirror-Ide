@@ -172,7 +172,7 @@ const SingleLineEditor = () => {
     wordsToInsert.forEach((word) => {
       textToInsert += ` OR "${word}"`;
     });
-    textToInsert += ")";
+    textToInsert += ") ";
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
