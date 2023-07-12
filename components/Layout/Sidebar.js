@@ -36,7 +36,7 @@ const Sidebar = () => {
         <IntroLeftNavButton index="Introduction" path="/intro" />
         <AnalysisLeftNavButton index="Analysis" path="/analysis" />
         <EditorLeftNavButton index="Editor" path="/editor" />
-        <LeftNavButton index="Issues Faced" path="/issues" />
+        <LeftNavButton index="Performance Analysis" path="/performance" />
         <LeftNavButton index="Conclusion" path="/conclusion" />
       </nav>
     </div>

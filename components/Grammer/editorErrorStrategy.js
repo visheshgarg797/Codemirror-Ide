@@ -42,7 +42,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
             if (e.offendingToken.type === ResearchAdvanceQLParser.DQUOTE) {
               msg = `add a valid phrase {"text"}`;
             } else {
-              msg = `add a keyword {apple , sprinklr , city, country} after each operator {AND , OR , NOT})`;
+              msg = `add a keyword {apple , sprinklr , city, country} or '('  after each operator {AND , OR , NOT})`;
             }
           } else {
             for (let token in tokens.tokens) {
@@ -83,54 +83,11 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
   }
 
   validatePreviousToken(recognizer) {
-    if (recognizer.getInputStream().index === 0) {
-      return;
-    }
-    const previousTokenType = recognizer.getInputStream().LA(-1);
-    if (previousTokenType === ResearchAdvanceQLParser.PHRASE) {
-      const previousToken = recognizer.getInputStream().LT(-1);
-      if (previousToken !== null) {
-        SUSPICIOUS_WORDS_IN_PHRASE.forEach((word) => {
-          const previousWord = previousToken.text.replace(/"/g, "");
-          if (previousWord.trim().endsWith(word)) {
-            throw new ParseCancellationException(
-              recognizer,
-              "error1",
-              offendingToken
-            );
-            throw new ParseCancellationException(
-              recognizer,
-              "error2",
-              previousToken
-            );
-          }
-        });
-      }
-    }
+    return;
   }
 
   validateNextToken(recognizer) {
-    const previousTokenType = recognizer.getInputStream().LA(2);
-    if (previousTokenType === ResearchAdvanceQLParser.PHRASE) {
-      const nextToken = recognizer.getInputStream().LT(2);
-      if (nextToken !== null) {
-        SUSPICIOUS_WORDS_IN_PHRASE.forEach((word) => {
-          const nextWord = nextToken.text.replace(/"/g, "");
-          if (nextWord.trim().endsWith(word)) {
-            throw new ParseCancellationException(
-              recognizer,
-              "error1",
-              offendingToken
-            );
-            throw new ParseCancellationException(
-              recognizer,
-              "error2",
-              nextToken
-            );
-          }
-        });
-      }
-    }
+    return;
   }
 
   reportUnwantedToken(recognizer) {
@@ -332,6 +289,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     );
   }
   reportError(recognizer, e) {
+    console.log(recognizer.getInputStream().tokens);
     if (recognizer.getInputStream().tokens.length === 1) {
       return;
     }
@@ -342,6 +300,7 @@ class EditorErrorStrategy extends antrl4.error.BailErrorStrategy {
     } else if (e instanceof antrl4.error.FailedPredicateException) {
       this.reportFailedPredicate(recognizer, e);
     } else {
+      console.log("error");
       throw new ParseCancellationException(
         recognizer,
         `unknown recognition error type: ${e.constructor.name}`,

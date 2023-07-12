@@ -10,7 +10,6 @@ import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { tags } from "@lezer/highlight";
 import { HighlightStyle } from "@codemirror/language";
-import Data from "@/utils/Data";
 import getKeywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
@@ -20,10 +19,9 @@ import Popup from "../Autocomplete/Popup";
 import { Direction } from "@/constants/Direction";
 import { ResearchAdvanceQLLexer } from "../antlrGenerated";
 import { ResearchAdvanceQLParser } from "../antlrGenerated";
-import { ResearchAdvanceQLVisitor } from "../antlrGenerated";
 import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
 import EditorQueryVisitor from "../Grammer/editorVisitor";
-import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
+import { linter, lintGutter } from "@codemirror/lint";
 import antlr4 from "antlr4";
 
 const MultiLineEditor = () => {
@@ -197,7 +195,7 @@ const MultiLineEditor = () => {
       const ed = viewRef.current.coordsAtPos(
         checkValidityOfSelection.actualEndPos
       );
-      console.log(st, ed);
+
       setPopupState((popupState) => ({
         ...popupState,
         selection: checkValidityOfSelection.actualSelectedText,
@@ -276,7 +274,7 @@ const MultiLineEditor = () => {
   }, [themeStyles, direction]);
 
   return (
-    <div ref={editorRef} className="EditorContainer " style={{ width: "85%" }}>
+    <div ref={editorRef} className="EditorContainer " style={{ width: "100%" }}>
       {popupState.showPopup && (
         <Popup
           position={popupState.popupPosition}

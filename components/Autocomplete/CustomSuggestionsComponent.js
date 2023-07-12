@@ -20,7 +20,6 @@ const CustomSuggestionsComponent = ({ options, pressedKey }) => {
       } else if (pressedKey === "Enter") {
         setSelectedIndex(0);
       }
-      console.log(selectedIndex);
     }
   }, [pressedKey]);
 

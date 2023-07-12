@@ -309,21 +309,7 @@ const getKeywordFilter =
         returnValue = {
           from: context.pos,
 
-          options: [
-            ...Data.keywords.concat(Data.advancedOperators),
-
-            // {
-
-            //   label: "not",
-
-            //   type: "operatorNot",
-
-            //   info: "not",
-
-            //   apply: "not ",
-
-            // },
-          ],
+          options: [...Data.keywords.concat(Data.advancedOperators)],
         };
       }
     }

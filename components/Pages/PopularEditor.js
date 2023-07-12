@@ -57,11 +57,13 @@ const PopularEditor = () => {
             >
               Companies Using Codemirror
             </h1>
-            Codemirror is being used by Github , WordPress , Dropbox Paper ,
-            Mozilla , Replit and many companies are shifting to codemirror from
-            Monaco and Ace . CodeMirror is a widely adopted and highly regarded
-            code editor component that has gained popularity among various
-            companies and platforms.
+            <span style={{ textAlign: "justify" }}>
+              Codemirror is being used by Github , WordPress , Dropbox Paper ,
+              Mozilla , Replit and many companies are shifting to codemirror
+              from Monaco and Ace . CodeMirror is a widely adopted and highly
+              regarded code editor component that has gained popularity among
+              various companies and platforms.
+            </span>
             <br />
             <h1
               id="section2"
@@ -73,12 +75,14 @@ const PopularEditor = () => {
                 fontWeight: "500",
               }}
             >
-              Companies using Monacco-Editor
+              Companies using Monaco-Editor
             </h1>
-            Monacco is popular because it is used by Microsoft . Salesforce and
-            Azure are the others using it . It was very popular in recent past
-            but it has some issues like no stable version and lack of features
-            and bulky size .
+            <span style={{ textAlign: "justify" }}>
+              Monaco is maintained by microsoft and hence was a popular choice.
+              However, it losts its popularity because of several major issues.
+              e.g. absence of a stable version, fewer features compared to other
+              options and bulky size .
+            </span>
             <br />
             <h1
               id="section3"
@@ -92,10 +96,12 @@ const PopularEditor = () => {
             >
               Companies using Ace
             </h1>
-            Ace is stable editor but getting unpopular as it is lacking in
-            latest features . It is being used by Cloud9 IDE , Brackets ,
-            NetBeans . There has been a shift from Ace to Monaco and now to
-            Codemirror in case of popularity and usage among companies .
+            <span style={{ textAlign: "justify" }}>
+              Ace is stable editor but getting unpopular as it is lacking in
+              latest features . It is being used by Cloud9 IDE , Brackets ,
+              NetBeans . There has been a shift from Ace to Monaco and now to
+              Codemirror in case of popularity and usage among companies .
+            </span>
             <br />
             <h1
               id="section4"
@@ -109,8 +115,11 @@ const PopularEditor = () => {
             >
               npm Download trends
             </h1>
-            Below image shows downloads trend of 2020 , it is clearly visible
-            Monacco has most downloads in less years .
+            <span style={{ textAlign: "justify" }}>
+              Below image shows downloads trend of 2020 , it is clearly visible
+              Monacco has most downloads in less years .
+            </span>
+            <br /> <br />
             <img
               class="float-center ..."
               src="https://res.cloudinary.com/practicaldev/image/fetch/s--r2gPoKKQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ww48jrzrpc2bmw3d0qal.png"
@@ -123,45 +132,16 @@ const PopularEditor = () => {
               }}
             ></img>
             <br />
-            These are the downloads of past 1 year , we can clearly see
-            Codemirror has surpress other two editors .
+            <span style={{ textAlign: "justify" }}>
+              These are the downloads of past 1 year , we can clearly see
+              Codemirror has surpress other two editors .
+            </span>
+            <br /> <br />
             <Image
               src={popularEditors}
               style={{ marginTop: "1rem" }}
               alt="Popular editors trend"
             />
-            <h1
-              id="section5"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              What to see in Editor ?
-            </h1>
-            While considering a code editor for selection, we give priority to
-            the needed features, stability, and the availability of
-            documentation for adding new features or resolving existing issues.
-            In our rigorous evaluation process, we considered CodeMirror,
-            Monaco, Orion, Theia, and Ace as the most popular choices used in
-            the industry. Each editor brought its unique strengths and
-            weaknesses to the table, leading us to narrow down our options as
-            Theia being a lot bulky compared to all other editors and Orion not
-            having good documentation. Ultimately, we opted to compare
-            CodeMirror, Monaco, and Ace, focusing on crucial features such as
-            multi-line and single-line editing, syntax highlighting, error
-            visualization, auto-completion, and resizing capabilities. We
-            identified the following weaknesses in our current editor, Sprinklr
-            Monaco editor, which drove our evaluation:
-            <ol style={{ fontStyle: "oblique" }}>
-              <li>1) Missing Bidirectional support</li>
-              <li>2) No option for multiple theme editors on a single page</li>
-              <li>3) Dynamic length editor</li>
-              <li>4) Drag and Drop file support </li>
-            </ol>
             <br />
           </div>
         </p>
@@ -172,11 +152,10 @@ const PopularEditor = () => {
           { anchor: "#section1", heading: "Companies using Codemirror" },
           {
             anchor: "#section2",
-            heading: "Companies using Monacco",
+            heading: "Companies using Monaco",
           },
           { anchor: "#section3", heading: "Companies using Ace" },
           { anchor: "#section4", heading: "npm trends" },
-          { anchor: "#section5", heading: "Wht else to see ?" },
         ]}
       />
     </>

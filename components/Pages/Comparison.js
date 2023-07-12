@@ -90,13 +90,23 @@ const Comparison = () => {
                     }}
                   >
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
-                      style={{ color: themeStyles.col02.color }}
+                      className=" py-2 whitespace-nowrap text-sm font-medium"
+                      style={{
+                        color: themeStyles.col02.color,
+                        paddingLeft: "0.25rem",
+                      }}
                     >
                       {item.feature}
+                      <br />
+                      <span
+                        className="py-2 whitespace-nowrap text-xs font-small"
+                        style={{ fontWeight: "400" }}
+                      >
+                        {item.content || "NO CONTENT FOUND"}
+                      </span>
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "7%" : "0%",
                         paddingRight:
@@ -111,7 +121,7 @@ const Comparison = () => {
                       )}
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "5%" : "0%",
                         paddingRight:
@@ -126,7 +136,7 @@ const Comparison = () => {
                       )}
                     </td>
                     <td
-                      className="px-6 py-2 whitespace-nowrap text-sm font-medium"
+                      className="py-2 whitespace-nowrap text-sm font-medium"
                       style={{
                         paddingLeft: direction === Direction.LTR ? "4%" : "0%",
                         paddingRight: direction === Direction.RTL ? "9%" : "0%",
@@ -166,35 +176,17 @@ const Comparison = () => {
             fontWeight: "300",
           }}
         >
-          Based on the provided feature comparison data, it is evident that
-          CodeMirror offers a better set of features compared to ACE and Monaco.
-          CodeMirror excels in multiple areas, including multi-line and
-          single-line editing, keyword highlighting, bracket matching, comments,
-          error highlighting, auto-completion support, callback support,
-          copy-paste support, substring selection support, read-only editor,
-          multiple theme support, custom language support, and more. It provides
-          a comprehensive and powerful editing experience for developers.
+          <span style={{ textAlign: "justify" }}>
+            Based on the provided feature comparison data, it is evident that
+            CodeMirror offers a better set of features compared to ACE and
+            Monaco. CodeMirror excels in multiple areas, including multi-line
+            and single-line editing, keyword highlighting, bracket matching,
+            comments, error highlighting, auto-completion support, callback
+            support, copy-paste support, substring selection support, multiple
+            theme support, custom language support, and more. It provides a
+            comprehensive and powerful editing experience for developers.
+          </span>
           <br />
-          <h1
-            id="section3"
-            style={{
-              color: themeStyles.col02.color,
-              paddingTop: "40px",
-              fontSize: "20px",
-              fontFamily: themeStyles.font,
-              fontWeight: "500",
-            }}
-          >
-            Conclusion
-          </h1>
-          As a result of its robust feature set and functionality, CodeMirror
-          has experienced increasing adoption and usage by companies. Many
-          organizations have chosen to migrate to CodeMirror due to its proven
-          capabilities, flexibility, and extensive community support. Its active
-          development and regular updates ensure compatibility with modern web
-          technologies and evolving industry requirements. The availability of
-          thorough documentation and a strong community presence also
-          contributes to its popularity and ease of integration.
         </p>
       </div>
 

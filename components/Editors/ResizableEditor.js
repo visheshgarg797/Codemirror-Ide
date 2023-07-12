@@ -39,9 +39,9 @@ export default function ResizaleEditor() {
     selectionPos: -1,
   });
   const Heightoptions = [
-    { maxLine: "Maximum lines 4", index: "0" },
-    { maxLine: "Maximum lines 6", index: "1" },
-    { maxLine: "Maximum lines 8", index: "2" },
+    { maxLine: "4", index: "0" },
+    { maxLine: "6", index: "1" },
+    { maxLine: "8", index: "2" },
   ];
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
@@ -100,7 +100,7 @@ export default function ResizaleEditor() {
   };
 
   const handleHeightChange = (heightChangeEvent) => {
-    let idx = (1 + parseInt(heightChangeEvent.target.value[14])) / 3;
+    let idx = (1 + parseInt(heightChangeEvent.target.value[0])) / 3;
     idx = parseInt(idx) - 1;
     setMaxLines(idx);
   };
@@ -276,32 +276,54 @@ export default function ResizaleEditor() {
 
   return (
     <>
-      <div ref={editorRef} className="EditorContainer" style={{ width: "85%" }}>
-        <select
-          // value={maxLines.value}
-          onChange={(heightChangeEvent) =>
-            handleHeightChange(heightChangeEvent)
-          }
+      <div
+        ref={editorRef}
+        className="EditorContainer"
+        style={{ width: "100%" }}
+      >
+        <div
           style={{
-            backgroundColor: themeStyles.col02.backgroundColor,
-            color: themeStyles.col02.color,
-            border: `1px solid ${
-              themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
-            }`,
-
-            borderRadius: "3px",
-            marginInlineStart: "600px",
-            marginBottom: "30px",
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "20px",
           }}
         >
-          {Heightoptions.map((index) => {
-            return (
-              <option value={index.maxLine} key={index.index}>
-                {index.maxLine}
-              </option>
-            );
-          })}
-        </select>
+          <div
+            style={{
+              color: themeStyles.col02.color,
+              fontSize: "14px",
+            }}
+          >
+            {" "}
+            MAXIMUM LINES
+          </div>
+          <div>
+            <select
+              // value={maxLines.value}
+              onChange={(heightChangeEvent) =>
+                handleHeightChange(heightChangeEvent)
+              }
+              style={{
+                backgroundColor: themeStyles.col02.backgroundColor,
+                color: themeStyles.col02.color,
+                border: `1px solid ${
+                  themeStyles.theme === Theme_Name.DARK_MODE ? "white" : "black"
+                }`,
+                marginInlineStart: "9px",
+                borderRadius: "3px",
+              }}
+            >
+              {Heightoptions.map((index) => {
+                return (
+                  <option value={index.maxLine} key={index.index}>
+                    {index.maxLine}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+
         {popupState.showPopup && (
           <Popup
             position={popupState.popupPosition}

@@ -60,7 +60,7 @@ const multiThemeSampleThemeList = [
         wordWrap: "break-word",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
   // dark 1
   EditorView.theme(
@@ -189,7 +189,7 @@ const multiThemeSampleThemeList = [
         wordWrap: "break-word",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
   // dark 2
   EditorView.theme(
@@ -314,7 +314,7 @@ const multiThemeSampleThemeList = [
         wordWrap: "break-word",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
   //dark 1 rtl
   EditorView.theme(
@@ -440,7 +440,7 @@ const multiThemeSampleThemeList = [
         wordWrap: "break-word",
       },
     },
-    { dark: true }
+    { dark: false }
   ),
   // dark 2 rtl
   EditorView.theme(

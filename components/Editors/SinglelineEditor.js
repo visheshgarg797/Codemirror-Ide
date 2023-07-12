@@ -26,6 +26,7 @@ import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
 import EditorQueryVisitor from "../Grammer/editorVisitor";
 import { linter, lintGutter, Diagnostic } from "@codemirror/lint";
 import antlr4 from "antlr4";
+import { DIVIDER } from "@netlify/plugin-nextjs/lib/constants";
 
 const SingleLineEditor = () => {
   const editorRef = useRef(null);
@@ -271,7 +272,6 @@ const SingleLineEditor = () => {
   };
 
   const handleKeyPress = (e) => {
-    console.log(e);
     setkeyPressed(e.code);
   };
 
@@ -349,25 +349,40 @@ const SingleLineEditor = () => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction, selectedIndex]);
+  }, [themeStyles, direction]);
+
+  const giveDirection = () => {
+    console.log(direction);
+    if (direction === Direction.LTR) {
+      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
+    } else {
+      return `left:${suggestionBoxCorrds.left + 1}px !important;`;
+    }
+  };
 
   return (
     <>
       <div
         ref={editorRef}
         className="EditorContainer"
-        style={{ width: "40rem" }}
+        style={{ width: "43.7rem", margin: "auto" }}
       >
         <style>
           {`.cm-tooltip {
             top:${suggestionBoxCorrds.top + 2}px !important;
-            left:${suggestionBoxCorrds.left + 1}px !important;
+            ${giveDirection()}
             position: fixed !important;
             border: 1px solid #181a1f;
-            width: 40.1rem;
+            width: 43.83rem;
+            border-radius: 0px 0px 10px 10px;
           }
+
           .cm-tooltip > ul > li{
             width:100%;
+          }
+
+          .cm-tooltip > ul{
+            border-radius: 0px 0px 10px 10px;
           }
           `}
         </style>
