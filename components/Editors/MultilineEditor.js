@@ -97,6 +97,7 @@ const MultiLineEditor = () => {
     return lexer;
   };
 
+  //error function
   function getErrors(text) {
     const errors = [];
     const lexer = createLexer(text);
