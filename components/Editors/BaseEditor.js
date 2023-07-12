@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { EditorState } from "@codemirror/state";
 import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
 import { basicSetup } from "codemirror";
@@ -64,13 +64,16 @@ const BaseEditor = ({ editorType }) => {
   const [currentThemeSelected, setCurrentThemeSelected] = useState(
     COMPONENT_CONSTANTS.THEME_NAMES[themeIndex]
   );
-  const handleThemeChange = (themeChangeEvent) => {
-    let idx =
-      themeMapping[themeChangeEvent.target.value] +
-      (direction === Direction.RTL ? 4 : 0);
-    setThemeIndex(idx);
-    setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx % 4]);
-  };
+  const handleThemeChange = useCallback(
+    (themeChangeEvent) => {
+      let idx =
+        themeMapping[themeChangeEvent.target.value] +
+        (direction === Direction.RTL ? 4 : 0);
+      setThemeIndex(idx);
+      setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx % 4]);
+    },
+    [themeStyles.theme]
+  );
 
   const EXTENSION_CONFIG = {
     MULTILINE_EDITOR_MODE: {
@@ -171,6 +174,29 @@ const BaseEditor = ({ editorType }) => {
     }),
   ];
 
+  const handleMouseDownCallback = useCallback(
+    () => handleMouseDown({ setCode, popupState, setPopupState, viewRef }),
+    [setCode, popupState, setPopupState, viewRef]
+  );
+
+  const handleDiscardPopupCallback = useCallback(
+    () => handleDiscardPopup({ popupState, setPopupState }),
+    [popupState, setPopupState]
+  );
+
+  const pushSelectionChangesToEditorCallback = useCallback(
+    (wordsToInsert) =>
+      pushSelectionChangesToEditor({
+        wordsToInsert,
+        viewRef,
+        popupState,
+        setPopupState,
+        selectedTextIsKeyword,
+        code,
+      }),
+    [viewRef, popupState, setPopupState, selectedTextIsKeyword, code]
+  );
+
   useEffect(() => {
     if (viewRef && viewRef.current) {
       setCode(viewRef.current.state.doc.toString());
@@ -186,9 +212,7 @@ const BaseEditor = ({ editorType }) => {
       state: startState,
       parent: editorRef.current,
     });
-    View.dom.addEventListener("mousedown", () =>
-      handleMouseDown({ setCode, popupState, setPopupState, viewRef })
-    );
+    View.dom.addEventListener("mousedown", handleMouseDownCallback);
     viewRef.current = View;
 
     const suggestionCoords = editorRef.current.getBoundingClientRect();
@@ -260,73 +284,32 @@ const BaseEditor = ({ editorType }) => {
     <MultiLineEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={(wordsToInsert) =>
-        pushSelectionChangesToEditor({
-          wordsToInsert,
-          viewRef,
-          popupState,
-          setPopupState,
-          selectedTextIsKeyword,
-          code,
-        })
-      }
-      handleDiscardPopup={() =>
-        handleDiscardPopup({ popupState, setPopupState })
-      }
+      pushSelectionChangesToEditor={pushSelectionChangesToEditorCallback}
+      handleDiscardPopup={handleDiscardPopupCallback}
     />
   ) : editorType ===
     COMPONENT_CONSTANTS.EDITOR_CONFIG.SINGLELINE_EDITOR_MODE ? (
     <SingleLineEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={(wordsToInsert) =>
-        pushSelectionChangesToEditor({
-          wordsToInsert,
-          viewRef,
-          popupState,
-          setPopupState,
-          selectedTextIsKeyword,
-          code,
-        })
-      }
-      handleDiscardPopup={() =>
-        handleDiscardPopup({ popupState, setPopupState })
-      }
+      pushSelectionChangesToEditor={pushSelectionChangesToEditorCallback}
+      handleDiscardPopup={handleDiscardPopupCallback}
       suggestionBoxCorrds={suggestionBoxCorrds}
     />
   ) : editorType === COMPONENT_CONSTANTS.EDITOR_CONFIG.RESIZABLE_EDITOR_MODE ? (
     <ResizeableEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={(wordsToInsert) =>
-        pushSelectionChangesToEditor({
-          wordsToInsert,
-          viewRef,
-          popupState,
-          setPopupState,
-          selectedTextIsKeyword,
-          code,
-        })
-      }
-      handleDiscardPopup={() =>
-        handleDiscardPopup({ popupState, setPopupState })
-      }
+      pushSelectionChangesToEditor={pushSelectionChangesToEditorCallback}
+      handleDiscardPopup={handleDiscardPopupCallback}
       setMaxLines={setMaxLines}
     />
   ) : (
     <MultipleThemeEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={(wordsToInsert) =>
-        pushSelectionChangesToEditor({
-          wordsToInsert,
-          viewRef,
-          popupState,
-          setPopupState,
-          selectedTextIsKeyword,
-          code,
-        })
-      }
+      pushSelectionChangesToEditor={pushSelectionChangesToEditorCallback}
+      handleDiscardPopup={handleDiscardPopupCallback}
       currentThemeSelected={currentThemeSelected}
       handleThemeChange={handleThemeChange}
       themeNamesRender={themeNamesRender}
