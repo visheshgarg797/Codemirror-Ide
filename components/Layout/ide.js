@@ -1,15 +1,13 @@
 "use client";
 import { useCustomTheme } from "../../context/useThemeHook";
 import { useCustomEditorMode } from "@/context/useEditorModeHook";
-import MultiLineEditor from "../Editors/MultilineEditor";
-import SingleLineEditor from "../Editors/SinglelineEditor";
-import ResizaleEditor from "../Editors/ResizableEditor";
-import MultiThemeEditor from "../Editors/MutliThemeEditor";
 import { EDITOR_MODES } from "@/constants/EditorModes";
 import RightBar from "./RightFeatures";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { Direction } from "@/constants/Direction";
+import BaseEditor from "../Editors/BaseEditor";
+
 const IDE = () => {
   const { direction } = useCustomDirection();
   const { editorMode } = useCustomEditorMode();
@@ -40,7 +38,11 @@ const IDE = () => {
             >
               Fixed height editor
             </div>
-            <MultiLineEditor />
+            <BaseEditor
+              editorType={
+                COMPONENT_CONSTANTS.EDITOR_CONFIG.MULTILINE_EDITOR_MODE
+              }
+            />
             <br /> <br />
             <table
               id="section1"
@@ -129,7 +131,11 @@ const IDE = () => {
               Text input editor
             </div>
             <div>
-              <SingleLineEditor />
+              <BaseEditor
+                editorType={
+                  COMPONENT_CONSTANTS.EDITOR_CONFIG.SINGLELINE_EDITOR_MODE
+                }
+              />
             </div>
           </div>
           <RightBar list={COMPONENT_CONSTANTS.SINGLELINE_RIGHT_CONTENT} />
@@ -151,7 +157,11 @@ const IDE = () => {
               Dynamic height editor
             </div>
 
-            <ResizaleEditor />
+            <BaseEditor
+              editorType={
+                COMPONENT_CONSTANTS.EDITOR_CONFIG.RESIZABLE_EDITOR_MODE
+              }
+            />
             <RightBar list={COMPONENT_CONSTANTS.RESIZEABLE_RIGHT_CONTENT} />
           </div>
         </>
@@ -174,10 +184,18 @@ const IDE = () => {
             </div>
             <div className="flex flex-wrap">
               <div className="basis-1/2">
-                <MultiThemeEditor />
+                <BaseEditor
+                  editorType={
+                    COMPONENT_CONSTANTS.EDITOR_CONFIG.MULTITHEME_EDITOR_MODE
+                  }
+                />
               </div>
               <div className="basis-1/2">
-                <MultiThemeEditor />
+                <BaseEditor
+                  editorType={
+                    COMPONENT_CONSTANTS.EDITOR_CONFIG.MULTITHEME_EDITOR_MODE
+                  }
+                />
               </div>
             </div>
             <RightBar list={COMPONENT_CONSTANTS.MULTITHEME_RIGHT_CONTENT} />

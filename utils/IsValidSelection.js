@@ -1,5 +1,5 @@
 import { ResearchAdvanceQLLexer } from "@/components/antlrGenerated";
-import { keywords } from "./DataSets";
+import { keywords, advancedOperatorsOptions } from "./DataSets";
 
 const IsValidSelection = (tokens, startPos, endPos) => {
   let isSelectedTextKeyword = false;
@@ -33,6 +33,15 @@ const IsValidSelection = (tokens, startPos, endPos) => {
       isValidSelection = true;
     }
   });
+
+  if (
+    actualSelectedText.length >= 2 &&
+    advancedOperatorsOptions.has(
+      actualSelectedText.substring(1, actualSelectedText.length - 1)
+    )
+  ) {
+    isValidSelection = false;
+  }
 
   return {
     actualSelectedText:
