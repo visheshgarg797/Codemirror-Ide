@@ -42,6 +42,15 @@ const IsValidSelection = (tokens, startPos, endPos) => {
     isValidSelection = false;
   }
 
+  if (
+    actualSelectedText.length >= 2 &&
+    advancedOperatorsOptions.has(
+      actualSelectedText.substring(1, actualSelectedText.length - 1)
+    )
+  ) {
+    isValidSelection = false;
+  }
+
   return {
     actualSelectedText:
       actualSelectedText.length > 0

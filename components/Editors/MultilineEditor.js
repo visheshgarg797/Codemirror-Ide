@@ -138,10 +138,15 @@ const MultiLineEditor = () => {
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
+    console.log(wordsToInsert);
     wordsToInsert.forEach((word) => {
       textToInsert += ` OR "${word}"`;
     });
     textToInsert += ") ";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {

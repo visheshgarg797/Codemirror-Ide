@@ -169,10 +169,15 @@ const SingleLineEditor = () => {
 
   const pushSelectionChangesToEditor = (wordsToInsert) => {
     let textToInsert = "";
+    console.log(wordsToInsert);
     wordsToInsert.forEach((word) => {
       textToInsert += ` OR "${word}"`;
     });
     textToInsert += ") ";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
@@ -187,11 +192,10 @@ const SingleLineEditor = () => {
     viewRef.current.dispatch({ changes });
     viewRef.current.dispatch({
       selection: {
-        anchor: viewRef.current.state.doc.toString().length,
-        head: viewRef.current.state.doc.toString().length,
+        anchor: code.length,
+        head: code.length,
       },
     });
-    viewRef.current.dispatch;
     setPopupState((popupState) => ({ ...popupState, showPopup: false }));
   };
 
