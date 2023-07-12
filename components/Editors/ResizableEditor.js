@@ -248,7 +248,7 @@ export default function ResizaleEditor() {
             ? 2
             : 3
         ],
-        placeholder("ENTER QUERY..."),
+        placeholder("Write Query here ..."),
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {

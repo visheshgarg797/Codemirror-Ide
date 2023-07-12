@@ -299,7 +299,7 @@ const SingleLineEditor = () => {
             }),
           ],
         }),
-        placeholder("ENTER QUERY..."),
+        placeholder("Write Query here ..."),
         syntaxHighlighting(myHighlightStyle),
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr

@@ -233,7 +233,7 @@ const MultiLineEditor = () => {
             }),
           ],
         }),
-        placeholder("ENTER QUERY..."),
+        placeholder("Write Query here ..."),
         syntaxHighlighting(myHighlightStyle),
         MultilineSampleThemeList[
           direction === Direction.LTR

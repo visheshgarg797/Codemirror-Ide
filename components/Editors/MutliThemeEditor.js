@@ -251,7 +251,7 @@ const MultiThemeEditor = () => {
             }),
           ],
         }),
-        placeholder("ENTER QUERY..."),
+        placeholder("Write Query here ..."),
         syntaxHighlighting(myHighlightStyle),
         multiThemeSampleThemeList[themeIndex],
         EditorView.lineWrapping,
