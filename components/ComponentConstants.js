@@ -265,6 +265,12 @@ const COMPONENT_CONSTANTS = {
       body: "We implemented the algorithm to determine which suggestions to render based on previous words to identify valid phrases. However, we faced challenges in determining the conditions to trigger the suggestion box. The method used in the Sprinklr Monaco editor, which relied on spaces or specific triggering characters, was not supported in CodeMirror. As an alternative, we leveraged other methods such as monitoring changes in the editor's view state to trigger our custom suggestions. This approach also ensured that suggestions were displayed even when no characters were typed into the editor",
     },
   ],
+  EDITOR_CONFIG: {
+    MULTILINE_EDITOR_MODE: "MULTILINE_EDITOR_MODE",
+    SINGLELINE_EDITOR_MODE: "SINGLELINE_EDITOR_MODE",
+    RESIZABLE_EDITOR_MODE: "RESIZABLE_EDITOR_MODE",
+    MULTITHEME_EDITOR_MODE: "MULTITHEME_EDITOR_MODE",
+  },
 };
 
 export default COMPONENT_CONSTANTS;

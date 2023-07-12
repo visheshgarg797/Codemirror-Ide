@@ -7,24 +7,28 @@ import { MultilineSampleThemeList } from "@/utils/MultilineSampleThemeList";
 import { syntaxHighlighting } from "@codemirror/language";
 import { useCustomTheme } from "@/context/useThemeHook";
 import { useCustomDirection } from "@/context/useDirectionHook";
-import { tags } from "@lezer/highlight";
-import { HighlightStyle } from "@codemirror/language";
+import {
+  editorHighlightStyle,
+  regexpLinter,
+  pushSelectionChangesToEditor,
+  handleTextSelection,
+  handleDiscardPopup,
+  handleMouseDown,
+} from "@/utils/EditorFunctions";
 import getKeywordFilter from "@/utils/GetSuggestions";
 import { startCompletion } from "@codemirror/autocomplete";
 import { Theme_Name } from "@/constants/ThemeName";
-import { antrl4Lang, getTokensForText } from "../Grammer/antrl4-lang";
-import IsValidSelection from "@/utils/IsValidSelection";
-import Popup from "../Autocomplete/Popup";
+import { antrl4Lang } from "../Grammer/antrl4-lang";
 import { Direction } from "@/constants/Direction";
-import { ResearchAdvanceQLLexer } from "../antlrGenerated";
-import { ResearchAdvanceQLParser } from "../antlrGenerated";
-import EditorErrorStrategy from "../Grammer/editorErrorStrategy";
-import EditorQueryVisitor from "../Grammer/editorVisitor";
-import { linter, lintGutter } from "@codemirror/lint";
-import antlr4 from "antlr4";
+import { lintGutter } from "@codemirror/lint";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
+import { ResizableSampleThemeList } from "@/utils/ResizableSampleThemeList";
+import { multiThemeSampleThemeList } from "@/utils/multiThemeSampleThemeList";
 import MultiLineEditorComponent from "./MultiLineEditorComponent";
 import SingleLineEditorComponent from "./SingleLineEditorComponent";
+import ResizeableEditorComponent from "./ResizeableEditorComponent";
+import MultipleThemeEditorComponent from "./MultipleThemeEditorComponent";
+import COMPONENT_CONSTANTS from "../ComponentConstants";
 
 const BaseEditor = ({ editorType }) => {
   const editorRef = useRef(null);
@@ -39,227 +43,105 @@ const BaseEditor = ({ editorType }) => {
     popupPosition: { x: 0, y: 0 },
     selectionPos: -1,
   });
-
   const [suggestionBoxCorrds, setSuggestionBoxCoords] = useState({
     left: 0,
     top: 0,
   });
-
-  const myHighlightStyle = HighlightStyle.define([
-    { color: themeStyles.syntaxNumberColor, tag: [tags.number, tags.inserted] },
-    {
-      color: themeStyles.syntaxORColor,
-      tag: [tags.logicOperator, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxNOTColor,
-      tag: [tags.bitwiseOperator, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxANDColor,
-      tag: [tags.arithmeticOperator, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxColonColor,
-      tag: [tags.className, tags.deleted],
-    },
-    {
-      color: themeStyles.syntaxPhraseColor,
-      tag: [tags.content, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxParenColor,
-      tag: [tags.paren, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxParenColor,
-      tag: [tags.paren, tags.inserted],
-    },
-    {
-      color: themeStyles.syntaxCommentColor,
-      tag: [tags.comment, tags.inserted],
-    },
-  ]);
-
+  const myHighlightStyle = editorHighlightStyle(themeStyles);
   const [code, setCode] = useState("");
   const [suggestions, setSuggestions] = useState(null);
   const [selectedTextIsKeyword, setSelectedTextIsKeyword] = useState(false);
+  const [maxLines, setMaxLines] = useState(0);
 
-  const createParserFromLexer = (lexer) => {
-    const tokens = new antlr4.CommonTokenStream(lexer);
-
-    return {
-      tokens: tokens.tokens,
-      parser: new ResearchAdvanceQLParser(tokens),
-    };
-  };
-
-  const createLexer = (input) => {
-    const chars = new antlr4.InputStream(input);
-
-    const lexer = new ResearchAdvanceQLLexer(chars);
-
-    lexer.strictMode = false;
-
-    return lexer;
-  };
-
-  function getErrors(text) {
-    const errors = [];
-    const lexer = createLexer(text);
-    //removing errorListeners of lexer as these errors will be reported in tokensProvider
-    lexer.removeErrorListeners();
-    const { parser, tokens } = createParserFromLexer(lexer);
-    parser.removeErrorListeners();
-    parser._errHandler = new EditorErrorStrategy();
-
-    try {
-      const tree = parser.mainQ();
-      const visitor = new EditorQueryVisitor();
-      tree.accept(visitor);
-    } catch (e) {
-      errors.push({
-        from: e?.offendingToken?.start,
-        to: e?.offendingToken?.stop + 1,
-        message: e?.message,
-      });
-    }
-    return errors;
+  const themeMapping = {};
+  for (let i = 0; i < 4; i++) {
+    themeMapping[COMPONENT_CONSTANTS.THEME_NAMES[i]] = i;
   }
-
-  // customized  extension to show errors on editor
-  const regexpLinter = linter((view) => {
-    let diagnostics = [];
-    const text = viewRef.current.state.doc.toString();
-    const errors = getErrors(text);
-    errors.map((error) => {
-      diagnostics.push({
-        from: error?.from,
-        to: error?.to,
-        severity: "error",
-        message: error?.message,
-      });
-    });
-    return diagnostics;
-  });
-
-  const pushSelectionChangesToEditor = (wordsToInsert) => {
-    let textToInsert = "";
-    wordsToInsert.forEach((word) => {
-      textToInsert += ` OR "${word}"`;
-    });
-    textToInsert += ") ";
-    const changes = [
-      { from: popupState.selectionPos, insert: "(" },
-      {
-        from:
-          popupState.selectionPos +
-          popupState.selection.length +
-          2 -
-          selectedTextIsKeyword,
-        insert: textToInsert,
-      },
-    ];
-    viewRef.current.dispatch({ changes });
-    viewRef.current.dispatch({
-      selection: {
-        anchor: code.length,
-        head: code.length,
-      },
-    });
-    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
-  };
-
-  const handleMouseDown = () => {
-    setCode(viewRef.current.state.doc.toString());
-    setPopupState((popupState) => ({
-      ...popupState,
-      selection: null,
-      showPopup: false,
-    }));
-    if (!popupState.showPopup) {
-      return startCompletion(viewRef.current, { trigger: "input" });
-    }
-  };
-
-  const handleTextSelection = (e) => {
-    const { ranges } = viewRef.current.state.selection;
-
-    if (ranges.some((range) => !range.empty)) {
-      const tokens = getTokensForText(viewRef.current.state.doc.toString());
-      const checkValidityOfSelection = IsValidSelection(
-        tokens,
-        ranges[0].from,
-        ranges[0].to
-      );
-      if (!checkValidityOfSelection.isValidSelection) {
-        return;
-      }
-      setSelectedTextIsKeyword(checkValidityOfSelection.isSelectedTextKeyword);
-      const st = viewRef.current.coordsAtPos(
-        checkValidityOfSelection.actualStartPos
-      );
-      const ed = viewRef.current.coordsAtPos(
-        checkValidityOfSelection.actualEndPos
-      );
-
-      setPopupState((popupState) => ({
-        ...popupState,
-        selection: checkValidityOfSelection.actualSelectedText,
-        popupPosition: {
-          x: ed.right - 2,
-          y: (st.bottom + ed.bottom) / 2,
-        },
-        selectionPos: checkValidityOfSelection.actualStartPos,
-        showPopup: true,
-      }));
-    }
-  };
-
-  const handleDiscardPopup = () => {
-    setPopupState((popupState) => ({ ...popupState, showPopup: false }));
+  const [themeNamesRender, setThemeNamesRender] = useState([]);
+  const [themeIndex, setThemeIndex] = useState(
+    themeStyles.theme === Theme_Name.LIGHT_MODE ? 0 : 1
+  );
+  const [currentThemeSelected, setCurrentThemeSelected] = useState(
+    COMPONENT_CONSTANTS.THEME_NAMES[themeIndex]
+  );
+  const handleThemeChange = (themeChangeEvent) => {
+    let idx =
+      themeMapping[themeChangeEvent.target.value] +
+      (direction === Direction.RTL ? 4 : 0);
+    setThemeIndex(idx);
+    setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx % 4]);
   };
 
   const EXTENSION_CONFIG = {
-    MULTILINE_EDITOR_CONFIG: [
-      MultilineSampleThemeList[
-        direction === Direction.LTR
-          ? themeStyles.theme === Theme_Name.LIGHT_MODE
-            ? 0
-            : 1
-          : themeStyles.theme === Theme_Name.LIGHT_MODE
-          ? 2
-          : 3
+    MULTILINE_EDITOR_MODE: {
+      dynamicDepedency: [themeStyles, direction],
+      extensions: [
+        MultilineSampleThemeList[
+          direction === Direction.LTR
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
+              ? 0
+              : 1
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
+            ? 2
+            : 3
+        ],
+        lintGutter(),
+        EditorView.lineWrapping,
       ],
-    ],
-    SINGLELINE_EDITOR_CONFIG: [
-      EditorState.transactionFilter.of((tr) => (tr.newDoc.lines > 1 ? [] : tr)),
-      SampleThemeListForSingleLineEditor[
-        direction === Direction.LTR
-          ? themeStyles.theme === Theme_Name.LIGHT_MODE
-            ? 0
-            : 1
-          : themeStyles.theme === Theme_Name.LIGHT_MODE
-          ? 2
-          : 3
+    },
+    SINGLELINE_EDITOR_MODE: {
+      dynamicDepedency: [themeStyles, direction],
+      extensions: [
+        EditorState.transactionFilter.of((tr) =>
+          tr.newDoc.lines > 1 ? [] : tr
+        ),
+        SampleThemeListForSingleLineEditor[
+          direction === Direction.LTR
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
+              ? 0
+              : 1
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
+            ? 2
+            : 3
+        ],
+        highlightActiveLine(),
+        lineNumbers({ visible: false }),
+        EditorView.domEventHandlers({
+          paste(event, view) {
+            handlePaste(event.clipboardData.getData("text/plain"));
+          },
+        }),
       ],
-      highlightActiveLine(),
-      lineNumbers({ visible: false }),
-      EditorView.domEventHandlers({
-        paste(event, view) {
-          handlePaste(event.clipboardData.getData("text/plain"));
-        },
-        cut(event, view) {
-          handleCut();
-        },
-      }),
-    ],
+    },
+    RESIZABLE_EDITOR_MODE: {
+      dynamicDepedency: [themeStyles, direction, maxLines],
+      extensions: [
+        ResizableSampleThemeList[maxLines][
+          direction === Direction.LTR
+            ? themeStyles.theme === Theme_Name.LIGHT_MODE
+              ? 0
+              : 1
+            : themeStyles.theme === Theme_Name.LIGHT_MODE
+            ? 2
+            : 3
+        ],
+        lintGutter(),
+        EditorView.lineWrapping,
+      ],
+    },
+    MULTITHEME_EDITOR_MODE: {
+      dynamicDepedency: [themeStyles, direction, themeIndex],
+      extensions: [
+        multiThemeSampleThemeList[themeIndex],
+        lintGutter(),
+        EditorView.lineWrapping,
+      ],
+    },
   };
   const BASE_EDITOR_CONFIG = [
     basicSetup,
     antrl4Lang,
-    regexpLinter,
-    lintGutter(),
+    regexpLinter({ viewRef }),
     autocompletion({
       override: [
         getKeywordFilter({
@@ -269,10 +151,14 @@ const BaseEditor = ({ editorType }) => {
       ],
     }),
     syntaxHighlighting(myHighlightStyle),
-    EditorView.lineWrapping,
     EditorView.updateListener.of((update) => {
       if (update?.state?.selection?.ranges) {
-        handleTextSelection();
+        handleTextSelection(
+          viewRef,
+          popupState,
+          setPopupState,
+          setSelectedTextIsKeyword
+        );
       }
       if (update.docChanged) {
         setCode(viewRef.current.state.doc.toString());
@@ -280,7 +166,7 @@ const BaseEditor = ({ editorType }) => {
           ...popupState,
           showPopup: false,
         }));
-        return startCompletion(View, { trigger: "input" });
+        return startCompletion(viewRef.current, { trigger: "input" });
       }
     }),
   ];
@@ -291,13 +177,18 @@ const BaseEditor = ({ editorType }) => {
     }
     const startState = EditorState.create({
       doc: code,
-      extensions: [...BASE_EDITOR_CONFIG, ...EXTENSION_CONFIG[editorType]],
+      extensions: [
+        ...BASE_EDITOR_CONFIG,
+        ...EXTENSION_CONFIG[editorType].extensions,
+      ],
     });
     const View = new EditorView({
       state: startState,
       parent: editorRef.current,
     });
-    View.dom.addEventListener("mousedown", handleMouseDown);
+    View.dom.addEventListener("mousedown", () =>
+      handleMouseDown({ setCode, popupState, setPopupState, viewRef })
+    );
     viewRef.current = View;
 
     const suggestionCoords = editorRef.current.getBoundingClientRect();
@@ -312,22 +203,133 @@ const BaseEditor = ({ editorType }) => {
     return () => {
       View.destroy();
     };
-  }, [themeStyles, direction]);
+  }, EXTENSION_CONFIG[editorType].dynamicDepedency);
 
-  return editorType === "MULTILINE_EDITOR_CONFIG" ? (
+  useEffect(() => {
+    if (
+      editorType === COMPONENT_CONSTANTS.EDITOR_CONFIG.MULTITHEME_EDITOR_MODE
+    ) {
+      let persistCurrentTheme = false;
+      let idx;
+      if (themeStyles.theme == Theme_Name.LIGHT_MODE) {
+        setThemeNamesRender((themeNamesRender) => [
+          "Github Light Theme",
+          "Gruvbox Light Hard",
+        ]);
+        if (
+          currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[0] ||
+          currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[2]
+        ) {
+          persistCurrentTheme = true;
+        } else {
+          if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[1]) {
+            idx = 0;
+          }
+          if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[3]) {
+            idx = 2;
+          }
+        }
+      } else {
+        setThemeNamesRender((themeNamesRender) => [
+          "Github Dark Theme",
+          "Gruvbox Dark Hard",
+        ]);
+        if (
+          currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[1] ||
+          currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[3]
+        ) {
+          persistCurrentTheme = true;
+        } else {
+          if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[0]) {
+            idx = 1;
+          }
+          if (currentThemeSelected === COMPONENT_CONSTANTS.THEME_NAMES[2]) {
+            idx = 3;
+          }
+        }
+      }
+      if (!persistCurrentTheme) {
+        setThemeIndex(idx);
+        setCurrentThemeSelected(COMPONENT_CONSTANTS.THEME_NAMES[idx]);
+      }
+    }
+  }, [themeStyles.theme]);
+
+  return editorType ===
+    COMPONENT_CONSTANTS.EDITOR_CONFIG.MULTILINE_EDITOR_MODE ? (
     <MultiLineEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={pushSelectionChangesToEditor}
-      handleDiscardPopup={handleDiscardPopup}
+      pushSelectionChangesToEditor={(wordsToInsert) =>
+        pushSelectionChangesToEditor({
+          wordsToInsert,
+          viewRef,
+          popupState,
+          setPopupState,
+          selectedTextIsKeyword,
+          code,
+        })
+      }
+      handleDiscardPopup={() =>
+        handleDiscardPopup({ popupState, setPopupState })
+      }
     />
-  ) : (
+  ) : editorType ===
+    COMPONENT_CONSTANTS.EDITOR_CONFIG.SINGLELINE_EDITOR_MODE ? (
     <SingleLineEditorComponent
       editorRef={editorRef}
       popupState={popupState}
-      pushSelectionChangesToEditor={pushSelectionChangesToEditor}
-      handleDiscardPopup={handleDiscardPopup}
+      pushSelectionChangesToEditor={(wordsToInsert) =>
+        pushSelectionChangesToEditor({
+          wordsToInsert,
+          viewRef,
+          popupState,
+          setPopupState,
+          selectedTextIsKeyword,
+          code,
+        })
+      }
+      handleDiscardPopup={() =>
+        handleDiscardPopup({ popupState, setPopupState })
+      }
       suggestionBoxCorrds={suggestionBoxCorrds}
+    />
+  ) : editorType === COMPONENT_CONSTANTS.EDITOR_CONFIG.RESIZABLE_EDITOR_MODE ? (
+    <ResizeableEditorComponent
+      editorRef={editorRef}
+      popupState={popupState}
+      pushSelectionChangesToEditor={(wordsToInsert) =>
+        pushSelectionChangesToEditor({
+          wordsToInsert,
+          viewRef,
+          popupState,
+          setPopupState,
+          selectedTextIsKeyword,
+          code,
+        })
+      }
+      handleDiscardPopup={() =>
+        handleDiscardPopup({ popupState, setPopupState })
+      }
+      setMaxLines={setMaxLines}
+    />
+  ) : (
+    <MultipleThemeEditorComponent
+      editorRef={editorRef}
+      popupState={popupState}
+      pushSelectionChangesToEditor={(wordsToInsert) =>
+        pushSelectionChangesToEditor({
+          wordsToInsert,
+          viewRef,
+          popupState,
+          setPopupState,
+          selectedTextIsKeyword,
+          code,
+        })
+      }
+      currentThemeSelected={currentThemeSelected}
+      handleThemeChange={handleThemeChange}
+      themeNamesRender={themeNamesRender}
     />
   );
 };
