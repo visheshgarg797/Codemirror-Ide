@@ -53,20 +53,14 @@ const IDE = () => {
               >
                 <tr>
                   <th
+                    colSpan="2"
                     scope="col"
                     style={{
                       color: themeStyles.col02.color,
                     }}
                     className="text-m font-large text-gray-900 px-6 py-3"
-                  ></th>
-                  <th
-                    scope="col"
-                    style={{
-                      color: themeStyles.col02.color,
-                    }}
-                    className="text-m font-large px-6 py-3 text-left"
                   >
-                    SAMPLE QUERY EXAMPLES
+                    Sample Query Examples
                   </th>
                 </tr>
               </thead>
