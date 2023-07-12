@@ -14,15 +14,10 @@ const Sidebar = () => {
     <div
       className="bg-gray-800 w-128 fixed mt-8 sm:w-16 md:w-32 lg:w-64"
       style={{
-        // width: "20rem",
-
         backgroundColor: themeStyles.col02.backgroundColor,
       }}
     >
-      <nav
-        className="flex flex-col items-stretch sm:w-100 md:w-48"
-        // style={{ width: "20rem" }}
-      >
+      <nav className="flex flex-col items-stretch sm:w-100 md:w-48">
         <div
           className="mb-2 text-opacity-100 text-gray-500  font-optimistic-text font-sans -apple-system ui-sans-serif system-ui BlinkMacSystemFont Segoe UI Roboto Helvetica Neue Arial Noto Sans sans-serif Apple Color Emoji Segoe UI Emoji Segoe UI Symbol Noto Color Emoji"
           style={{
@@ -36,7 +31,7 @@ const Sidebar = () => {
         <IntroLeftNavButton index="Introduction" path="/intro" />
         <AnalysisLeftNavButton index="Analysis" path="/analysis" />
         <EditorLeftNavButton index="Editor" path="/editor" />
-        <LeftNavButton index="Performance Analysis" path="/performance" />
+        <LeftNavButton index="Size Comparison" path="/size" />
         <LeftNavButton index="Conclusion" path="/conclusion" />
       </nav>
     </div>

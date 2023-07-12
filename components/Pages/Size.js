@@ -13,7 +13,7 @@ import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { Direction } from "@/constants/Direction";
 import { useCustomDirection } from "@/context/useDirectionHook";
 
-const MainPerformance = () => {
+const MainSize = () => {
   const { themeStyles } = useCustomTheme();
   const { direction } = useCustomDirection();
   return (
@@ -37,7 +37,7 @@ const MainPerformance = () => {
             fontWeight: "500",
           }}
         >
-          Performance Analysis{" "}
+          Size Comparison
         </h1>
         <p
           style={{
@@ -65,7 +65,7 @@ const MainPerformance = () => {
                   fontWeight: "500",
                 }}
               >
-                Size Comparison
+                Package Size
               </h1>
               <table id="section1" className="min-w-full mt-5">
                 <thead
@@ -285,7 +285,7 @@ const MainPerformance = () => {
         features={[
           {
             anchor: "#section1",
-            heading: "Size Comparison",
+            heading: "Package Size",
           },
 
           { anchor: "#section2", heading: "Production size build comparision" },
@@ -295,4 +295,4 @@ const MainPerformance = () => {
   );
 };
 
-export default MainPerformance;
+export default MainSize;

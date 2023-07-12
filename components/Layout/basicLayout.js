@@ -8,7 +8,7 @@ import MainAnalysis from "../Pages/mainAnalysis";
 import MainConclusion from "../Pages/mainConclusion";
 import MainEditor from "../Pages/mainEditor";
 import MainIntro from "../Pages/mainIntro";
-import MainPerformance from "../Pages/Performance";
+import MainSize from "../Pages/Size";
 import { useCustomDirection } from "@/context/useDirectionHook";
 
 const MODULES = {
@@ -16,7 +16,7 @@ const MODULES = {
   ANALYSIS: "analysis",
   EDITOR: "editor",
   CONCLUSION: "conclusion",
-  PERFORMANCE: "performance",
+  SIZE: "size",
 };
 
 const ALL_MODULES = new Set(Object.values(MODULES));
@@ -25,7 +25,7 @@ const MODULE_VS_BODY_COMPONENT = {
   [MODULES.INTRO]: MainIntro,
   [MODULES.ANALYSIS]: MainAnalysis,
   [MODULES.EDITOR]: MainEditor,
-  [MODULES.PERFORMANCE]: MainPerformance,
+  [MODULES.SIZE]: MainSize,
   [MODULES.CONCLUSION]: MainConclusion,
 };
 
