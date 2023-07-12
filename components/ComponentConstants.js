@@ -7,16 +7,16 @@ const COMPONENT_CONSTANTS = {
       value: EDITOR_MODES.MULTILINE_EDITOR_MODE,
     },
     {
+      label: "Multitheme editor",
+      value: EDITOR_MODES.MULTITHEME_EDITOR_MODE,
+    },
+    {
       label: "Text input editor",
       value: EDITOR_MODES.SINGLELINE_EDITOR_MODE,
     },
     {
       label: "Dynamic height editor",
       value: EDITOR_MODES.RESIZABLE_EDITOR_MODE,
-    },
-    {
-      label: "Multitheme editor",
-      value: EDITOR_MODES.MULTITHEME_EDITOR_MODE,
     },
   ],
   INTRODUCTION_SUBHEADINGS_OPTIONS: [
@@ -61,6 +61,14 @@ const COMPONENT_CONSTANTS = {
       ace: "YES",
       monaco: "YES",
     },
+    {
+      feature: "Custom grammar and autocompletion support",
+      content:
+        "Allows custom grammar integration and custom autocomplete keyword filter.",
+      codemirror: "YES",
+      ace: "YES",
+      monaco: "YES",
+    },
 
     {
       feature: "Error highlighting and syntax error visualization",
@@ -70,20 +78,7 @@ const COMPONENT_CONSTANTS = {
       ace: "YES",
       monaco: "YES",
     },
-    {
-      feature: "Dynamic height editors",
-      content: "Allows editors with that can take height dynamically",
-      codemirror: "YES",
-      ace: "NO",
-      monaco: "NO",
-    },
-    {
-      feature: "Copy, paste callback support",
-      content: "Provides copy and paste callback support",
-      codemirror: "YES",
-      ace: "YES",
-      monaco: "YES",
-    },
+
     {
       feature: "Text selection support with callback",
       content: "Supports text selection with callback",
@@ -106,13 +101,13 @@ const COMPONENT_CONSTANTS = {
       ace: "NO",
       monaco: "NO",
     },
+
     {
-      feature: "Custom grammer and autocompletion support",
-      content:
-        "Allows custom grammer integration and custom autocomplete keyword filter.",
+      feature: "Dynamic height editors",
+      content: "Allows editors with that can take height dynamically",
       codemirror: "YES",
-      ace: "YES",
-      monaco: "YES",
+      ace: "NO",
+      monaco: "NO",
     },
     {
       feature: "Drag and drop support",
@@ -208,12 +203,12 @@ const COMPONENT_CONSTANTS = {
       body: "The editor provides a familiar input box experience but at the same time contains all the features of like autocomplete support, syntax highlighting, error handling, AI powered selection support etc.",
     },
     {
-      heading: "Dropdown recommendations",
-      body: "This solve the problem that is quite difficult to overcome with the existing Sprinklr Monaco edtitor of having customized suggestion box. We have customized the suggestion box such that it appears, not besides the cursor but at the bottom of the editor as a dropdown. With each suggestion, the suggestion box remains in place, providing a seamless and aesthetically pleasing user experience.",
+      heading: "Suggestions as dropdown",
+      body: "This feature is quite difficult to implement with the existing Sprinklr Monaco edtitor of having customized suggestion box. We have customized the suggestion box such that it appears, not besides the cursor but at the bottom of the editor as a dropdown. With each suggestion, the suggestion box remains in place, providing a seamless and aesthetically pleasing user experience.",
     },
     {
-      heading: "Pasting multiple lines",
-      body: "This features allows the user to copy and paste multiples lines of query into the editor. The editor still retains its single line functinality and muliple lines are parsed and converted to a single line query, seamlessly incorporating them into the editor.",
+      heading: "Line folding on paste",
+      body: "The process of parsing multiple lines and converting them into a single line is often referred to as line folding. This features allows the user to copy and paste multiples lines of query into the editor. The editor still retains its single line functinality and muliple lines are parsed and converted to a single line query, and added to the editor.",
     },
     {
       heading: "Other features",
@@ -223,19 +218,11 @@ const COMPONENT_CONSTANTS = {
   MULTITHEME_RIGHT_CONTENT: [
     {
       heading: "Support for multiple themes",
-      body: "The exising Sprinklr Monaco based editor does not allow maintaining more than one editor on the same screen with different themes. This problem has been resolved in this new editor which allows the user to toggle between diffrent themes on both the editors with each inidividual editor maintaining its own theme.  Each editor maintains its own theme, providing users with a diverse experience and more options while interacting with our application.",
-    },
-    {
-      heading: "Options currently provided",
-      body: "In this current version, we have provided the user the option of two popular themes to choose from i.e. Github theme and Gruvbox theme. On toggling between the global themes using the theme change button present in the navbar, user gets access to the Light and Dark themes of Github and Gruvbox themes.",
+      body: "The exising Sprinklr Monaco based editor does not allow maintaining more than one editor on the same screen with different themes. This problem has been resolved in this new editor which allows the user to toggle between diffrent themes on both the editors.  This provides the users a great experience and more options while interacting with our application.",
     },
     {
       heading: "Interacting with global theme",
-      body: "When the global theme is changed from Light theme to Dark theme, the individual multitheme editors also update their respective themes. For example, if an editor initially had the Github Light Theme and we switch to Dark mode, that editor will now have the Github Dark theme. The same behavior applies to the Gruvbox theme.",
-    },
-    {
-      heading: "Maintaining seperate states",
-      body: "We maintain seperates states for all inidviudal editors. So even if we have multiple editors on screen simultaneously, no ambigous behaviour is observed with any functionality.",
+      body: "When the global theme is changed from Light theme to Dark theme, the individual multitheme editors also update their respective themes. For example, if an editor initially had the Github Light Theme and we switch to Dark mode, that editor will now have the Github Dark theme. ",
     },
     {
       heading: "Other features",
@@ -270,7 +257,7 @@ const COMPONENT_CONSTANTS = {
       body: "We needed to insert text into the editor in scenarios involving pasting text or inserting phrases using the selection popup. The challenge we faced here was managing the anchor and head positions from where the desired text should be dispatched to the editor",
     },
     {
-      heading: "Grammer integration and error handling",
+      heading: "grammar integration and error handling",
       body: "One of the major challenges we encountered was the lack of comprehensive resources for integrating custom grammar with the CodeMirror module. To overcome this, we built extensions specifically designed to handle grammar integration, which were further utilized for error handling and syntax highlighting.",
     },
     {

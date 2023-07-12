@@ -61,16 +61,14 @@ const MainConclusion = () => {
             <span>
               In our development process, we built the entire editor using
               CodeMirror, successfully implementing most of the features found
-              in the existing Monaco editor. Additionally, we went beyond by
-              incorporating advanced features like right-to-left support,
-              multiple theme editors within a single page, a dynamic length
-              editor. While researching for features, we came across the feature
-              of drag and drop directly into the editor. This feature will
-              improve the experience users greatly. These added features enhance
-              the editor functionality and provide an even more customizable and
-              efficient code editing experience for developers and also help
-              users with our error handling support as well customized
-              suggestion box for text input editor.
+              in the existing Sprinklr Monaco editor. Additionally, we
+              incorporated features like right-to-left support, multiple theme
+              editors within a single page, a dynamic length editor and user
+              friendly error handling. While researching for features, we came
+              across the feature of drag and drop directly into the editor which
+              would greatly enhance user experience while interacting with our
+              editor. Additionally to showcase our work we also built this
+              website that has global theme and RTL support.
             </span>
 
             <h1
