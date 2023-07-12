@@ -163,10 +163,6 @@ const MultiThemeEditor = () => {
       textToInsert += ` OR "${word}"`;
     });
     textToInsert += ") ";
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
