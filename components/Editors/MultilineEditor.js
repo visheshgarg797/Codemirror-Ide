@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView } from "@codemirror/view";
+import { EditorView, placeholder } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { MultilineSampleThemeList } from "@/utils/MultilineSampleThemeList";
@@ -233,6 +233,7 @@ const MultiLineEditor = () => {
             }),
           ],
         }),
+        placeholder("ENTER QUERY..."),
         syntaxHighlighting(myHighlightStyle),
         MultilineSampleThemeList[
           direction === Direction.LTR

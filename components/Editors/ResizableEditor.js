@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView, keymap } from "@codemirror/view";
+import { EditorView, placeholder } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { ResizableSampleThemeList } from "@/utils/ResizableSampleThemeList";
@@ -248,6 +248,7 @@ export default function ResizaleEditor() {
             ? 2
             : 3
         ],
+        placeholder("ENTER QUERY..."),
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update?.state?.selection?.ranges) {

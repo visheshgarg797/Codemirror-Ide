@@ -1,7 +1,12 @@
 "use cilent";
 import React, { useRef, useState, useEffect } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
+import {
+  EditorView,
+  highlightActiveLine,
+  lineNumbers,
+  placeholder,
+} from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { SampleThemeListForSingleLineEditor } from "@/utils/SingleSampleThemeList";
@@ -294,6 +299,7 @@ const SingleLineEditor = () => {
             }),
           ],
         }),
+        placeholder("ENTER QUERY..."),
         syntaxHighlighting(myHighlightStyle),
         EditorState.transactionFilter.of((tr) =>
           tr.newDoc.lines > 1 ? [] : tr
