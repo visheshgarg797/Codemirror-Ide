@@ -10,6 +10,8 @@ import RightBar from "./RightFeatures";
 import COMPONENT_CONSTANTS from "../ComponentConstants";
 import { useCustomDirection } from "@/context/useDirectionHook";
 import { Direction } from "@/constants/Direction";
+import BaseEditor from "../Editors/BaseEditor";
+
 const IDE = () => {
   const { direction } = useCustomDirection();
   const { editorMode } = useCustomEditorMode();
@@ -40,7 +42,7 @@ const IDE = () => {
             >
               Fixed height editor
             </div>
-            <MultiLineEditor />
+            <BaseEditor editorType="MULTILINE_EDITOR_CONFIG" />
             <br /> <br />
             <table
               id="section1"
@@ -129,7 +131,7 @@ const IDE = () => {
               Text input editor
             </div>
             <div>
-              <SingleLineEditor />
+              <BaseEditor editorType="SINGLELINE_EDITOR_CONFIG" />
             </div>
           </div>
           <RightBar list={COMPONENT_CONSTANTS.SINGLELINE_RIGHT_CONTENT} />
