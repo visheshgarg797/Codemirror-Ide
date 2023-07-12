@@ -12,7 +12,7 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-content": {
         caretColor: "#0e9",
-        paddingTop: "16px",
+        paddingTop: "10px",
       },
       "&.cm-focused .cm-cursor": {
         borderLeftColor: "#0e9",
@@ -33,8 +33,8 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-line": {
         marginTop: "4px",
-        height: "23px",
-        fontSize: "15px",
+        height: "35px",
+        fontSize: "18px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "white",
@@ -66,7 +66,7 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-content": {
         caretColor: "#0e9",
-        paddingTop: "16px",
+        paddingTop: "10px",
       },
       "&.cm-focused .cm-cursor": {
         borderLeftColor: "#0e9",
@@ -87,8 +87,8 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-line": {
         marginTop: "4px",
-        height: "23px",
-        fontSize: "15px",
+        height: "35px",
+        fontSize: "18px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
@@ -120,7 +120,7 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-content": {
         caretColor: "#0e9",
-        paddingTop: "16px",
+        paddingTop: "10px",
       },
       "&.cm-focused .cm-cursor": {
         borderLeftColor: "#0e9",
@@ -141,8 +141,8 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-line": {
         marginTop: "4px",
-        height: "23px",
-        fontSize: "15px",
+        height: "35px",
+        fontSize: "18px",
       },
       ".cm-tooltip-autocomplete > ul": {
         color: "black",
@@ -178,7 +178,7 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-content": {
         caretColor: "#0e9",
-        paddingTop: "16px",
+        paddingTop: "10px",
       },
       "&.cm-focused .cm-cursor": {
         borderLeftColor: "#0e9",
@@ -199,8 +199,8 @@ const SampleThemeListForSingleLineEditor = [
       },
       ".cm-line": {
         marginTop: "4px",
-        height: "23px",
-        fontSize: "15px",
+        height: "35px",
+        fontSize: "18px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",

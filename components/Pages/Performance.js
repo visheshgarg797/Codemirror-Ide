@@ -54,30 +54,9 @@ const MainPerformance = () => {
               marginBottom: "2rem",
             }}
           >
-            <h1
-              id="section1"
-              style={{
-                color: themeStyles.col02.color,
-                paddingTop: "40px",
-                fontSize: "20px",
-                fontFamily: themeStyles.font,
-                fontWeight: "500",
-              }}
-            >
-              Performance Analysis for website
-            </h1>
-            <span style={{ display: "flex", marginTop: "1rem" }}>
-              We optimised the site performance using lighthouse .
-            </span>
-            <br />
-            <Image
-              src={performanceAnalysis}
-              style={{ marginTop: "1rem" }}
-              alt="Performance analysis"
-            />
             <div>
               <h1
-                id="section2"
+                id="section1"
                 style={{
                   color: themeStyles.col02.color,
                   paddingTop: "40px",
@@ -110,7 +89,7 @@ const MainPerformance = () => {
                       }}
                       className="text-m font-large px-6 py-3 text-left"
                     >
-                      Codemirror Editor
+                      Basic Monaco Editor
                     </th>
                     <th
                       scope="col"
@@ -119,7 +98,7 @@ const MainPerformance = () => {
                       }}
                       className="text-m font-large px-6 py-3 text-left"
                     >
-                      Basic Monaco Editor
+                      Codemirror Editor
                     </th>
                   </tr>
                 </thead>
@@ -152,7 +131,7 @@ const MainPerformance = () => {
                       }}
                     >
                       {" "}
-                      1MB{" "}
+                      87MB{" "}
                     </td>
                     <td
                       className="py-2 whitespace-nowrap text-sm font-medium"
@@ -163,7 +142,7 @@ const MainPerformance = () => {
                         color: themeStyles.col02.color,
                       }}
                     >
-                      87MB
+                      735KB
                     </td>
                   </tr>
 
@@ -193,8 +172,7 @@ const MainPerformance = () => {
                         color: themeStyles.col02.color,
                       }}
                     >
-                      {" "}
-                      200KB{" "}
+                      935KB
                     </td>
                     <td
                       className="py-2 whitespace-nowrap text-sm font-medium"
@@ -205,7 +183,7 @@ const MainPerformance = () => {
                         color: themeStyles.col02.color,
                       }}
                     >
-                      900KB
+                      186KB
                     </td>
                   </tr>
                 </tbody>
@@ -248,7 +226,7 @@ const MainPerformance = () => {
             </span>
             <br /> <br />
             <h1
-              id="section3"
+              id="section2"
               style={{
                 color: themeStyles.col02.color,
                 paddingTop: "40px",
@@ -305,13 +283,12 @@ const MainPerformance = () => {
       <AnchorBar
         margin={"10px"}
         features={[
-          { anchor: "#section1", heading: "Website performance analysis" },
           {
-            anchor: "#section2",
+            anchor: "#section1",
             heading: "Size Comparison",
           },
 
-          { anchor: "#section3", heading: "Production size build comparision" },
+          { anchor: "#section2", heading: "Production size build comparision" },
         ]}
       />
     </>

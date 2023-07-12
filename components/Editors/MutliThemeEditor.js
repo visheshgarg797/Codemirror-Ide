@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { EditorState } from "@codemirror/state";
-import { EditorView } from "@codemirror/view";
+import { EditorView, placeholder } from "@codemirror/view";
 import { basicSetup } from "codemirror";
 import { autocompletion } from "@codemirror/autocomplete";
 import { multiThemeSampleThemeList } from "@/utils/multiThemeSampleThemeList";
@@ -161,7 +161,7 @@ const MultiThemeEditor = () => {
     wordsToInsert.forEach((word) => {
       textToInsert += ` OR "${word}"`;
     });
-    textToInsert += ")";
+    textToInsert += ") ";
     const changes = [
       { from: popupState.selectionPos, insert: "(" },
       {
@@ -251,6 +251,7 @@ const MultiThemeEditor = () => {
             }),
           ],
         }),
+        placeholder("Write Query here ..."),
         syntaxHighlighting(myHighlightStyle),
         multiThemeSampleThemeList[themeIndex],
         EditorView.lineWrapping,

@@ -165,7 +165,7 @@ const Comparison = () => {
             fontWeight: "500",
           }}
         >
-          Comparison
+          Outcome
         </h1>
         <p
           style={{
@@ -197,8 +197,7 @@ const Comparison = () => {
             anchor: "#section1",
             heading: `Table of Features ${" "}  ${" "} ${" "} ${" "} ${" "} ${" "} ${" "} ${" "} `,
           },
-          { anchor: "#section2", heading: "Comparison" },
-          { anchor: "#section3", heading: "Conclusion" },
+          { anchor: "#section2", heading: "Outcome" },
         ]}
       />
     </>
