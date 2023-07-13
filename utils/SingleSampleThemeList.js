@@ -8,7 +8,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "0.7rem",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         overflow: "hidden",
-        height: "60px",
+        height: "50px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -32,9 +32,9 @@ const SampleThemeListForSingleLineEditor = [
         width: "0",
       },
       ".cm-line": {
-        marginTop: "4px",
-        height: "35px",
-        fontSize: "18px",
+        marginTop: "5px",
+        height: "22px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "white",
@@ -62,7 +62,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "0.7rem",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         overflow: "hidden",
-        height: "60px",
+        height: "50px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -86,9 +86,9 @@ const SampleThemeListForSingleLineEditor = [
         width: "0",
       },
       ".cm-line": {
-        marginTop: "4px",
-        height: "35px",
-        fontSize: "18px",
+        marginTop: "5px",
+        height: "22px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",
@@ -116,7 +116,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "0.7rem",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         overflow: "hidden",
-        height: "60px",
+        height: "50px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -140,9 +140,9 @@ const SampleThemeListForSingleLineEditor = [
         width: "0",
       },
       ".cm-line": {
-        marginTop: "4px",
-        height: "35px",
-        fontSize: "18px",
+        marginTop: "5px",
+        height: "22px",
+        fontSize: "15px",
       },
       ".cm-tooltip-autocomplete > ul": {
         color: "black",
@@ -174,7 +174,7 @@ const SampleThemeListForSingleLineEditor = [
         borderRadius: "0.7rem",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         overflow: "hidden",
-        height: "60px",
+        height: "50px",
       },
       ".cm-content": {
         caretColor: "#0e9",
@@ -198,9 +198,9 @@ const SampleThemeListForSingleLineEditor = [
         width: "0",
       },
       ".cm-line": {
-        marginTop: "4px",
-        height: "35px",
-        fontSize: "18px",
+        marginTop: "5px",
+        height: "22px",
+        fontSize: "15px",
       },
       ".cm-activeLineGutter": {
         backgroundColor: "#16181d",

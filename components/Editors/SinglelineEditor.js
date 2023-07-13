@@ -348,7 +348,7 @@ const SingleLineEditor = () => {
       setSuggestionBoxCoords((suggestionBoxCorrds) => ({
         ...suggestionBoxCorrds,
         left: suggestionCoords.left - 2,
-        top: suggestionCoords.top + 50,
+        top: suggestionCoords.top + 40,
       }));
     }
 
@@ -382,11 +382,9 @@ const SingleLineEditor = () => {
             width: 43.83rem;
             border-radius: 0px 0px 10px 10px;
           }
-
           .cm-tooltip > ul > li{
-            width:100%;
+            width:100%; 
           }
-
           .cm-tooltip > ul{
             border-radius: 0px 0px 10px 10px;
           }
